@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import UpgradeCTA from '../../components/UpgradeCTA.astro';
+import McpCard from '../../components/McpCard.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import { getMcpServers, getBundles } from '../../utils/data-loader';
+import type { McpServer } from '../../types';
+
+export function getStaticPaths() {
+  const servers = getMcpServers();
+  return servers.map((server) => ({
+    params: { slug: server.slug },
+    props: { server },
+  }));
+}
+
+const { server } = Astro.props as { server: McpServer };
+const allServers = getMcpServers();
+const bundles = getBundles().filter((b) => server.bundles?.includes(b.slug));
+const related = allServers
+  .filter((s) => s.slug !== server.slug && s.category === server.category)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={server.name}
+  description={server.description.en}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": server.slug,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "url": server.github,
+    })} />
+  </Fragment>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {/* Header */}
+    <div class="flex items-start gap-4 mb-8">
+      {server.icon ? (
+        <img src={`/icons/${server.icon}`} alt="" class="h-16 w-16 rounded-xl" />
+      ) : (
+        <div class="h-16 w-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl border border-border">
+          {server.name.charAt(0)}
+        </div>
+      )}
+      <div>
+        <div class="flex items-center gap-3">
+          <h1 class="text-3xl font-bold text-foreground">{server.name}</h1>
+          <StatusBadge status={server.status} />
+        </div>
+        <div class="mt-2 flex flex-wrap gap-2 text-sm">
+          <span class="px-2 py-0.5 bg-accent rounded text-muted-foreground">{server.category}</span>
+          <span class="px-2 py-0.5 bg-accent rounded text-muted-foreground">{server.region}</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Description */}
+    <section class="mb-8">
+      <p class="text-foreground leading-relaxed lang-en">{server.description.en}</p>
+      <p class="text-foreground leading-relaxed lang-zh">{server.description.zh}</p>
+    </section>
+
+    {/* Quick Info */}
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <div class="glass-card rounded-lg p-4">
+        <div class="text-xs text-muted-foreground uppercase tracking-wider">
+          <span class="lang-en">Status</span><span class="lang-zh">狀態</span>
+        </div>
+        <div class="mt-1 font-medium text-foreground capitalize">{server.status.replace('-', ' ')}</div>
+      </div>
+      {server.tools_count && (
+        <div class="glass-card rounded-lg p-4">
+          <div class="text-xs text-muted-foreground uppercase tracking-wider">
+            <span class="lang-en">Tools</span><span class="lang-zh">工具數</span>
+          </div>
+          <div class="mt-1 font-medium text-primary">{server.tools_count}</div>
+        </div>
+      )}
+      <div class="glass-card rounded-lg p-4">
+        <div class="text-xs text-muted-foreground uppercase tracking-wider">
+          <span class="lang-en">Category</span><span class="lang-zh">分類</span>
+        </div>
+        <div class="mt-1 font-medium text-foreground capitalize">{server.category}</div>
+      </div>
+      <div class="glass-card rounded-lg p-4">
+        <div class="text-xs text-muted-foreground uppercase tracking-wider">
+          <span class="lang-en">Region</span><span class="lang-zh">地區</span>
+        </div>
+        <div class="mt-1 font-medium text-foreground capitalize">{server.region}</div>
+      </div>
+      {server.maintainer && (
+        <div class="glass-card rounded-lg p-4">
+          <div class="text-xs text-muted-foreground uppercase tracking-wider">
+            <span class="lang-en">Maintainer</span><span class="lang-zh">維護者</span>
+          </div>
+          <div class="mt-1 font-medium">
+            <a href={`https://github.com/${server.maintainer}`} target="_blank" rel="noopener" class="text-primary hover:underline">@{server.maintainer}</a>
+          </div>
+        </div>
+      )}
+    </section>
+
+    {/* Links */}
+    <section class="flex flex-wrap gap-4 mb-8">
+      <a href={server.github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-foreground hover:border-primary/40 transition-colors">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      {server.api_docs && (
+        <a href={server.api_docs} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-foreground hover:border-primary/40 transition-colors">
+          <span class="lang-en">API Docs</span><span class="lang-zh">API 文件</span> &nearr;
+        </a>
+      )}
+    </section>
+
+    {/* Tags */}
+    {server.tags && server.tags.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+          <span class="lang-en">Tags</span><span class="lang-zh">標籤</span>
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          {server.tags.map((tag) => (
+            <span class="px-3 py-1 rounded-full text-sm border border-border/40 text-muted-foreground">{tag}</span>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Bundles */}
+    {bundles.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+          <span class="lang-en">Part of</span><span class="lang-zh">所屬</span>
+        </h2>
+        <div class="space-y-2">
+          {bundles.map((b) => (
+            <a href={`/bundles/${b.slug}/`} class="block glass-card rounded-lg p-4 hover:border-primary/40 transition-colors">
+              <div class="font-medium text-foreground">{b.name}</div>
+              <div class="text-sm text-muted-foreground mt-1 lang-en">{b.description.en}</div>
+              <div class="text-sm text-muted-foreground mt-1 lang-zh">{b.description.zh}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Upgrade CTA */}
+    {server.upgrade_to && (
+      <UpgradeCTA productName={server.upgrade_to} category={server.category} />
+    )}
+
+    {/* Related MCPs */}
+    {related.length > 0 && (
+      <section class="mt-12">
+        <h2 class="text-xl font-bold mb-6 text-foreground">
+          <span class="lang-en">Related MCP Servers</span><span class="lang-zh">相關 MCP 伺服器</span>
+        </h2>
+        <CardGrid>
+          {related.map((s) => <McpCard server={s} />)}
+        </CardGrid>
+      </section>
+    )}
+  </div>
+</BaseLayout>

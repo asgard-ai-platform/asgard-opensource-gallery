@@ -1,0 +1,26 @@
+---
+interface Props {
+  productName: string;
+  category: string;
+}
+
+const { productName, category } = Astro.props;
+---
+
+<div class="relative overflow-hidden bg-gradient-to-r from-green-500/10 via-cyan-500/10 to-green-500/10 border border-primary/20 rounded-xl p-6 mt-8">
+  <!-- Subtle glow -->
+  <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+
+  <div class="relative">
+    <h3 class="text-lg font-semibold text-primary">
+      <span class="lang-en">Need more powerful {category} capabilities?</span>
+      <span class="lang-zh">需要更強大的{category}能力？</span>
+    </h3>
+    <p class="mt-2 text-sm text-muted-foreground lang-en">
+      Upgrade to <strong class="text-primary">{productName}</strong> for enterprise-grade features, SLAs, and dedicated support.
+    </p>
+    <p class="mt-2 text-sm text-muted-foreground lang-zh">
+      升級至 <strong class="text-primary">{productName}</strong> 取得企業級功能、SLA 與專屬支援。
+    </p>
+  </div>
+</div>

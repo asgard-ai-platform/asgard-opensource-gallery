@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BundleCard from '../../components/BundleCard.astro';
+import { getBundles } from '../../utils/data-loader';
+
+const bundles = getBundles();
+---
+
+<BaseLayout title="Solution Bundles" description="Pre-packaged MCP + SKILL combos for specific business scenarios">
+  <!-- Hero area -->
+  <section class="relative overflow-hidden border-b border-border">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-glow-pulse"></div>
+      <div class="absolute top-1/2 right-1/3 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl animate-glow-pulse-delayed"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-border flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-gradient">
+            <span class="lang-en">Solution Bundles</span><span class="lang-zh">解決方案套件</span>
+          </h1>
+          <p class="text-sm text-muted-foreground">
+            {bundles.length} <span class="lang-en">bundles available</span><span class="lang-zh">個方案可用</span>
+          </p>
+        </div>
+      </div>
+      <p class="text-muted-foreground max-w-2xl lang-en">
+        Pre-packaged combinations of MCP Servers and SKILLs for specific business scenarios.
+      </p>
+      <p class="text-muted-foreground max-w-2xl lang-zh">
+        為特定商業場景預打包的 MCP 伺服器與技能組合。
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {bundles.map((bundle) => <BundleCard bundle={bundle} />)}
+    </div>
+  </div>
+</BaseLayout>

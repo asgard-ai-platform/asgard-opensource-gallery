@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Not Found">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+    <div class="relative inline-block mb-6">
+      <div class="absolute inset-0 bg-primary/20 rounded-full blur-3xl animate-glow-pulse"></div>
+      <h1 class="relative text-8xl font-bold text-gradient">404</h1>
+    </div>
+    <p class="text-xl text-muted-foreground mb-8">
+      <span class="lang-en">Page not found</span><span class="lang-zh">找不到此頁面</span>
+    </p>
+    <a href="/" class="btn-gradient inline-block px-6 py-3 rounded-lg text-sm font-semibold">
+      <span class="lang-en">Back to Home</span><span class="lang-zh">返回首頁</span>
+    </a>
+  </div>
+</BaseLayout>

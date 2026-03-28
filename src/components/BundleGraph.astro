@@ -1,0 +1,72 @@
+---
+import type { McpServer, Skill } from '../types';
+
+interface Props {
+  mcpServers: McpServer[];
+  skills: Skill[];
+}
+
+const { mcpServers, skills } = Astro.props;
+
+const edges: { from: number; to: number }[] = [];
+skills.forEach((skill, si) => {
+  if (skill.requires_mcp) {
+    skill.requires_mcp.forEach((mcpSlug) => {
+      const mi = mcpServers.findIndex((m) => m.slug === mcpSlug);
+      if (mi >= 0) {
+        edges.push({ from: si, to: mi });
+      }
+    });
+  }
+});
+
+const mcpCount = mcpServers.length;
+const skillCount = skills.length;
+const width = 600;
+const height = Math.max(mcpCount, skillCount) * 60 + 80;
+const mcpX = 80;
+const skillX = width - 80;
+
+function mcpY(i: number) {
+  return 50 + i * (height - 100) / Math.max(mcpCount - 1, 1);
+}
+function skillY(i: number) {
+  return 50 + i * (height - 100) / Math.max(skillCount - 1, 1);
+}
+---
+
+{edges.length > 0 ? (
+  <svg viewBox={`0 0 ${width} ${height}`} class="w-full max-w-xl mx-auto" xmlns="http://www.w3.org/2000/svg">
+    {edges.map(({ from, to }) => (
+      <line
+        x1={skillX - 10}
+        y1={skillY(from)}
+        x2={mcpX + 10}
+        y2={mcpY(to)}
+        stroke="#22d3ee"
+        stroke-width="1.5"
+        opacity="0.4"
+      />
+    ))}
+    {mcpServers.map((m, i) => (
+      <g>
+        <circle cx={mcpX} cy={mcpY(i)} r="8" fill="#4ade80" opacity="0.8" />
+        <text x={mcpX - 15} y={mcpY(i) + 4} text-anchor="end" fill="#86a68a" font-size="11">
+          {m.name}
+        </text>
+      </g>
+    ))}
+    {skills.map((s, i) => (
+      <g>
+        <circle cx={skillX} cy={skillY(i)} r="8" fill="#22d3ee" opacity="0.8" />
+        <text x={skillX + 15} y={skillY(i) + 4} text-anchor="start" fill="#86a68a" font-size="11">
+          {s.name}
+        </text>
+      </g>
+    ))}
+    <text x={mcpX} y="25" text-anchor="middle" fill="#e8f5e9" font-size="13" font-weight="bold">MCP</text>
+    <text x={skillX} y="25" text-anchor="middle" fill="#e8f5e9" font-size="13" font-weight="bold">SKILL</text>
+  </svg>
+) : (
+  <p class="text-sm text-muted-foreground text-center">No dependency graph available for this bundle.</p>
+)}

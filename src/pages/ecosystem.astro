@@ -1,0 +1,904 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Asgard AI Solution" description="Deconstructing the Asgard Ecosystem — From Insight to Execution: The Intelligence Loop">
+
+  <!-- Hero Section -->
+  <section class="relative border-b border-border/40 overflow-hidden">
+    <!-- Grid Pattern Background -->
+    <div class="absolute inset-0 overflow-hidden opacity-10">
+      <div class="eco-grid-bg absolute inset-0"></div>
+    </div>
+
+    <!-- Large Triangle Decoration -->
+    <div class="absolute right-0 top-0 w-[600px] h-[600px] opacity-80">
+      <svg viewBox="0 0 600 600" class="w-full h-full">
+        <defs>
+          <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3" />
+            <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.2" />
+            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.3" />
+          </linearGradient>
+        </defs>
+        <path d="M 300 100 L 550 500 L 50 500 Z" fill="url(#triangleGradient)" />
+        <circle cx="300" cy="350" r="80" fill="#6366f1" opacity="0.3" />
+      </svg>
+    </div>
+
+    <!-- Vertical Side Text -->
+    <div class="absolute left-8 top-1/2 -translate-y-1/2 -rotate-90 origin-left hidden lg:block">
+      <div class="text-6xl font-bold tracking-[0.2em] opacity-5 text-foreground">
+        ASGARD AI
+      </div>
+    </div>
+
+    <!-- Background Glow Circles -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative px-6 py-32 mx-auto max-w-6xl">
+      <div class="text-center space-y-8">
+        <!-- Asgard Logo -->
+        <div class="flex items-center justify-center gap-4 mb-8">
+          <div class="relative">
+            <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-xl"></div>
+            <img src="/icons/asgard-logo.svg" alt="Asgard" class="h-20 w-20 relative z-10" />
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-tight text-foreground">
+          <span class="lang-en">Deconstructing the</span><span class="lang-zh">解構</span>
+          <span class="text-blue-500"> Asgard </span>
+          <span class="lang-en">Ecosystem</span><span class="lang-zh">生態系</span>
+          <br />
+          <span class="text-3xl md:text-5xl text-muted-foreground">
+            <span class="lang-en">From Insight to Execution: The Intelligence Loop</span><span class="lang-zh">從洞察到執行的智慧閉環</span>
+          </span>
+        </h1>
+
+        <!-- Description -->
+        <p class="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <span class="lang-en">Explore the core architecture powering enterprise intelligent automation. Discover how </span><span class="lang-zh">深入探索驅動企業智動化的核心架構。了解</span><span class="text-red-400 font-semibold">Mimir</span><span class="lang-en"> (Decision), </span><span class="lang-zh">(決策)、</span><span class="text-indigo-400 font-semibold">Sindri</span><span class="lang-en"> (Execution), and </span><span class="lang-zh">(執行) 與</span><span class="text-emerald-400 font-semibold">Odin</span><span class="lang-en"> (Enablement) work in synergy to build scalable AI productivity.</span><span class="lang-zh">(賦能) 如何深度協同，構建可規模化的 AI 生產力。</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The AI Paradox Section -->
+  <section class="relative border-b border-border/40 overflow-hidden bg-gradient-to-b from-accent/10 to-transparent">
+    <div class="absolute inset-0 overflow-hidden opacity-5">
+      <div class="eco-grid-bg absolute inset-0"></div>
+    </div>
+
+    <div class="relative px-6 py-24 mx-auto max-w-7xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">The AI Paradox</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <!-- $1.5T Card -->
+        <div class="text-center space-y-4">
+          <div class="text-7xl md:text-8xl font-bold text-purple-400 mb-4">
+            <span class="lang-en">USD 1.5T</span><span class="lang-zh">USD 1.5兆</span>
+          </div>
+          <div class="text-xl text-muted-foreground">
+            <span class="lang-en">Global Enterprise AI Annual Spending</span><span class="lang-zh">全球企業 AI 年度支出</span>
+          </div>
+          <p class="text-sm text-muted-foreground max-w-xs mx-auto">
+            <span class="lang-en">According to Gartner, global enterprises spend $1.5 trillion annually on AI</span><span class="lang-zh">根據 Gartner 的數據，全球企業每年砸 1.5 兆美元在 AI 上</span>
+          </p>
+        </div>
+
+        <!-- 95% Card -->
+        <div class="text-center space-y-4">
+          <div class="text-7xl md:text-8xl font-bold text-red-400 mb-4">
+            95%
+          </div>
+          <div class="text-xl text-muted-foreground">
+            <span class="lang-en">No Measurable ROI</span><span class="lang-zh">未產生可衡量回報</span>
+          </div>
+          <p class="text-sm text-muted-foreground max-w-xs mx-auto">
+            <span class="lang-en">Deloitte reports 95% of investments generate no measurable returns</span><span class="lang-zh">Deloitte 報告指出 95% 的投資沒有產生可衡量的回報</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Central Message -->
+      <div class="text-center mt-16 max-w-3xl mx-auto">
+        <p class="text-2xl font-bold text-foreground mb-4">
+          <span class="lang-en">The value is clearly there, but enterprises just can't capture it</span><span class="lang-zh">價值明明在那裡，企業就是吃不到</span>
+        </p>
+        <p class="text-xl text-primary">
+          <span class="lang-en">This is not a technology problem, it's an architecture problem.</span><span class="lang-zh">這不是技術問題，而是架構問題。</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Architecture - The Trinity -->
+  <section class="relative overflow-hidden">
+    <div class="px-6 py-24 mx-auto max-w-7xl space-y-32">
+
+      <!-- 1. Mimir - The AI Brain -->
+      <div class="relative">
+        <!-- Red background glow -->
+        <div class="absolute inset-0 -mx-12 overflow-hidden">
+          <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-red-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-600/[0.08] rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20">
+              <!-- Brain icon -->
+              <svg class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              <span class="text-sm font-semibold text-red-400">The AI Brain</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="p-4 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-600/10 border border-red-500/30">
+                <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 20 C65 20 75 30 75 45 C75 50 73 55 70 58 C73 60 75 65 75 70 C75 80 65 85 50 85 C35 85 25 80 25 70 C25 65 27 60 30 58 C27 55 25 50 25 45 C25 30 35 20 50 20 Z" fill="#EF4444" opacity="0.9" />
+                  <circle cx="38" cy="45" r="4" fill="#F87171" />
+                  <circle cx="35" cy="55" r="3" fill="#F87171" opacity="0.8" />
+                  <circle cx="40" cy="65" r="3.5" fill="#F87171" opacity="0.8" />
+                  <line x1="38" y1="45" x2="35" y2="55" stroke="#F87171" stroke-width="2" opacity="0.6" />
+                  <line x1="35" y1="55" x2="40" y2="65" stroke="#F87171" stroke-width="2" opacity="0.6" />
+                  <circle cx="62" cy="45" r="4" fill="#F87171" />
+                  <circle cx="65" cy="55" r="3" fill="#F87171" opacity="0.8" />
+                  <circle cx="60" cy="65" r="3.5" fill="#F87171" opacity="0.8" />
+                  <line x1="62" y1="45" x2="65" y2="55" stroke="#F87171" stroke-width="2" opacity="0.6" />
+                  <line x1="65" y1="55" x2="60" y2="65" stroke="#F87171" stroke-width="2" opacity="0.6" />
+                  <circle cx="50" cy="55" r="8" fill="#F87171" />
+                  <circle cx="50" cy="55" r="4" fill="#FECACA" />
+                  <line x1="40" y1="65" x2="50" y2="55" stroke="#F87171" stroke-width="1.5" opacity="0.4" />
+                  <line x1="60" y1="65" x2="50" y2="55" stroke="#F87171" stroke-width="1.5" opacity="0.4" />
+                  <line x1="38" y1="45" x2="50" y2="55" stroke="#F87171" stroke-width="1.5" opacity="0.4" />
+                  <line x1="62" y1="45" x2="50" y2="55" stroke="#F87171" stroke-width="1.5" opacity="0.4" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-4xl font-bold text-foreground mb-2">Mimir</h2>
+                <p class="text-xl text-red-400 font-semibold">Asgard Data Insight</p>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-muted-foreground">
+              <span class="lang-en">Generative Insights, Defining Optimal Decisions</span><span class="lang-zh">生成式洞察，定義最優決策</span>
+            </h3>
+
+            <p class="text-lg text-muted-foreground leading-relaxed">
+              <span class="lang-en">Every great action begins with sound judgment. Mimir is the AI brain of the ecosystem, leveraging Large Language Models (LLMs) and predictive algorithms to transform chaotic massive data into forward-looking strategic paths. It not only analyzes the past but also simulates the future through AI, ensuring every investment is precisely targeted.</span><span class="lang-zh">所有的偉大行動都始於正確的判斷。Mimir 是生態系的 AI 大腦，利用大型語言模型 (LLM) 與預測演算法，將混沌的海量數據轉化為具備前瞻性的策略路徑。它不只分析過去，更能透過 AI 模擬未來，確保每一分投資都精準到位。</span>
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full text-sm bg-red-500/10 text-red-400 border border-red-500/20">
+                <span class="lang-en">#Generative Strategy</span><span class="lang-zh">#生成式策略</span>
+              </span>
+              <span class="px-3 py-1 rounded-full text-sm bg-red-500/10 text-red-400 border border-red-500/20">
+                <span class="lang-en">#Automated Trend Forecasting</span><span class="lang-zh">#自動化趨勢預測</span>
+              </span>
+              <span class="px-3 py-1 rounded-full text-sm bg-red-500/10 text-red-400 border border-red-500/20">
+                <span class="lang-en">#Intelligent Decision Navigation</span><span class="lang-zh">#智能決策導航</span>
+              </span>
+            </div>
+
+            <a href="#" class="inline-block px-6 py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 text-red-400 font-semibold transition-all">
+              <span class="lang-en">Learn More About Mimir &rarr;</span><span class="lang-zh">了解 Mimir 技術細節 &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Image Gallery -->
+          <div class="relative h-[500px] bg-card/30 backdrop-blur border border-red-500/20 rounded-3xl overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent"></div>
+            <div class="relative eco-gallery" data-color="red">
+              <div class="eco-gallery-track">
+                <img src="/screenshots/mimir-dashboard.png" alt="Mimir Data Insight Dashboard" class="eco-gallery-img active" loading="lazy" />
+                <img src="/screenshots/mimir-sql.png" alt="Mimir SQL Query Interface" class="eco-gallery-img" loading="lazy" />
+              </div>
+              <div class="eco-gallery-dots">
+                <button class="eco-dot active" data-index="0" aria-label="Show image 1"></button>
+                <button class="eco-dot" data-index="1" aria-label="Show image 2"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Sindri - The AI Muscle -->
+      <div class="relative">
+        <!-- Indigo background glow -->
+        <div class="absolute inset-0 -mx-12 overflow-hidden">
+          <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600/[0.08] rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Image Gallery (left on desktop) -->
+          <div class="order-2 lg:order-1 relative h-[500px] bg-card/30 backdrop-blur border border-indigo-500/20 rounded-3xl overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent"></div>
+            <div class="relative eco-gallery" data-color="indigo">
+              <div class="eco-gallery-track">
+                <img src="/screenshots/sindri-hub.png" alt="Sindri Agent Hub Interface" class="eco-gallery-img active" loading="lazy" />
+                <img src="/screenshots/sindri-chat.png" alt="Sindri Chat Conversation Interface" class="eco-gallery-img" loading="lazy" />
+              </div>
+              <div class="eco-gallery-dots">
+                <button class="eco-dot active" data-index="0" aria-label="Show image 1"></button>
+                <button class="eco-dot" data-index="1" aria-label="Show image 2"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content (right on desktop) -->
+          <div class="order-1 lg:order-2 space-y-6">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20">
+              <!-- Zap icon -->
+              <svg class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span class="text-sm font-semibold text-indigo-400">
+                <span class="lang-en">The AI Muscle &mdash; Business Core</span><span class="lang-zh">The AI Muscle &mdash; 業務重心區</span>
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="p-4 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-indigo-600/10 border border-indigo-500/30">
+                <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 25 L70 37.5 L70 62.5 L50 75 L30 62.5 L30 37.5 Z" fill="#6767EB" opacity="0.9" />
+                  <path d="M50 35 L62 42 L62 58 L50 65 L38 58 L38 42 Z" fill="none" stroke="#8B8BF0" stroke-width="2" opacity="0.6" />
+                  <circle cx="50" cy="20" r="5" fill="#8B8BF0" />
+                  <circle cx="75" cy="35" r="5" fill="#8B8BF0" opacity="0.9" />
+                  <circle cx="75" cy="65" r="5" fill="#8B8BF0" opacity="0.9" />
+                  <circle cx="50" cy="80" r="5" fill="#8B8BF0" />
+                  <circle cx="25" cy="65" r="5" fill="#8B8BF0" opacity="0.9" />
+                  <circle cx="25" cy="35" r="5" fill="#8B8BF0" opacity="0.9" />
+                  <line x1="50" y1="50" x2="50" y2="25" stroke="#8B8BF0" stroke-width="2" opacity="0.5" />
+                  <line x1="50" y1="50" x2="70" y2="37" stroke="#8B8BF0" stroke-width="2" opacity="0.5" />
+                  <line x1="50" y1="50" x2="70" y2="63" stroke="#8B8BF0" stroke-width="2" opacity="0.5" />
+                  <line x1="50" y1="50" x2="50" y2="75" stroke="#8B8BF0" stroke-width="2" opacity="0.5" />
+                  <line x1="50" y1="50" x2="30" y2="63" stroke="#8B8BF0" stroke-width="2" opacity="0.5" />
+                  <line x1="50" y1="50" x2="30" y2="37" stroke="#8B8BF0" stroke-width="2" opacity="0.5" />
+                  <circle cx="50" cy="50" r="8" fill="#B3B3F6" />
+                  <circle cx="50" cy="50" r="4" fill="#8B8BF0" />
+                  <path d="M50 42 L54 46 L50 46 Z" fill="#E0E0FD" />
+                  <path d="M58 50 L54 54 L54 50 Z" fill="#E0E0FD" />
+                  <path d="M50 58 L46 54 L50 54 Z" fill="#E0E0FD" />
+                  <path d="M42 50 L46 46 L46 50 Z" fill="#E0E0FD" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-4xl font-bold text-foreground mb-2">Sindri</h2>
+                <p class="text-xl text-indigo-400 font-semibold">Asgard Agent Hub</p>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-muted-foreground">
+              <span class="lang-en">Enterprise Agent Hub: Building Digital Workforce Clusters</span><span class="lang-zh">企業級 Agent Hub，建構數位勞動力集群</span>
+            </h3>
+
+            <p class="text-lg text-muted-foreground leading-relaxed">
+              <span class="lang-en">The end goal of decision-making is action. Sindri is Asgard's execution hub and Agent Hub, orchestrating and driving highly autonomous AI agent clusters. It can arrange complex tasks across systems, automatically optimize execution paths, and achieve 24/7 non-stop business value creation.</span><span class="lang-zh">決策的終點在於行動。Sindri 是 Asgard 的執行中樞與 Agent Hub，統籌並驅動具備高度自主性的 AI 代理集群。它能跨系統編排複雜任務、自動優化執行路徑，實現 24/7 不間斷的商業價值創造。</span>
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full text-sm bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <span class="lang-en">#Agent Hub Management</span><span class="lang-zh">#AgentHub管理</span>
+              </span>
+              <span class="px-3 py-1 rounded-full text-sm bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <span class="lang-en">#Autonomous Task Orchestration</span><span class="lang-zh">#自主任務編排</span>
+              </span>
+              <span class="px-3 py-1 rounded-full text-sm bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <span class="lang-en">#Digital Workforce Scaling</span><span class="lang-zh">#數位勞動力規模化</span>
+              </span>
+            </div>
+
+            <a href="#" class="inline-block px-6 py-3 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 hover:border-indigo-500/50 text-indigo-400 font-semibold transition-all">
+              <span class="lang-en">Explore Sindri's Power &rarr;</span><span class="lang-zh">了解 Sindri 執行力 &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Odin - The AI Catalyst -->
+      <div class="relative">
+        <!-- Emerald background glow -->
+        <div class="absolute inset-0 -mx-12 overflow-hidden">
+          <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-600/[0.08] rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+              <!-- Network icon -->
+              <svg class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+              </svg>
+              <span class="text-sm font-semibold text-emerald-400">The AI Catalyst</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border border-emerald-500/30">
+                <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="30" stroke="#10B981" stroke-width="4" fill="none" opacity="0.9" />
+                  <circle cx="50" cy="50" r="35" stroke="#10B981" stroke-width="2" fill="none" opacity="0.5" stroke-dasharray="8 8" />
+                  <path d="M50 35 L60 50 L50 48 Z" fill="#34D399" opacity="0.8" />
+                  <path d="M50 35 L40 50 L50 48 Z" fill="#34D399" opacity="0.8" />
+                  <path d="M50 48 L60 63 L40 63 Z" fill="#10B981" opacity="0.9" />
+                  <rect x="48" y="15" width="4" height="10" rx="1" fill="#34D399" />
+                  <rect x="48" y="75" width="4" height="10" rx="1" fill="#34D399" />
+                  <rect x="15" y="48" width="10" height="4" ry="1" fill="#34D399" />
+                  <rect x="75" y="48" width="10" height="4" ry="1" fill="#34D399" />
+                  <circle cx="28" cy="28" r="3" fill="#34D399" opacity="0.8" />
+                  <circle cx="72" cy="28" r="3" fill="#34D399" opacity="0.8" />
+                  <circle cx="28" cy="72" r="3" fill="#34D399" opacity="0.8" />
+                  <circle cx="72" cy="72" r="3" fill="#34D399" opacity="0.8" />
+                  <path d="M50 45 L52 49 L56 50 L52 51 L50 55 L48 51 L44 50 L48 49 Z" fill="#A7F3D0" />
+                  <line x1="50" y1="50" x2="50" y2="20" stroke="#34D399" stroke-width="1.5" opacity="0.3" />
+                  <line x1="50" y1="50" x2="50" y2="80" stroke="#34D399" stroke-width="1.5" opacity="0.3" />
+                  <line x1="50" y1="50" x2="20" y2="50" stroke="#34D399" stroke-width="1.5" opacity="0.3" />
+                  <line x1="50" y1="50" x2="80" y2="50" stroke="#34D399" stroke-width="1.5" opacity="0.3" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-4xl font-bold text-foreground mb-2">Odin</h2>
+                <p class="text-xl text-emerald-400 font-semibold">Asgard Studio</p>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-muted-foreground">
+              <span class="lang-en">Cost Reduction &amp; Efficiency: Empower Everyone with AI</span><span class="lang-zh">降本增效，讓每個人都能駕馭 AI</span>
+            </h3>
+
+            <p class="text-lg text-muted-foreground leading-relaxed">
+              <span class="lang-en">True AI enablement means technology is no longer a barrier. Odin provides a flexible interface connecting intelligence and execution. Through natural language interaction and modular tools, even non-technical personnel can easily orchestrate, achieving AI democratization within enterprises.</span><span class="lang-zh">真正的 AI 賦能是讓技術不再是門檻。Odin 提供了連結智慧與執行的靈活界面，透過自然語言交互與模組化工具，讓非技術人員也能輕鬆調度，實現企業內部的 AI 民主化。</span>
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full text-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span class="lang-en">#Natural Language Orchestration</span><span class="lang-zh">#自然語言編排</span>
+              </span>
+              <span class="px-3 py-1 rounded-full text-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span class="lang-en">#AI Workflow Definition</span><span class="lang-zh">#AI工作流定義</span>
+              </span>
+              <span class="px-3 py-1 rounded-full text-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span class="lang-en">#Low-Code AI Integration</span><span class="lang-zh">#低代碼AI整合</span>
+              </span>
+            </div>
+
+            <a href="#" class="inline-block px-6 py-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-500/50 text-emerald-400 font-semibold transition-all">
+              <span class="lang-en">Explore Studio Flexibility &rarr;</span><span class="lang-zh">了解 Studio 彈性 &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Image Gallery -->
+          <div class="relative h-[500px] bg-card/30 backdrop-blur border border-emerald-500/20 rounded-3xl overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent"></div>
+            <div class="relative eco-gallery" data-color="emerald">
+              <div class="eco-gallery-track">
+                <img src="/screenshots/odin-workflow.png" alt="Odin Studio Workflow Editor" class="eco-gallery-img active" loading="lazy" />
+                <img src="/screenshots/odin-erd.png" alt="Odin ERD Diagram View" class="eco-gallery-img" loading="lazy" />
+              </div>
+              <div class="eco-gallery-dots">
+                <button class="eco-dot active" data-index="0" aria-label="Show image 1"></button>
+                <button class="eco-dot" data-index="1" aria-label="Show image 2"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Heimdall Section -->
+  <section class="relative border-y border-border/40 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-500/[0.08] rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative px-6 py-20 mx-auto max-w-5xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-foreground mb-4">
+          <span class="lang-en">Explore More Powerful Asgard Features</span><span class="lang-zh">探索更多 Asgard 強大功能</span>
+        </h2>
+        <p class="text-muted-foreground">
+          <span class="lang-en">Focused Applications, Deep Enablement</span><span class="lang-zh">單點應用，深度賦能</span>
+        </p>
+      </div>
+
+      <div class="max-w-2xl mx-auto">
+        <div class="bg-card/50 backdrop-blur border border-yellow-500/20 rounded-2xl p-8 hover:border-yellow-500/40 transition-all">
+          <div class="flex flex-col sm:flex-row items-start gap-6">
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-600/10 border border-yellow-500/30 flex-shrink-0">
+              <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="35" stroke="#F6C814" stroke-width="2" fill="none" opacity="0.3" />
+                <circle cx="50" cy="50" r="28" stroke="#F6C814" stroke-width="2" fill="none" opacity="0.5" />
+                <circle cx="50" cy="50" r="21" stroke="#F6C814" stroke-width="2" fill="none" opacity="0.7" />
+                <line x1="50" y1="50" x2="50" y2="15" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" opacity="0.9" />
+                <line x1="50" y1="50" x2="75" y2="30" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
+                <circle cx="65" cy="35" r="4" fill="#FBBF24" opacity="0.9">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="35" cy="30" r="3.5" fill="#FBBF24" opacity="0.8">
+                  <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="70" cy="60" r="3" fill="#FBBF24" opacity="0.7">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="50" cy="50" r="12" fill="#F6C814" opacity="0.9" />
+                <circle cx="50" cy="50" r="6" fill="#FBBF24" />
+                <path d="M45 62 L40 65 L40 70 C40 72 42 73 45 73 L55 73 C58 73 60 72 60 70 L60 65 L55 62 Z" fill="#F6C814" opacity="0.8" />
+                <ellipse cx="50" cy="62" rx="5" ry="3" fill="#FBBF24" />
+              </svg>
+            </div>
+
+            <div class="flex-1 space-y-4">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                  <h3 class="text-2xl font-bold text-foreground">Heimdall</h3>
+                </div>
+                <p class="text-lg text-yellow-400 font-semibold">Asgard PR AI</p>
+              </div>
+
+              <p class="text-muted-foreground leading-relaxed">
+                <span class="lang-en">The AI scout crafted for PR and brand managers. Intelligently tracks media buzz across the web, automatically generates in-depth PR analysis reports and response suggestions, helping you navigate the digital waves with precision.</span><span class="lang-zh">專為公關與品牌經理打造的 AI 偵察兵。智能追蹤全網媒體聲量，自動生成深度公關分析報告與回應建議，助您在數位浪潮中精準掌握風向。</span>
+              </p>
+
+              <a href="#" class="inline-block px-6 py-3 rounded-xl bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/30 hover:border-yellow-500/50 text-yellow-400 font-semibold transition-all">
+                <span class="lang-en">Learn More &rarr;</span><span class="lang-zh">了解更多 &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Applications -->
+  <section class="relative border-b border-border/40 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-accent/10 to-transparent"></div>
+
+    <div class="relative px-6 py-24 mx-auto max-w-7xl">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">
+          <span class="lang-en">Industry Applications: Asgard's Real-World Value</span><span class="lang-zh">產業應用：Asgard 的實戰價值</span>
+        </h2>
+        <p class="text-xl text-muted-foreground">
+          <span class="lang-en">Cross-Industry Validation, Real Benefits Demonstrated</span><span class="lang-zh">跨產業驗證，真實效益展現</span>
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="overflow-x-auto pb-8 -mx-6 px-6">
+          <div class="flex gap-6 min-w-max">
+
+            <!-- Case 1: Entertainment -->
+            <div class="w-[400px] bg-card/50 backdrop-blur border border-border/40 rounded-2xl p-6 hover:border-primary/40 transition-all flex-shrink-0">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                    <!-- Activity icon -->
+                    <svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-lg text-foreground">
+                      <span class="lang-en">Entertainment</span><span class="lang-zh">娛樂產業</span>
+                    </h3>
+                    <p class="text-sm text-muted-foreground">
+                      <span class="lang-en">Real-Time Sports Content Production</span><span class="lang-zh">賽事內容即時生產</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Scenario</span><span class="lang-zh">場景</span>
+                    </p>
+                    <p class="text-muted-foreground">
+                      <span class="lang-en">From game data to multi-platform content publishing</span><span class="lang-zh">從賽事數據到多平台內容即時發布</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Workflow</span><span class="lang-zh">協作流程</span>
+                    </p>
+                    <div class="space-y-2 text-muted-foreground">
+                      <p><span class="text-red-400">Mimir</span> &rarr; <span class="lang-en">Real-time capture of game data, player stats, and historical records</span><span class="lang-zh">即時抓取比賽數據、球員統計與歷史戰績</span></p>
+                      <p><span class="text-emerald-400">Odin</span> &rarr; <span class="lang-en">Generate commentary, post-match analysis, and social posts aligned with brand tone</span><span class="lang-zh">根據品牌調性生成球評文案、賽後分析與社群貼文</span></p>
+                      <p><span class="text-indigo-400">Sindri</span> &rarr; <span class="lang-en">Automatically produce highlight descriptions, stats charts, and short video assets</span><span class="lang-zh">自動產出精彩片段說明、戰績圖表與短影音素材</span></p>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-border/40">
+                    <p class="font-semibold text-primary mb-2">
+                      <span class="lang-en">Results</span><span class="lang-zh">成效</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">Published within 5 min post-game</span><span class="lang-zh">賽後 5 分鐘完成發布</span>
+                      </span>
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">60% reduction in manpower</span><span class="lang-zh">人力需求減少 60%</span>
+                      </span>
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">40% increase in social engagement</span><span class="lang-zh">社群互動率提升 40%</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case 2: FinTech -->
+            <div class="w-[400px] bg-card/50 backdrop-blur border border-border/40 rounded-2xl p-6 hover:border-primary/40 transition-all flex-shrink-0">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center">
+                    <!-- TrendingUp icon -->
+                    <svg class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                      <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-lg text-foreground">
+                      <span class="lang-en">FinTech</span><span class="lang-zh">金融科技</span>
+                    </h3>
+                    <p class="text-sm text-muted-foreground">
+                      <span class="lang-en">AI-Powered Risk Control &amp; Trading</span><span class="lang-zh">AI 智能風控與交易</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Scenario</span><span class="lang-zh">場景</span>
+                    </p>
+                    <p class="text-muted-foreground">
+                      <span class="lang-en">Millisecond-level anomaly detection and automated alerts</span><span class="lang-zh">毫秒級異常偵測與自動化預警</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Workflow</span><span class="lang-zh">協作流程</span>
+                    </p>
+                    <div class="space-y-2 text-muted-foreground">
+                      <p><span class="text-red-400">Mimir</span> &rarr; <span class="lang-en">AI identifies abnormal behavior patterns</span><span class="lang-zh">AI 識別異常行為模式</span></p>
+                      <p><span class="text-emerald-400">Odin</span> &rarr; <span class="lang-en">Configure complex trigger rules and risk parameters</span><span class="lang-zh">配置複雜的觸發規則與風控參數</span></p>
+                      <p><span class="text-indigo-400">Sindri</span> &rarr; <span class="lang-en">Automated blocking or execution of trading agents</span><span class="lang-zh">自動化阻斷或執行交易代理</span></p>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-border/40">
+                    <p class="font-semibold text-primary mb-2">
+                      <span class="lang-en">Results</span><span class="lang-zh">成效</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">50% reduction in false positives</span><span class="lang-zh">誤報率減少 50%</span>
+                      </span>
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">Asset security in extreme markets</span><span class="lang-zh">極端市場資產安全保障</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case 3: E-Commerce -->
+            <div class="w-[400px] bg-card/50 backdrop-blur border border-border/40 rounded-2xl p-6 hover:border-primary/40 transition-all flex-shrink-0">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
+                    <!-- ShoppingCart icon -->
+                    <svg class="h-6 w-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-lg text-foreground">
+                      <span class="lang-en">E-Commerce</span><span class="lang-zh">電子商務</span>
+                    </h3>
+                    <p class="text-sm text-muted-foreground">
+                      <span class="lang-en">Precision Marketing &amp; Smart Operations</span><span class="lang-zh">精準行銷與智慧營運</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Scenario</span><span class="lang-zh">場景</span>
+                    </p>
+                    <p class="text-muted-foreground">
+                      <span class="lang-en">Ultimate personalized shopping experience and ROI optimization</span><span class="lang-zh">極致個性化購物體驗與 ROI 最佳化</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Workflow</span><span class="lang-zh">協作流程</span>
+                    </p>
+                    <div class="space-y-2 text-muted-foreground">
+                      <p><span class="text-red-400">Mimir</span> &rarr; <span class="lang-en">Predict consumer intent</span><span class="lang-zh">預測消費者動機</span></p>
+                      <p><span class="text-emerald-400">Odin</span> &rarr; <span class="lang-en">Automatically generate diverse marketing workflows</span><span class="lang-zh">自動生成多樣化行銷工作流</span></p>
+                      <p><span class="text-indigo-400">Sindri</span> &rarr; <span class="lang-en">Automated precision targeting for millions of users</span><span class="lang-zh">針對百萬用戶的自動化精準投放</span></p>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-border/40">
+                    <p class="font-semibold text-primary mb-2">
+                      <span class="lang-en">Results</span><span class="lang-zh">成效</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">40% increase in conversion rate</span><span class="lang-zh">轉化率提升 40%</span>
+                      </span>
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">50% reduction in labor costs</span><span class="lang-zh">人力成本降低 50%</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case 4: Manufacturing -->
+            <div class="w-[400px] bg-card/50 backdrop-blur border border-border/40 rounded-2xl p-6 hover:border-primary/40 transition-all flex-shrink-0">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center">
+                    <!-- Factory icon -->
+                    <svg class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-lg text-foreground">
+                      <span class="lang-en">Smart Manufacturing</span><span class="lang-zh">智慧製造</span>
+                    </h3>
+                    <p class="text-sm text-muted-foreground">
+                      <span class="lang-en">Enterprise Automation</span><span class="lang-zh">企業自動化</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Scenario</span><span class="lang-zh">場景</span>
+                    </p>
+                    <p class="text-muted-foreground">
+                      <span class="lang-en">Eliminate production bottlenecks, build self-healing systems</span><span class="lang-zh">消除生產流程斷層，建立自癒型系統</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <p class="font-semibold text-primary mb-1">
+                      <span class="lang-en">Workflow</span><span class="lang-zh">協作流程</span>
+                    </p>
+                    <div class="space-y-2 text-muted-foreground">
+                      <p><span class="text-red-400">Mimir</span> &rarr; <span class="lang-en">Diagnose equipment bottlenecks or process gaps</span><span class="lang-zh">診斷設備瓶頸或流程漏洞</span></p>
+                      <p><span class="text-emerald-400">Odin</span> &rarr; <span class="lang-en">Build custom AI control panels and ERP/CRM integration</span><span class="lang-zh">搭建專屬 AI 控制台與 ERP/CRM 串接</span></p>
+                      <p><span class="text-indigo-400">Sindri</span> &rarr; <span class="lang-en">Drive AI Agents to execute cross-departmental automation tasks</span><span class="lang-zh">驅動 AI Agent 執行跨部門自動化任務</span></p>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-border/40">
+                    <p class="font-semibold text-primary mb-2">
+                      <span class="lang-en">Results</span><span class="lang-zh">成效</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">60% operational efficiency boost</span><span class="lang-zh">營運效能提升 60%</span>
+                      </span>
+                      <span class="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-xs">
+                        <span class="lang-en">35% reduction in energy loss</span><span class="lang-zh">能源損耗減少 35%</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="flex justify-center mt-6">
+          <div class="flex items-center gap-2 text-sm text-muted-foreground">
+            <span class="lang-en">&larr; Scroll Left/Right for More Cases &rarr;</span><span class="lang-zh">&larr; 左右滑動查看更多案例 &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative px-6 py-24 mx-auto max-w-5xl">
+      <div class="text-center space-y-12">
+        <div class="space-y-4">
+          <h2 class="text-4xl md:text-5xl font-bold text-foreground">
+            <span class="lang-en">Ready to Begin Your <span class="text-blue-500">Intelligent Automation</span> Transformation?</span><span class="lang-zh">準備好開啟<span class="text-blue-500">智動化</span>轉型？</span>
+          </h2>
+          <p class="text-xl text-muted-foreground">
+            <span class="lang-en">Connect with our expert team for a tailored AI solution</span><span class="lang-zh">與我們的專家團隊深度對話，量身打造您的 AI 解決方案</span>
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="#" class="px-8 py-4 rounded-xl bg-blue-500 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/50 text-white font-bold transition-all hover:scale-105 inline-block">
+            <span class="lang-en">Schedule AI Solution Consultation</span><span class="lang-zh">立即預約 AI 方案諮詢</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page-Specific Footer -->
+  <footer class="relative border-t border-border/40">
+    <div class="px-6 py-12 mx-auto max-w-7xl">
+      <div class="text-center space-y-4">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <img src="/icons/asgard-logo.svg" alt="Asgard" class="h-10 w-10" />
+          <span class="text-lg font-bold text-foreground">Asgard AI Solution</span>
+        </div>
+        <p class="text-sm text-muted-foreground">
+          &copy; 2026 Asgard AI. All rights reserved.
+        </p>
+        <p class="text-sm text-muted-foreground">
+          <span class="lang-en">The Complete Ecosystem Powering Enterprise Intelligent Automation</span><span class="lang-zh">驅動企業智動化的完整生態系統</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</BaseLayout>
+
+<style>
+  .eco-grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Image gallery styles */
+  .eco-gallery {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .eco-gallery-track {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .eco-gallery-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .eco-gallery-img.active {
+    opacity: 1;
+  }
+
+  .eco-gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+  }
+
+  .eco-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .eco-dot.active {
+    width: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  [data-color="red"] .eco-dot.active {
+    background: #f87171;
+  }
+
+  [data-color="indigo"] .eco-dot.active {
+    background: #818cf8;
+  }
+
+  [data-color="emerald"] .eco-dot.active {
+    background: #34d399;
+  }
+
+  /* Hide scrollbar for horizontal scroll */
+  .overflow-x-auto {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
+  }
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+  }
+</style>
+
+<script>
+  function initEcoGalleries() {
+    document.querySelectorAll('.eco-gallery').forEach((gallery) => {
+      const images = gallery.querySelectorAll('.eco-gallery-img');
+      const dots = gallery.querySelectorAll('.eco-dot');
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index') || '0');
+          images.forEach((img) => img.classList.remove('active'));
+          dots.forEach((d) => d.classList.remove('active'));
+          if (images[index]) images[index].classList.add('active');
+          if (dots[index]) dots[index].classList.add('active');
+        });
+      });
+
+      // Auto-rotate every 5 seconds
+      let current = 0;
+      setInterval(() => {
+        current = (current + 1) % images.length;
+        images.forEach((img) => img.classList.remove('active'));
+        dots.forEach((d) => d.classList.remove('active'));
+        if (images[current]) images[current].classList.add('active');
+        if (dots[current]) dots[current].classList.add('active');
+      }, 5000);
+    });
+  }
+
+  initEcoGalleries();
+  document.addEventListener('astro:after-swap', initEcoGalleries);
+</script>

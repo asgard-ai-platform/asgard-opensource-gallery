@@ -1,0 +1,114 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import type { McpServer } from '../types';
+
+interface Props {
+  server: McpServer;
+}
+
+const { server } = Astro.props;
+const descEn = server.description.en;
+const descZh = server.description.zh || server.description.en;
+const truncatedEn = descEn.length > 100 ? descEn.slice(0, 100) + '...' : descEn;
+const truncatedZh = descZh.length > 100 ? descZh.slice(0, 100) + '...' : descZh;
+const searchDesc = (descEn + ' ' + descZh).toLowerCase();
+
+const gradientColors: Record<string, string> = {
+  ecommerce: 'from-green-600 to-emerald-900',
+  payment: 'from-cyan-600 to-teal-900',
+  analytics: 'from-blue-600 to-indigo-900',
+  communication: 'from-violet-600 to-purple-900',
+  data: 'from-sky-600 to-blue-900',
+  crm: 'from-pink-600 to-rose-900',
+  restaurant: 'from-orange-600 to-amber-900',
+  gov: 'from-slate-600 to-gray-900',
+  marketing: 'from-fuchsia-600 to-pink-900',
+  finance: 'from-emerald-600 to-green-900',
+};
+const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-900';
+---
+
+<a
+  href={`/mcp/${server.slug}/`}
+  class="card-hover group block bg-card border border-border rounded-xl overflow-hidden"
+  data-category={server.category}
+  data-region={server.region}
+  data-status={server.status}
+  data-name={server.name.toLowerCase()}
+  data-slug={server.slug}
+  data-tags={server.tags?.join(',') || ''}
+  data-description={searchDesc}
+>
+  <!-- Gradient overlay on hover -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl pointer-events-none z-10"></div>
+
+  <!-- Icon/gradient header area -->
+  <div class={`relative h-40 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
+    <!-- Gradient-to-transparent overlay from bottom -->
+    <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
+
+    <!-- Status badge top-right -->
+    {server.status === 'released' && (
+      <div class="absolute top-3 right-3 z-10">
+        <StatusBadge status={server.status} />
+      </div>
+    )}
+
+    <!-- Large centered icon letter -->
+    <div class="relative z-10">
+      {server.icon ? (
+        <img src={`/icons/${server.icon}`} alt="" class="h-16 w-16 rounded-xl" />
+      ) : (
+        <div class="h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10">
+          {server.name.charAt(0)}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Card body -->
+  <div class="relative p-5">
+    <!-- Title -->
+    <div class="flex items-start justify-between gap-3">
+      <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors">{server.name}</h3>
+      {server.status !== 'released' && <StatusBadge status={server.status} />}
+    </div>
+
+    <!-- Description (line-clamped to 2) -->
+    <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-en">{truncatedEn}</p>
+    <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-zh">{truncatedZh}</p>
+
+    <!-- Tags -->
+    {server.tags && server.tags.length > 0 && (
+      <div class="mt-3 flex flex-wrap gap-1.5">
+        {server.tags.slice(0, 3).map((tag) => (
+          <span class="px-2 py-0.5 text-xs rounded-full border border-border/40 text-muted-foreground">{tag}</span>
+        ))}
+      </div>
+    )}
+
+    <!-- Metadata row -->
+    <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+      <span class="px-2 py-0.5 bg-accent rounded text-muted-foreground">{server.category}</span>
+      <span class="px-2 py-0.5 bg-accent rounded text-muted-foreground">{server.region}</span>
+      {server.status === 'released' && server.tools_count && (
+        <span class="text-muted-foreground">
+          {server.tools_count} <span class="lang-en">tools</span><span class="lang-zh">工具</span>
+        </span>
+      )}
+    </div>
+
+    <!-- CTA button -->
+    <div class="mt-4">
+      <span class="btn-gradient inline-block w-full text-center px-4 py-2 rounded-lg text-sm">
+        <span class="lang-en">View Details</span><span class="lang-zh">查看詳情</span>
+      </span>
+    </div>
+  </div>
+
+  {server.upgrade_to && (
+    <div class="px-5 pb-4 text-xs text-primary/70">
+      &rarr; <span class="lang-en">Upgrade to</span><span class="lang-zh">升級至</span> {server.upgrade_to}
+    </div>
+  )}
+</a>

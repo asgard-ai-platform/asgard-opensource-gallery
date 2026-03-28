@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import UpgradeCTA from '../../components/UpgradeCTA.astro';
+import McpCard from '../../components/McpCard.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import { getSkills, getMcpServers, getBundles } from '../../utils/data-loader';
+import type { Skill } from '../../types';
+
+export function getStaticPaths() {
+  const skills = getSkills();
+  return skills.map((skill) => ({
+    params: { slug: skill.slug },
+    props: { skill },
+  }));
+}
+
+const { skill } = Astro.props as { skill: Skill };
+const allMcp = getMcpServers();
+const requiredMcp = allMcp.filter((m) => skill.requires_mcp?.includes(m.slug));
+const bundles = getBundles().filter((b) => skill.bundles?.includes(b.slug));
+
+const typeColors: Record<string, string> = {
+  industry: 'text-primary',
+  methodology: 'text-emerald-400',
+  theory: 'text-purple-400',
+  algorithm: 'text-orange-400',
+};
+---
+
+<BaseLayout title={skill.name} description={skill.description.en}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": skill.slug,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "url": skill.github || `https://github.com/asgard-ai-platform/skills/tree/main/${skill.slug}`,
+    })} />
+  </Fragment>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {/* Header */}
+    <div class="flex items-start gap-4 mb-8">
+      {skill.icon ? (
+        <img src={`/icons/${skill.icon}`} alt="" class="h-16 w-16 rounded-xl" />
+      ) : (
+        <div class="h-16 w-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl border border-border">
+          {skill.name.charAt(0)}
+        </div>
+      )}
+      <div>
+        <div class="flex items-center gap-3">
+          <h1 class="text-3xl font-bold text-foreground">{skill.name}</h1>
+          <StatusBadge status={skill.status} />
+        </div>
+        <div class="mt-2 flex flex-wrap gap-2 text-sm">
+          <span class={`font-medium ${typeColors[skill.skill_type]}`}>{skill.skill_type}</span>
+          <span class="px-2 py-0.5 bg-accent rounded text-muted-foreground">{skill.category}</span>
+          {skill.has_script && (
+            <span class="px-2 py-0.5 bg-primary/10 text-primary rounded">
+              <span class="lang-en">Contains Script</span><span class="lang-zh">含腳本</span>
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+
+    {/* Description */}
+    <section class="mb-8">
+      <p class="text-foreground leading-relaxed lang-en">{skill.description.en}</p>
+      <p class="text-foreground leading-relaxed lang-zh">{skill.description.zh}</p>
+    </section>
+
+    {/* Links */}
+    {skill.github && (
+      <section class="mb-8">
+        <a href={skill.github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-foreground hover:border-primary/40 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </section>
+    )}
+
+    {/* Tags */}
+    {skill.tags && skill.tags.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+          <span class="lang-en">Tags</span><span class="lang-zh">標籤</span>
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          {skill.tags.map((tag) => (
+            <span class="px-3 py-1 rounded-full text-sm border border-border/40 text-muted-foreground">{tag}</span>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Required MCPs */}
+    {requiredMcp.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-4 text-foreground">
+          <span class="lang-en">Required MCP Servers</span><span class="lang-zh">所需 MCP 伺服器</span>
+        </h2>
+        <CardGrid>
+          {requiredMcp.map((m) => <McpCard server={m} />)}
+        </CardGrid>
+      </section>
+    )}
+
+    {/* Bundles */}
+    {bundles.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+          <span class="lang-en">Part of</span><span class="lang-zh">所屬</span>
+        </h2>
+        <div class="space-y-2">
+          {bundles.map((b) => (
+            <a href={`/bundles/${b.slug}/`} class="block glass-card rounded-lg p-4 hover:border-primary/40 transition-colors">
+              <div class="font-medium text-foreground">{b.name}</div>
+              <div class="text-sm text-muted-foreground mt-1 lang-en">{b.description.en}</div>
+              <div class="text-sm text-muted-foreground mt-1 lang-zh">{b.description.zh}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Upgrade CTA */}
+    {skill.upgrade_to && (
+      <UpgradeCTA productName={skill.upgrade_to} category={skill.category} />
+    )}
+  </div>
+</BaseLayout>

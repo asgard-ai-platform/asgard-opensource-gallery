@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contribute" description="Learn how to contribute to the Yggdrasil open source gallery">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-8 text-gradient">
+      <span class="lang-en">Contribute to Yggdrasil</span><span class="lang-zh">貢獻到 Yggdrasil</span>
+    </h1>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">What You Can Contribute</span><span class="lang-zh">你可以貢獻什麼</span>
+      </h2>
+      <ul class="space-y-3 text-muted-foreground">
+        <li class="flex gap-3">
+          <span class="text-primary font-bold">+</span>
+          <span class="lang-en">Add a new MCP Server entry</span><span class="lang-zh">新增 MCP 伺服器條目</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-primary font-bold">+</span>
+          <span class="lang-en">Add a new SKILL entry</span><span class="lang-zh">新增技能條目</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-primary font-bold">+</span>
+          <span class="lang-en">Improve existing descriptions or translations</span><span class="lang-zh">改善現有描述或翻譯</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-primary font-bold">+</span>
+          <span class="lang-en">Report bugs or suggest improvements</span><span class="lang-zh">回報錯誤或建議改善</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">3-Step Process</span><span class="lang-zh">三步驟流程</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="text-3xl font-bold text-gradient mb-2">1</div>
+          <div class="font-semibold text-foreground mb-1">Fork</div>
+          <div class="text-sm text-muted-foreground">
+            <span class="lang-en">Fork the repository on GitHub</span><span class="lang-zh">在 GitHub 上 Fork 倉庫</span>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="text-3xl font-bold text-gradient mb-2">2</div>
+          <div class="font-semibold text-foreground mb-1">
+            <span class="lang-en">Add YAML</span><span class="lang-zh">新增 YAML</span>
+          </div>
+          <div class="text-sm text-muted-foreground">
+            <span class="lang-en">Add your entry to the data files</span><span class="lang-zh">在資料檔中新增你的條目</span>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-6 text-center">
+          <div class="text-3xl font-bold text-gradient mb-2">3</div>
+          <div class="font-semibold text-foreground mb-1">
+            <span class="lang-en">Submit PR</span><span class="lang-zh">提交 PR</span>
+          </div>
+          <div class="text-sm text-muted-foreground">
+            <span class="lang-en">CI validates automatically</span><span class="lang-zh">CI 自動驗證</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">MCP Server Template</span><span class="lang-zh">MCP 伺服器模板</span>
+      </h2>
+      <pre class="glass-card rounded-xl p-6 text-sm text-muted-foreground overflow-x-auto"><code>{`- slug: mcp-your-service
+  name: "Your Service"
+  description:
+    en: "MCP Server for Your Service API"
+    zh: "Your Service API 的 MCP Server"
+  status: coming-soon
+  category: ecommerce
+  region: global
+  github: https://github.com/your-org/mcp-your-service
+  tags: [your, tags]
+  maintainer: your-github-handle`}</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">SKILL Template</span><span class="lang-zh">技能模板</span>
+      </h2>
+      <pre class="glass-card rounded-xl p-6 text-sm text-muted-foreground overflow-x-auto"><code>{`- slug: skill-your-domain-task
+  name: "Your SKILL Name"
+  description:
+    en: "What this SKILL does"
+    zh: "這個 SKILL 做什麼"
+  status: coming-soon
+  category: methodology
+  skill_type: methodology
+  region: global
+  github: https://github.com/your-org/skills/tree/main/skill-your-domain-task
+  tags: [your, tags]
+  maintainer: your-github-handle`}</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">Naming Conventions</span><span class="lang-zh">命名規範</span>
+      </h2>
+      <ul class="space-y-2 text-muted-foreground text-sm">
+        <li>
+          <code class="bg-accent px-1.5 py-0.5 rounded text-foreground">mcp-{'{service-name}'}</code>
+          <span class="lang-en"> for MCP Servers (lowercase, hyphens)</span><span class="lang-zh"> 用於 MCP 伺服器（小寫、連字號）</span>
+        </li>
+        <li>
+          <code class="bg-accent px-1.5 py-0.5 rounded text-foreground">skill-{'{domain}'}-{'{task}'}</code>
+          <span class="lang-en"> for SKILLs (lowercase, hyphens)</span><span class="lang-zh"> 用於技能（小寫、連字號）</span>
+        </li>
+        <li>
+          <span class="lang-en">Taiwan-specific services: add</span><span class="lang-zh">台灣特定服務：加上</span>
+          <code class="bg-accent px-1.5 py-0.5 rounded text-foreground">taiwan</code>
+          <span class="lang-en"> tag</span><span class="lang-zh"> 標籤</span>
+        </li>
+        <li>
+          <span class="lang-en">Slugs must be unique across the entire dataset</span><span class="lang-zh">Slug 在整個資料集中必須唯一</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="text-center">
+      <a
+        href="https://github.com/asgard-ai-platform/yggdrasil"
+        target="_blank"
+        rel="noopener"
+        class="btn-gradient inline-block px-6 py-3 rounded-lg text-sm font-semibold"
+      >
+        <span class="lang-en">Fork on GitHub</span><span class="lang-zh">在 GitHub 上 Fork</span>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

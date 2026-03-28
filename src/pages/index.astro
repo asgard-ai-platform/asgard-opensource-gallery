@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import CardGrid from '../components/CardGrid.astro';
+import McpCard from '../components/McpCard.astro';
+import BundleCard from '../components/BundleCard.astro';
+import { getMcpServers, getSkills, getBundles } from '../utils/data-loader';
+
+const servers = getMcpServers();
+const skills = getSkills();
+const bundles = getBundles();
+
+const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
+---
+
+<BaseLayout title="Home" description="Open Source MCP Servers, SKILLs & Solution Bundles for the AI-native enterprise">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Asgard AI Platform",
+      "url": "https://yggdrasil.asgard.ai",
+      "logo": "https://yggdrasil.asgard.ai/icons/asgard-logo.svg",
+      "sameAs": ["https://github.com/asgard-ai-platform"]
+    })} />
+  </Fragment>
+
+  <Hero />
+  <StatsBar mcpCount={servers.length} skillCount={skills.length} bundleCount={bundles.length} />
+
+  {/* Featured / Recently Released */}
+  {featured.length > 0 && (
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500/20 to-cyan-500/20 border border-border flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-foreground">
+            <span class="lang-en">Recently Released</span><span class="lang-zh">最新發布</span>
+          </h2>
+          <p class="text-sm text-muted-foreground">
+            {featured.length} <span class="lang-en">projects ready to use</span><span class="lang-zh">個可用專案</span>
+          </p>
+        </div>
+      </div>
+      <CardGrid>
+        {featured.map((server) => <McpCard server={server} />)}
+      </CardGrid>
+    </section>
+  )}
+
+  {/* Solution Bundles Preview */}
+  <section class="border-y border-border bg-card/30 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-border flex items-center justify-center">
+          <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-foreground">
+            <span class="lang-en">Solution Bundles</span><span class="lang-zh">解決方案套件</span>
+          </h2>
+          <p class="text-sm text-muted-foreground">
+            {bundles.length} <span class="lang-en">pre-packaged solutions</span><span class="lang-zh">個預打包解決方案</span>
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {bundles.map((bundle) => <BundleCard bundle={bundle} />)}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/bundles/" class="text-primary hover:underline text-sm font-medium">
+          <span class="lang-en">View all bundles</span><span class="lang-zh">查看所有解決方案</span> &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Ecosystem Diagram */}
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <h2 class="text-2xl font-bold mb-10 text-center text-gradient">
+      <span class="lang-en">How It Works</span><span class="lang-zh">如何運作</span>
+    </h2>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center">
+      <div class="glass-card rounded-xl p-6 w-48">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+          <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div class="font-semibold text-foreground">MCP Servers</div>
+        <div class="text-xs text-muted-foreground mt-1">
+          <span class="lang-en">Connect to APIs</span><span class="lang-zh">連接 API</span>
+        </div>
+      </div>
+      <div class="text-2xl text-primary hidden sm:block">&rarr;</div>
+      <div class="text-2xl text-primary sm:hidden">&darr;</div>
+      <div class="glass-card rounded-xl p-6 w-48">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center">
+          <svg class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        </div>
+        <div class="font-semibold text-foreground">
+          <span class="lang-en">SKILLs</span><span class="lang-zh">技能</span>
+        </div>
+        <div class="text-xs text-muted-foreground mt-1">
+          <span class="lang-en">Analyze & think</span><span class="lang-zh">分析與思考</span>
+        </div>
+      </div>
+      <div class="text-2xl text-primary hidden sm:block">&rarr;</div>
+      <div class="text-2xl text-primary sm:hidden">&darr;</div>
+      <div class="glass-card rounded-xl p-6 w-48">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-blue-500/20 to-indigo-500/20 flex items-center justify-center">
+          <svg class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <div class="font-semibold text-foreground">
+          <span class="lang-en">Bundles</span><span class="lang-zh">解決方案</span>
+        </div>
+        <div class="text-xs text-muted-foreground mt-1">
+          <span class="lang-en">Ready solutions</span><span class="lang-zh">現成方案</span>
+        </div>
+      </div>
+      <div class="text-2xl text-primary hidden sm:block">&rarr;</div>
+      <div class="text-2xl text-primary sm:hidden">&darr;</div>
+      <div class="glass-card rounded-xl p-6 w-48 border-primary/30">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center">
+          <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+        </div>
+        <div class="font-semibold text-primary">
+          <span class="lang-en">Commercial</span><span class="lang-zh">商業產品</span>
+        </div>
+        <div class="text-xs text-muted-foreground mt-1">
+          <span class="lang-en">Enterprise power</span><span class="lang-zh">企業級力量</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* How to Contribute */}
+  <section class="border-t border-border bg-card/30 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold mb-10 text-gradient">
+        <span class="lang-en">Contribute to the Ecosystem</span><span class="lang-zh">貢獻到生態系</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div class="glass-card rounded-xl p-6">
+          <div class="text-4xl font-bold text-gradient mb-3">1</div>
+          <div class="font-semibold text-foreground">Fork</div>
+          <div class="text-sm text-muted-foreground mt-1">
+            <span class="lang-en">Fork the repository</span><span class="lang-zh">Fork 此倉庫</span>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-6">
+          <div class="text-4xl font-bold text-gradient mb-3">2</div>
+          <div class="font-semibold text-foreground">
+            <span class="lang-en">Add YAML</span><span class="lang-zh">新增 YAML</span>
+          </div>
+          <div class="text-sm text-muted-foreground mt-1">
+            <span class="lang-en">Add your tool entry</span><span class="lang-zh">新增你的工具條目</span>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-6">
+          <div class="text-4xl font-bold text-gradient mb-3">3</div>
+          <div class="font-semibold text-foreground">
+            <span class="lang-en">Submit PR</span><span class="lang-zh">提交 PR</span>
+          </div>
+          <div class="text-sm text-muted-foreground mt-1">
+            <span class="lang-en">CI validates automatically</span><span class="lang-zh">CI 自動驗證</span>
+          </div>
+        </div>
+      </div>
+      <a href="/contribute/" class="mt-10 inline-block btn-gradient px-6 py-3 rounded-lg text-sm font-semibold">
+        <span class="lang-en">Learn How to Contribute</span><span class="lang-zh">了解如何貢獻</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

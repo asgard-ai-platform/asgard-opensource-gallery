@@ -1,0 +1,225 @@
+---
+import { CATEGORIES, REGIONS } from '../types';
+
+interface Props {
+  categories: readonly string[];
+  regions?: readonly string[];
+  showSkillTypes?: boolean;
+}
+
+const { categories, regions = REGIONS, showSkillTypes = false } = Astro.props;
+
+const regionLabelsEn: Record<string, string> = {
+  global: 'Global',
+  taiwan: 'Taiwan',
+  sea: 'Sea',
+  japan: 'Japan',
+};
+const regionLabelsZh: Record<string, string> = {
+  global: '全球',
+  taiwan: '台灣',
+  sea: '東南亞',
+  japan: '日本',
+};
+
+const skillTypeLabelsEn: Record<string, string> = {
+  industry: 'Industry',
+  methodology: 'Methodology',
+  theory: 'Theory',
+  algorithm: 'Algorithm',
+};
+const skillTypeLabelsZh: Record<string, string> = {
+  industry: '產業',
+  methodology: '方法論',
+  theory: '理論',
+  algorithm: '演算法',
+};
+---
+
+<aside id="filter-bar" class="lg:sticky lg:top-24 lg:self-start w-full lg:w-72 shrink-0 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+  <div class="glass-card rounded-xl p-5 space-y-5">
+    <!-- Search -->
+    <div class="relative">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        id="search-input"
+        type="text"
+        data-placeholder-en="Search..."
+        data-placeholder-zh="搜尋..."
+        placeholder="Search..."
+        class="w-full pl-10 pr-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors"
+      />
+    </div>
+
+    <!-- Separator -->
+    <div class="border-t border-border"></div>
+
+    <!-- Status filter -->
+    <div>
+      <div class="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
+        <span class="lang-en">Status</span><span class="lang-zh">狀態</span>
+      </div>
+      <div class="space-y-2">
+        {['released', 'coming-soon', 'planned'].map((s) => (
+          <label class="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+            <input type="checkbox" class="filter-status accent-primary rounded" value={s} checked />
+            <span class="lang-en">{s === 'released' ? 'Released' : s === 'coming-soon' ? 'Coming Soon' : 'Planned'}</span>
+            <span class="lang-zh">{s === 'released' ? '已發布' : s === 'coming-soon' ? '即將推出' : '規劃中'}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="border-t border-border"></div>
+
+    <!-- Region filter -->
+    <div>
+      <div class="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
+        <span class="lang-en">Region</span><span class="lang-zh">地區</span>
+      </div>
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+          <input type="radio" name="region" class="filter-region accent-primary" value="all" checked />
+          <span class="lang-en">All</span><span class="lang-zh">全部</span>
+        </label>
+        {regions.map((r) => (
+          <label class="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+            <input type="radio" name="region" class="filter-region accent-primary" value={r} />
+            <span class="lang-en">{regionLabelsEn[r] || r.charAt(0).toUpperCase() + r.slice(1)}</span>
+            <span class="lang-zh">{regionLabelsZh[r] || r}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="border-t border-border"></div>
+
+    <!-- Category filter -->
+    <div>
+      <div class="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
+        <span class="lang-en">Category</span><span class="lang-zh">分類</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {categories.map((c) => (
+          <label class="filter-cat-label">
+            <input type="checkbox" class="filter-category sr-only" value={c} checked />
+            <span class="inline-block px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground cursor-pointer hover:border-primary/40 hover:text-foreground transition-colors [input:checked+&]:bg-gradient-to-r [input:checked+&]:from-green-500/20 [input:checked+&]:to-cyan-500/20 [input:checked+&]:border-primary/40 [input:checked+&]:text-foreground">
+              {c}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    {/* Skill type filter (only for skills page) */}
+    {showSkillTypes && (
+      <>
+        <div class="border-t border-border"></div>
+        <div>
+          <div class="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
+            <span class="lang-en">Skill Type</span><span class="lang-zh">技能類型</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {['industry', 'methodology', 'theory', 'algorithm'].map((t) => (
+              <label class="filter-skill-label">
+                <input type="checkbox" class="filter-skilltype sr-only" value={t} checked />
+                <span class="inline-block px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground cursor-pointer hover:border-primary/40 hover:text-foreground transition-colors [input:checked+&]:bg-gradient-to-r [input:checked+&]:from-green-500/20 [input:checked+&]:to-cyan-500/20 [input:checked+&]:border-primary/40 [input:checked+&]:text-foreground">
+                  <span class="lang-en">{skillTypeLabelsEn[t] || t.charAt(0).toUpperCase() + t.slice(1)}</span><span class="lang-zh">{skillTypeLabelsZh[t] || t}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </>
+    )}
+
+    <!-- Separator -->
+    <div class="border-t border-border"></div>
+
+    <!-- Quick stats -->
+    <div>
+      <div class="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
+        <span class="lang-en">Results</span><span class="lang-zh">結果</span>
+      </div>
+      <div id="result-count" class="text-sm text-primary font-medium"></div>
+    </div>
+  </div>
+</aside>
+
+<script>
+  function initFilters() {
+    const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const resultCount = document.getElementById('result-count')!;
+
+    // Update search placeholder based on language
+    function updatePlaceholder() {
+      if (!searchInput) return;
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      searchInput.placeholder = lang === 'zh' ? (searchInput.dataset.placeholderZh || '搜尋...') : (searchInput.dataset.placeholderEn || 'Search...');
+    }
+    updatePlaceholder();
+
+    // Observe language changes to update placeholder
+    const observer = new MutationObserver(() => {
+      updatePlaceholder();
+      applyFilters();
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+
+    function applyFilters() {
+      const query = searchInput?.value.toLowerCase().trim() || '';
+      const statuses = new Set(
+        Array.from(document.querySelectorAll<HTMLInputElement>('.filter-status:checked')).map((el) => el.value)
+      );
+      const regionEl = document.querySelector<HTMLInputElement>('.filter-region:checked');
+      const region = regionEl?.value || 'all';
+      const categories = new Set(
+        Array.from(document.querySelectorAll<HTMLInputElement>('.filter-category:checked')).map((el) => el.value)
+      );
+      const skillTypes = new Set(
+        Array.from(document.querySelectorAll<HTMLInputElement>('.filter-skilltype:checked')).map((el) => el.value)
+      );
+
+      let visible = 0;
+      cards.forEach((card) => {
+        const matchStatus = statuses.has(card.dataset.status || '');
+        const matchRegion = region === 'all' || card.dataset.region === region;
+        const matchCategory = categories.has(card.dataset.category || '');
+        const matchSkillType = !card.dataset.skilltype || skillTypes.has(card.dataset.skilltype || '');
+
+        let matchSearch = true;
+        if (query) {
+          const name = card.dataset.name || '';
+          const slug = card.dataset.slug || '';
+          const desc = card.dataset.description || '';
+          const tags = card.dataset.tags || '';
+          matchSearch = name.includes(query) || slug.includes(query) || desc.includes(query) || tags.includes(query);
+        }
+
+        const show = matchStatus && matchRegion && matchCategory && matchSkillType && matchSearch;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      resultCount.textContent = lang === 'zh'
+        ? `顯示 ${visible} / ${cards.length}`
+        : `Showing ${visible} of ${cards.length}`;
+    }
+
+    searchInput?.addEventListener('input', applyFilters);
+    document.querySelectorAll('.filter-status, .filter-category, .filter-region, .filter-skilltype').forEach((el) => {
+      el.addEventListener('change', applyFilters);
+    });
+
+    applyFilters();
+  }
+
+  initFilters();
+  document.addEventListener('astro:after-swap', initFilters);
+</script>

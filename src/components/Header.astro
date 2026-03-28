@@ -1,0 +1,141 @@
+---
+const navItems = [
+  { labelEn: 'MCP Servers', labelZh: 'MCP 伺服器', href: '/mcp/' },
+  { labelEn: 'SKILLs', labelZh: '技能', href: '/skills/' },
+  { labelEn: 'Bundles', labelZh: '解決方案', href: '/bundles/' },
+  { labelEn: 'Asgard AI Solution', labelZh: 'Asgard AI 方案', href: '/ecosystem/' },
+  { labelEn: 'Contribute', labelZh: '貢獻', href: '/contribute/' },
+];
+---
+
+<header class="sticky top-0 z-50 h-20 bg-background/80 backdrop-blur-xl border-b border-border">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="group flex items-center gap-3">
+      <div class="relative">
+        <!-- Glow behind logo on hover -->
+        <div class="absolute -inset-2 rounded-full bg-primary/0 group-hover:bg-primary/20 blur-lg transition-all duration-500"></div>
+        <div class="absolute -inset-2 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500/10 blur-xl transition-all duration-500 delay-75"></div>
+        <div class="absolute -inset-2 rounded-full bg-cyan-500/0 group-hover:bg-cyan-500/10 blur-xl transition-all duration-500 delay-150"></div>
+        <img src="/icons/yggdrasil-logo.svg" alt="Yggdrasil" class="h-9 w-9 relative z-10" />
+      </div>
+      <div class="flex flex-col">
+        <span class="text-lg font-bold text-gradient leading-tight">Yggdrasil</span>
+        <span class="text-[10px] text-muted-foreground tracking-wide leading-none">
+          <span class="lang-en">Asgard OpenSource Gallery</span><span class="lang-zh">Asgard 開源展示廳</span>
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navItems.map(({ labelEn, labelZh, href }) => (
+        <a href={href} class="nav-underline text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <span class="lang-en">{labelEn}</span><span class="lang-zh">{labelZh}</span>
+        </a>
+      ))}
+      <a
+        href="https://github.com/asgard-ai-platform"
+        target="_blank"
+        rel="noopener"
+        class="nav-underline text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        GitHub
+      </a>
+      <button id="lang-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-accent transition-colors text-sm font-medium" aria-label="Toggle language">
+        <svg class="h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+        </svg>
+        <span class="lang-en">EN</span><span class="lang-zh">中</span>
+      </button>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden text-muted-foreground hover:text-foreground transition-colors" aria-label="Menu">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile sidebar overlay (outside header to avoid stacking context issues) -->
+<div id="mobile-overlay" class="hidden fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm md:hidden"></div>
+
+<!-- Mobile sidebar (outside header, slides from right) -->
+<div id="mobile-sidebar" class="fixed top-0 right-0 z-[70] h-full w-72 bg-[#0a0d12] border-l border-border transform translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
+  <div class="flex items-center justify-between p-6 border-b border-border">
+    <span class="text-gradient font-bold">Yggdrasil</span>
+    <button id="mobile-close-btn" class="text-muted-foreground hover:text-foreground transition-colors" aria-label="Close menu">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="p-6 space-y-4">
+    {navItems.map(({ labelEn, labelZh, href }) => (
+      <a href={href} class="block text-sm text-muted-foreground hover:text-primary transition-colors py-2 border-b border-border/40">
+        <span class="lang-en">{labelEn}</span><span class="lang-zh">{labelZh}</span>
+      </a>
+    ))}
+    <a
+      href="https://github.com/asgard-ai-platform"
+      target="_blank"
+      rel="noopener"
+      class="block text-sm text-muted-foreground hover:text-primary transition-colors py-2"
+    >
+      GitHub
+    </a>
+    <button id="mobile-lang-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-accent transition-colors text-sm font-medium text-muted-foreground" aria-label="Toggle language">
+      <svg class="h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+      </svg>
+      <span class="lang-en">EN</span><span class="lang-zh">中</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-close-btn');
+    const overlay = document.getElementById('mobile-overlay');
+    const sidebar = document.getElementById('mobile-sidebar');
+
+    function openMenu() {
+      overlay?.classList.remove('hidden');
+      sidebar?.classList.remove('translate-x-full');
+    }
+
+    function closeMenu() {
+      overlay?.classList.add('hidden');
+      sidebar?.classList.add('translate-x-full');
+    }
+
+    btn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    overlay?.addEventListener('click', closeMenu);
+  }
+
+  function initLangToggle() {
+    function toggleLang() {
+      const current = document.documentElement.getAttribute('data-lang') || 'en';
+      const next = current === 'en' ? 'zh' : 'en';
+      document.documentElement.setAttribute('data-lang', next);
+      document.documentElement.setAttribute('lang', next === 'zh' ? 'zh-TW' : 'en');
+      localStorage.setItem('ygg-lang', next);
+    }
+
+    document.getElementById('lang-toggle')?.addEventListener('click', toggleLang);
+    document.getElementById('mobile-lang-toggle')?.addEventListener('click', toggleLang);
+  }
+
+  initMobileMenu();
+  initLangToggle();
+  document.addEventListener('astro:after-swap', () => {
+    initMobileMenu();
+    initLangToggle();
+  });
+</script>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import SkillCard from '../../components/SkillCard.astro';
+import { getSkills } from '../../utils/data-loader';
+
+const skills = getSkills();
+const skillCategories = [...new Set(skills.map((s) => s.category))].sort();
+---
+
+<BaseLayout title="SKILLs" description="Browse all open source SKILLs in the Asgard ecosystem">
+  <!-- Hero area -->
+  <section class="relative overflow-hidden border-b border-border">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-glow-pulse"></div>
+      <div class="absolute top-1/2 right-1/3 w-48 h-48 bg-green-500/10 rounded-full blur-3xl animate-glow-pulse-delayed"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-border flex items-center justify-center">
+          <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-gradient">
+            <span class="lang-en">SKILLs</span><span class="lang-zh">技能</span>
+          </h1>
+          <p class="text-sm text-muted-foreground">
+            {skills.length} <span class="lang-en">skills available</span><span class="lang-zh">個技能可用</span>
+          </p>
+        </div>
+      </div>
+      <p class="text-muted-foreground max-w-2xl lang-en">
+        Teach AI how to analyze and think. {skills.length} skills across industry knowledge, methodologies, theories, and algorithms.
+      </p>
+      <p class="text-muted-foreground max-w-2xl lang-zh">
+        教 AI 如何分析與思考。{skills.length} 個技能，涵蓋產業知識、方法論、理論與演算法。
+      </p>
+    </div>
+  </section>
+
+  <!-- Sidebar + Grid layout -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <FilterBar categories={skillCategories} showSkillTypes={true} />
+      <div class="flex-1 min-w-0">
+        <CardGrid>
+          {skills.map((skill) => <SkillCard skill={skill} />)}
+        </CardGrid>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

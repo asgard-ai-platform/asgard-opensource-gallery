@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import McpCard from '../../components/McpCard.astro';
+import { getMcpServers } from '../../utils/data-loader';
+
+const servers = getMcpServers();
+const mcpCategories = [...new Set(servers.map((s) => s.category))].sort();
+---
+
+<BaseLayout title="MCP Servers" description="Browse all open source MCP Servers in the Asgard ecosystem">
+  <!-- Hero area -->
+  <section class="relative overflow-hidden border-b border-border">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-green-500/10 rounded-full blur-3xl animate-glow-pulse"></div>
+      <div class="absolute top-1/2 right-1/3 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl animate-glow-pulse-delayed"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500/20 to-cyan-500/20 border border-border flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-gradient">
+            <span class="lang-en">MCP Servers</span><span class="lang-zh">MCP 伺服器</span>
+          </h1>
+          <p class="text-sm text-muted-foreground">
+            {servers.length} <span class="lang-en">servers available</span><span class="lang-zh">個伺服器可用</span>
+          </p>
+        </div>
+      </div>
+      <p class="text-muted-foreground max-w-2xl lang-en">
+        Connect AI agents to real-world APIs. {servers.length} servers across e-commerce, payments, analytics, and more.
+      </p>
+      <p class="text-muted-foreground max-w-2xl lang-zh">
+        將 AI 代理連接到真實世界的 API。{servers.length} 個伺服器，涵蓋電商、支付、數據分析等領域。
+      </p>
+    </div>
+  </section>
+
+  <!-- Sidebar + Grid layout -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <FilterBar categories={mcpCategories} />
+      <div class="flex-1 min-w-0">
+        <CardGrid>
+          {servers.map((server) => <McpCard server={server} />)}
+        </CardGrid>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
