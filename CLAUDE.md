@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Styling:** Tailwind CSS 3 with `@astrojs/tailwind`
 - **Font:** Space Grotesk (Google Fonts, loaded via CSS)
 - **Data:** YAML files in `data/` validated against JSON Schema via Ajv
-- **Deployment:** AWS S3 + CloudFront, auto-deployed via GitHub Actions
+- **Deployment:** Cloudflare Pages, auto-deployed via GitHub Actions
 - **Language:** TypeScript
 - **E2E Tests:** Playwright (Chromium)
 
@@ -40,7 +40,7 @@ data/
 schemas/                    # JSON Schema for YAML validation
 scripts/
   validate.mjs              # CI validation script (Ajv)
-  deploy.sh                 # Manual S3 deploy script
+  deploy.sh                 # Manual Cloudflare Pages deploy script
 src/
   types.ts                  # Shared TypeScript interfaces + constants
   utils/data-loader.ts      # YAML parsing, sorting, lookup functions

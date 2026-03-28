@@ -59,7 +59,7 @@ npx playwright test
 | Data Format | YAML |
 | Schema Validation | [Ajv](https://ajv.js.org) (JSON Schema) |
 | E2E Tests | [Playwright](https://playwright.dev) |
-| Hosting | AWS S3 + CloudFront |
+| Hosting | [Cloudflare Pages](https://pages.cloudflare.com) |
 | CI/CD | GitHub Actions |
 
 ## Project Structure
