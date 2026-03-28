@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Yggdrasil** is a static open-source gallery site for the Asgard AI Platform ecosystem. It showcases 63 MCP Servers, 277 SKILLs, and 10 Solution Bundles, plus an Asgard AI Solution (Ecosystem) page describing the commercial product suite. All catalog content is YAML-driven; community contributors add entries via PRs.
 
 - **Repo:** `asgard-ai-platform/asgard-opensource-gallery`
-- **Domain:** `yggdrasil.asgard.ai`
+- **Domain:** `hub.asgard-ai.com`
 - **License:** MIT
 
 ## Tech Stack
