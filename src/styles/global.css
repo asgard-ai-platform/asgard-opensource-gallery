@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    background-color: #020306;
+    color: #e8f5e9;
+    min-height: 100vh;
+  }
+
+  * {
+    border-color: rgba(74, 222, 128, 0.12);
+  }
+}
+
+@layer components {
+  /* Card hover with glow */
+  .card-hover {
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(74, 222, 128, 0.1);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(to right, #4ade80, #34d399, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient button */
+  .btn-gradient {
+    background: linear-gradient(to right, #22c55e, #06b6d4);
+    color: #000;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(to right, #16a34a, #0891b2);
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(10, 13, 18, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(74, 222, 128, 0.12);
+  }
+
+  /* Animated nav underline */
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #22c55e, #06b6d4);
+    transition: width 0.3s ease;
+  }
+  .nav-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Subtle grid background pattern */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+@layer utilities {
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+  .delay-2000 {
+    animation-delay: 2s;
+  }
+}
+
+/* i18n: Language switching */
+[data-lang="en"] .lang-zh { display: none !important; }
+[data-lang="zh"] .lang-en { display: none !important; }

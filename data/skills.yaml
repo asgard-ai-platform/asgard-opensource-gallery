@@ -1,0 +1,3670 @@
+skills:
+  # ============================================================
+  # INDUSTRY SKILLS (46)
+  # ============================================================
+  - slug: skill-ecom-order-insight
+    name: "E-Commerce Order Insight"
+    description:
+      en: "Analyzes e-commerce order data to uncover purchasing patterns, peak periods, and actionable insights for revenue optimization."
+      zh: "分析電商訂單資料，發掘購買模式、尖峰時段與可行動的營收優化洞察。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ecom-order-insight
+    tags: [ecommerce, orders, analytics]
+    requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-rfm-analysis
+    name: "RFM Analysis"
+    description:
+      en: "Segments customers using Recency, Frequency, and Monetary analysis to identify high-value segments and optimize marketing strategies."
+      zh: "使用 RFM（最近消費、消費頻率、消費金額）分析進行客戶分群，識別高價值客群並優化行銷策略。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-rfm-analysis
+    tags: [customer-segmentation, rfm, marketing]
+    requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-inventory-health
+    name: "Inventory Health"
+    description:
+      en: "Monitors inventory levels, turnover rates, and stockout risks to maintain optimal stock levels and reduce carrying costs."
+      zh: "監控庫存水位、週轉率與缺貨風險，維持最佳庫存水準並降低持有成本。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-inventory-health
+    tags: [inventory, supply-chain, operations]
+    requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
+    bundles: [tw-ecommerce-ops, hospitality-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-promo-roi
+    name: "Promotion ROI"
+    description:
+      en: "Evaluates the return on investment of promotional campaigns by analyzing discount effectiveness, redemption rates, and incremental revenue."
+      zh: "評估促銷活動的投資報酬率，分析折扣成效、兌換率與增量營收。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-promo-roi
+    tags: [promotion, roi, marketing]
+    requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-media-monitoring
+    name: "Media Monitoring"
+    description:
+      en: "Tracks brand mentions, news coverage, and social media discussions across multiple channels for real-time media intelligence."
+      zh: "追蹤品牌提及、新聞報導與社群媒體討論，跨多個頻道提供即時媒體情報。"
+    status: coming-soon
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-media-monitoring
+    tags: [media, monitoring, brand]
+    requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pr-crisis
+    name: "PR Crisis Management"
+    description:
+      en: "Detects and assesses potential PR crises by monitoring negative sentiment spikes and provides structured crisis response frameworks."
+      zh: "透過監測負面輿情飆升偵測與評估潛在公關危機，並提供結構化的危機應對框架。"
+    status: coming-soon
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pr-crisis
+    tags: [pr, crisis, reputation]
+    requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sentiment-analysis
+    name: "Sentiment Analysis"
+    description:
+      en: "Performs sentiment classification on text data from social media and forums to gauge public opinion and brand perception."
+      zh: "對社群媒體與論壇的文字資料進行情感分類，衡量公眾意見與品牌認知。"
+    status: coming-soon
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sentiment-analysis
+    tags: [nlp, sentiment, social-media]
+    requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-brand-tracking
+    name: "Brand Tracking"
+    description:
+      en: "Continuously tracks brand awareness, perception, and competitive positioning across media channels and consumer touchpoints."
+      zh: "持續追蹤品牌知名度、認知與競爭定位，跨媒體頻道與消費者接觸點。"
+    status: coming-soon
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-brand-tracking
+    tags: [brand, tracking, competitive]
+    requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-oee-analysis
+    name: "OEE Analysis"
+    description:
+      en: "Calculates and monitors Overall Equipment Effectiveness (OEE) to identify production losses and optimize manufacturing throughput."
+      zh: "計算與監控整體設備效率（OEE），識別生產損失並優化製造產出。"
+    status: coming-soon
+    category: manufacturing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-oee-analysis
+    tags: [manufacturing, oee, production]
+    requires_mcp: [mcp-industrial-iot, mcp-thingsboard]
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-financial-modeling
+    name: "Financial Modeling"
+    description:
+      en: "Builds structured financial models including DCF, comparable analysis, and scenario-based projections for investment decision support."
+      zh: "建構結構化財務模型，包括 DCF、同業比較分析與情境式預測，支援投資決策。"
+    status: coming-soon
+    category: finance
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-financial-modeling
+    tags: [finance, modeling, valuation]
+    requires_mcp: [mcp-twse-mops, mcp-tpex, mcp-cnyes]
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-churn-prediction
+    name: "Churn Prediction"
+    description:
+      en: "Predicts customer churn probability using behavioral signals and engagement patterns to enable proactive retention strategies."
+      zh: "使用行為信號與互動模式預測客戶流失機率，啟動主動留客策略。"
+    status: coming-soon
+    category: analytics
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-churn-prediction
+    tags: [churn, prediction, retention]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-customer-ltv
+    name: "Customer Lifetime Value"
+    description:
+      en: "Calculates customer lifetime value using historical transaction data and predictive models to guide acquisition and retention investment."
+      zh: "使用歷史交易資料與預測模型計算客戶終身價值，指導獲客與留客投資。"
+    status: coming-soon
+    category: analytics
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-customer-ltv
+    tags: [ltv, customer-value, analytics]
+    bundles: [hospitality-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-supply-chain-opt
+    name: "Supply Chain Optimization"
+    description:
+      en: "Optimizes supply chain operations by analyzing lead times, supplier performance, and logistics efficiency to reduce costs and improve delivery."
+      zh: "透過分析前置時間、供應商績效與物流效率，優化供應鏈營運以降低成本並改善交付。"
+    status: coming-soon
+    category: ops
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-supply-chain-opt
+    tags: [supply-chain, logistics, optimization]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-demand-forecast
+    name: "Demand Forecast"
+    description:
+      en: "Forecasts product demand using time series analysis and market signals to optimize inventory planning and production scheduling."
+      zh: "使用時間序列分析與市場信號預測產品需求，優化庫存規劃與生產排程。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-demand-forecast
+    tags: [forecasting, demand, planning]
+    bundles: [sea-marketplace, hospitality-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-price-optimization
+    name: "Price Optimization"
+    description:
+      en: "Determines optimal pricing strategies using elasticity analysis, competitor pricing, and demand curves to maximize revenue."
+      zh: "使用彈性分析、競爭者定價與需求曲線決定最佳定價策略，最大化營收。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-price-optimization
+    tags: [pricing, optimization, revenue]
+    requires_mcp: [mcp-shopee, mcp-lazada, mcp-tiktok-shop]
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cross-sell
+    name: "Cross-Sell Analysis"
+    description:
+      en: "Identifies cross-selling opportunities by analyzing product affinities, purchase patterns, and customer segments to increase average order value."
+      zh: "透過分析產品關聯性、購買模式與客戶分群，識別交叉銷售機會以提升平均訂單金額。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cross-sell
+    tags: [cross-sell, recommendation, revenue]
+    requires_mcp: [mcp-shopee, mcp-lazada, mcp-tiktok-shop]
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-upsell-strategy
+    name: "Upsell Strategy"
+    description:
+      en: "Designs and evaluates upselling strategies by identifying premium product opportunities and customer willingness to upgrade."
+      zh: "透過識別高階產品機會與客戶升級意願，設計與評估向上銷售策略。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-upsell-strategy
+    tags: [upsell, revenue, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-basket-analysis
+    name: "Basket Analysis"
+    description:
+      en: "Performs market basket analysis using association rules to discover product co-occurrence patterns and optimize product placement."
+      zh: "使用關聯規則執行購物籃分析，發現產品共現模式並優化商品陳列。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-basket-analysis
+    tags: [basket-analysis, association-rules, retail]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cohort-analysis
+    name: "Cohort Analysis"
+    description:
+      en: "Segments users into cohorts based on shared characteristics or time periods to track behavior changes and retention over time."
+      zh: "根據共同特徵或時間區間將使用者分群，追蹤行為變化與留存率。"
+    status: coming-soon
+    category: analytics
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cohort-analysis
+    tags: [cohort, retention, analytics]
+    requires_mcp: [mcp-ga4]
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-retention-analysis
+    name: "Retention Analysis"
+    description:
+      en: "Measures and visualizes user retention curves to identify drop-off points and evaluate the impact of product changes on stickiness."
+      zh: "衡量與視覺化使用者留存曲線，識別流失點並評估產品變更對黏著度的影響。"
+    status: coming-soon
+    category: analytics
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-retention-analysis
+    tags: [retention, engagement, product]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-nps-analysis
+    name: "NPS Analysis"
+    description:
+      en: "Analyzes Net Promoter Score survey data to measure customer loyalty, identify promoters and detractors, and track satisfaction trends."
+      zh: "分析淨推薦值調查資料，衡量客戶忠誠度、識別推薦者與批評者，並追蹤滿意度趨勢。"
+    status: coming-soon
+    category: customer-service
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-nps-analysis
+    tags: [nps, loyalty, customer-satisfaction]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-csat-analysis
+    name: "CSAT Analysis"
+    description:
+      en: "Evaluates Customer Satisfaction Score data across touchpoints to identify service improvement opportunities and benchmark performance."
+      zh: "評估各接觸點的客戶滿意度分數資料，識別服務改善機會並進行績效標竿比較。"
+    status: coming-soon
+    category: customer-service
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-csat-analysis
+    tags: [csat, satisfaction, service-quality]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ticket-routing
+    name: "Ticket Routing"
+    description:
+      en: "Automatically classifies and routes customer support tickets to the appropriate team or agent based on content analysis and priority."
+      zh: "根據內容分析與優先級，自動分類並路由客戶支援工單至適當的團隊或客服人員。"
+    status: coming-soon
+    category: customer-service
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ticket-routing
+    tags: [ticketing, routing, automation]
+    requires_mcp: [mcp-zendesk, mcp-freshdesk, mcp-crisp]
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-knowledge-base
+    name: "Knowledge Base"
+    description:
+      en: "Manages and optimizes knowledge base articles by analyzing search patterns, content gaps, and article effectiveness for self-service support."
+      zh: "透過分析搜尋模式、內容缺口與文章成效，管理與優化知識庫文章以支援自助服務。"
+    status: coming-soon
+    category: customer-service
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-knowledge-base
+    tags: [knowledge-base, self-service, content]
+    requires_mcp: [mcp-zendesk, mcp-freshdesk, mcp-crisp]
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sla-monitoring
+    name: "SLA Monitoring"
+    description:
+      en: "Monitors service level agreement compliance, tracks response and resolution times, and alerts on potential SLA breaches."
+      zh: "監控服務等級協議合規性，追蹤回應與解決時間，並對潛在的 SLA 違規發出警報。"
+    status: coming-soon
+    category: customer-service
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sla-monitoring
+    tags: [sla, monitoring, compliance]
+    requires_mcp: [mcp-zendesk, mcp-freshdesk, mcp-crisp]
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-workforce-planning
+    name: "Workforce Planning"
+    description:
+      en: "Plans and optimizes workforce allocation by forecasting staffing needs, analyzing skill gaps, and scheduling resources efficiently."
+      zh: "透過預測人力需求、分析技能缺口與高效排程資源，規劃與優化人力配置。"
+    status: coming-soon
+    category: ops
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-workforce-planning
+    tags: [workforce, planning, hr]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-lead-scoring
+    name: "Lead Scoring"
+    description:
+      en: "Scores and ranks sales leads based on behavioral signals, demographic data, and engagement metrics to prioritize sales outreach."
+      zh: "根據行為信號、人口統計資料與互動指標，為銷售線索評分與排名，以優先化銷售觸及。"
+    status: coming-soon
+    category: marketing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-lead-scoring
+    tags: [lead-scoring, sales, crm]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pipeline-analysis
+    name: "Pipeline Analysis"
+    description:
+      en: "Analyzes sales pipeline health by evaluating deal stages, conversion rates, and velocity to forecast revenue and identify bottlenecks."
+      zh: "透過評估交易階段、轉換率與速度分析銷售漏斗健康度，預測營收並識別瓶頸。"
+    status: coming-soon
+    category: marketing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pipeline-analysis
+    tags: [pipeline, sales, forecasting]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-campaign-roi
+    name: "Campaign ROI"
+    description:
+      en: "Measures marketing campaign return on investment across channels, attributing conversions and calculating cost-effectiveness of ad spend."
+      zh: "衡量跨頻道行銷活動投資報酬率，歸因轉換並計算廣告支出的成本效益。"
+    status: coming-soon
+    category: marketing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-campaign-roi
+    tags: [campaign, roi, advertising]
+    requires_mcp: [mcp-ga4, mcp-meta-ads, mcp-google-ads]
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-attribution-model
+    name: "Attribution Model"
+    description:
+      en: "Applies multi-touch attribution models to assign conversion credit across marketing channels and optimize budget allocation."
+      zh: "應用多觸點歸因模型，將轉換功勞分配至各行銷頻道並優化預算配置。"
+    status: coming-soon
+    category: analytics
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-attribution-model
+    tags: [attribution, marketing, analytics]
+    requires_mcp: [mcp-ga4, mcp-meta-ads, mcp-google-ads]
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-content-performance
+    name: "Content Performance"
+    description:
+      en: "Evaluates content marketing effectiveness by analyzing engagement metrics, conversion rates, and audience reach across content types."
+      zh: "透過分析互動指標、轉換率與受眾觸及，評估內容行銷成效。"
+    status: coming-soon
+    category: marketing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-content-performance
+    tags: [content, marketing, engagement]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-social-listening
+    name: "Social Listening"
+    description:
+      en: "Monitors social media conversations and trends to capture market sentiment, emerging topics, and competitive intelligence."
+      zh: "監測社群媒體對話與趨勢，捕捉市場情緒、新興話題與競爭情報。"
+    status: coming-soon
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-social-listening
+    tags: [social-media, listening, trends]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-competitor-analysis
+    name: "Competitor Analysis"
+    description:
+      en: "Conducts systematic competitor analysis covering market positioning, product features, pricing strategies, and competitive advantages."
+      zh: "進行系統性競爭者分析，涵蓋市場定位、產品功能、定價策略與競爭優勢。"
+    status: coming-soon
+    category: marketing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-competitor-analysis
+    tags: [competitor, market, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-market-sizing
+    name: "Market Sizing"
+    description:
+      en: "Estimates total addressable market (TAM), serviceable market (SAM), and obtainable market (SOM) using top-down and bottom-up methodologies."
+      zh: "使用由上而下與由下而上方法論，估算總可尋址市場（TAM）、可服務市場（SAM）與可獲取市場（SOM）。"
+    status: coming-soon
+    category: marketing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-market-sizing
+    tags: [market-sizing, tam, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-revenue-forecast
+    name: "Revenue Forecast"
+    description:
+      en: "Forecasts revenue using historical trends, pipeline data, and market indicators to support financial planning and goal setting."
+      zh: "使用歷史趨勢、漏斗資料與市場指標預測營收，支援財務規劃與目標設定。"
+    status: coming-soon
+    category: finance
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-revenue-forecast
+    tags: [revenue, forecasting, planning]
+    requires_mcp: [mcp-twse-mops, mcp-tpex, mcp-cnyes]
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-budget-allocation
+    name: "Budget Allocation"
+    description:
+      en: "Optimizes budget allocation across departments, campaigns, or projects using constraint optimization and ROI-based prioritization."
+      zh: "使用約束優化與基於 ROI 的優先化，優化跨部門、活動或專案的預算配置。"
+    status: coming-soon
+    category: finance
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-budget-allocation
+    tags: [budget, allocation, optimization]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-vendor-evaluation
+    name: "Vendor Evaluation"
+    description:
+      en: "Evaluates and scores vendors using multi-criteria assessment covering quality, cost, reliability, and strategic fit."
+      zh: "使用多準則評估評分供應商，涵蓋品質、成本、可靠性與策略契合度。"
+    status: coming-soon
+    category: ops
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-vendor-evaluation
+    tags: [vendor, procurement, evaluation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-risk-assessment
+    name: "Risk Assessment"
+    description:
+      en: "Identifies, quantifies, and prioritizes business risks using probability-impact matrices and Monte Carlo simulations."
+      zh: "使用機率影響矩陣與蒙地卡羅模擬，識別、量化與排序企業風險。"
+    status: coming-soon
+    category: finance
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-risk-assessment
+    tags: [risk, assessment, management]
+    requires_mcp: [mcp-twse-mops, mcp-tpex, mcp-cnyes]
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-compliance-check
+    name: "Compliance Check"
+    description:
+      en: "Audits business processes and data against regulatory requirements to identify compliance gaps and recommend remediation actions."
+      zh: "依法規要求稽核業務流程與資料，識別合規缺口並建議補救措施。"
+    status: coming-soon
+    category: ops
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-compliance-check
+    tags: [compliance, regulatory, audit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-fraud-detection
+    name: "Fraud Detection"
+    description:
+      en: "Detects fraudulent transactions and activities using pattern recognition, anomaly detection, and rule-based screening."
+      zh: "使用模式識別、異常偵測與規則式篩選，偵測詐騙交易與活動。"
+    status: coming-soon
+    category: finance
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-fraud-detection
+    tags: [fraud, detection, security]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-anomaly-detection
+    name: "Anomaly Detection"
+    description:
+      en: "Identifies unusual patterns and outliers in operational data using statistical methods and machine learning for early issue detection."
+      zh: "使用統計方法與機器學習，在營運資料中識別異常模式與離群值以早期偵測問題。"
+    status: coming-soon
+    category: analytics
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-anomaly-detection
+    tags: [anomaly, detection, monitoring]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-quality-control
+    name: "Quality Control"
+    description:
+      en: "Monitors manufacturing quality metrics, applies statistical process control, and identifies defect patterns to maintain product standards."
+      zh: "監控製造品質指標，應用統計製程管制並識別缺陷模式，以維持產品標準。"
+    status: coming-soon
+    category: manufacturing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-quality-control
+    tags: [quality, spc, manufacturing]
+    requires_mcp: [mcp-industrial-iot, mcp-thingsboard]
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-maintenance-predict
+    name: "Predictive Maintenance"
+    description:
+      en: "Predicts equipment failures using sensor data and machine learning models to schedule maintenance before breakdowns occur."
+      zh: "使用感測器資料與機器學習模型預測設備故障，在故障發生前排程維護。"
+    status: coming-soon
+    category: manufacturing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-maintenance-predict
+    tags: [maintenance, prediction, iot]
+    requires_mcp: [mcp-industrial-iot, mcp-thingsboard]
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-energy-optimization
+    name: "Energy Optimization"
+    description:
+      en: "Optimizes energy consumption in industrial operations by analyzing usage patterns, identifying waste, and recommending efficiency improvements."
+      zh: "透過分析用量模式、識別浪費並建議效率改善，優化工業營運的能源消耗。"
+    status: coming-soon
+    category: manufacturing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-energy-optimization
+    tags: [energy, optimization, sustainability]
+    requires_mcp: [mcp-industrial-iot, mcp-thingsboard, mcp-node-red]
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-yield-analysis
+    name: "Yield Analysis"
+    description:
+      en: "Analyzes production yield rates, identifies factors affecting yield, and recommends process adjustments to maximize output quality."
+      zh: "分析生產良率，識別影響良率的因素並建議製程調整，以最大化產出品質。"
+    status: coming-soon
+    category: manufacturing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-yield-analysis
+    tags: [yield, production, quality]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-safety-monitoring
+    name: "Safety Monitoring"
+    description:
+      en: "Monitors workplace safety metrics, tracks incident rates, and analyzes near-miss data to improve occupational health and safety."
+      zh: "監控職場安全指標，追蹤事故率並分析虛驚事件資料，以改善職業健康與安全。"
+    status: coming-soon
+    category: manufacturing
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-safety-monitoring
+    tags: [safety, monitoring, compliance]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # METHODOLOGY SKILLS (72)
+  # ============================================================
+  - slug: skill-swot
+    name: "SWOT Analysis"
+    description:
+      en: "Guides structured SWOT analysis to identify organizational Strengths, Weaknesses, Opportunities, and Threats for strategic planning."
+      zh: "引導結構化 SWOT 分析，識別組織的優勢、劣勢、機會與威脅，支援策略規劃。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-swot
+    tags: [strategy, analysis, planning]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-porters-five-forces
+    name: "Porter's Five Forces"
+    description:
+      en: "Applies Porter's Five Forces framework to analyze industry competitive dynamics including rivalry, buyer/supplier power, and substitutes."
+      zh: "應用波特五力分析框架，分析產業競爭動態，包括同業競爭、買賣方議價力與替代品。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-porters-five-forces
+    tags: [strategy, competitive, industry]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pestle
+    name: "PESTLE Analysis"
+    description:
+      en: "Conducts PESTLE analysis covering Political, Economic, Social, Technological, Legal, and Environmental factors affecting the business."
+      zh: "進行 PESTLE 分析，涵蓋影響企業的政治、經濟、社會、科技、法律與環境因素。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pestle
+    tags: [macro, environment, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bcg-matrix
+    name: "BCG Matrix"
+    description:
+      en: "Classifies business units or products into Stars, Cash Cows, Question Marks, and Dogs based on market growth and share."
+      zh: "根據市場成長率與市場佔有率，將事業單位或產品分類為明星、金牛、問號與狗。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bcg-matrix
+    tags: [portfolio, strategy, matrix]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-customer-journey
+    name: "Customer Journey Mapping"
+    description:
+      en: "Maps the end-to-end customer journey across touchpoints to identify pain points, moments of truth, and improvement opportunities."
+      zh: "繪製端到端的客戶旅程跨接觸點，識別痛點、關鍵時刻與改善機會。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-customer-journey
+    tags: [customer-journey, ux, touchpoints]
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-design-thinking
+    name: "Design Thinking"
+    description:
+      en: "Facilitates the design thinking process through empathize, define, ideate, prototype, and test phases for human-centered innovation."
+      zh: "引導設計思維流程，經歷同理、定義、發想、原型與測試階段，實現以人為本的創新。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-design-thinking
+    tags: [design-thinking, innovation, ux]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-lean-canvas
+    name: "Lean Canvas"
+    description:
+      en: "Guides the creation of a Lean Canvas to rapidly model business hypotheses covering problem, solution, metrics, and unfair advantage."
+      zh: "引導建立精實畫布，快速建模商業假設，涵蓋問題、解決方案、指標與不公平優勢。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-lean-canvas
+    tags: [lean, startup, business-model]
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-business-model-canvas
+    name: "Business Model Canvas"
+    description:
+      en: "Structures a Business Model Canvas covering key partners, activities, resources, value propositions, and revenue streams."
+      zh: "結構化商業模式畫布，涵蓋關鍵夥伴、活動、資源、價值主張與營收來源。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-business-model-canvas
+    tags: [business-model, canvas, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-value-proposition
+    name: "Value Proposition Design"
+    description:
+      en: "Designs and validates value propositions by mapping customer jobs, pains, and gains against product features and benefits."
+      zh: "透過對應客戶任務、痛點與收穫至產品功能與利益，設計與驗證價值主張。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-value-proposition
+    tags: [value-proposition, customer, design]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-jobs-to-be-done
+    name: "Jobs To Be Done"
+    description:
+      en: "Applies the Jobs To Be Done framework to uncover customer motivations and design products that fulfill unmet functional and emotional needs."
+      zh: "應用待完成工作框架，揭示客戶動機並設計滿足未被滿足的功能與情感需求的產品。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-jobs-to-be-done
+    tags: [jtbd, innovation, customer-needs]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-okr-framework
+    name: "OKR Framework"
+    description:
+      en: "Guides the creation and tracking of Objectives and Key Results to align team goals with organizational strategy."
+      zh: "引導建立與追蹤目標與關鍵結果（OKR），使團隊目標與組織策略一致。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-okr-framework
+    tags: [okr, goals, alignment]
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-balanced-scorecard
+    name: "Balanced Scorecard"
+    description:
+      en: "Implements the Balanced Scorecard framework across financial, customer, internal process, and learning perspectives for strategic performance management."
+      zh: "實施平衡計分卡框架，涵蓋財務、客戶、內部流程與學習成長構面，進行策略性績效管理。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-balanced-scorecard
+    tags: [scorecard, performance, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-kpi-dashboard
+    name: "KPI Dashboard"
+    description:
+      en: "Designs and structures KPI dashboards with relevant metrics, targets, and visualization recommendations for effective performance monitoring."
+      zh: "設計與結構化 KPI 儀表板，包含相關指標、目標值與視覺化建議，實現有效績效監控。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-kpi-dashboard
+    tags: [kpi, dashboard, metrics]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-root-cause-analysis
+    name: "Root Cause Analysis"
+    description:
+      en: "Systematically identifies the root causes of problems using structured analysis techniques to prevent recurrence."
+      zh: "使用結構化分析技術系統性地識別問題根本原因，以防止問題再發。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-root-cause-analysis
+    tags: [root-cause, problem-solving, analysis]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-fishbone-diagram
+    name: "Fishbone Diagram"
+    description:
+      en: "Creates Ishikawa fishbone diagrams to categorize and visualize potential causes of problems across people, process, and technology dimensions."
+      zh: "建立石川魚骨圖，跨人員、流程與技術面向分類與視覺化問題的潛在原因。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-fishbone-diagram
+    tags: [fishbone, ishikawa, problem-solving]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pareto-analysis
+    name: "Pareto Analysis"
+    description:
+      en: "Applies the 80/20 Pareto principle to identify the vital few factors that contribute most significantly to a problem or outcome."
+      zh: "應用 80/20 帕累托原則，識別對問題或結果貢獻最大的關鍵少數因素。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pareto-analysis
+    tags: [pareto, prioritization, analysis]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-five-whys
+    name: "Five Whys"
+    description:
+      en: "Guides the Five Whys iterative questioning technique to drill down to the root cause of a problem through successive layers."
+      zh: "引導五個為什麼迭代提問技術，透過層層追問深入找到問題的根本原因。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-five-whys
+    tags: [five-whys, root-cause, lean]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pdca-cycle
+    name: "PDCA Cycle"
+    description:
+      en: "Facilitates the Plan-Do-Check-Act continuous improvement cycle for systematic process optimization and quality management."
+      zh: "引導 PDCA（計畫-執行-查核-行動）持續改善循環，進行系統性流程優化與品質管理。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pdca-cycle
+    tags: [pdca, continuous-improvement, quality]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-dmaic
+    name: "DMAIC"
+    description:
+      en: "Guides the Define-Measure-Analyze-Improve-Control methodology for data-driven process improvement and defect reduction."
+      zh: "引導 DMAIC（定義-衡量-分析-改善-控制）方法論，進行數據驅動的流程改善與缺陷減少。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-dmaic
+    tags: [dmaic, six-sigma, process]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-six-sigma
+    name: "Six Sigma"
+    description:
+      en: "Applies Six Sigma statistical methods to reduce process variation, eliminate defects, and achieve near-perfect quality levels."
+      zh: "應用六標準差統計方法減少流程變異、消除缺陷並達到近乎完美的品質水準。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-six-sigma
+    tags: [six-sigma, quality, statistical]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-kanban
+    name: "Kanban"
+    description:
+      en: "Implements Kanban workflow management with WIP limits, flow metrics, and continuous delivery principles for team productivity."
+      zh: "實施看板工作流管理，包含在製品限制、流程指標與持續交付原則，提升團隊生產力。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-kanban
+    tags: [kanban, agile, workflow]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-scrum-framework
+    name: "Scrum Framework"
+    description:
+      en: "Guides Scrum implementation including sprint planning, daily standups, reviews, and retrospectives for agile team management."
+      zh: "引導 Scrum 實施，包括衝刺規劃、每日站會、審查與回顧，進行敏捷團隊管理。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-scrum-framework
+    tags: [scrum, agile, sprint]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-agile-retrospective
+    name: "Agile Retrospective"
+    description:
+      en: "Facilitates effective agile retrospectives with structured formats to identify what went well, what to improve, and action items."
+      zh: "以結構化格式引導有效的敏捷回顧，識別做得好的、需改善的事項與行動項目。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-agile-retrospective
+    tags: [retrospective, agile, team]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sprint-planning
+    name: "Sprint Planning"
+    description:
+      en: "Guides sprint planning sessions including backlog refinement, story estimation, and capacity-based sprint goal setting."
+      zh: "引導衝刺規劃會議，包括待辦清單精煉、故事估算與基於產能的衝刺目標設定。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sprint-planning
+    tags: [sprint, planning, agile]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-user-story-mapping
+    name: "User Story Mapping"
+    description:
+      en: "Creates user story maps to visualize product functionality, prioritize features, and plan incremental delivery."
+      zh: "建立使用者故事地圖，視覺化產品功能、排序功能優先級並規劃增量交付。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-user-story-mapping
+    tags: [user-stories, product, mapping]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-persona-creation
+    name: "Persona Creation"
+    description:
+      en: "Creates detailed user personas based on research data to represent target audience segments and guide product decisions."
+      zh: "根據研究資料建立詳細的使用者人物誌，代表目標受眾群體並指導產品決策。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-persona-creation
+    tags: [persona, ux, user-research]
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-empathy-map
+    name: "Empathy Map"
+    description:
+      en: "Builds empathy maps to capture what users think, feel, say, and do, fostering deeper understanding of customer needs."
+      zh: "建立同理心地圖，捕捉使用者的想法、感受、言語與行為，促進對客戶需求的深入理解。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-empathy-map
+    tags: [empathy, ux, customer]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-stakeholder-map
+    name: "Stakeholder Mapping"
+    description:
+      en: "Maps stakeholders by influence and interest to develop appropriate engagement strategies and communication plans."
+      zh: "依影響力與利益繪製利害關係人地圖，制定適當的參與策略與溝通計畫。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-stakeholder-map
+    tags: [stakeholder, mapping, communication]
+    bundles: [agent-communication]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-decision-matrix
+    name: "Decision Matrix"
+    description:
+      en: "Creates weighted decision matrices to evaluate options against multiple criteria for objective and transparent decision-making."
+      zh: "建立加權決策矩陣，依多項準則評估選項，實現客觀透明的決策。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-decision-matrix
+    tags: [decision, matrix, evaluation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cost-benefit
+    name: "Cost-Benefit Analysis"
+    description:
+      en: "Conducts cost-benefit analysis by quantifying tangible and intangible costs and benefits to evaluate project viability."
+      zh: "透過量化有形與無形的成本與效益，進行成本效益分析以評估專案可行性。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cost-benefit
+    tags: [cost-benefit, financial, evaluation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-roi-analysis
+    name: "ROI Analysis"
+    description:
+      en: "Calculates and compares return on investment across initiatives to prioritize resource allocation and investment decisions."
+      zh: "計算與比較各項方案的投資報酬率，以優先化資源配置與投資決策。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-roi-analysis
+    tags: [roi, investment, financial]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-break-even
+    name: "Break-Even Analysis"
+    description:
+      en: "Determines break-even points by analyzing fixed costs, variable costs, and revenue to understand profitability thresholds."
+      zh: "透過分析固定成本、變動成本與營收，確定損益兩平點以了解獲利門檻。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-break-even
+    tags: [break-even, profitability, financial]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sensitivity-analysis
+    name: "Sensitivity Analysis"
+    description:
+      en: "Tests how changes in key assumptions affect outcomes by varying inputs systematically to assess model robustness."
+      zh: "透過系統性地變動輸入值，測試關鍵假設變化如何影響結果，以評估模型穩健性。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sensitivity-analysis
+    tags: [sensitivity, modeling, risk]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-scenario-planning
+    name: "Scenario Planning"
+    description:
+      en: "Develops multiple plausible future scenarios to stress-test strategies and prepare contingency plans for uncertainty."
+      zh: "發展多個合理的未來情境，壓力測試策略並為不確定性準備應變計畫。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-scenario-planning
+    tags: [scenario, planning, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-swot-tows
+    name: "SWOT-TOWS Matrix"
+    description:
+      en: "Extends SWOT analysis into TOWS matrix to generate strategic options by matching internal strengths/weaknesses with external opportunities/threats."
+      zh: "將 SWOT 分析延伸為 TOWS 矩陣，透過匹配內部優劣勢與外部機會威脅產生策略選項。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-swot-tows
+    tags: [swot, tows, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ansoff-matrix
+    name: "Ansoff Matrix"
+    description:
+      en: "Applies the Ansoff growth matrix to evaluate market penetration, development, product development, and diversification strategies."
+      zh: "應用安索夫成長矩陣，評估市場滲透、市場開發、產品開發與多角化策略。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ansoff-matrix
+    tags: [ansoff, growth, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ge-matrix
+    name: "GE-McKinsey Matrix"
+    description:
+      en: "Uses the GE-McKinsey nine-cell matrix to evaluate business unit attractiveness and competitive strength for portfolio decisions."
+      zh: "使用 GE-McKinsey 九宮格矩陣，評估事業單位吸引力與競爭力以進行投資組合決策。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ge-matrix
+    tags: [ge-matrix, portfolio, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-value-chain
+    name: "Value Chain Analysis"
+    description:
+      en: "Analyzes the value chain to identify primary and support activities that create competitive advantage and cost optimization opportunities."
+      zh: "分析價值鏈，識別創造競爭優勢與成本優化機會的主要活動與支援活動。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-value-chain
+    tags: [value-chain, competitive-advantage, operations]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-core-competence
+    name: "Core Competence Analysis"
+    description:
+      en: "Identifies and evaluates organizational core competencies that provide sustainable competitive advantage and strategic differentiation."
+      zh: "識別與評估提供可持續競爭優勢與策略差異化的組織核心能力。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-core-competence
+    tags: [core-competence, capability, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-blue-ocean
+    name: "Blue Ocean Strategy"
+    description:
+      en: "Applies Blue Ocean Strategy tools including strategy canvas and four actions framework to create uncontested market space."
+      zh: "應用藍海策略工具，包括策略畫布與四項行動框架，創造無競爭的市場空間。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-blue-ocean
+    tags: [blue-ocean, innovation, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-red-ocean
+    name: "Red Ocean Strategy"
+    description:
+      en: "Analyzes competitive positioning in existing markets to develop differentiation and cost leadership strategies in contested spaces."
+      zh: "分析現有市場中的競爭定位，在競爭激烈的空間中發展差異化與成本領導策略。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-red-ocean
+    tags: [red-ocean, competition, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-disruptive-innovation
+    name: "Disruptive Innovation"
+    description:
+      en: "Evaluates disruptive innovation potential by analyzing market trajectories, incumbent vulnerabilities, and new market footholds."
+      zh: "透過分析市場軌跡、在位者脆弱點與新市場立足點，評估破壞式創新潛力。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-disruptive-innovation
+    tags: [disruption, innovation, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-platform-strategy
+    name: "Platform Strategy"
+    description:
+      en: "Designs platform business models by analyzing multi-sided market dynamics, network effects, and platform governance mechanisms."
+      zh: "透過分析多邊市場動態、網路效應與平台治理機制，設計平台商業模式。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-platform-strategy
+    tags: [platform, marketplace, business-model]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-network-effects
+    name: "Network Effects"
+    description:
+      en: "Analyzes direct and indirect network effects to evaluate product defensibility, growth dynamics, and winner-take-all potential."
+      zh: "分析直接與間接網路效應，評估產品防禦性、成長動態與贏者全拿潛力。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-network-effects
+    tags: [network-effects, growth, moat]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-flywheel-effect
+    name: "Flywheel Effect"
+    description:
+      en: "Maps and analyzes business flywheel mechanics where each component reinforces others to create compounding growth momentum."
+      zh: "繪製與分析商業飛輪機制，各組件互相強化以創造複合成長動能。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-flywheel-effect
+    tags: [flywheel, growth, momentum]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-growth-hacking
+    name: "Growth Hacking"
+    description:
+      en: "Applies growth hacking frameworks including viral loops, referral mechanics, and rapid experimentation to accelerate user acquisition."
+      zh: "應用成長駭客框架，包括病毒迴圈、推薦機制與快速實驗，加速使用者獲取。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-growth-hacking
+    tags: [growth, acquisition, viral]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-funnel-analysis
+    name: "Funnel Analysis Framework"
+    description:
+      en: "Structures conversion funnel analysis methodology to systematically identify and address drop-off points in user journeys."
+      zh: "結構化轉換漏斗分析方法論，系統性地識別與解決使用者旅程中的流失點。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-funnel-analysis
+    tags: [funnel, conversion, methodology]
+    requires_mcp: [mcp-ga4]
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-aarrr-metrics
+    name: "AARRR Metrics"
+    description:
+      en: "Implements the AARRR pirate metrics framework covering Acquisition, Activation, Retention, Referral, and Revenue for startup growth."
+      zh: "實施 AARRR 海盜指標框架，涵蓋獲取、啟動、留存、推薦與營收，支援新創成長。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-aarrr-metrics
+    tags: [aarrr, metrics, growth]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-north-star-metric
+    name: "North Star Metric"
+    description:
+      en: "Helps identify and define the North Star Metric that best captures the core value delivered to customers and drives growth."
+      zh: "協助識別與定義最能捕捉交付給客戶核心價值並驅動成長的北極星指標。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-north-star-metric
+    tags: [north-star, metric, product]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-hypothesis-testing-framework
+    name: "Hypothesis Testing Framework"
+    description:
+      en: "Structures business hypothesis testing with clear success criteria, sample sizes, and statistical rigor for evidence-based decisions."
+      zh: "結構化商業假設測試，包含明確的成功準則、樣本量與統計嚴謹性，支援實證決策。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-hypothesis-testing-framework
+    tags: [hypothesis, testing, experimentation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ab-test-design
+    name: "A/B Test Design"
+    description:
+      en: "Designs rigorous A/B test experiments with proper sample sizing, randomization, and statistical analysis plans."
+      zh: "設計嚴謹的 A/B 測試實驗，包含適當的樣本量計算、隨機化與統計分析計畫。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ab-test-design
+    tags: [ab-testing, experimentation, design]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-survey-design
+    name: "Survey Design"
+    description:
+      en: "Designs effective surveys with appropriate question types, scales, and flow logic to collect reliable and actionable user feedback."
+      zh: "設計有效的問卷調查，包含適當的題型、量表與流程邏輯，收集可靠且可行動的使用者回饋。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-survey-design
+    tags: [survey, research, feedback]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-interview-guide
+    name: "Interview Guide"
+    description:
+      en: "Creates structured interview guides with open-ended questions, probing techniques, and analysis frameworks for qualitative research."
+      zh: "建立結構化訪談指南，包含開放式問題、探詢技巧與分析框架，支援質性研究。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-interview-guide
+    tags: [interview, qualitative, research]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-focus-group
+    name: "Focus Group"
+    description:
+      en: "Plans and structures focus group sessions including participant recruitment, discussion guides, and insight synthesis methods."
+      zh: "規劃與結構化焦點團體座談，包括參與者招募、討論指南與洞察綜合方法。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-focus-group
+    tags: [focus-group, qualitative, research]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-card-sorting
+    name: "Card Sorting"
+    description:
+      en: "Designs and analyzes card sorting exercises to inform information architecture and navigation design decisions."
+      zh: "設計與分析卡片分類練習，為資訊架構與導覽設計決策提供依據。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-card-sorting
+    tags: [card-sorting, ia, ux]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-usability-testing
+    name: "Usability Testing"
+    description:
+      en: "Plans usability test sessions with task scenarios, success metrics, and structured observation protocols for UX evaluation."
+      zh: "規劃可用性測試座談，包含任務場景、成功指標與結構化觀察協議，用於 UX 評估。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-usability-testing
+    tags: [usability, testing, ux]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-heuristic-evaluation
+    name: "Heuristic Evaluation"
+    description:
+      en: "Conducts Nielsen's heuristic evaluation of user interfaces to identify usability issues across ten established heuristics."
+      zh: "進行 Nielsen 啟發式評估，依十項既定啟發式原則識別使用者介面的可用性問題。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-heuristic-evaluation
+    tags: [heuristic, usability, evaluation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-accessibility-audit
+    name: "Accessibility Audit"
+    description:
+      en: "Audits digital products against WCAG guidelines to identify accessibility barriers and recommend remediation for inclusive design."
+      zh: "依 WCAG 指南稽核數位產品，識別無障礙障礙並建議補救措施以實現包容性設計。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-accessibility-audit
+    tags: [accessibility, wcag, audit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-information-architecture
+    name: "Information Architecture"
+    description:
+      en: "Designs information architecture including site maps, navigation structures, and content organization for optimal user findability."
+      zh: "設計資訊架構，包括網站地圖、導覽結構與內容組織，實現最佳使用者可尋性。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-information-architecture
+    tags: [ia, navigation, content]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-content-strategy
+    name: "Content Strategy"
+    description:
+      en: "Develops content strategy frameworks covering content pillars, editorial calendars, and distribution channel planning."
+      zh: "發展內容策略框架，涵蓋內容支柱、編輯日曆與分發頻道規劃。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-content-strategy
+    tags: [content, strategy, editorial]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-seo-audit
+    name: "SEO Audit"
+    description:
+      en: "Conducts comprehensive SEO audits covering technical, on-page, and off-page factors with prioritized recommendations."
+      zh: "進行全面的 SEO 稽核，涵蓋技術、頁面內與頁面外因素，並提供優先化建議。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-seo-audit
+    tags: [seo, audit, search]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-technical-debt
+    name: "Technical Debt Assessment"
+    description:
+      en: "Assesses and prioritizes technical debt by categorizing debt types, estimating remediation costs, and planning paydown strategies."
+      zh: "透過分類技術債類型、估算補救成本與規劃償還策略，評估與排序技術債。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-technical-debt
+    tags: [technical-debt, engineering, planning]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-code-review-checklist
+    name: "Code Review Checklist"
+    description:
+      en: "Provides structured code review checklists covering functionality, security, performance, and maintainability standards."
+      zh: "提供結構化的程式碼審查清單，涵蓋功能、安全、效能與可維護性標準。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-code-review-checklist
+    tags: [code-review, quality, engineering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-incident-postmortem
+    name: "Incident Postmortem"
+    description:
+      en: "Guides blameless incident postmortems covering timeline reconstruction, root cause analysis, and preventive action planning."
+      zh: "引導無責任歸咎的事故事後檢討，涵蓋時間線重建、根因分析與預防措施規劃。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-incident-postmortem
+    tags: [incident, postmortem, sre]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-change-management
+    name: "Change Management"
+    description:
+      en: "Applies change management frameworks to plan and execute organizational changes with stakeholder buy-in and adoption strategies."
+      zh: "應用變革管理框架，規劃與執行組織變革，包含利害關係人認同與採用策略。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-change-management
+    tags: [change-management, transformation, adoption]
+    bundles: [agent-communication]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-communication-plan
+    name: "Communication Plan"
+    description:
+      en: "Develops structured communication plans covering audience analysis, key messages, channels, and timing for effective organizational communication."
+      zh: "制定結構化溝通計畫，涵蓋受眾分析、關鍵訊息、頻道與時程，實現有效組織溝通。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-communication-plan
+    tags: [communication, planning, stakeholder]
+    bundles: [agent-communication]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-risk-matrix
+    name: "Risk Matrix"
+    description:
+      en: "Creates probability-impact risk matrices to visualize, categorize, and prioritize risks for effective risk management."
+      zh: "建立機率影響風險矩陣，視覺化、分類與排序風險，實現有效風險管理。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-risk-matrix
+    tags: [risk, matrix, management]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-raci-matrix
+    name: "RACI Matrix"
+    description:
+      en: "Defines roles and responsibilities using RACI (Responsible, Accountable, Consulted, Informed) matrices for clear accountability."
+      zh: "使用 RACI（負責、當責、諮詢、知會）矩陣定義角色與職責，建立明確的當責制。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-raci-matrix
+    tags: [raci, responsibility, governance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-gantt-chart
+    name: "Gantt Chart"
+    description:
+      en: "Plans and visualizes project timelines using Gantt charts with task dependencies, milestones, and resource assignments."
+      zh: "使用甘特圖規劃與視覺化專案時程，包含任務相依性、里程碑與資源分配。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-gantt-chart
+    tags: [gantt, project-management, timeline]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-critical-path
+    name: "Critical Path Method"
+    description:
+      en: "Identifies the critical path in project schedules to determine minimum project duration and focus management attention on key tasks."
+      zh: "識別專案排程中的關鍵路徑，確定最短專案工期並將管理注意力集中在關鍵任務上。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-critical-path
+    tags: [critical-path, scheduling, project]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-resource-leveling
+    name: "Resource Leveling"
+    description:
+      en: "Optimizes resource allocation across projects by resolving over-allocation conflicts and balancing workload distribution."
+      zh: "透過解決超額分配衝突與平衡工作量分佈，優化跨專案的資源配置。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-resource-leveling
+    tags: [resource, leveling, capacity]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-earned-value
+    name: "Earned Value Management"
+    description:
+      en: "Applies Earned Value Management to measure project performance and progress by integrating scope, schedule, and cost baselines."
+      zh: "應用實獲值管理，透過整合範疇、時程與成本基準，衡量專案績效與進度。"
+    status: coming-soon
+    category: methodology
+    skill_type: methodology
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-earned-value
+    tags: [earned-value, project, performance]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # THEORY SKILLS (96)
+  # ============================================================
+  - slug: skill-tam
+    name: "Technology Acceptance Model"
+    description:
+      en: "Applies the Technology Acceptance Model to evaluate perceived usefulness and ease of use as predictors of technology adoption."
+      zh: "應用科技接受模型，以知覺有用性與知覺易用性作為科技採用的預測因子進行評估。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-tam
+    tags: [technology, adoption, model]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-diffusion-of-innovation
+    name: "Diffusion of Innovation"
+    description:
+      en: "Applies Rogers' Diffusion of Innovation theory to understand adoption curves across innovators, early adopters, majority, and laggards."
+      zh: "應用 Rogers 創新擴散理論，了解跨創新者、早期採用者、多數者與落後者的採用曲線。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-diffusion-of-innovation
+    tags: [innovation, adoption, diffusion]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-resource-based-view
+    name: "Resource-Based View"
+    description:
+      en: "Applies the Resource-Based View to evaluate organizational resources and capabilities as sources of sustained competitive advantage."
+      zh: "應用資源基礎觀，評估組織資源與能力作為持續競爭優勢的來源。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-resource-based-view
+    tags: [rbv, resources, competitive-advantage]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-agency-theory
+    name: "Agency Theory"
+    description:
+      en: "Analyzes principal-agent relationships to understand incentive alignment, moral hazard, and adverse selection in organizational governance."
+      zh: "分析委託代理關係，了解組織治理中的激勵對齊、道德風險與逆向選擇。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-agency-theory
+    tags: [agency, governance, incentives]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-prospect-theory
+    name: "Prospect Theory"
+    description:
+      en: "Applies Kahneman and Tversky's Prospect Theory to understand how people evaluate gains and losses asymmetrically in decision-making."
+      zh: "應用 Kahneman 和 Tversky 的展望理論，了解人們在決策中如何不對稱地評估收益與損失。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-prospect-theory
+    tags: [prospect-theory, behavioral, decision]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-behavioral-economics
+    name: "Behavioral Economics"
+    description:
+      en: "Applies behavioral economics principles to understand systematic deviations from rational decision-making in economic contexts."
+      zh: "應用行為經濟學原理，了解經濟情境中系統性偏離理性決策的現象。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-behavioral-economics
+    tags: [behavioral, economics, decision]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-nudge-theory
+    name: "Nudge Theory"
+    description:
+      en: "Designs choice architectures using nudge theory to guide behavior toward desired outcomes without restricting freedom of choice."
+      zh: "使用助推理論設計選擇架構，在不限制選擇自由的情況下引導行為朝向期望結果。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-nudge-theory
+    tags: [nudge, choice-architecture, behavioral]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cognitive-load
+    name: "Cognitive Load Theory"
+    description:
+      en: "Applies Cognitive Load Theory to optimize information design by managing intrinsic, extraneous, and germane cognitive demands."
+      zh: "應用認知負荷理論，透過管理內在、外在與相關認知需求來優化資訊設計。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cognitive-load
+    tags: [cognitive-load, learning, design]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-dual-process
+    name: "Dual Process Theory"
+    description:
+      en: "Applies dual process theory (System 1 and System 2 thinking) to understand fast intuitive versus slow analytical decision-making."
+      zh: "應用雙歷程理論（系統一與系統二思考），了解快速直覺式與慢速分析式決策。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-dual-process
+    tags: [dual-process, thinking, cognitive]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-heuristics-biases
+    name: "Heuristics & Biases"
+    description:
+      en: "Identifies and mitigates common cognitive heuristics and biases that systematically distort judgment and decision-making."
+      zh: "識別與減緩系統性扭曲判斷與決策的常見認知捷思與偏誤。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-heuristics-biases
+    tags: [heuristics, biases, cognitive]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-anchoring-effect
+    name: "Anchoring Effect"
+    description:
+      en: "Explains and applies the anchoring effect where initial information disproportionately influences subsequent judgments and decisions."
+      zh: "解釋與應用錨定效應，初始資訊不成比例地影響後續判斷與決策。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-anchoring-effect
+    tags: [anchoring, bias, pricing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-framing-effect
+    name: "Framing Effect"
+    description:
+      en: "Analyzes how the framing of information (gain vs. loss framing) systematically influences choices and risk preferences."
+      zh: "分析資訊框架（收益框架 vs. 損失框架）如何系統性地影響選擇與風險偏好。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-framing-effect
+    tags: [framing, communication, persuasion]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-loss-aversion
+    name: "Loss Aversion"
+    description:
+      en: "Applies loss aversion theory to understand why people weigh losses more heavily than equivalent gains in decision contexts."
+      zh: "應用損失趨避理論，了解為何人們在決策情境中對損失的感受比等值收益更為強烈。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-loss-aversion
+    tags: [loss-aversion, behavioral, risk]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-endowment-effect
+    name: "Endowment Effect"
+    description:
+      en: "Explains the endowment effect where ownership increases perceived value, and applies it to pricing and product strategy."
+      zh: "解釋稟賦效應，即擁有權增加感知價值，並應用於定價與產品策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-endowment-effect
+    tags: [endowment, ownership, behavioral]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-status-quo-bias
+    name: "Status Quo Bias"
+    description:
+      en: "Identifies and addresses status quo bias where people prefer current states over changes, impacting product adoption and switching."
+      zh: "識別與處理現狀偏誤，人們偏好現狀而非改變，影響產品採用與轉換。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-status-quo-bias
+    tags: [status-quo, bias, change]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-confirmation-bias
+    name: "Confirmation Bias"
+    description:
+      en: "Identifies confirmation bias patterns where people selectively seek information that supports existing beliefs, and designs mitigation strategies."
+      zh: "識別確認偏誤模式，人們選擇性地尋求支持既有信念的資訊，並設計減緩策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-confirmation-bias
+    tags: [confirmation-bias, critical-thinking, research]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-availability-heuristic
+    name: "Availability Heuristic"
+    description:
+      en: "Explains the availability heuristic where easily recalled events are judged as more probable, distorting risk assessment and planning."
+      zh: "解釋可得性捷思，容易回想的事件被判斷為更可能發生，扭曲風險評估與規劃。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-availability-heuristic
+    tags: [availability, heuristic, risk]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-representativeness
+    name: "Representativeness Heuristic"
+    description:
+      en: "Explains the representativeness heuristic where probability judgments are based on similarity to prototypes rather than base rates."
+      zh: "解釋代表性捷思，機率判斷基於與原型的相似性而非基率。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-representativeness
+    tags: [representativeness, heuristic, probability]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-dunning-kruger
+    name: "Dunning-Kruger Effect"
+    description:
+      en: "Explains the Dunning-Kruger effect where low-skilled individuals overestimate and high-skilled individuals underestimate their competence."
+      zh: "解釋達克效應，低技能者高估而高技能者低估自身能力的認知偏誤。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-dunning-kruger
+    tags: [dunning-kruger, metacognition, assessment]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-imposter-syndrome
+    name: "Imposter Syndrome"
+    description:
+      en: "Identifies and addresses imposter syndrome patterns where high achievers doubt their competence despite objective evidence of success."
+      zh: "識別與處理冒名頂替症候群，高成就者儘管有客觀成功證據仍質疑自身能力。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-imposter-syndrome
+    tags: [imposter-syndrome, psychology, leadership]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-maslows-hierarchy
+    name: "Maslow's Hierarchy of Needs"
+    description:
+      en: "Applies Maslow's hierarchy to understand human motivation from physiological needs through self-actualization for product and organizational design."
+      zh: "應用 Maslow 需求層次理論，從生理需求到自我實現了解人類動機，支援產品與組織設計。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-maslows-hierarchy
+    tags: [maslow, motivation, needs]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-herzbergs-two-factor
+    name: "Herzberg's Two-Factor Theory"
+    description:
+      en: "Applies Herzberg's two-factor theory to distinguish hygiene factors from motivators for employee satisfaction and engagement strategies."
+      zh: "應用 Herzberg 雙因子理論，區分保健因素與激勵因素，用於員工滿意度與投入度策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-herzbergs-two-factor
+    tags: [herzberg, motivation, hr]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-expectancy-theory
+    name: "Expectancy Theory"
+    description:
+      en: "Applies Vroom's Expectancy Theory to understand motivation as a function of expectancy, instrumentality, and valence in workplace settings."
+      zh: "應用 Vroom 期望理論，了解職場動機作為期望、工具性與效價的函數。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-expectancy-theory
+    tags: [expectancy, motivation, performance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-equity-theory
+    name: "Equity Theory"
+    description:
+      en: "Applies Adams' Equity Theory to understand how perceived fairness of input-output ratios affects motivation and behavior."
+      zh: "應用 Adams 公平理論，了解對投入產出比率的公平感知如何影響動機與行為。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-equity-theory
+    tags: [equity, fairness, motivation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-goal-setting
+    name: "Goal Setting Theory"
+    description:
+      en: "Applies Locke's Goal Setting Theory to design specific, challenging goals with feedback mechanisms that enhance performance."
+      zh: "應用 Locke 目標設定理論，設計具體、有挑戰性的目標與回饋機制以提升績效。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-goal-setting
+    tags: [goals, performance, motivation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-self-determination
+    name: "Self-Determination Theory"
+    description:
+      en: "Applies Self-Determination Theory to foster intrinsic motivation through autonomy, competence, and relatedness in work environments."
+      zh: "應用自我決定理論，透過自主性、能力感與關聯性在工作環境中促進內在動機。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-self-determination
+    tags: [self-determination, intrinsic, motivation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-flow-theory
+    name: "Flow Theory"
+    description:
+      en: "Applies Csikszentmihalyi's Flow Theory to design experiences that balance challenge and skill for optimal engagement and productivity."
+      zh: "應用 Csikszentmihalyi 心流理論，設計平衡挑戰與技能的體驗以達最佳投入度與生產力。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-flow-theory
+    tags: [flow, engagement, psychology]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-growth-mindset
+    name: "Growth Mindset"
+    description:
+      en: "Applies Dweck's Growth Mindset theory to foster learning orientation, resilience, and continuous improvement in teams."
+      zh: "應用 Dweck 成長心態理論，在團隊中促進學習導向、韌性與持續改善。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-growth-mindset
+    tags: [growth-mindset, learning, resilience]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-grit
+    name: "Grit"
+    description:
+      en: "Applies Duckworth's Grit framework to evaluate and develop perseverance and passion for long-term goals in individuals and teams."
+      zh: "應用 Duckworth 恆毅力框架，評估與發展個人和團隊對長期目標的毅力與熱情。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-grit
+    tags: [grit, perseverance, performance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-psychological-safety
+    name: "Psychological Safety"
+    description:
+      en: "Applies Edmondson's Psychological Safety framework to build team environments where members feel safe to take interpersonal risks."
+      zh: "應用 Edmondson 心理安全感框架，建立團隊成員感到安全可以承擔人際風險的環境。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-psychological-safety
+    tags: [psychological-safety, team, culture]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-social-identity
+    name: "Social Identity Theory"
+    description:
+      en: "Applies Social Identity Theory to understand in-group/out-group dynamics and their effects on organizational behavior and brand loyalty."
+      zh: "應用社會認同理論，了解內團體/外團體動態及其對組織行為與品牌忠誠度的影響。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-social-identity
+    tags: [social-identity, group, behavior]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-social-proof
+    name: "Social Proof"
+    description:
+      en: "Applies the social proof principle to design persuasive experiences where people follow the actions and choices of others."
+      zh: "應用社會證明原則，設計有說服力的體驗，讓人們跟隨他人的行動與選擇。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-social-proof
+    tags: [social-proof, persuasion, conversion]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-groupthink
+    name: "Groupthink"
+    description:
+      en: "Identifies and mitigates groupthink dynamics where cohesive groups make poor decisions due to conformity pressure and self-censorship."
+      zh: "識別與減緩團體迷思動態，凝聚力強的團體因從眾壓力與自我審查而做出不佳決策。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-groupthink
+    tags: [groupthink, decision-making, team]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bystander-effect
+    name: "Bystander Effect"
+    description:
+      en: "Explains the bystander effect where individuals are less likely to act in groups, and designs interventions to overcome diffusion of responsibility."
+      zh: "解釋旁觀者效應，個人在群體中較不可能行動，並設計干預措施以克服責任分散。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bystander-effect
+    tags: [bystander, responsibility, social]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tragedy-of-commons
+    name: "Tragedy of the Commons"
+    description:
+      en: "Analyzes tragedy of the commons scenarios where shared resources are overexploited, and designs governance mechanisms for sustainable use."
+      zh: "分析公地悲劇情境，共享資源被過度開發，並設計治理機制以實現永續使用。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-tragedy-of-commons
+    tags: [commons, governance, sustainability]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-prisoners-dilemma
+    name: "Prisoner's Dilemma"
+    description:
+      en: "Applies the Prisoner's Dilemma framework to analyze cooperation vs. defection dynamics in competitive and strategic situations."
+      zh: "應用囚徒困境框架，分析競爭與策略情境中合作與背叛的動態。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-prisoners-dilemma
+    tags: [game-theory, cooperation, strategy]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-game-theory
+    name: "Game Theory"
+    description:
+      en: "Applies game theory concepts to model strategic interactions between rational agents for optimal decision-making in competitive markets."
+      zh: "應用賽局理論概念，建模理性代理人之間的策略互動，支援競爭市場中的最佳決策。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-game-theory
+    tags: [game-theory, strategy, competition]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-nash-equilibrium
+    name: "Nash Equilibrium"
+    description:
+      en: "Identifies Nash Equilibria in strategic games where no player benefits from unilateral strategy changes, informing competitive strategy."
+      zh: "在策略賽局中識別納許均衡，即沒有玩家能從單方面改變策略中獲益，指導競爭策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-nash-equilibrium
+    tags: [nash, equilibrium, game-theory]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-mechanism-design
+    name: "Mechanism Design"
+    description:
+      en: "Applies mechanism design theory to create incentive-compatible systems, auctions, and market structures that achieve desired outcomes."
+      zh: "應用機制設計理論，創建激勵相容的系統、拍賣與市場結構以達成期望結果。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-mechanism-design
+    tags: [mechanism-design, incentives, markets]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-auction-theory
+    name: "Auction Theory"
+    description:
+      en: "Applies auction theory to design and analyze different auction formats for optimal revenue generation and efficient resource allocation."
+      zh: "應用拍賣理論，設計與分析不同拍賣格式以實現最佳營收與高效資源配置。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-auction-theory
+    tags: [auction, pricing, markets]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-market-microstructure
+    name: "Market Microstructure"
+    description:
+      en: "Analyzes market microstructure including order flow, bid-ask spreads, and price formation mechanisms in financial markets."
+      zh: "分析市場微結構，包括委託單流、買賣價差與金融市場中的價格形成機制。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-market-microstructure
+    tags: [microstructure, trading, finance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-efficient-market
+    name: "Efficient Market Hypothesis"
+    description:
+      en: "Evaluates the Efficient Market Hypothesis across weak, semi-strong, and strong forms to assess market information efficiency."
+      zh: "評估效率市場假說的弱式、半強式與強式，以評估市場資訊效率。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-efficient-market
+    tags: [emh, efficiency, finance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-random-walk
+    name: "Random Walk Theory"
+    description:
+      en: "Applies random walk theory to model unpredictable price movements in financial markets and evaluate trading strategy effectiveness."
+      zh: "應用隨機漫步理論，建模金融市場中不可預測的價格變動並評估交易策略成效。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-random-walk
+    tags: [random-walk, markets, finance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-black-scholes
+    name: "Black-Scholes Model"
+    description:
+      en: "Applies the Black-Scholes model for options pricing, calculating theoretical values based on underlying price, volatility, and time to expiry."
+      zh: "應用 Black-Scholes 模型進行選擇權定價，根據標的價格、波動率與到期時間計算理論價值。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-black-scholes
+    tags: [black-scholes, options, pricing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-capm
+    name: "CAPM"
+    description:
+      en: "Applies the Capital Asset Pricing Model to calculate expected returns based on systematic risk and the market risk premium."
+      zh: "應用資本資產定價模型，根據系統性風險與市場風險溢酬計算預期報酬。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-capm
+    tags: [capm, risk, return]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-apt
+    name: "Arbitrage Pricing Theory"
+    description:
+      en: "Applies Arbitrage Pricing Theory to model asset returns as a function of multiple macroeconomic risk factors."
+      zh: "應用套利定價理論，將資產報酬建模為多個總體經濟風險因子的函數。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-apt
+    tags: [apt, factor, pricing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-fama-french
+    name: "Fama-French Model"
+    description:
+      en: "Applies the Fama-French three/five factor model to explain stock returns through market, size, value, profitability, and investment factors."
+      zh: "應用 Fama-French 三/五因子模型，透過市場、規模、價值、獲利能力與投資因子解釋股票報酬。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-fama-french
+    tags: [fama-french, factors, asset-pricing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-modigliani-miller
+    name: "Modigliani-Miller Theorem"
+    description:
+      en: "Applies the Modigliani-Miller theorem to analyze capital structure irrelevance and its implications under different market conditions."
+      zh: "應用 Modigliani-Miller 定理，分析資本結構無關論及其在不同市場條件下的涵義。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-modigliani-miller
+    tags: [mm-theorem, capital-structure, finance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pecking-order
+    name: "Pecking Order Theory"
+    description:
+      en: "Applies Pecking Order Theory to understand corporate financing preferences from internal funds to debt to equity issuance."
+      zh: "應用融資順位理論，了解企業從內部資金到債務到股權發行的融資偏好。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pecking-order
+    tags: [pecking-order, financing, corporate]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-trade-off-theory
+    name: "Trade-Off Theory"
+    description:
+      en: "Applies the trade-off theory of capital structure to balance tax shield benefits of debt against bankruptcy and agency costs."
+      zh: "應用資本結構抵換理論，平衡債務的稅盾利益與破產成本及代理成本。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-trade-off-theory
+    tags: [trade-off, capital-structure, leverage]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-real-options
+    name: "Real Options"
+    description:
+      en: "Applies real options analysis to value flexibility in investment decisions, including options to expand, delay, or abandon projects."
+      zh: "應用實質選擇權分析，評估投資決策中的彈性價值，包括擴張、延遲或放棄專案的選擇權。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-real-options
+    tags: [real-options, valuation, flexibility]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-monte-carlo
+    name: "Monte Carlo Simulation"
+    description:
+      en: "Applies Monte Carlo simulation to model uncertainty by running thousands of random scenarios to estimate probability distributions of outcomes."
+      zh: "應用蒙地卡羅模擬，透過執行數千次隨機情境來建模不確定性，估算結果的機率分佈。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-monte-carlo
+    tags: [monte-carlo, simulation, risk]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-var
+    name: "Value at Risk"
+    description:
+      en: "Calculates Value at Risk (VaR) to estimate maximum potential loss at a given confidence level over a specified time horizon."
+      zh: "計算風險值（VaR），在給定信賴水準與指定時間區間內估算最大潛在損失。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-var
+    tags: [var, risk, portfolio]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cvar
+    name: "Conditional Value at Risk"
+    description:
+      en: "Calculates Conditional VaR (CVaR/Expected Shortfall) to measure expected loss in the tail beyond the VaR threshold."
+      zh: "計算條件風險值（CVaR/預期損失），衡量超過 VaR 門檻的尾部預期損失。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cvar
+    tags: [cvar, tail-risk, portfolio]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sharpe-ratio
+    name: "Sharpe Ratio"
+    description:
+      en: "Calculates and interprets the Sharpe Ratio to evaluate risk-adjusted returns of investments relative to the risk-free rate."
+      zh: "計算與解釋夏普比率，評估投資相對於無風險利率的風險調整後報酬。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sharpe-ratio
+    tags: [sharpe, performance, risk-adjusted]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sortino-ratio
+    name: "Sortino Ratio"
+    description:
+      en: "Calculates the Sortino Ratio to evaluate risk-adjusted returns focusing only on downside volatility rather than total volatility."
+      zh: "計算 Sortino 比率，僅關注下行波動率而非總波動率來評估風險調整後報酬。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sortino-ratio
+    tags: [sortino, downside-risk, performance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-information-ratio
+    name: "Information Ratio"
+    description:
+      en: "Calculates the Information Ratio to measure a portfolio manager's ability to generate excess returns relative to a benchmark."
+      zh: "計算資訊比率，衡量投資組合經理人相對於基準產生超額報酬的能力。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-information-ratio
+    tags: [information-ratio, benchmark, performance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tracking-error
+    name: "Tracking Error"
+    description:
+      en: "Calculates tracking error to measure how closely a portfolio follows its benchmark index and evaluate passive vs. active management."
+      zh: "計算追蹤誤差，衡量投資組合對其基準指數的追蹤程度並評估被動與主動管理。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-tracking-error
+    tags: [tracking-error, benchmark, indexing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-alpha-beta
+    name: "Alpha & Beta"
+    description:
+      en: "Calculates and interprets alpha (excess return) and beta (systematic risk) to evaluate portfolio performance and market sensitivity."
+      zh: "計算與解釋 alpha（超額報酬）與 beta（系統性風險），評估投資組合績效與市場敏感度。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-alpha-beta
+    tags: [alpha, beta, performance]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-factor-investing
+    name: "Factor Investing"
+    description:
+      en: "Applies factor investing principles to construct portfolios targeting specific risk premia such as value, momentum, quality, and size."
+      zh: "應用因子投資原則，建構針對特定風險溢酬（如價值、動能、品質與規模）的投資組合。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-factor-investing
+    tags: [factor, smart-beta, portfolio]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-momentum
+    name: "Momentum"
+    description:
+      en: "Applies momentum theory to identify assets with persistent price trends and design momentum-based investment strategies."
+      zh: "應用動能理論，識別具有持續價格趨勢的資產並設計基於動能的投資策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-momentum
+    tags: [momentum, trend, trading]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-mean-reversion
+    name: "Mean Reversion"
+    description:
+      en: "Applies mean reversion theory to identify overextended price movements that tend to revert to historical averages."
+      zh: "應用均值回歸理論，識別傾向回復至歷史平均的過度延伸價格變動。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-mean-reversion
+    tags: [mean-reversion, contrarian, trading]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pairs-trading
+    name: "Pairs Trading"
+    description:
+      en: "Applies pairs trading strategy to exploit relative price divergences between correlated securities for market-neutral returns."
+      zh: "應用配對交易策略，利用相關證券之間的相對價格偏離獲取市場中性報酬。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pairs-trading
+    tags: [pairs-trading, arbitrage, statistical]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cointegration
+    name: "Cointegration"
+    description:
+      en: "Tests for cointegration between time series to identify long-run equilibrium relationships for statistical arbitrage and econometric modeling."
+      zh: "測試時間序列之間的共整合關係，識別長期均衡關係以支援統計套利與計量經濟建模。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cointegration
+    tags: [cointegration, time-series, econometrics]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-granger-causality
+    name: "Granger Causality"
+    description:
+      en: "Performs Granger causality tests to determine whether one time series can predict another, supporting causal inference in economic data."
+      zh: "執行 Granger 因果檢定，判斷一個時間序列是否能預測另一個，支援經濟資料中的因果推論。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-granger-causality
+    tags: [granger, causality, time-series]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-vector-autoregression
+    name: "Vector Autoregression"
+    description:
+      en: "Builds VAR models to capture linear interdependencies among multiple time series for forecasting and impulse response analysis."
+      zh: "建立 VAR 模型，捕捉多個時間序列之間的線性相互依賴關係，用於預測與脈衝反應分析。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-vector-autoregression
+    tags: [var-model, multivariate, time-series]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-arima
+    name: "ARIMA"
+    description:
+      en: "Applies ARIMA (AutoRegressive Integrated Moving Average) models for univariate time series forecasting with trend and seasonality."
+      zh: "應用 ARIMA（自迴歸整合移動平均）模型，進行含趨勢與季節性的單變量時間序列預測。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-arima
+    tags: [arima, time-series, forecasting]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-garch
+    name: "GARCH"
+    description:
+      en: "Applies GARCH (Generalized Autoregressive Conditional Heteroskedasticity) models to capture volatility clustering in financial time series."
+      zh: "應用 GARCH（一般化自迴歸條件異質變異）模型，捕捉金融時間序列中的波動率叢聚現象。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-garch
+    tags: [garch, volatility, financial]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-regime-switching
+    name: "Regime Switching"
+    description:
+      en: "Applies regime switching models to capture structural breaks and state changes in financial and economic time series."
+      zh: "應用體制轉換模型，捕捉金融與經濟時間序列中的結構性斷裂與狀態變化。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-regime-switching
+    tags: [regime, switching, structural-break]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-hidden-markov
+    name: "Hidden Markov Model"
+    description:
+      en: "Applies Hidden Markov Models to infer unobservable states from observable sequences in financial markets and sequential data."
+      zh: "應用隱馬可夫模型，從金融市場與序列資料中的可觀察序列推斷不可觀察狀態。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-hidden-markov
+    tags: [hmm, sequence, probabilistic]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-kalman-filter
+    name: "Kalman Filter"
+    description:
+      en: "Applies the Kalman filter for optimal state estimation from noisy observations in tracking, forecasting, and signal processing."
+      zh: "應用卡爾曼濾波器，從帶有噪音的觀測值中進行最佳狀態估計，用於追蹤、預測與信號處理。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-kalman-filter
+    tags: [kalman, filtering, estimation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-particle-filter
+    name: "Particle Filter"
+    description:
+      en: "Applies particle filters for sequential Monte Carlo estimation in nonlinear, non-Gaussian state space models."
+      zh: "應用粒子濾波器，在非線性、非高斯狀態空間模型中進行序列蒙地卡羅估計。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-particle-filter
+    tags: [particle-filter, smc, estimation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bayesian-inference
+    name: "Bayesian Inference"
+    description:
+      en: "Applies Bayesian inference to update beliefs with new evidence using prior distributions, likelihoods, and posterior distributions."
+      zh: "應用貝氏推論，使用先驗分佈、概似與後驗分佈，以新證據更新信念。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bayesian-inference
+    tags: [bayesian, inference, probability]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-markov-chain
+    name: "Markov Chain"
+    description:
+      en: "Applies Markov chain theory to model state transitions and steady-state behavior in stochastic processes."
+      zh: "應用馬可夫鏈理論，建模隨機過程中的狀態轉換與穩態行為。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-markov-chain
+    tags: [markov, stochastic, transitions]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-stochastic-process
+    name: "Stochastic Process"
+    description:
+      en: "Applies stochastic process theory to model random phenomena evolving over time, including Brownian motion and Poisson processes."
+      zh: "應用隨機過程理論，建模隨時間演進的隨機現象，包括布朗運動與泊松過程。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-stochastic-process
+    tags: [stochastic, random, modeling]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-queuing-theory
+    name: "Queuing Theory"
+    description:
+      en: "Applies queuing theory to model waiting lines, optimize service capacity, and minimize customer wait times in service systems."
+      zh: "應用等候理論建模排隊系統，優化服務容量並最小化服務系統中的客戶等待時間。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-queuing-theory
+    tags: [queuing, service, capacity]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-inventory-theory
+    name: "Inventory Theory"
+    description:
+      en: "Applies inventory theory models (EOQ, safety stock, reorder points) to optimize inventory policies under demand uncertainty."
+      zh: "應用庫存理論模型（EOQ、安全庫存、再訂購點），在需求不確定性下優化庫存策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-inventory-theory
+    tags: [inventory, eoq, operations]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-newsvendor
+    name: "Newsvendor Model"
+    description:
+      en: "Applies the newsvendor model to determine optimal order quantities under demand uncertainty with overage and underage costs."
+      zh: "應用報童模型，在需求不確定性下考慮過剩與短缺成本，決定最佳訂購量。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-newsvendor
+    tags: [newsvendor, inventory, optimization]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-beer-game
+    name: "Beer Game"
+    description:
+      en: "Simulates the Beer Game to demonstrate supply chain dynamics, information delays, and the bullwhip effect in distribution systems."
+      zh: "模擬啤酒遊戲，展示供應鏈動態、資訊延遲與配銷系統中的長鞭效應。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-beer-game
+    tags: [beer-game, supply-chain, simulation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bullwhip-effect
+    name: "Bullwhip Effect"
+    description:
+      en: "Analyzes the bullwhip effect where demand variability amplifies upstream in supply chains, and designs mitigation strategies."
+      zh: "分析長鞭效應，需求變異沿供應鏈上游放大，並設計減緩策略。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bullwhip-effect
+    tags: [bullwhip, supply-chain, variability]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-lean-production
+    name: "Lean Production"
+    description:
+      en: "Applies lean production principles to eliminate waste, optimize flow, and create value through continuous improvement in manufacturing."
+      zh: "應用精實生產原則，消除浪費、優化流程並透過製造中的持續改善創造價值。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-lean-production
+    tags: [lean, production, waste-elimination]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-theory-of-constraints
+    name: "Theory of Constraints"
+    description:
+      en: "Applies Goldratt's Theory of Constraints to identify and exploit system bottlenecks for throughput maximization."
+      zh: "應用 Goldratt 限制理論，識別與利用系統瓶頸以最大化產出。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-theory-of-constraints
+    tags: [toc, bottleneck, throughput]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-total-quality
+    name: "Total Quality Management"
+    description:
+      en: "Applies Total Quality Management principles for organization-wide quality improvement through customer focus and continuous improvement."
+      zh: "應用全面品質管理原則，透過客戶導向與持續改善進行全組織品質提升。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-total-quality
+    tags: [tqm, quality, management]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-just-in-time
+    name: "Just-In-Time"
+    description:
+      en: "Applies Just-In-Time manufacturing principles to minimize inventory, reduce waste, and improve production efficiency."
+      zh: "應用即時生產原則，最小化庫存、減少浪費並提升生產效率。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-just-in-time
+    tags: [jit, lean, inventory]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-poka-yoke
+    name: "Poka-Yoke"
+    description:
+      en: "Designs poka-yoke (mistake-proofing) mechanisms to prevent human errors in processes and product design."
+      zh: "設計防呆（Poka-Yoke）機制，在流程與產品設計中防止人為錯誤。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-poka-yoke
+    tags: [poka-yoke, error-proofing, quality]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-kaizen
+    name: "Kaizen"
+    description:
+      en: "Applies Kaizen continuous improvement philosophy to drive incremental improvements through employee engagement and standardized work."
+      zh: "應用改善（Kaizen）持續改善哲學，透過員工參與與標準化作業驅動漸進式改善。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-kaizen
+    tags: [kaizen, improvement, lean]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-gemba
+    name: "Gemba"
+    description:
+      en: "Applies Gemba walk principles to observe actual work processes at the source, identify waste, and engage frontline workers."
+      zh: "應用現場（Gemba）走動原則，在源頭觀察實際工作流程、識別浪費並與第一線工作者互動。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-gemba
+    tags: [gemba, observation, lean]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-value-stream-mapping
+    name: "Value Stream Mapping"
+    description:
+      en: "Creates value stream maps to visualize the flow of materials and information from supplier to customer, identifying waste and improvement opportunities."
+      zh: "建立價值流程圖，視覺化從供應商到客戶的物料與資訊流，識別浪費與改善機會。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-value-stream-mapping
+    tags: [vsm, lean, process]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-smed
+    name: "SMED"
+    description:
+      en: "Applies Single-Minute Exchange of Die (SMED) methodology to dramatically reduce equipment changeover time in manufacturing."
+      zh: "應用快速換模（SMED）方法論，大幅縮短製造業中的設備換線時間。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-smed
+    tags: [smed, changeover, lean]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tpm
+    name: "Total Productive Maintenance"
+    description:
+      en: "Applies Total Productive Maintenance to achieve zero breakdowns, zero defects, and zero accidents through proactive equipment care."
+      zh: "應用全面生產維護，透過主動設備保養達成零故障、零缺陷與零事故。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-tpm
+    tags: [tpm, maintenance, reliability]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-reliability-theory
+    name: "Reliability Theory"
+    description:
+      en: "Applies reliability theory to model system failure rates, calculate MTBF/MTTR, and design for reliability in engineering systems."
+      zh: "應用可靠度理論，建模系統故障率、計算 MTBF/MTTR 並在工程系統中進行可靠度設計。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-reliability-theory
+    tags: [reliability, mtbf, engineering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-weibull-analysis
+    name: "Weibull Analysis"
+    description:
+      en: "Applies Weibull analysis to model failure time distributions, characterize failure modes, and plan maintenance schedules."
+      zh: "應用韋伯分析建模故障時間分佈，特徵化故障模式並規劃維護排程。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-weibull-analysis
+    tags: [weibull, failure, reliability]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-survival-analysis
+    name: "Survival Analysis"
+    description:
+      en: "Applies survival analysis to model time-to-event data, estimate survival functions, and identify factors affecting event timing."
+      zh: "應用存活分析建模事件時間資料，估計存活函數並識別影響事件時序的因素。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-survival-analysis
+    tags: [survival, time-to-event, statistics]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-hazard-function
+    name: "Hazard Function"
+    description:
+      en: "Analyzes hazard functions to understand instantaneous failure rates and how risk changes over time in survival data."
+      zh: "分析危險函數，了解瞬時故障率及風險如何在存活資料中隨時間變化。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-hazard-function
+    tags: [hazard, risk, survival]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cox-regression
+    name: "Cox Regression"
+    description:
+      en: "Applies Cox proportional hazards regression to identify covariates that affect survival time without specifying the baseline hazard."
+      zh: "應用 Cox 比例風險迴歸，在不指定基線風險的情況下識別影響存活時間的共變數。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cox-regression
+    tags: [cox, regression, survival]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-competing-risks
+    name: "Competing Risks"
+    description:
+      en: "Analyzes competing risks models where multiple event types can occur, estimating cause-specific and subdistribution hazards."
+      zh: "分析競爭風險模型，多種事件類型可能發生，估計原因特定風險與子分佈風險。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-competing-risks
+    tags: [competing-risks, survival, multivariate]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-multi-state-model
+    name: "Multi-State Model"
+    description:
+      en: "Applies multi-state models to analyze transitions between multiple states over time, capturing complex disease or system progression."
+      zh: "應用多狀態模型，分析隨時間在多個狀態之間的轉換，捕捉複雜的疾病或系統進程。"
+    status: coming-soon
+    category: theory
+    skill_type: theory
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-multi-state-model
+    tags: [multi-state, transitions, modeling]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # ALGORITHM SKILLS (62)
+  # ============================================================
+  - slug: skill-pagerank
+    name: "PageRank"
+    description:
+      en: "Implements the PageRank algorithm to rank nodes in a graph by importance based on link structure and iterative computation."
+      zh: "實現 PageRank 演算法，根據連結結構與迭代計算對圖中的節點進行重要性排名。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pagerank
+    tags: [graph, ranking, network]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tf-idf
+    name: "TF-IDF"
+    description:
+      en: "Applies TF-IDF (Term Frequency-Inverse Document Frequency) for text feature extraction and document relevance scoring."
+      zh: "應用 TF-IDF（詞頻-逆文件頻率）進行文字特徵提取與文件相關性評分。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-tf-idf
+    tags: [nlp, text, information-retrieval]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-prophet-forecast
+    name: "Prophet Forecast"
+    description:
+      en: "Applies Facebook Prophet for time series forecasting with automatic seasonality detection, holiday effects, and trend changepoints."
+      zh: "應用 Facebook Prophet 進行時間序列預測，自動偵測季節性、節假日效應與趨勢轉折點。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-prophet-forecast
+    tags: [prophet, forecasting, time-series]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-elo-rating
+    name: "Elo Rating"
+    description:
+      en: "Implements the Elo rating system to calculate relative skill levels between competitors in head-to-head matchups."
+      zh: "實現 Elo 等級分系統，在對決配對中計算競爭者之間的相對技能水準。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-elo-rating
+    tags: [elo, rating, ranking]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-collaborative-filtering
+    name: "Collaborative Filtering"
+    description:
+      en: "Implements collaborative filtering for recommendation systems using user-based and item-based similarity approaches."
+      zh: "實現協同過濾推薦系統，使用基於使用者與基於項目的相似度方法。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-collaborative-filtering
+    tags: [recommendation, collaborative, filtering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-a-b-testing
+    name: "A/B Testing"
+    description:
+      en: "Implements statistical A/B testing with proper hypothesis formulation, sample size calculation, and significance testing."
+      zh: "實現統計 A/B 測試，包含適當的假設制定、樣本量計算與顯著性檢定。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-a-b-testing
+    tags: [ab-testing, statistics, experimentation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bandit-algorithm
+    name: "Bandit Algorithm"
+    description:
+      en: "Implements multi-armed bandit algorithms to balance exploration and exploitation in sequential decision-making problems."
+      zh: "實現多臂吃角子老虎機演算法，在序列決策問題中平衡探索與利用。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bandit-algorithm
+    tags: [bandit, exploration, optimization]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-thompson-sampling
+    name: "Thompson Sampling"
+    description:
+      en: "Implements Thompson Sampling for Bayesian approach to multi-armed bandit problems, balancing exploration via probability matching."
+      zh: "實現 Thompson 抽樣，以貝氏方法處理多臂吃角子老虎機問題，透過機率匹配平衡探索。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-thompson-sampling
+    tags: [thompson, bayesian, bandit]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ucb
+    name: "Upper Confidence Bound"
+    description:
+      en: "Implements UCB (Upper Confidence Bound) algorithms for optimistic exploration in bandit and online learning problems."
+      zh: "實現 UCB（上信賴界限）演算法，在吃角子老虎機與線上學習問題中進行樂觀探索。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ucb
+    tags: [ucb, exploration, confidence]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-epsilon-greedy
+    name: "Epsilon-Greedy"
+    description:
+      en: "Implements the epsilon-greedy strategy for simple exploration-exploitation trade-off in online learning and recommendation systems."
+      zh: "實現 epsilon-greedy 策略，在線上學習與推薦系統中進行簡單的探索利用權衡。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-epsilon-greedy
+    tags: [epsilon-greedy, exploration, simple]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-gradient-descent
+    name: "Gradient Descent"
+    description:
+      en: "Implements gradient descent optimization to minimize loss functions by iteratively adjusting parameters in the direction of steepest descent."
+      zh: "實現梯度下降優化，透過在最陡下降方向上迭代調整參數來最小化損失函數。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-gradient-descent
+    tags: [optimization, gradient, training]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-stochastic-gradient
+    name: "Stochastic Gradient Descent"
+    description:
+      en: "Implements SGD with mini-batch variants for efficient large-scale optimization in machine learning model training."
+      zh: "實現 SGD 及其小批量變體，用於機器學習模型訓練中的高效大規模優化。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-stochastic-gradient
+    tags: [sgd, optimization, training]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-adam-optimizer
+    name: "Adam Optimizer"
+    description:
+      en: "Implements the Adam optimizer combining adaptive learning rates with momentum for robust deep learning model training."
+      zh: "實現 Adam 優化器，結合自適應學習率與動量，用於穩健的深度學習模型訓練。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-adam-optimizer
+    tags: [adam, optimizer, deep-learning]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-learning-rate-schedule
+    name: "Learning Rate Schedule"
+    description:
+      en: "Implements learning rate scheduling strategies including step decay, cosine annealing, and warmup for training optimization."
+      zh: "實現學習率排程策略，包括階梯式衰減、餘弦退火與暖身，用於訓練優化。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-learning-rate-schedule
+    tags: [learning-rate, schedule, training]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-batch-normalization
+    name: "Batch Normalization"
+    description:
+      en: "Applies batch normalization to stabilize and accelerate deep neural network training by normalizing layer inputs."
+      zh: "應用批次正規化，透過正規化層輸入來穩定與加速深度神經網路訓練。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-batch-normalization
+    tags: [batch-norm, normalization, deep-learning]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-dropout
+    name: "Dropout"
+    description:
+      en: "Applies dropout regularization to prevent overfitting by randomly deactivating neurons during neural network training."
+      zh: "應用 Dropout 正規化，在神經網路訓練中隨機停用神經元以防止過擬合。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-dropout
+    tags: [dropout, regularization, neural-network]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-regularization
+    name: "Regularization"
+    description:
+      en: "Applies regularization techniques (L1, L2, elastic net) to prevent model overfitting and improve generalization performance."
+      zh: "應用正規化技術（L1、L2、彈性網路）以防止模型過擬合並提升泛化效能。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-regularization
+    tags: [regularization, overfitting, generalization]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cross-validation
+    name: "Cross-Validation"
+    description:
+      en: "Implements k-fold and stratified cross-validation to reliably estimate model performance and detect overfitting."
+      zh: "實現 k 折交叉驗證與分層交叉驗證，可靠地估計模型效能並偵測過擬合。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cross-validation
+    tags: [cross-validation, evaluation, model-selection]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bootstrapping
+    name: "Bootstrapping"
+    description:
+      en: "Implements bootstrap resampling to estimate confidence intervals and standard errors without parametric assumptions."
+      zh: "實現自助法重抽樣，在無參數假設下估計信賴區間與標準誤。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bootstrapping
+    tags: [bootstrap, resampling, statistics]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-permutation-test
+    name: "Permutation Test"
+    description:
+      en: "Implements permutation tests for non-parametric hypothesis testing by computing test statistics under random data rearrangements."
+      zh: "實現置換檢定，透過在隨機資料重排下計算檢定統計量進行無母數假設檢定。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-permutation-test
+    tags: [permutation, non-parametric, testing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-chi-square
+    name: "Chi-Square Test"
+    description:
+      en: "Implements chi-square tests for independence and goodness-of-fit to analyze categorical data relationships and distributions."
+      zh: "實現卡方獨立性檢定與適合度檢定，分析類別資料的關聯性與分佈。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-chi-square
+    tags: [chi-square, categorical, testing]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-anova
+    name: "ANOVA"
+    description:
+      en: "Implements Analysis of Variance (ANOVA) to compare means across multiple groups and identify significant differences."
+      zh: "實現變異數分析（ANOVA），比較多組平均值並識別顯著差異。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-anova
+    tags: [anova, comparison, statistics]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-t-test
+    name: "T-Test"
+    description:
+      en: "Implements t-tests (one-sample, two-sample, paired) to compare means and determine statistical significance of differences."
+      zh: "實現 t 檢定（單樣本、雙樣本、配對），比較平均值並判斷差異的統計顯著性。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-t-test
+    tags: [t-test, hypothesis, statistics]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-mann-whitney
+    name: "Mann-Whitney U Test"
+    description:
+      en: "Implements the Mann-Whitney U test for non-parametric comparison of two independent groups when normality cannot be assumed."
+      zh: "實現 Mann-Whitney U 檢定，在無法假設常態性時進行兩組獨立樣本的無母數比較。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-mann-whitney
+    tags: [mann-whitney, non-parametric, comparison]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-wilcoxon
+    name: "Wilcoxon Signed-Rank Test"
+    description:
+      en: "Implements the Wilcoxon signed-rank test for non-parametric comparison of paired samples as an alternative to the paired t-test."
+      zh: "實現 Wilcoxon 符號等級檢定，作為配對 t 檢定的替代方案進行配對樣本的無母數比較。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-wilcoxon
+    tags: [wilcoxon, paired, non-parametric]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-kruskal-wallis
+    name: "Kruskal-Wallis Test"
+    description:
+      en: "Implements the Kruskal-Wallis test for non-parametric comparison of three or more independent groups as an alternative to one-way ANOVA."
+      zh: "實現 Kruskal-Wallis 檢定，作為單因子 ANOVA 的替代方案進行三組以上獨立樣本的無母數比較。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-kruskal-wallis
+    tags: [kruskal-wallis, non-parametric, comparison]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-friedman-test
+    name: "Friedman Test"
+    description:
+      en: "Implements the Friedman test for non-parametric comparison of three or more related groups as an alternative to repeated measures ANOVA."
+      zh: "實現 Friedman 檢定，作為重複量測 ANOVA 的替代方案進行三組以上相關樣本的無母數比較。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-friedman-test
+    tags: [friedman, repeated-measures, non-parametric]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-mcnemar
+    name: "McNemar Test"
+    description:
+      en: "Implements McNemar's test for comparing paired proportions in before-after studies or matched case-control designs."
+      zh: "實現 McNemar 檢定，在前後研究或配對病例對照設計中比較配對比例。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-mcnemar
+    tags: [mcnemar, paired, categorical]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-fisher-exact
+    name: "Fisher's Exact Test"
+    description:
+      en: "Implements Fisher's exact test for analyzing contingency tables when sample sizes are small and chi-square approximation is unreliable."
+      zh: "實現 Fisher 精確檢定，在樣本量小且卡方近似不可靠時分析列聯表。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-fisher-exact
+    tags: [fisher, exact-test, small-sample]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-logistic-regression
+    name: "Logistic Regression"
+    description:
+      en: "Implements logistic regression for binary and multinomial classification with probability estimation and feature importance analysis."
+      zh: "實現邏輯迴歸，進行二元與多元分類，包含機率估計與特徵重要性分析。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-logistic-regression
+    tags: [logistic, classification, regression]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-decision-tree
+    name: "Decision Tree"
+    description:
+      en: "Implements decision tree algorithms for classification and regression with interpretable rule-based splitting and pruning."
+      zh: "實現決策樹演算法，進行分類與迴歸，包含可解釋的規則式分割與剪枝。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-decision-tree
+    tags: [decision-tree, classification, interpretable]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-random-forest
+    name: "Random Forest"
+    description:
+      en: "Implements Random Forest ensemble method combining multiple decision trees with bagging for robust classification and regression."
+      zh: "實現隨機森林集成方法，結合多棵決策樹與自助聚合，進行穩健的分類與迴歸。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-random-forest
+    tags: [random-forest, ensemble, bagging]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-gradient-boosting
+    name: "Gradient Boosting"
+    description:
+      en: "Implements gradient boosting for building sequential ensemble models that correct predecessor errors for high-accuracy predictions."
+      zh: "實現梯度提升，建立修正前一棵樹錯誤的序列式集成模型，實現高準確度預測。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-gradient-boosting
+    tags: [gradient-boosting, ensemble, boosting]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-xgboost
+    name: "XGBoost"
+    description:
+      en: "Implements XGBoost for optimized gradient boosting with regularization, parallel processing, and handling of missing values."
+      zh: "實現 XGBoost 優化梯度提升，包含正規化、平行處理與缺失值處理。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-xgboost
+    tags: [xgboost, boosting, competition]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-lightgbm
+    name: "LightGBM"
+    description:
+      en: "Implements LightGBM for fast gradient boosting with leaf-wise tree growth, categorical feature handling, and GPU acceleration."
+      zh: "實現 LightGBM 快速梯度提升，包含葉子式樹生長、類別特徵處理與 GPU 加速。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-lightgbm
+    tags: [lightgbm, boosting, efficient]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-catboost
+    name: "CatBoost"
+    description:
+      en: "Implements CatBoost for gradient boosting with native categorical feature support and ordered boosting to reduce overfitting."
+      zh: "實現 CatBoost 梯度提升，原生支援類別特徵與有序提升以減少過擬合。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-catboost
+    tags: [catboost, categorical, boosting]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-svm
+    name: "Support Vector Machine"
+    description:
+      en: "Implements SVM for classification and regression using kernel tricks to find optimal hyperplanes in high-dimensional spaces."
+      zh: "實現 SVM 分類與迴歸，使用核函數技巧在高維空間中找到最佳超平面。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-svm
+    tags: [svm, kernel, classification]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-knn
+    name: "K-Nearest Neighbors"
+    description:
+      en: "Implements KNN for classification and regression using distance-based voting from the k closest training examples."
+      zh: "實現 KNN 分類與迴歸，使用最近 k 個訓練樣本的基於距離投票。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-knn
+    tags: [knn, distance, instance-based]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-naive-bayes
+    name: "Naive Bayes"
+    description:
+      en: "Implements Naive Bayes classifiers for fast probabilistic classification based on Bayes' theorem with feature independence assumption."
+      zh: "實現樸素貝氏分類器，基於貝氏定理與特徵獨立假設進行快速機率分類。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-naive-bayes
+    tags: [naive-bayes, probabilistic, classification]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-linear-regression
+    name: "Linear Regression"
+    description:
+      en: "Implements linear regression for modeling relationships between dependent and independent variables with ordinary least squares estimation."
+      zh: "實現線性迴歸，使用最小平方法估計建模因變數與自變數之間的關係。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-linear-regression
+    tags: [linear, regression, prediction]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ridge-regression
+    name: "Ridge Regression"
+    description:
+      en: "Implements ridge regression with L2 regularization to handle multicollinearity and prevent overfitting in linear models."
+      zh: "實現嶺迴歸，以 L2 正規化處理多重共線性並防止線性模型過擬合。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ridge-regression
+    tags: [ridge, l2, regularization]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-lasso
+    name: "LASSO"
+    description:
+      en: "Implements LASSO regression with L1 regularization for simultaneous feature selection and coefficient estimation in sparse models."
+      zh: "實現 LASSO 迴歸，以 L1 正規化在稀疏模型中同時進行特徵選擇與係數估計。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-lasso
+    tags: [lasso, l1, feature-selection]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-elastic-net
+    name: "Elastic Net"
+    description:
+      en: "Implements Elastic Net combining L1 and L2 regularization for regression with correlated features and automatic feature selection."
+      zh: "實現彈性網路，結合 L1 和 L2 正規化進行含相關特徵的迴歸與自動特徵選擇。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-elastic-net
+    tags: [elastic-net, regularization, hybrid]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-pca
+    name: "PCA"
+    description:
+      en: "Implements Principal Component Analysis for dimensionality reduction by projecting data onto orthogonal axes of maximum variance."
+      zh: "實現主成分分析，透過將資料投射至最大變異的正交軸進行降維。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pca
+    tags: [pca, dimensionality-reduction, decomposition]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tsne
+    name: "t-SNE"
+    description:
+      en: "Implements t-SNE for nonlinear dimensionality reduction and visualization of high-dimensional data in 2D/3D embeddings."
+      zh: "實現 t-SNE 非線性降維，將高維資料視覺化為 2D/3D 嵌入。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-tsne
+    tags: [tsne, visualization, embedding]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-umap
+    name: "UMAP"
+    description:
+      en: "Implements UMAP for fast nonlinear dimensionality reduction preserving both local and global data structure in visualizations."
+      zh: "實現 UMAP 快速非線性降維，在視覺化中同時保留局部與全局資料結構。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-umap
+    tags: [umap, dimensionality-reduction, topology]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-kmeans
+    name: "K-Means Clustering"
+    description:
+      en: "Implements K-Means clustering to partition data into k groups by minimizing within-cluster variance iteratively."
+      zh: "實現 K-Means 分群，透過迭代最小化群內變異將資料分割為 k 組。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-kmeans
+    tags: [kmeans, clustering, partitioning]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-dbscan
+    name: "DBSCAN"
+    description:
+      en: "Implements DBSCAN density-based clustering to discover clusters of arbitrary shape and identify noise points without specifying cluster count."
+      zh: "實現 DBSCAN 基於密度的分群，發現任意形狀的群集並識別噪音點，無需指定群數。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-dbscan
+    tags: [dbscan, density, clustering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-hierarchical-clustering
+    name: "Hierarchical Clustering"
+    description:
+      en: "Implements hierarchical clustering with agglomerative and divisive approaches, producing dendrograms for multi-level data grouping."
+      zh: "實現階層式分群，包含凝聚式與分裂式方法，產生樹狀圖進行多層級資料分組。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-hierarchical-clustering
+    tags: [hierarchical, dendrogram, clustering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-gaussian-mixture
+    name: "Gaussian Mixture Model"
+    description:
+      en: "Implements Gaussian Mixture Models for soft clustering where each data point has probabilistic membership across multiple clusters."
+      zh: "實現高斯混合模型進行軟分群，每個資料點在多個群集中具有機率性歸屬。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-gaussian-mixture
+    tags: [gmm, probabilistic, clustering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-spectral-clustering
+    name: "Spectral Clustering"
+    description:
+      en: "Implements spectral clustering using graph Laplacian eigenvalues to detect non-convex cluster structures in complex data."
+      zh: "實現譜分群，使用圖拉普拉斯特徵值偵測複雜資料中的非凸群結構。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-spectral-clustering
+    tags: [spectral, graph, clustering]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-isolation-forest
+    name: "Isolation Forest"
+    description:
+      en: "Implements Isolation Forest for anomaly detection by isolating outliers through random partitioning of feature space."
+      zh: "實現孤立森林進行異常偵測，透過隨機分割特徵空間來隔離離群值。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-isolation-forest
+    tags: [isolation-forest, anomaly, outlier]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-local-outlier-factor
+    name: "Local Outlier Factor"
+    description:
+      en: "Implements LOF for density-based anomaly detection by comparing local density of a point to its neighbors."
+      zh: "實現 LOF 基於密度的異常偵測，比較一個點與其鄰居的局部密度。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-local-outlier-factor
+    tags: [lof, density, anomaly]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-autoencoder
+    name: "Autoencoder"
+    description:
+      en: "Implements autoencoders for unsupervised feature learning, dimensionality reduction, and anomaly detection through reconstruction error."
+      zh: "實現自編碼器，進行非監督式特徵學習、降維與透過重建誤差進行異常偵測。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-autoencoder
+    tags: [autoencoder, deep-learning, representation]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-word2vec
+    name: "Word2Vec"
+    description:
+      en: "Implements Word2Vec for learning distributed word representations that capture semantic relationships from text corpora."
+      zh: "實現 Word2Vec，從文字語料庫中學習捕捉語義關係的分散式詞向量表示。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-word2vec
+    tags: [word2vec, embedding, nlp]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-bert-embedding
+    name: "BERT Embedding"
+    description:
+      en: "Applies BERT contextual embeddings for state-of-the-art text representation that captures context-dependent word meanings."
+      zh: "應用 BERT 上下文嵌入，進行捕捉上下文相依詞義的最先進文字表示。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-bert-embedding
+    tags: [bert, contextual, embedding]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-sentence-transformer
+    name: "Sentence Transformer"
+    description:
+      en: "Implements sentence transformers for dense sentence embeddings enabling semantic search, clustering, and similarity computation."
+      zh: "實現句子轉換器，產生密集句子嵌入以支援語義搜尋、分群與相似度計算。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sentence-transformer
+    tags: [sentence, transformer, semantic]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-cosine-similarity
+    name: "Cosine Similarity"
+    description:
+      en: "Computes cosine similarity between vectors to measure semantic or feature similarity independent of magnitude."
+      zh: "計算向量之間的餘弦相似度，衡量與大小無關的語義或特徵相似性。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cosine-similarity
+    tags: [cosine, similarity, vectors]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-jaccard-index
+    name: "Jaccard Index"
+    description:
+      en: "Computes the Jaccard index for measuring set similarity and overlap between collections of items or binary features."
+      zh: "計算 Jaccard 指數，衡量項目集合或二元特徵之間的集合相似度與重疊度。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-jaccard-index
+    tags: [jaccard, set-similarity, comparison]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-edit-distance
+    name: "Edit Distance"
+    description:
+      en: "Computes Levenshtein edit distance between strings to measure similarity for fuzzy matching, spell checking, and sequence alignment."
+      zh: "計算字串之間的 Levenshtein 編輯距離，衡量模糊比對、拼字檢查與序列對齊的相似度。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-edit-distance
+    tags: [edit-distance, string, matching]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-dynamic-programming
+    name: "Dynamic Programming"
+    description:
+      en: "Applies dynamic programming to solve optimization problems by breaking them into overlapping subproblems with optimal substructure."
+      zh: "應用動態規劃，將優化問題分解為具有最佳子結構的重疊子問題來求解。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-dynamic-programming
+    tags: [dynamic-programming, optimization, algorithms]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-greedy-algorithm
+    name: "Greedy Algorithm"
+    description:
+      en: "Applies greedy algorithms to solve optimization problems by making locally optimal choices at each step for efficient approximate solutions."
+      zh: "應用貪婪演算法，在每一步做出局部最佳選擇來求解優化問題，獲得高效的近似解。"
+    status: coming-soon
+    category: algorithm
+    skill_type: algorithm
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/tree/main/skill-greedy-algorithm
+    tags: [greedy, optimization, heuristic]
+    maintainer: asgard-ai-platform

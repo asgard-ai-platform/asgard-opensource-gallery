@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["servers"],
+  "properties": {
+    "servers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "name", "description", "status", "category", "region", "github"],
+        "properties": {
+          "slug": { "type": "string", "pattern": "^mcp-[a-z0-9-]+$" },
+          "name": { "type": "string" },
+          "description": {
+            "type": "object",
+            "required": ["en", "zh"],
+            "properties": {
+              "en": { "type": "string" },
+              "zh": { "type": "string" }
+            }
+          },
+          "status": { "type": "string", "enum": ["released", "coming-soon", "planned"] },
+          "category": {
+            "type": "string",
+            "enum": ["ecommerce", "payment", "analytics", "communication", "data", "crm", "restaurant", "gov", "marketing", "finance", "manufacturing", "ops", "customer-service", "media", "methodology", "theory", "algorithm"]
+          },
+          "region": { "type": "string", "enum": ["global", "taiwan", "sea", "japan"] },
+          "github": { "type": "string", "format": "uri" },
+          "tools_count": { "type": "integer", "minimum": 0 },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "upgrade_to": { "type": "string" },
+          "bundles": { "type": "array", "items": { "type": "string" } },
+          "api_docs": { "type": "string", "format": "uri" },
+          "icon": { "type": "string" },
+          "maintainer": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

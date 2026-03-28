@@ -1,0 +1,903 @@
+servers:
+  # ============================================================
+  # M-01 Taiwan E-commerce & Hospitality (7) → Fyrer
+  # ============================================================
+  - slug: mcp-shopline
+    name: "Shopline"
+    description:
+      en: "MCP Server for Shopline e-commerce platform, enabling product, order, and inventory management through AI agents."
+      zh: "Shopline 電商平台 MCP Server，支援透過 AI 代理進行商品、訂單與庫存管理。"
+    status: released
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-shopline
+    tools_count: 19
+    tags: [ecommerce, shopline, taiwan]
+    upgrade_to: Fyrer
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-91app
+    name: "91APP"
+    description:
+      en: "MCP Server for 91APP omni-channel retail platform, providing unified online and offline commerce capabilities for AI agents."
+      zh: "91APP 全通路零售平台 MCP Server，為 AI 代理提供線上線下整合的商務功能。"
+    status: coming-soon
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-91app
+    tags: [ecommerce, omnichannel, taiwan]
+    upgrade_to: Fyrer
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-cyberbiz
+    name: "CYBERBIZ"
+    description:
+      en: "MCP Server for CYBERBIZ e-commerce platform, enabling storefront management, order processing, and analytics through AI agents."
+      zh: "CYBERBIZ 電商平台 MCP Server，支援透過 AI 代理進行店面管理、訂單處理與數據分析。"
+    status: coming-soon
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-cyberbiz
+    tags: [ecommerce, cyberbiz, taiwan]
+    upgrade_to: Fyrer
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-waca
+    name: "WACA"
+    description:
+      en: "MCP Server for WACA e-commerce platform, allowing AI agents to manage products, orders, and customer data."
+      zh: "WACA 電商平台 MCP Server，讓 AI 代理管理商品、訂單與顧客資料。"
+    status: coming-soon
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-waca
+    tags: [ecommerce, waca, taiwan]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-ichef
+    name: "iCHEF"
+    description:
+      en: "MCP Server for iCHEF restaurant POS system, enabling menu management, order tracking, and sales analytics through AI agents."
+      zh: "iCHEF 餐飲 POS 系統 MCP Server，支援透過 AI 代理進行菜單管理、訂單追蹤與銷售分析。"
+    status: coming-soon
+    category: restaurant
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-ichef
+    tags: [restaurant, pos, taiwan]
+    upgrade_to: Fyrer
+    bundles: [hospitality-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-eztable
+    name: "EZTABLE"
+    description:
+      en: "MCP Server for EZTABLE restaurant reservation platform, providing booking management and customer insights for AI agents."
+      zh: "EZTABLE 餐廳訂位平台 MCP Server，為 AI 代理提供訂位管理與顧客洞察功能。"
+    status: coming-soon
+    category: restaurant
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-eztable
+    tags: [restaurant, reservation, taiwan]
+    upgrade_to: Fyrer
+    bundles: [hospitality-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tablecheck
+    name: "TableCheck"
+    description:
+      en: "MCP Server for TableCheck restaurant management platform, enabling reservation, guest management, and analytics through AI agents."
+      zh: "TableCheck 餐廳管理平台 MCP Server，支援透過 AI 代理進行訂位、客戶管理與數據分析。"
+    status: coming-soon
+    category: restaurant
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tablecheck
+    tags: [restaurant, reservation, management]
+    upgrade_to: Fyrer
+    bundles: [hospitality-ops]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-02 Taiwan Payments & Invoicing (4) → Njord
+  # ============================================================
+  - slug: mcp-ecpay
+    name: "ECPay"
+    description:
+      en: "MCP Server for ECPay payment gateway, enabling payment processing, refund management, and transaction queries through AI agents."
+      zh: "綠界科技 ECPay 金流 MCP Server，支援透過 AI 代理進行付款處理、退款管理與交易查詢。"
+    status: coming-soon
+    category: payment
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-ecpay
+    tags: [payment, gateway, taiwan]
+    upgrade_to: Njord
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-newebpay
+    name: "NewebPay"
+    description:
+      en: "MCP Server for NewebPay payment gateway, providing payment integration and transaction management for AI agents."
+      zh: "藍新金流 NewebPay MCP Server，為 AI 代理提供金流整合與交易管理功能。"
+    status: coming-soon
+    category: payment
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-newebpay
+    tags: [payment, gateway, taiwan]
+    upgrade_to: Njord
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-einvoice
+    name: "Taiwan E-Invoice"
+    description:
+      en: "MCP Server for Taiwan's electronic invoice system, enabling invoice issuance, querying, and management through AI agents."
+      zh: "台灣電子發票系統 MCP Server，支援透過 AI 代理進行發票開立、查詢與管理。"
+    status: coming-soon
+    category: payment
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-einvoice
+    tags: [invoice, tax, taiwan]
+    upgrade_to: Njord
+    bundles: [tw-ecommerce-ops]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-realprice
+    name: "Taiwan Real Price Registry"
+    description:
+      en: "MCP Server for Taiwan's real estate transaction price registry, providing property price data and market insights for AI agents."
+      zh: "台灣實價登錄 MCP Server，為 AI 代理提供不動產交易價格資料與市場洞察。"
+    status: coming-soon
+    category: data
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-realprice
+    tags: [real-estate, open-data, taiwan]
+    upgrade_to: Njord
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-03 Taiwan Government Data (4) → Mimir
+  # ============================================================
+  - slug: mcp-tw-company-reg
+    name: "Taiwan Company Registration"
+    description:
+      en: "MCP Server for Taiwan's company registration database, enabling corporate entity lookups and registration data queries through AI agents."
+      zh: "台灣公司登記資料庫 MCP Server，支援透過 AI 代理進行公司實體查詢與登記資料檢索。"
+    status: coming-soon
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-company-reg
+    tags: [government, company, taiwan]
+    upgrade_to: Mimir
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-business-reg
+    name: "Taiwan Business Registration"
+    description:
+      en: "MCP Server for Taiwan's business registration database, providing business entity search and registration information for AI agents."
+      zh: "台灣商業登記資料庫 MCP Server，為 AI 代理提供商業實體搜尋與登記資訊。"
+    status: coming-soon
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-business-reg
+    tags: [government, business, taiwan]
+    upgrade_to: Mimir
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-labor-insurance
+    name: "Taiwan Labor Insurance"
+    description:
+      en: "MCP Server for Taiwan's labor insurance data, enabling employment statistics and insurance record queries through AI agents."
+      zh: "台灣勞工保險資料 MCP Server，支援透過 AI 代理進行就業統計與保險記錄查詢。"
+    status: coming-soon
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-labor-insurance
+    tags: [government, labor, insurance]
+    upgrade_to: Mimir
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-health-insurance
+    name: "Taiwan Health Insurance"
+    description:
+      en: "MCP Server for Taiwan's National Health Insurance data, providing healthcare statistics and NHI data queries for AI agents."
+      zh: "台灣全民健康保險資料 MCP Server，為 AI 代理提供醫療統計與健保資料查詢。"
+    status: coming-soon
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-health-insurance
+    tags: [government, health, insurance]
+    upgrade_to: Mimir
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-04 Taiwan Media & Sentiment (3) → Heimdall
+  # ============================================================
+  - slug: mcp-ptt
+    name: "PTT"
+    description:
+      en: "MCP Server for PTT bulletin board system, enabling post search, sentiment analysis, and trend monitoring through AI agents."
+      zh: "PTT 批踢踢實業坊 MCP Server，支援透過 AI 代理進行文章搜尋、輿情分析與趨勢監測。"
+    status: coming-soon
+    category: media
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-ptt
+    tags: [forum, sentiment, taiwan]
+    upgrade_to: Heimdall
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-news
+    name: "Taiwan News"
+    description:
+      en: "MCP Server for Taiwan news aggregation, providing news search, topic tracking, and media monitoring for AI agents."
+      zh: "台灣新聞聚合 MCP Server，為 AI 代理提供新聞搜尋、話題追蹤與媒體監測功能。"
+    status: coming-soon
+    category: media
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-news
+    tags: [news, media, taiwan]
+    upgrade_to: Heimdall
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-dcard
+    name: "Dcard"
+    description:
+      en: "MCP Server for Dcard social platform, enabling post search, community insights, and trend analysis through AI agents."
+      zh: "Dcard 社群平台 MCP Server，支援透過 AI 代理進行文章搜尋、社群洞察與趨勢分析。"
+    status: coming-soon
+    category: media
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-dcard
+    tags: [social, community, taiwan]
+    upgrade_to: Heimdall
+    bundles: [brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-05 SE Asia E-commerce (3) → Fyrer
+  # ============================================================
+  - slug: mcp-shopee
+    name: "Shopee"
+    description:
+      en: "MCP Server for Shopee marketplace, enabling product listing, order management, and seller analytics through AI agents."
+      zh: "蝦皮購物 Shopee 電商平台 MCP Server，支援透過 AI 代理進行商品上架、訂單管理與賣家分析。"
+    status: coming-soon
+    category: ecommerce
+    region: sea
+    github: https://github.com/asgard-ai-platform/mcp-shopee
+    tags: [ecommerce, marketplace, sea]
+    upgrade_to: Fyrer
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-lazada
+    name: "Lazada"
+    description:
+      en: "MCP Server for Lazada marketplace, providing product management, order processing, and sales analytics for AI agents."
+      zh: "Lazada 電商平台 MCP Server，為 AI 代理提供商品管理、訂單處理與銷售分析功能。"
+    status: coming-soon
+    category: ecommerce
+    region: sea
+    github: https://github.com/asgard-ai-platform/mcp-lazada
+    tags: [ecommerce, marketplace, sea]
+    upgrade_to: Fyrer
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tiktok-shop
+    name: "TikTok Shop"
+    description:
+      en: "MCP Server for TikTok Shop, enabling social commerce management, product listings, and order fulfillment through AI agents."
+      zh: "TikTok Shop 社交電商 MCP Server，支援透過 AI 代理進行社交商務管理、商品上架與訂單履行。"
+    status: coming-soon
+    category: ecommerce
+    region: sea
+    github: https://github.com/asgard-ai-platform/mcp-tiktok-shop
+    tags: [ecommerce, social-commerce, sea]
+    upgrade_to: Fyrer
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-06 SE Asia Payments (3) → Njord
+  # ============================================================
+  - slug: mcp-omise
+    name: "Omise"
+    description:
+      en: "MCP Server for Omise payment gateway, enabling payment processing and transaction management across Southeast Asia through AI agents."
+      zh: "Omise 金流閘道 MCP Server，支援透過 AI 代理在東南亞地區進行付款處理與交易管理。"
+    status: coming-soon
+    category: payment
+    region: sea
+    github: https://github.com/asgard-ai-platform/mcp-omise
+    tags: [payment, gateway, sea]
+    upgrade_to: Njord
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-grabpay
+    name: "GrabPay"
+    description:
+      en: "MCP Server for GrabPay digital wallet, providing payment integration and transaction queries for AI agents in Southeast Asia."
+      zh: "GrabPay 數位錢包 MCP Server，為東南亞地區的 AI 代理提供金流整合與交易查詢。"
+    status: coming-soon
+    category: payment
+    region: sea
+    github: https://github.com/asgard-ai-platform/mcp-grabpay
+    tags: [payment, wallet, sea]
+    upgrade_to: Njord
+    bundles: [sea-marketplace]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-gcash
+    name: "GCash"
+    description:
+      en: "MCP Server for GCash mobile wallet, enabling payment processing and financial services integration through AI agents."
+      zh: "GCash 行動錢包 MCP Server，支援透過 AI 代理進行付款處理與金融服務整合。"
+    status: coming-soon
+    category: payment
+    region: sea
+    github: https://github.com/asgard-ai-platform/mcp-gcash
+    tags: [payment, mobile-wallet, philippines]
+    upgrade_to: Njord
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-07 Global Analytics (4) → Mimir
+  # ============================================================
+  - slug: mcp-ga4
+    name: "Google Analytics 4"
+    description:
+      en: "MCP Server for Google Analytics 4, providing website traffic analysis, user behavior insights, and conversion tracking for AI agents."
+      zh: "Google Analytics 4 MCP Server，為 AI 代理提供網站流量分析、使用者行為洞察與轉換追蹤。"
+    status: coming-soon
+    category: analytics
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-ga4
+    tags: [analytics, google, web]
+    upgrade_to: Mimir
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-meta-ads
+    name: "Meta Ads"
+    description:
+      en: "MCP Server for Meta Ads platform, enabling ad campaign management, performance analytics, and audience insights through AI agents."
+      zh: "Meta Ads 廣告平台 MCP Server，支援透過 AI 代理進行廣告活動管理、成效分析與受眾洞察。"
+    status: coming-soon
+    category: analytics
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-meta-ads
+    tags: [advertising, meta, social]
+    upgrade_to: Mimir
+    bundles: [data-insight, brand-media-pr]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-google-ads
+    name: "Google Ads"
+    description:
+      en: "MCP Server for Google Ads, providing campaign management, keyword analysis, and performance reporting for AI agents."
+      zh: "Google Ads 廣告平台 MCP Server，為 AI 代理提供廣告活動管理、關鍵字分析與成效報告。"
+    status: coming-soon
+    category: analytics
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-google-ads
+    tags: [advertising, google, sem]
+    upgrade_to: Mimir
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-woocommerce
+    name: "WooCommerce"
+    description:
+      en: "MCP Server for WooCommerce, enabling store management, order processing, and sales analytics through AI agents."
+      zh: "WooCommerce 電商平台 MCP Server，支援透過 AI 代理進行商店管理、訂單處理與銷售分析。"
+    status: coming-soon
+    category: analytics
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-woocommerce
+    tags: [ecommerce, wordpress, analytics]
+    upgrade_to: Mimir
+    bundles: [data-insight]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-08 Global Communication (5) → Sindri
+  # ============================================================
+  - slug: mcp-sendgrid
+    name: "SendGrid"
+    description:
+      en: "MCP Server for SendGrid email service, enabling email delivery, template management, and engagement analytics through AI agents."
+      zh: "SendGrid 電子郵件服務 MCP Server，支援透過 AI 代理進行郵件發送、範本管理與互動分析。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-sendgrid
+    tags: [email, communication, marketing]
+    upgrade_to: Sindri
+    bundles: [agent-communication]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-line-notify
+    name: "LINE Notify"
+    description:
+      en: "MCP Server for LINE Notify, providing push notification and messaging capabilities for AI agents."
+      zh: "LINE Notify MCP Server，為 AI 代理提供推播通知與訊息傳送功能。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-line-notify
+    tags: [messaging, line, notification]
+    upgrade_to: Sindri
+    bundles: [agent-communication]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-whatsapp-business
+    name: "WhatsApp Business"
+    description:
+      en: "MCP Server for WhatsApp Business API, enabling business messaging, customer communication, and automated responses through AI agents."
+      zh: "WhatsApp Business API MCP Server，支援透過 AI 代理進行商業訊息、客戶溝通與自動回覆。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-whatsapp-business
+    tags: [messaging, whatsapp, business]
+    upgrade_to: Sindri
+    bundles: [agent-communication]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-telegram
+    name: "Telegram"
+    description:
+      en: "MCP Server for Telegram Bot API, providing messaging, channel management, and bot interaction capabilities for AI agents."
+      zh: "Telegram Bot API MCP Server，為 AI 代理提供訊息傳送、頻道管理與機器人互動功能。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-telegram
+    tags: [messaging, telegram, bot]
+    upgrade_to: Sindri
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-discord
+    name: "Discord"
+    description:
+      en: "MCP Server for Discord Bot API, enabling server management, messaging, and community interaction through AI agents."
+      zh: "Discord Bot API MCP Server，支援透過 AI 代理進行伺服器管理、訊息傳送與社群互動。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-discord
+    tags: [messaging, discord, community]
+    upgrade_to: Sindri
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-09 Global E-commerce (3) → Fyrer
+  # ============================================================
+  - slug: mcp-bigcommerce
+    name: "BigCommerce"
+    description:
+      en: "MCP Server for BigCommerce platform, enabling store management, product catalog, and order processing through AI agents."
+      zh: "BigCommerce 電商平台 MCP Server，支援透過 AI 代理進行商店管理、商品目錄與訂單處理。"
+    status: coming-soon
+    category: ecommerce
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-bigcommerce
+    tags: [ecommerce, saas, global]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-prestashop
+    name: "PrestaShop"
+    description:
+      en: "MCP Server for PrestaShop e-commerce platform, providing product management, order tracking, and storefront customization for AI agents."
+      zh: "PrestaShop 電商平台 MCP Server，為 AI 代理提供商品管理、訂單追蹤與店面自訂功能。"
+    status: coming-soon
+    category: ecommerce
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-prestashop
+    tags: [ecommerce, open-source, global]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-magento
+    name: "Magento"
+    description:
+      en: "MCP Server for Magento e-commerce platform, enabling catalog management, order fulfillment, and customer data access through AI agents."
+      zh: "Magento 電商平台 MCP Server，支援透過 AI 代理進行目錄管理、訂單履行與顧客資料存取。"
+    status: coming-soon
+    category: ecommerce
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-magento
+    tags: [ecommerce, enterprise, global]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-10 Customer Service (4) → Sindri
+  # ============================================================
+  - slug: mcp-zendesk
+    name: "Zendesk"
+    description:
+      en: "MCP Server for Zendesk customer service platform, enabling ticket management, customer support, and helpdesk analytics through AI agents."
+      zh: "Zendesk 客服平台 MCP Server，支援透過 AI 代理進行工單管理、客戶支援與服務台分析。"
+    status: coming-soon
+    category: customer-service
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-zendesk
+    tags: [customer-service, helpdesk, ticketing]
+    upgrade_to: Sindri
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-freshdesk
+    name: "Freshdesk"
+    description:
+      en: "MCP Server for Freshdesk customer support platform, providing ticket routing, knowledge base, and SLA management for AI agents."
+      zh: "Freshdesk 客服平台 MCP Server，為 AI 代理提供工單路由、知識庫與 SLA 管理功能。"
+    status: coming-soon
+    category: customer-service
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-freshdesk
+    tags: [customer-service, helpdesk, support]
+    upgrade_to: Sindri
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-crisp
+    name: "Crisp"
+    description:
+      en: "MCP Server for Crisp live chat platform, enabling real-time customer messaging, chatbot integration, and conversation analytics through AI agents."
+      zh: "Crisp 即時聊天平台 MCP Server，支援透過 AI 代理進行即時客戶訊息、聊天機器人整合與對話分析。"
+    status: coming-soon
+    category: customer-service
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-crisp
+    tags: [live-chat, customer-service, messaging]
+    upgrade_to: Sindri
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-crescendo-lab
+    name: "Crescendo Lab"
+    description:
+      en: "MCP Server for Crescendo Lab customer engagement platform, providing LINE marketing, CRM integration, and audience management for AI agents."
+      zh: "Crescendo Lab 漸強實驗室客戶互動平台 MCP Server，為 AI 代理提供 LINE 行銷、CRM 整合與受眾管理。"
+    status: coming-soon
+    category: customer-service
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-crescendo-lab
+    tags: [customer-service, line, crm]
+    upgrade_to: Sindri
+    bundles: [customer-service-hub]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-11 Global SaaS (6) → Odin
+  # ============================================================
+  - slug: mcp-airtable
+    name: "Airtable"
+    description:
+      en: "MCP Server for Airtable, enabling database management, record operations, and workflow automation through AI agents."
+      zh: "Airtable MCP Server，支援透過 AI 代理進行資料庫管理、記錄操作與工作流程自動化。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-airtable
+    tags: [database, no-code, productivity]
+    upgrade_to: Odin
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-monday
+    name: "Monday.com"
+    description:
+      en: "MCP Server for Monday.com work management platform, providing project tracking, task management, and team collaboration for AI agents."
+      zh: "Monday.com 工作管理平台 MCP Server，為 AI 代理提供專案追蹤、任務管理與團隊協作功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-monday
+    tags: [project-management, collaboration, productivity]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-clockify
+    name: "Clockify"
+    description:
+      en: "MCP Server for Clockify time tracking, enabling time entry management, project tracking, and productivity reporting through AI agents."
+      zh: "Clockify 時間追蹤 MCP Server，支援透過 AI 代理進行時間記錄管理、專案追蹤與生產力報告。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-clockify
+    tags: [time-tracking, productivity, reporting]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-harvest
+    name: "Harvest"
+    description:
+      en: "MCP Server for Harvest time tracking and invoicing, providing time management, expense tracking, and billing capabilities for AI agents."
+      zh: "Harvest 時間追蹤與發票 MCP Server，為 AI 代理提供時間管理、費用追蹤與帳單功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-harvest
+    tags: [time-tracking, invoicing, billing]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-zoho-crm
+    name: "Zoho CRM"
+    description:
+      en: "MCP Server for Zoho CRM, enabling contact management, deal tracking, and sales automation through AI agents."
+      zh: "Zoho CRM MCP Server，支援透過 AI 代理進行聯絡人管理、交易追蹤與銷售自動化。"
+    status: coming-soon
+    category: crm
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-zoho-crm
+    tags: [crm, sales, automation]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-hubspot
+    name: "HubSpot"
+    description:
+      en: "MCP Server for HubSpot CRM, providing contact management, marketing automation, and sales pipeline capabilities for AI agents."
+      zh: "HubSpot CRM MCP Server，為 AI 代理提供聯絡人管理、行銷自動化與銷售漏斗功能。"
+    status: coming-soon
+    category: crm
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-hubspot
+    tags: [crm, marketing, sales]
+    upgrade_to: Odin
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-12 Manufacturing IoT (4) → Bragi
+  # ============================================================
+  - slug: mcp-industrial-iot
+    name: "Industrial IoT"
+    description:
+      en: "MCP Server for industrial IoT platforms, enabling sensor data collection, device management, and real-time monitoring through AI agents."
+      zh: "工業物聯網 MCP Server，支援透過 AI 代理進行感測器資料收集、設備管理與即時監控。"
+    status: coming-soon
+    category: manufacturing
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-industrial-iot
+    tags: [iot, sensors, manufacturing]
+    upgrade_to: Bragi
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-thingsboard
+    name: "ThingsBoard"
+    description:
+      en: "MCP Server for ThingsBoard IoT platform, providing device provisioning, telemetry collection, and dashboard management for AI agents."
+      zh: "ThingsBoard 物聯網平台 MCP Server，為 AI 代理提供設備配置、遙測收集與儀表板管理。"
+    status: coming-soon
+    category: manufacturing
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-thingsboard
+    tags: [iot, platform, telemetry]
+    upgrade_to: Bragi
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-node-red
+    name: "Node-RED"
+    description:
+      en: "MCP Server for Node-RED flow-based programming, enabling IoT workflow design, integration, and automation through AI agents."
+      zh: "Node-RED 流程式程式設計 MCP Server，支援透過 AI 代理進行物聯網工作流設計、整合與自動化。"
+    status: coming-soon
+    category: manufacturing
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-node-red
+    tags: [iot, workflow, automation]
+    upgrade_to: Bragi
+    bundles: [smart-manufacturing]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-opc-ua
+    name: "OPC UA"
+    description:
+      en: "MCP Server for OPC UA industrial communication protocol, providing machine data access and industrial automation integration for AI agents."
+      zh: "OPC UA 工業通訊協定 MCP Server，為 AI 代理提供機台資料存取與工業自動化整合。"
+    status: coming-soon
+    category: manufacturing
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-opc-ua
+    tags: [iot, protocol, industrial]
+    upgrade_to: Bragi
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-13 Financial Data (4) → Njord
+  # ============================================================
+  - slug: mcp-twse-mops
+    name: "TWSE MOPS"
+    description:
+      en: "MCP Server for TWSE Market Observation Post System, enabling financial statement queries and listed company data access through AI agents."
+      zh: "台灣證交所公開資訊觀測站 MCP Server，支援透過 AI 代理進行財務報表查詢與上市公司資料存取。"
+    status: coming-soon
+    category: finance
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-twse-mops
+    tags: [finance, stock-market, taiwan]
+    upgrade_to: Njord
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tpex
+    name: "TPEx"
+    description:
+      en: "MCP Server for Taipei Exchange, providing OTC market data, trading information, and financial reports for AI agents."
+      zh: "台灣櫃買中心 TPEx MCP Server，為 AI 代理提供櫃買市場資料、交易資訊與財務報告。"
+    status: coming-soon
+    category: finance
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tpex
+    tags: [finance, otc-market, taiwan]
+    upgrade_to: Njord
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-cnyes
+    name: "Cnyes"
+    description:
+      en: "MCP Server for Cnyes financial news platform, enabling financial news search, market data access, and investment insights through AI agents."
+      zh: "鉅亨網 Cnyes MCP Server，支援透過 AI 代理進行財經新聞搜尋、市場數據存取與投資洞察。"
+    status: coming-soon
+    category: finance
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-cnyes
+    tags: [finance, news, market-data]
+    upgrade_to: Njord
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-company-fin
+    name: "Taiwan Company Finance"
+    description:
+      en: "MCP Server for Taiwan company financial data, providing corporate financial statements, credit ratings, and business intelligence for AI agents."
+      zh: "台灣公司財務資料 MCP Server，為 AI 代理提供企業財務報表、信用評等與商業情報。"
+    status: coming-soon
+    category: finance
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-company-fin
+    tags: [finance, corporate, taiwan]
+    upgrade_to: Njord
+    bundles: [finance-investment]
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-14 Logistics (4) → Fyrer
+  # ============================================================
+  - slug: mcp-shippo
+    name: "Shippo"
+    description:
+      en: "MCP Server for Shippo shipping platform, enabling shipping label creation, rate comparison, and package tracking through AI agents."
+      zh: "Shippo 物流平台 MCP Server，支援透過 AI 代理進行運單建立、費率比較與包裹追蹤。"
+    status: coming-soon
+    category: ecommerce
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-shippo
+    tags: [logistics, shipping, fulfillment]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-ezship
+    name: "EZShip"
+    description:
+      en: "MCP Server for EZShip logistics service, providing convenience store pickup and shipping management for AI agents in Taiwan."
+      zh: "台灣便利配 EZShip MCP Server，為 AI 代理提供超商取貨與物流管理功能。"
+    status: coming-soon
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-ezship
+    tags: [logistics, convenience-store, taiwan]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-711-pickup
+    name: "7-Eleven Pickup"
+    description:
+      en: "MCP Server for 7-Eleven store pickup service, enabling store selection, shipment creation, and pickup tracking through AI agents."
+      zh: "7-Eleven 超商取貨 MCP Server，支援透過 AI 代理進行門市選擇、出貨建立與取貨追蹤。"
+    status: coming-soon
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-711-pickup
+    tags: [logistics, convenience-store, taiwan]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-family-pickup
+    name: "FamilyMart Pickup"
+    description:
+      en: "MCP Server for FamilyMart store pickup service, providing store selection, package delivery, and tracking capabilities for AI agents."
+      zh: "全家超商取貨 MCP Server，為 AI 代理提供門市選擇、包裹配送與追蹤功能。"
+    status: coming-soon
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-family-pickup
+    tags: [logistics, convenience-store, taiwan]
+    upgrade_to: Fyrer
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-15 HR & Collaboration (5) → Odin
+  # ============================================================
+  - slug: mcp-104
+    name: "104 Job Bank"
+    description:
+      en: "MCP Server for 104 Job Bank, enabling job listing management, candidate search, and recruitment analytics through AI agents."
+      zh: "104 人力銀行 MCP Server，支援透過 AI 代理進行職缺管理、人才搜尋與招募分析。"
+    status: coming-soon
+    category: crm
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-104
+    tags: [recruitment, hr, taiwan]
+    upgrade_to: Odin
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-cakeresume
+    name: "CakeResume"
+    description:
+      en: "MCP Server for CakeResume talent platform, providing job posting, candidate management, and talent acquisition capabilities for AI agents."
+      zh: "CakeResume 人才平台 MCP Server，為 AI 代理提供職缺刊登、人才管理與招募功能。"
+    status: coming-soon
+    category: crm
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-cakeresume
+    tags: [recruitment, talent, taiwan]
+    upgrade_to: Odin
+    bundles: [tw-startup-kit]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-google-meet
+    name: "Google Meet"
+    description:
+      en: "MCP Server for Google Meet, enabling meeting scheduling, participant management, and meeting insights through AI agents."
+      zh: "Google Meet MCP Server，支援透過 AI 代理進行會議排程、參與者管理與會議洞察。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-google-meet
+    tags: [video-conference, google, collaboration]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-zoom
+    name: "Zoom"
+    description:
+      en: "MCP Server for Zoom video conferencing, providing meeting management, recording access, and participant tracking for AI agents."
+      zh: "Zoom 視訊會議 MCP Server，為 AI 代理提供會議管理、錄影存取與參與者追蹤功能。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-zoom
+    tags: [video-conference, zoom, collaboration]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-calendly
+    name: "Calendly"
+    description:
+      en: "MCP Server for Calendly scheduling platform, enabling appointment booking, availability management, and scheduling automation through AI agents."
+      zh: "Calendly 排程平台 MCP Server，支援透過 AI 代理進行預約安排、空檔管理與排程自動化。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-calendly
+    tags: [scheduling, calendar, automation]
+    upgrade_to: Odin
+    maintainer: asgard-ai-platform

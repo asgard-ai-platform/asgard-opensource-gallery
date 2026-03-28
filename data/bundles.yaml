@@ -1,0 +1,120 @@
+bundles:
+  - slug: tw-ecommerce-ops
+    name: "Taiwan E-Commerce Operations"
+    description:
+      en: "Complete Taiwan e-commerce operations bundle covering multi-platform store management, payment processing, and electronic invoicing for seamless online retail."
+      zh: "完整的台灣電商營運組合包，涵蓋多平台商店管理、金流處理與電子發票，實現無縫線上零售。"
+    scenario:
+      en: "Ideal for Taiwan-based e-commerce businesses managing multiple storefronts across Shopline, 91APP, and CYBERBIZ with integrated ECPay payments and e-invoice compliance."
+      zh: "適合在 Shopline、91APP 和 CYBERBIZ 上經營多家店面的台灣電商企業，整合綠界金流與電子發票合規。"
+    upgrade_to: Fyrer
+    mcp_servers: [mcp-shopline, mcp-91app, mcp-cyberbiz, mcp-ecpay, mcp-tw-einvoice]
+    skills: [skill-ecom-order-insight, skill-rfm-analysis, skill-inventory-health, skill-promo-roi]
+
+  - slug: brand-media-pr
+    name: "Brand Media & PR"
+    description:
+      en: "Brand monitoring and public relations bundle combining Taiwan social media tracking, news monitoring, and advertising analytics for comprehensive brand management."
+      zh: "品牌監測與公關組合包，結合台灣社群媒體追蹤、新聞監測與廣告分析，實現全面品牌管理。"
+    scenario:
+      en: "Perfect for marketing teams monitoring brand sentiment across PTT, Dcard, and Taiwan news outlets while managing Meta advertising campaigns."
+      zh: "適合行銷團隊在 PTT、Dcard 和台灣新聞媒體上監測品牌輿情，同時管理 Meta 廣告活動。"
+    upgrade_to: Heimdall
+    mcp_servers: [mcp-ptt, mcp-tw-news, mcp-dcard, mcp-meta-ads]
+    skills: [skill-media-monitoring, skill-pr-crisis, skill-sentiment-analysis, skill-brand-tracking]
+
+  - slug: smart-manufacturing
+    name: "Smart Manufacturing"
+    description:
+      en: "Industrial IoT and smart manufacturing bundle providing sensor data integration, workflow automation, and predictive maintenance capabilities for modern factories."
+      zh: "工業物聯網與智慧製造組合包，提供感測器資料整合、工作流自動化與預測性維護功能，適用於現代化工廠。"
+    scenario:
+      en: "Designed for manufacturing operations integrating Industrial IoT sensors with ThingsBoard dashboards and Node-RED automation for real-time production monitoring."
+      zh: "專為整合工業物聯網感測器、ThingsBoard 儀表板與 Node-RED 自動化的製造營運設計，實現即時生產監控。"
+    upgrade_to: Bragi
+    mcp_servers: [mcp-industrial-iot, mcp-thingsboard, mcp-node-red]
+    skills: [skill-oee-analysis, skill-maintenance-predict, skill-quality-control, skill-energy-optimization]
+
+  - slug: data-insight
+    name: "Data Insight"
+    description:
+      en: "Comprehensive data analytics bundle combining web analytics, advertising platforms, and e-commerce data for unified business intelligence and marketing optimization."
+      zh: "全方位數據分析組合包，結合網站分析、廣告平台與電商數據，實現統一商業情報與行銷優化。"
+    scenario:
+      en: "Built for data-driven teams leveraging Google Analytics 4, Meta Ads, Google Ads, and WooCommerce data to optimize marketing spend and conversion funnels."
+      zh: "為數據驅動團隊打造，運用 Google Analytics 4、Meta Ads、Google Ads 和 WooCommerce 資料優化行銷花費與轉換漏斗。"
+    upgrade_to: Mimir
+    mcp_servers: [mcp-ga4, mcp-meta-ads, mcp-google-ads, mcp-woocommerce]
+    skills: [skill-cohort-analysis, skill-attribution-model, skill-funnel-analysis, skill-campaign-roi]
+
+  - slug: tw-startup-kit
+    name: "Taiwan Startup Kit"
+    description:
+      en: "Essential toolkit for Taiwan startups combining project management, CRM, and talent acquisition platforms for lean team operations."
+      zh: "台灣新創必備工具包，結合專案管理、CRM 與人才招募平台，實現精實團隊運營。"
+    scenario:
+      en: "Tailored for early-stage Taiwan startups using Airtable for operations, HubSpot for sales, and 104/CakeResume for talent recruitment."
+      zh: "專為早期台灣新創設計，使用 Airtable 進行營運、HubSpot 進行銷售、104/CakeResume 進行人才招募。"
+    upgrade_to: Basic-Lite
+    mcp_servers: [mcp-airtable, mcp-hubspot, mcp-104, mcp-cakeresume]
+    skills: [skill-lean-canvas, skill-okr-framework, skill-customer-journey, skill-persona-creation]
+
+  - slug: agent-communication
+    name: "Agent Communication"
+    description:
+      en: "Multi-channel communication bundle enabling AI agents to send emails, push notifications, and messages across SendGrid, LINE, and WhatsApp."
+      zh: "多通路溝通組合包，讓 AI 代理透過 SendGrid、LINE 和 WhatsApp 發送電子郵件、推播通知與訊息。"
+    scenario:
+      en: "Ideal for businesses automating customer outreach through email campaigns via SendGrid, LINE notifications, and WhatsApp Business messaging."
+      zh: "適合透過 SendGrid 電郵活動、LINE 通知和 WhatsApp Business 訊息自動化客戶觸及的企業。"
+    upgrade_to: Sindri
+    mcp_servers: [mcp-sendgrid, mcp-line-notify, mcp-whatsapp-business]
+    skills: [skill-communication-plan, skill-stakeholder-map, skill-change-management]
+
+  - slug: sea-marketplace
+    name: "SE Asia Marketplace"
+    description:
+      en: "Southeast Asian marketplace bundle covering Shopee, Lazada, and TikTok Shop with integrated regional payment solutions for cross-border e-commerce."
+      zh: "東南亞電商市集組合包，涵蓋 Shopee、Lazada 和 TikTok Shop，整合區域金流方案實現跨境電商。"
+    scenario:
+      en: "Built for sellers operating across Shopee, Lazada, and TikTok Shop in Southeast Asia with Omise and GrabPay payment integration."
+      zh: "為在東南亞 Shopee、Lazada 和 TikTok Shop 上營運的賣家打造，整合 Omise 和 GrabPay 金流。"
+    upgrade_to: Fyrer
+    mcp_servers: [mcp-shopee, mcp-lazada, mcp-tiktok-shop, mcp-omise, mcp-grabpay]
+    skills: [skill-cross-sell, skill-price-optimization, skill-demand-forecast]
+
+  - slug: finance-investment
+    name: "Finance & Investment"
+    description:
+      en: "Taiwan financial data bundle providing access to stock exchange data, OTC market information, financial news, and corporate financial statements."
+      zh: "台灣金融資料組合包，提供證交所資料、櫃買市場資訊、財經新聞與企業財務報表存取。"
+    scenario:
+      en: "Designed for investment analysts and financial professionals accessing TWSE, TPEx, Cnyes financial news, and Taiwan corporate financial data."
+      zh: "為投資分析師和金融專業人士設計，存取台灣證交所、櫃買中心、鉅亨網財經新聞與台灣企業財務資料。"
+    upgrade_to: Njord
+    mcp_servers: [mcp-twse-mops, mcp-tpex, mcp-cnyes, mcp-tw-company-fin]
+    skills: [skill-financial-modeling, skill-risk-assessment, skill-revenue-forecast]
+
+  - slug: customer-service-hub
+    name: "Customer Service Hub"
+    description:
+      en: "Unified customer service bundle integrating global helpdesk platforms with Taiwan-specific LINE customer engagement for comprehensive support operations."
+      zh: "統一客服組合包，整合全球客服平台與台灣 LINE 客戶互動，實現全面的客戶支援營運。"
+    scenario:
+      en: "Perfect for customer service teams using Zendesk, Freshdesk, or Crisp alongside Crescendo Lab for LINE-based customer support in Taiwan."
+      zh: "適合使用 Zendesk、Freshdesk 或 Crisp 搭配漸強實驗室在台灣提供 LINE 客服的客服團隊。"
+    upgrade_to: Sindri
+    mcp_servers: [mcp-zendesk, mcp-freshdesk, mcp-crisp, mcp-crescendo-lab]
+    skills: [skill-ticket-routing, skill-knowledge-base, skill-sla-monitoring]
+
+  - slug: hospitality-ops
+    name: "Hospitality Operations"
+    description:
+      en: "Restaurant and hospitality operations bundle combining POS, reservation, and guest management platforms for seamless dining service operations."
+      zh: "餐飲與餐旅營運組合包，結合 POS、訂位與賓客管理平台，實現無縫用餐服務營運。"
+    scenario:
+      en: "Tailored for restaurant groups using iCHEF POS with EZTABLE and TableCheck reservation systems for unified dining operations management."
+      zh: "專為使用 iCHEF POS 搭配 EZTABLE 和 TableCheck 訂位系統的餐飲集團設計，實現統一餐飲營運管理。"
+    upgrade_to: Fyrer
+    mcp_servers: [mcp-ichef, mcp-eztable, mcp-tablecheck]
+    skills: [skill-demand-forecast, skill-inventory-health, skill-customer-ltv]
