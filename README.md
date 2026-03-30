@@ -1,6 +1,6 @@
 # Yggdrasil -- Asgard Open Source Gallery
 
-**Live:** [https://hub.asgard-ai.com](https://hub.asgard-ai.com)
+**Live:** [https://gallery.asgard-ai.com](https://gallery.asgard-ai.com)
 
 Yggdrasil is a static gallery showcasing every MCP Server, SKILL, and Solution Bundle in the [Asgard AI Platform](https://github.com/asgard-ai-platform) ecosystem. All content is driven by YAML data files -- community contributors add or update entries via pull requests.
 
