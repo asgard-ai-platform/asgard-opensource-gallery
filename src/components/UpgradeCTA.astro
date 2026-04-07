@@ -1,10 +1,13 @@
 ---
+import { getUpgradeLink } from '../utils/upgrade-link';
+
 interface Props {
   productName: string;
   category: string;
 }
 
 const { productName, category } = Astro.props;
+const upgradeLink = getUpgradeLink(productName);
 ---
 
 <div class="relative overflow-hidden bg-gradient-to-r from-green-500/10 via-cyan-500/10 to-green-500/10 border border-primary/20 rounded-xl p-6 mt-8">
@@ -22,5 +25,21 @@ const { productName, category } = Astro.props;
     <p class="mt-2 text-sm text-muted-foreground lang-zh">
       升級至 <strong class="text-primary">{productName}</strong> 取得企業級功能、SLA 與專屬支援。
     </p>
+    <a
+      href={upgradeLink.href}
+      target="_blank"
+      rel="noopener"
+      class="mt-4 inline-block btn-gradient px-5 py-2 rounded-lg text-sm font-semibold"
+    >
+      {upgradeLink.hasDedicatedPage ? (
+        <>
+          <span class="lang-en">Learn More About {productName} &rarr;</span><span class="lang-zh">了解 {productName} &rarr;</span>
+        </>
+      ) : (
+        <>
+          <span class="lang-en">View Asgard Products &rarr;</span><span class="lang-zh">查看 Asgard 產品 &rarr;</span>
+        </>
+      )}
+    </a>
   </div>
 </div>

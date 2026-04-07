@@ -5,6 +5,7 @@ import SkillCard from '../../components/SkillCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
 import PlugInGraph from '../../components/PlugInGraph.astro';
 import { getPlugIns, getMcpServers, getSkills } from '../../utils/data-loader';
+import { getUpgradeLink } from '../../utils/upgrade-link';
 import type { PlugIn } from '../../types';
 
 export function getStaticPaths() {
@@ -21,6 +22,7 @@ const allSkills = getSkills();
 
 const pluginMcps = allMcp.filter((m) => plugin.mcp_servers.includes(m.slug));
 const pluginSkills = allSkills.filter((s) => plugin.skills.includes(s.slug));
+const upgradeLink = plugin.upgrade_to ? getUpgradeLink(plugin.upgrade_to) : null;
 ---
 
 <BaseLayout title={plugin.name} description={plugin.description.en}>
@@ -89,6 +91,24 @@ const pluginSkills = allSkills.filter((s) => plugin.skills.includes(s.slug));
           <p class="text-sm text-muted-foreground lang-zh">
             取得企業級功能、SLA 與專屬支援。
           </p>
+          {upgradeLink && (
+            <a
+              href={upgradeLink.href}
+              target="_blank"
+              rel="noopener"
+              class="mt-6 inline-block btn-gradient px-6 py-3 rounded-lg text-sm font-semibold"
+            >
+              {upgradeLink.hasDedicatedPage ? (
+                <>
+                  <span class="lang-en">Learn More About {plugin.upgrade_to} &rarr;</span><span class="lang-zh">了解 {plugin.upgrade_to} &rarr;</span>
+                </>
+              ) : (
+                <>
+                  <span class="lang-en">View Asgard Products &rarr;</span><span class="lang-zh">查看 Asgard 產品 &rarr;</span>
+                </>
+              )}
+            </a>
+          )}
         </div>
       </section>
     )}
