@@ -1,7 +1,7 @@
 name: Deploy to Cloudflare Pages
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
 
 # Force Node 24 runtime for any third-party JS actions still pinned to node20
 # (e.g. cloudflare/wrangler-action@v3 — no v4 yet that ships with node24).
@@ -25,4 +25,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME || 'asgard-opensource-gallery' }}
+          command: pages deploy dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME || 'asgard-opensource-gallery' }} --branch=${{ github.ref_name }}
