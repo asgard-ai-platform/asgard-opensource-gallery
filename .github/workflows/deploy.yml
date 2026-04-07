@@ -3,6 +3,11 @@ on:
   push:
     branches: [main]
 
+# Force Node 24 runtime for any third-party JS actions still pinned to node20
+# (e.g. cloudflare/wrangler-action@v3 — no v4 yet that ships with node24).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,10 +15,10 @@ jobs:
       contents: read
       deployments: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
       - run: npm ci
       - run: npm run build
       - uses: cloudflare/wrangler-action@v3
