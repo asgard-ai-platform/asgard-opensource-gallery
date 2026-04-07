@@ -25,4 +25,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME || 'asgard-opensource-gallery' }} --branch=${{ github.ref_name }}
+          command: pages deploy dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME || 'asgard-opensource-gallery' }}${{ github.ref_name == 'develop' && '-dev' || '' }} --branch=${{ github.ref_name }}
