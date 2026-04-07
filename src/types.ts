@@ -14,7 +14,7 @@ export interface McpServer {
   tools_count?: number;
   tags?: string[];
   upgrade_to?: string;
-  bundles?: string[];
+  plugins?: string[];
   api_docs?: string;
   icon?: string;
   maintainer?: string;
@@ -33,17 +33,17 @@ export interface Skill {
   has_script?: boolean;
   tags?: string[];
   upgrade_to?: string;
-  bundles?: string[];
+  plugins?: string[];
   icon?: string;
   maintainer?: string;
 }
 
-export interface Bundle {
+export interface PlugIn {
   slug: string;
   name: string;
   description: BilingualText;
   scenario: BilingualText;
-  upgrade_to: string;
+  upgrade_to?: string;
   upgrade_description?: BilingualText;
   mcp_servers: string[];
   skills: string[];

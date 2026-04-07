@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Yggdrasil** is a static open-source gallery site for the Asgard AI Platform ecosystem. It showcases 63 MCP Servers, 277 SKILLs, and 10 Solution Bundles, plus an Asgard AI Solution (Ecosystem) page describing the commercial product suite. All catalog content is YAML-driven; community contributors add entries via PRs.
+**Yggdrasil** is a static open-source gallery site for the Asgard AI Platform ecosystem. It showcases 63 MCP Servers, 277 SKILLs, and 10 PlugIns, plus an Asgard AI Solution (Ecosystem) page describing the commercial product suite. All catalog content is YAML-driven; community contributors add entries via PRs.
 
 - **Repo:** `asgard-ai-platform/asgard-opensource-gallery`
 - **Domain:** `vault.asgard-ai.com`
@@ -36,7 +36,7 @@ npx playwright test  # Run e2e tests (requires preview server on :4321)
 data/
   mcp-servers.yaml          # 63 MCP Server entries
   skills.yaml               # 277 SKILL entries
-  bundles.yaml              # 10 Solution Bundle entries
+  plugins.yaml              # 10 PlugIn entries
 schemas/                    # JSON Schema for YAML validation
 scripts/
   validate.mjs              # CI validation script (Ajv)
@@ -50,15 +50,15 @@ src/
     Header.astro            # Sticky header, gradient logo, nav-underline, language toggle, mobile sidebar
     Footer.astro            # Centered gradient branding
     Hero.astro              # Homepage hero with animated glows, gradient text, stats
-    StatsBar.astro          # Gradient stat cards (MCP/SKILL/Bundle counts)
+    StatsBar.astro          # Gradient stat cards (MCP/SKILL/PlugIn counts)
     McpCard.astro           # MCP card with gradient header, data-* attrs for filtering
     SkillCard.astro         # SKILL card with type-colored gradient header
-    BundleCard.astro        # Bundle card with MCP/SKILL counts
+    PlugInCard.astro        # PlugIn card with MCP/SKILL counts
     FilterBar.astro         # Sticky sidebar filter (search, status, region, category, skill type) + client-side JS
     StatusBadge.astro       # Released/coming-soon/planned pill badges
     CardGrid.astro          # Responsive grid wrapper
     UpgradeCTA.astro        # Commercial upgrade callout
-    BundleGraph.astro       # SVG dependency graph (MCP <-> SKILL)
+    PlugInGraph.astro       # SVG dependency graph (MCP <-> SKILL)
   pages/
     index.astro             # Homepage
     ecosystem.astro         # Asgard AI Solution page (Mimir/Sindri/Odin/Heimdall)
@@ -66,8 +66,8 @@ src/
     mcp/[slug].astro        # MCP detail (63 pages)
     skills/index.astro      # SKILL list with sidebar filters + skill type
     skills/[slug].astro     # SKILL detail (277 pages)
-    bundles/index.astro     # Bundle list
-    bundles/[slug].astro    # Bundle detail with dependency graph
+    plugins/index.astro     # PlugIn list
+    plugins/[slug].astro    # PlugIn detail with dependency graph
     contribute.astro        # Contribution guide
     404.astro               # Error page
 public/
@@ -109,9 +109,9 @@ Client-side language toggle (EN/ZH-TW):
 
 Three entity types with cross-references:
 
-- **McpServer**: `slug`, `name`, `description` (en/zh), `status`, `category`, `region`, `github`, optional `tools_count`, `upgrade_to`, `bundles[]`
+- **McpServer**: `slug`, `name`, `description` (en/zh), `status`, `category`, `region`, `github`, optional `tools_count`, `upgrade_to`, `plugins[]`
 - **Skill**: Same as MCP + `skill_type` (industry/methodology/theory/algorithm), `requires_mcp[]`, `has_script`
-- **Bundle**: Groups MCPs + SKILLs, always has `upgrade_to` commercial product
+- **PlugIn**: Groups MCPs + SKILLs, may optionally have `upgrade_to` commercial product
 
 Status: `released` | `coming-soon` | `planned`
 Region: `global` | `taiwan` | `sea` | `japan`
@@ -123,13 +123,13 @@ Categories: ecommerce, payment, analytics, communication, data, crm, restaurant,
 - **Sidebar** is `lg:sticky lg:top-24 lg:self-start` with `lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto`.
 - **Mobile menu** overlay and sidebar are rendered **outside** `<header>` to avoid stacking context issues. Z-index: overlay `z-[60]`, sidebar `z-[70]`.
 - **Ecosystem page** has its own image gallery JS with auto-rotation and dot navigation. Gallery uses `display:flex + flex:1` chain for height propagation.
-- **Build** generates 357 static pages (1 home + 1 ecosystem + 2 list + 340 detail + 10 bundle detail + 1 contribute + 1 bundles list + 1 404).
+- **Build** generates 357 static pages (1 home + 1 ecosystem + 2 list + 340 detail + 10 plugin detail + 1 contribute + 1 plugins list + 1 404).
 
 ## Naming Conventions
 
 - MCP slugs: `mcp-{service-name}` (lowercase, hyphens)
 - SKILL slugs: `skill-{domain}-{task}`
-- Bundle slugs: `{region/purpose}-{use-case}`
+- PlugIn slugs: `{region/purpose}-{use-case}`
 - Astro components: PascalCase
 - Utility functions: camelCase
 
@@ -138,7 +138,7 @@ Categories: ecommerce, payment, analytics, communication, data, crm, restaurant,
 1. YAML syntax
 2. JSON Schema conformance (`schemas/`)
 3. Unique slugs
-4. Cross-reference integrity (bundles, requires_mcp)
+4. Cross-reference integrity (plugins, requires_mcp)
 5. Icon file existence in `public/icons/`
 
 ## E2E Tests

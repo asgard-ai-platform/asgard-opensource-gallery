@@ -63,7 +63,7 @@ test.describe('Mobile Menu', () => {
     // Check for key nav links
     await expect(sidebar.locator('a[href="/mcp/"]')).toBeVisible();
     await expect(sidebar.locator('a[href="/skills/"]')).toBeVisible();
-    await expect(sidebar.locator('a[href="/bundles/"]')).toBeVisible();
+    await expect(sidebar.locator('a[href="/plugins/"]')).toBeVisible();
     await expect(sidebar.locator('a[href="/ecosystem/"]')).toBeVisible();
     await expect(sidebar.locator('a[href="/contribute/"]')).toBeVisible();
   });

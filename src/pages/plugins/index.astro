@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import BundleCard from '../../components/BundleCard.astro';
-import { getBundles } from '../../utils/data-loader';
+import PlugInCard from '../../components/PlugInCard.astro';
+import { getPlugIns } from '../../utils/data-loader';
 
-const bundles = getBundles();
+const plugins = getPlugIns();
 ---
 
-<BaseLayout title="Solution Bundles" description="Pre-packaged MCP + SKILL combos for specific business scenarios">
+<BaseLayout title="PlugIns" description="Pre-packaged MCP + SKILL combos for specific business scenarios">
   <!-- Hero area -->
   <section class="relative overflow-hidden border-b border-border">
     <div class="absolute inset-0 pointer-events-none">
@@ -22,10 +22,10 @@ const bundles = getBundles();
         </div>
         <div>
           <h1 class="text-3xl font-bold text-gradient">
-            <span class="lang-en">Solution Bundles</span><span class="lang-zh">解決方案套件</span>
+            <span class="lang-en">PlugIns</span><span class="lang-zh">解決方案套件</span>
           </h1>
           <p class="text-sm text-muted-foreground">
-            {bundles.length} <span class="lang-en">bundles available</span><span class="lang-zh">個方案可用</span>
+            {plugins.length} <span class="lang-en">plugins available</span><span class="lang-zh">個方案可用</span>
           </p>
         </div>
       </div>
@@ -40,7 +40,7 @@ const bundles = getBundles();
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {bundles.map((bundle) => <BundleCard bundle={bundle} />)}
+      {plugins.map((plugin) => <PlugInCard plugin={plugin} />)}
     </div>
   </div>
 </BaseLayout>

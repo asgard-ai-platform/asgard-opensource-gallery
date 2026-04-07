@@ -1,14 +1,14 @@
 ---
-import type { Bundle } from '../types';
+import type { PlugIn } from '../types';
 
 interface Props {
-  bundle: Bundle;
+  plugin: PlugIn;
 }
 
-const { bundle } = Astro.props;
+const { plugin } = Astro.props;
 ---
 
-<a href={`/bundles/${bundle.slug}/`} class="card-hover group block bg-card border border-border rounded-xl overflow-hidden">
+<a href={`/plugins/${plugin.slug}/`} class="card-hover group block bg-card border border-border rounded-xl overflow-hidden">
   <!-- Gradient overlay on hover -->
   <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl pointer-events-none z-10"></div>
 
@@ -17,38 +17,40 @@ const { bundle } = Astro.props;
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
     <div class="relative z-10">
       <div class="h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10">
-        {bundle.name.charAt(0)}
+        {plugin.name.charAt(0)}
       </div>
     </div>
   </div>
 
   <!-- Card body -->
   <div class="relative p-5">
-    <h3 class="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{bundle.name}</h3>
+    <h3 class="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{plugin.name}</h3>
     <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-en">
-      {bundle.scenario.en}
+      {plugin.scenario.en}
     </p>
     <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-zh">
-      {bundle.scenario.zh}
+      {plugin.scenario.zh}
     </p>
 
     <div class="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
       <span class="px-2 py-0.5 bg-accent rounded">
-        {bundle.mcp_servers.length} <span class="lang-en">MCPs</span><span class="lang-zh">個 MCP</span>
+        {plugin.mcp_servers.length} <span class="lang-en">MCPs</span><span class="lang-zh">個 MCP</span>
       </span>
       <span class="px-2 py-0.5 bg-accent rounded">
-        {bundle.skills.length} <span class="lang-en">SKILLs</span><span class="lang-zh">個技能</span>
+        {plugin.skills.length} <span class="lang-en">SKILLs</span><span class="lang-zh">個技能</span>
       </span>
     </div>
 
     <div class="mt-4">
       <span class="btn-gradient inline-block w-full text-center px-4 py-2 rounded-lg text-sm">
-        <span class="lang-en">View Bundle</span><span class="lang-zh">查看方案</span>
+        <span class="lang-en">View PlugIn</span><span class="lang-zh">查看方案</span>
       </span>
     </div>
   </div>
 
-  <div class="px-5 pb-4 text-xs text-primary/70 font-medium">
-    &rarr; {bundle.upgrade_to}
-  </div>
+  {plugin.upgrade_to && (
+    <div class="px-5 pb-4 text-xs text-primary/70 font-medium">
+      &rarr; {plugin.upgrade_to}
+    </div>
+  )}
 </a>

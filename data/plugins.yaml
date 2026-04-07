@@ -1,4 +1,4 @@
-bundles:
+plugins:
   - slug: tw-ecommerce-ops
     name: "Taiwan E-Commerce Operations"
     description:
@@ -7,7 +7,6 @@ bundles:
     scenario:
       en: "Ideal for Taiwan-based e-commerce businesses managing multiple storefronts across Shopline, 91APP, and CYBERBIZ with integrated ECPay payments and e-invoice compliance."
       zh: "適合在 Shopline、91APP 和 CYBERBIZ 上經營多家店面的台灣電商企業，整合綠界金流與電子發票合規。"
-    upgrade_to: Fyrer
     mcp_servers: [mcp-shopline, mcp-91app, mcp-cyberbiz, mcp-ecpay, mcp-tw-einvoice]
     skills: [skill-ecom-order-insight, skill-rfm-analysis, skill-inventory-health, skill-promo-roi]
 
@@ -79,7 +78,6 @@ bundles:
     scenario:
       en: "Built for sellers operating across Shopee, Lazada, and TikTok Shop in Southeast Asia with Omise and GrabPay payment integration."
       zh: "為在東南亞 Shopee、Lazada 和 TikTok Shop 上營運的賣家打造，整合 Omise 和 GrabPay 金流。"
-    upgrade_to: Fyrer
     mcp_servers: [mcp-shopee, mcp-lazada, mcp-tiktok-shop, mcp-omise, mcp-grabpay]
     skills: [skill-cross-sell, skill-price-optimization, skill-demand-forecast]
 
@@ -115,6 +113,5 @@ bundles:
     scenario:
       en: "Tailored for restaurant groups using iCHEF POS with EZTABLE and TableCheck reservation systems for unified dining operations management."
       zh: "專為使用 iCHEF POS 搭配 EZTABLE 和 TableCheck 訂位系統的餐飲集團設計，實現統一餐飲營運管理。"
-    upgrade_to: Fyrer
     mcp_servers: [mcp-ichef, mcp-eztable, mcp-tablecheck]
     skills: [skill-demand-forecast, skill-inventory-health, skill-customer-ltv]

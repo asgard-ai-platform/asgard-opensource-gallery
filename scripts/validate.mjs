@@ -84,34 +84,34 @@ console.log('Validating YAML data...\n');
 
 const mcpData = loadYaml('mcp-servers.yaml');
 const skillData = loadYaml('skills.yaml');
-const bundleData = loadYaml('bundles.yaml');
+const pluginData = loadYaml('plugins.yaml');
 
 console.log('Schema validation:');
 validateSchema(mcpData, 'mcp-server.schema.json', 'mcp-servers');
 validateSchema(skillData, 'skill.schema.json', 'skills');
-validateSchema(bundleData, 'bundle.schema.json', 'bundles');
+validateSchema(pluginData, 'plugin.schema.json', 'plugins');
 
 console.log('\nSlug uniqueness:');
 validateUniqueSlugs(mcpData.servers, 'mcp-servers');
 validateUniqueSlugs(skillData.skills, 'skills');
-validateUniqueSlugs(bundleData.bundles, 'bundles');
+validateUniqueSlugs(pluginData.plugins, 'plugins');
 
 const mcpSlugs = new Set(mcpData.servers.map((s) => s.slug));
 const skillSlugs = new Set(skillData.skills.map((s) => s.slug));
-const bundleSlugs = new Set(bundleData.bundles.map((b) => b.slug));
+const pluginSlugs = new Set(pluginData.plugins.map((p) => p.slug));
 
 console.log('\nCross-references:');
-validateRefs(mcpData.servers, bundleSlugs, 'bundles', 'mcp-servers');
+validateRefs(mcpData.servers, pluginSlugs, 'plugins', 'mcp-servers');
 validateRefs(skillData.skills, mcpSlugs, 'requires_mcp', 'skills');
-validateRefs(skillData.skills, bundleSlugs, 'bundles', 'skills');
-validateRefs(bundleData.bundles, mcpSlugs, 'mcp_servers', 'bundles');
-validateRefs(bundleData.bundles, skillSlugs, 'skills', 'bundles');
+validateRefs(skillData.skills, pluginSlugs, 'plugins', 'skills');
+validateRefs(pluginData.plugins, mcpSlugs, 'mcp_servers', 'plugins');
+validateRefs(pluginData.plugins, skillSlugs, 'skills', 'plugins');
 if (errors === 0) pass('all cross-references valid');
 
 console.log('\nIcon files:');
 validateIcons(mcpData.servers, 'mcp-servers');
 validateIcons(skillData.skills, 'skills');
-validateIcons(bundleData.bundles, 'bundles');
+validateIcons(pluginData.plugins, 'plugins');
 if (errors === 0) pass('all icons valid (or none referenced)');
 
 console.log(`\n${errors === 0 ? '✅ All checks passed!' : `❌ ${errors} error(s) found.`}`);

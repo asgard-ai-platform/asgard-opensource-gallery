@@ -4,7 +4,7 @@ import StatusBadge from '../../components/StatusBadge.astro';
 import UpgradeCTA from '../../components/UpgradeCTA.astro';
 import McpCard from '../../components/McpCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
-import { getMcpServers, getBundles } from '../../utils/data-loader';
+import { getMcpServers, getPlugIns } from '../../utils/data-loader';
 import type { McpServer } from '../../types';
 
 export function getStaticPaths() {
@@ -17,7 +17,7 @@ export function getStaticPaths() {
 
 const { server } = Astro.props as { server: McpServer };
 const allServers = getMcpServers();
-const bundles = getBundles().filter((b) => server.bundles?.includes(b.slug));
+const plugins = getPlugIns().filter((p) => server.plugins?.includes(p.slug));
 const related = allServers
   .filter((s) => s.slug !== server.slug && s.category === server.category)
   .slice(0, 3);
@@ -133,18 +133,18 @@ const related = allServers
       </section>
     )}
 
-    {/* Bundles */}
-    {bundles.length > 0 && (
+    {/* PlugIns */}
+    {plugins.length > 0 && (
       <section class="mb-8">
         <h2 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
           <span class="lang-en">Part of</span><span class="lang-zh">所屬</span>
         </h2>
         <div class="space-y-2">
-          {bundles.map((b) => (
-            <a href={`/bundles/${b.slug}/`} class="block glass-card rounded-lg p-4 hover:border-primary/40 transition-colors">
-              <div class="font-medium text-foreground">{b.name}</div>
-              <div class="text-sm text-muted-foreground mt-1 lang-en">{b.description.en}</div>
-              <div class="text-sm text-muted-foreground mt-1 lang-zh">{b.description.zh}</div>
+          {plugins.map((p) => (
+            <a href={`/plugins/${p.slug}/`} class="block glass-card rounded-lg p-4 hover:border-primary/40 transition-colors">
+              <div class="font-medium text-foreground">{p.name}</div>
+              <div class="text-sm text-muted-foreground mt-1 lang-en">{p.description.en}</div>
+              <div class="text-sm text-muted-foreground mt-1 lang-zh">{p.description.zh}</div>
             </a>
           ))}
         </div>

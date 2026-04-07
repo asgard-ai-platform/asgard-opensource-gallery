@@ -1,7 +1,7 @@
 import yaml from 'js-yaml';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { McpServer, Skill, Bundle } from '../types';
+import type { McpServer, Skill, PlugIn } from '../types';
 import { STATUS_ORDER as statusOrder } from '../types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -30,9 +30,9 @@ export function getSkills(): Skill[] {
   return sortByStatus(data.skills);
 }
 
-export function getBundles(): Bundle[] {
-  const data = loadYaml<{ bundles: Bundle[] }>('bundles.yaml');
-  return data.bundles;
+export function getPlugIns(): PlugIn[] {
+  const data = loadYaml<{ plugins: PlugIn[] }>('plugins.yaml');
+  return data.plugins;
 }
 
 export function getMcpBySlug(slug: string): McpServer | undefined {
@@ -43,6 +43,6 @@ export function getSkillBySlug(slug: string): Skill | undefined {
   return getSkills().find((s) => s.slug === slug);
 }
 
-export function getBundleBySlug(slug: string): Bundle | undefined {
-  return getBundles().find((b) => b.slug === slug);
+export function getPlugInBySlug(slug: string): PlugIn | undefined {
+  return getPlugIns().find((p) => p.slug === slug);
 }

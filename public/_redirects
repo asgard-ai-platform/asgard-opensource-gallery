@@ -1,0 +1,2 @@
+/bundles/* /plugins/:splat 301
+/bundles /plugins 301

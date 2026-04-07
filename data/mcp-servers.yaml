@@ -1,6 +1,6 @@
 servers:
   # ============================================================
-  # M-01 Taiwan E-commerce & Hospitality (7) → Fyrer
+  # M-01 Taiwan E-commerce & Hospitality (7)
   # ============================================================
   - slug: mcp-shopline
     name: "Shopline"
@@ -13,8 +13,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-shopline
     tools_count: 19
     tags: [ecommerce, shopline, taiwan]
-    upgrade_to: Fyrer
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-91app
@@ -27,8 +26,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-91app
     tags: [ecommerce, omnichannel, taiwan]
-    upgrade_to: Fyrer
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-cyberbiz
@@ -41,8 +39,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-cyberbiz
     tags: [ecommerce, cyberbiz, taiwan]
-    upgrade_to: Fyrer
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-waca
@@ -55,7 +52,6 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-waca
     tags: [ecommerce, waca, taiwan]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   - slug: mcp-ichef
@@ -68,8 +64,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-ichef
     tags: [restaurant, pos, taiwan]
-    upgrade_to: Fyrer
-    bundles: [hospitality-ops]
+    plugins: [hospitality-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-eztable
@@ -82,8 +77,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-eztable
     tags: [restaurant, reservation, taiwan]
-    upgrade_to: Fyrer
-    bundles: [hospitality-ops]
+    plugins: [hospitality-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tablecheck
@@ -96,8 +90,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-tablecheck
     tags: [restaurant, reservation, management]
-    upgrade_to: Fyrer
-    bundles: [hospitality-ops]
+    plugins: [hospitality-ops]
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -114,7 +107,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-ecpay
     tags: [payment, gateway, taiwan]
     upgrade_to: Njord
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-newebpay
@@ -141,7 +134,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-tw-einvoice
     tags: [invoice, tax, taiwan]
     upgrade_to: Njord
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tw-realprice
@@ -226,7 +219,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-ptt
     tags: [forum, sentiment, taiwan]
     upgrade_to: Heimdall
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tw-news
@@ -240,7 +233,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-tw-news
     tags: [news, media, taiwan]
     upgrade_to: Heimdall
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: mcp-dcard
@@ -254,11 +247,11 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-dcard
     tags: [social, community, taiwan]
     upgrade_to: Heimdall
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   # ============================================================
-  # M-05 SE Asia E-commerce (3) → Fyrer
+  # M-05 SE Asia E-commerce (3)
   # ============================================================
   - slug: mcp-shopee
     name: "Shopee"
@@ -270,8 +263,7 @@ servers:
     region: sea
     github: https://github.com/asgard-ai-platform/mcp-shopee
     tags: [ecommerce, marketplace, sea]
-    upgrade_to: Fyrer
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   - slug: mcp-lazada
@@ -284,8 +276,7 @@ servers:
     region: sea
     github: https://github.com/asgard-ai-platform/mcp-lazada
     tags: [ecommerce, marketplace, sea]
-    upgrade_to: Fyrer
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tiktok-shop
@@ -298,8 +289,7 @@ servers:
     region: sea
     github: https://github.com/asgard-ai-platform/mcp-tiktok-shop
     tags: [ecommerce, social-commerce, sea]
-    upgrade_to: Fyrer
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -316,7 +306,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-omise
     tags: [payment, gateway, sea]
     upgrade_to: Njord
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   - slug: mcp-grabpay
@@ -330,7 +320,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-grabpay
     tags: [payment, wallet, sea]
     upgrade_to: Njord
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   - slug: mcp-gcash
@@ -360,7 +350,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-ga4
     tags: [analytics, google, web]
     upgrade_to: Mimir
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   - slug: mcp-meta-ads
@@ -374,7 +364,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-meta-ads
     tags: [advertising, meta, social]
     upgrade_to: Mimir
-    bundles: [data-insight, brand-media-pr]
+    plugins: [data-insight, brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: mcp-google-ads
@@ -388,7 +378,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-google-ads
     tags: [advertising, google, sem]
     upgrade_to: Mimir
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   - slug: mcp-woocommerce
@@ -402,7 +392,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-woocommerce
     tags: [ecommerce, wordpress, analytics]
     upgrade_to: Mimir
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -419,7 +409,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-sendgrid
     tags: [email, communication, marketing]
     upgrade_to: Sindri
-    bundles: [agent-communication]
+    plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
   - slug: mcp-line-notify
@@ -433,7 +423,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-line-notify
     tags: [messaging, line, notification]
     upgrade_to: Sindri
-    bundles: [agent-communication]
+    plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
   - slug: mcp-whatsapp-business
@@ -447,7 +437,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-whatsapp-business
     tags: [messaging, whatsapp, business]
     upgrade_to: Sindri
-    bundles: [agent-communication]
+    plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
   - slug: mcp-telegram
@@ -477,7 +467,7 @@ servers:
     maintainer: asgard-ai-platform
 
   # ============================================================
-  # M-09 Global E-commerce (3) → Fyrer
+  # M-09 Global E-commerce (3)
   # ============================================================
   - slug: mcp-bigcommerce
     name: "BigCommerce"
@@ -489,7 +479,6 @@ servers:
     region: global
     github: https://github.com/asgard-ai-platform/mcp-bigcommerce
     tags: [ecommerce, saas, global]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   - slug: mcp-prestashop
@@ -502,7 +491,6 @@ servers:
     region: global
     github: https://github.com/asgard-ai-platform/mcp-prestashop
     tags: [ecommerce, open-source, global]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   - slug: mcp-magento
@@ -515,7 +503,6 @@ servers:
     region: global
     github: https://github.com/asgard-ai-platform/mcp-magento
     tags: [ecommerce, enterprise, global]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -532,7 +519,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-zendesk
     tags: [customer-service, helpdesk, ticketing]
     upgrade_to: Sindri
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   - slug: mcp-freshdesk
@@ -546,7 +533,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-freshdesk
     tags: [customer-service, helpdesk, support]
     upgrade_to: Sindri
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   - slug: mcp-crisp
@@ -560,7 +547,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-crisp
     tags: [live-chat, customer-service, messaging]
     upgrade_to: Sindri
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   - slug: mcp-crescendo-lab
@@ -574,7 +561,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-crescendo-lab
     tags: [customer-service, line, crm]
     upgrade_to: Sindri
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -591,7 +578,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-airtable
     tags: [database, no-code, productivity]
     upgrade_to: Odin
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: mcp-monday
@@ -657,7 +644,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-hubspot
     tags: [crm, marketing, sales]
     upgrade_to: Odin
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -674,7 +661,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-industrial-iot
     tags: [iot, sensors, manufacturing]
     upgrade_to: Bragi
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: mcp-thingsboard
@@ -688,7 +675,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-thingsboard
     tags: [iot, platform, telemetry]
     upgrade_to: Bragi
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: mcp-node-red
@@ -702,7 +689,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-node-red
     tags: [iot, workflow, automation]
     upgrade_to: Bragi
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: mcp-opc-ua
@@ -732,7 +719,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-twse-mops
     tags: [finance, stock-market, taiwan]
     upgrade_to: Njord
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tpex
@@ -746,7 +733,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-tpex
     tags: [finance, otc-market, taiwan]
     upgrade_to: Njord
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   - slug: mcp-cnyes
@@ -760,7 +747,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-cnyes
     tags: [finance, news, market-data]
     upgrade_to: Njord
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tw-company-fin
@@ -774,11 +761,11 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-tw-company-fin
     tags: [finance, corporate, taiwan]
     upgrade_to: Njord
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   # ============================================================
-  # M-14 Logistics (4) → Fyrer
+  # M-14 Logistics (4)
   # ============================================================
   - slug: mcp-shippo
     name: "Shippo"
@@ -790,7 +777,6 @@ servers:
     region: global
     github: https://github.com/asgard-ai-platform/mcp-shippo
     tags: [logistics, shipping, fulfillment]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   - slug: mcp-ezship
@@ -803,7 +789,6 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-ezship
     tags: [logistics, convenience-store, taiwan]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   - slug: mcp-711-pickup
@@ -816,7 +801,6 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-711-pickup
     tags: [logistics, convenience-store, taiwan]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   - slug: mcp-family-pickup
@@ -829,7 +813,6 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-family-pickup
     tags: [logistics, convenience-store, taiwan]
-    upgrade_to: Fyrer
     maintainer: asgard-ai-platform
 
   # ============================================================
@@ -846,7 +829,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-104
     tags: [recruitment, hr, taiwan]
     upgrade_to: Odin
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: mcp-cakeresume
@@ -860,7 +843,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-cakeresume
     tags: [recruitment, talent, taiwan]
     upgrade_to: Odin
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: mcp-google-meet

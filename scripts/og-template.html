@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Yggdrasil OG Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #134e4a 100%);
+    position: relative;
+  }
+
+  /* Decorative circle outlines */
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .circle-tr { top: -96px; right: -96px; width: 384px; height: 384px; border-width: 60px; }
+  .circle-bl { bottom: -80px; left: -80px; width: 288px; height: 288px; border-width: 50px; border-color: rgba(255, 255, 255, 0.06); }
+  .circle-mid { top: 50%; left: 20%; width: 192px; height: 192px; border-width: 30px; border-color: rgba(255, 255, 255, 0.04); }
+
+  /* Decorative SVG patterns */
+  .deco-svg { position: absolute; pointer-events: none; }
+
+  /* Brand badge */
+  .badge {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .badge-text {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* Left content */
+  .content {
+    position: absolute;
+    left: 80px;
+    top: 140px;
+    width: 580px;
+    z-index: 10;
+  }
+  .subtitle {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+  }
+  .title {
+    color: white;
+    font-size: 80px;
+    font-weight: 900;
+    margin: 0 0 28px 0;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .tagline {
+    color: rgba(255, 255, 255, 0.98);
+    font-size: 30px;
+    margin: 0 0 24px 0;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .description {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Logo on the right */
+  .logo-container {
+    position: absolute;
+    right: 80px;
+    top: 175px;
+    z-index: 10;
+  }
+  .logo-frame {
+    position: relative;
+    padding: 50px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  .logo-frame svg { display: block; width: 240px; height: 240px; }
+
+  /* i18n: hide opposite language */
+  html[data-lang="en"] [data-lang-zh] { display: none; }
+  html[data-lang="zh"] [data-lang-en] { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Decorative geometric patterns -->
+<div class="circle circle-tr"></div>
+<div class="circle circle-bl"></div>
+<div class="circle circle-mid"></div>
+
+<!-- Triangles -->
+<svg class="deco-svg" style="top:10%; right:25%; width:120px; height:120px; opacity:0.1;">
+  <polygon points="60,10 110,100 10,100" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="3" />
+  <polygon points="60,30 90,80 30,80" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" />
+</svg>
+<svg class="deco-svg" style="bottom:15%; right:15%; width:100px; height:100px; opacity:0.08;">
+  <polygon points="50,10 90,80 10,80" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="3" />
+</svg>
+
+<!-- Hexagon -->
+<svg class="deco-svg" style="top:25%; left:45%; width:80px; height:80px; opacity:0.06;">
+  <polygon points="40,5 70,25 70,55 40,75 10,55 10,25" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" />
+</svg>
+
+<!-- Grid pattern -->
+<svg class="deco-svg" style="top:0; left:0; width:100%; height:100%; opacity:0.08;">
+  <defs>
+    <pattern id="grid-bg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid-bg)" />
+</svg>
+
+<!-- Dots pattern -->
+<svg class="deco-svg" style="top:0; left:0; width:100%; height:100%; opacity:0.05;">
+  <defs>
+    <pattern id="dots-bg" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="1.5" fill="rgba(255,255,255,0.6)" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#dots-bg)" />
+</svg>
+
+<!-- Diagonal lines -->
+<svg class="deco-svg" style="bottom:20%; left:10%; width:150px; height:150px; opacity:0.06;">
+  <line x1="0" y1="0" x2="150" y2="150" stroke="rgba(255,255,255,0.5)" stroke-width="2" />
+  <line x1="30" y1="0" x2="150" y2="120" stroke="rgba(255,255,255,0.5)" stroke-width="2" />
+  <line x1="0" y1="30" x2="120" y2="150" stroke="rgba(255,255,255,0.5)" stroke-width="2" />
+</svg>
+
+<!-- Brand badge -->
+<div class="badge">
+  <div class="badge-dot"></div>
+  <span class="badge-text">
+    <span data-lang-en>Asgard AI Product Suite</span>
+    <span data-lang-zh>Asgard AI 產品系列</span>
+  </span>
+</div>
+
+<!-- Left content -->
+<div class="content">
+  <div class="subtitle">OPENSOURCE GALLERY</div>
+  <h1 class="title">Yggdrasil</h1>
+  <div class="divider"></div>
+  <p class="tagline">
+    <span data-lang-en>Open Source Gallery Platform</span>
+    <span data-lang-zh>開源專案展示平台</span>
+  </p>
+  <p class="description">
+    <span data-lang-en>World Tree connecting nine realms — showcasing open source projects and innovations</span>
+    <span data-lang-zh>世界樹連接九界，展示開源專案與創新成果</span>
+  </p>
+</div>
+
+<!-- Right logo -->
+<div class="logo-container">
+  <div class="logo-frame">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Yggdrasil logo rendered in white for bright mode -->
+      <circle cx="50" cy="50" r="35" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.8"/>
+      <rect x="47" y="35" width="6" height="30" rx="3" fill="#FFFFFF"/>
+      <path d="M50 35 L35 25" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 35 L65 25" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 45 L38 38" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+      <path d="M50 45 L62 38" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+      <path d="M50 65 L38 72" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 65 L62 72" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 65 L50 75" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="35" cy="25" r="4" fill="#FFFFFF"/>
+      <circle cx="65" cy="25" r="4" fill="#FFFFFF"/>
+      <circle cx="38" cy="38" r="3" fill="#FFFFFF" opacity="0.9"/>
+      <circle cx="62" cy="38" r="3" fill="#FFFFFF" opacity="0.9"/>
+      <circle cx="38" cy="72" r="4" fill="#FFFFFF"/>
+      <circle cx="62" cy="72" r="4" fill="#FFFFFF"/>
+      <circle cx="50" cy="75" r="4" fill="#FFFFFF"/>
+      <circle cx="50" cy="50" r="6" fill="#FFFFFF"/>
+      <circle cx="50" cy="50" r="3" fill="#FFFFFF" opacity="0.6"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+  // Set lang attribute from query string ?lang=en or ?lang=zh
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var lang = params.get('lang') === 'zh' ? 'zh' : 'en';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
+  })();
+</script>
+</body>
+</html>

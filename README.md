@@ -2,7 +2,7 @@
 
 **Live:** [https://vault.asgard-ai.com](https://vault.asgard-ai.com)
 
-Yggdrasil is a static gallery showcasing every MCP Server, SKILL, and Solution Bundle in the [Asgard AI Platform](https://github.com/asgard-ai-platform) ecosystem. All content is driven by YAML data files -- community contributors add or update entries via pull requests.
+Yggdrasil is a static gallery showcasing every MCP Server, SKILL, and PlugIn in the [Asgard AI Platform](https://github.com/asgard-ai-platform) ecosystem. All content is driven by YAML data files -- community contributors add or update entries via pull requests.
 
 The site is fully bilingual (English / Traditional Chinese) with a client-side language toggle.
 
@@ -12,7 +12,7 @@ The site is fully bilingual (English / Traditional Chinese) with a client-side l
 |---|---|
 | MCP Servers | 63 |
 | SKILLs | 277 |
-| Solution Bundles | 10 |
+| PlugIns | 10 |
 | Static Pages | 357 |
 
 ## What Is This?
@@ -21,7 +21,7 @@ The site is fully bilingual (English / Traditional Chinese) with a client-side l
 
 **SKILLs** -- Reusable knowledge units encoding domain expertise: industry practices, methodologies, theories, and algorithms. Four types: Industry, Methodology, Theory, Algorithm.
 
-**Solution Bundles** -- Pre-packaged combinations of MCP Servers and SKILLs for specific business scenarios, each mapping to an Asgard commercial product.
+**PlugIns** -- Pre-packaged combinations of MCP Servers and SKILLs for specific business scenarios, each mapping to an Asgard commercial product.
 
 **Asgard AI Solution** -- A dedicated page showcasing the commercial product ecosystem: Mimir (AI Brain), Sindri (Agent Hub), Odin (Studio), and Heimdall (PR AI).
 
@@ -66,7 +66,7 @@ npx playwright test
 
 ```
 asgard-opensource-gallery/
-├── data/                    # YAML data (MCP Servers, SKILLs, Bundles)
+├── data/                    # YAML data (MCP Servers, SKILLs, PlugIns)
 ├── schemas/                 # JSON Schema for YAML validation
 ├── src/
 │   ├── components/          # 12 Astro components
@@ -92,8 +92,8 @@ asgard-opensource-gallery/
 | `/mcp/{slug}/` | MCP Server detail (63 pages) |
 | `/skills/` | SKILL list with sidebar filters, skill type filter, and search |
 | `/skills/{slug}/` | SKILL detail (277 pages) |
-| `/bundles/` | Solution Bundle list |
-| `/bundles/{slug}/` | Bundle detail with dependency graph (10 pages) |
+| `/plugins/` | PlugIn list |
+| `/plugins/{slug}/` | PlugIn detail with dependency graph (10 pages) |
 | `/ecosystem/` | Asgard AI Solution -- Mimir, Sindri, Odin, Heimdall |
 | `/contribute/` | Contribution guide with YAML templates |
 

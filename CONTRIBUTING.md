@@ -58,9 +58,9 @@ Add your entry to `data/mcp-servers.yaml` under the `servers:` list:
     tools_count: 12                      # Optional. Number of tools (released only)
     tags:                                # Optional
       - your-tag
-    upgrade_to: Fyrer                    # Optional. Commercial product name
-    bundles:                             # Optional. Bundle slug(s) this belongs to
-      - bundle-slug
+    upgrade_to: Sindri                   # Optional. Commercial product name
+    plugins:                             # Optional. PlugIn slug(s) this belongs to
+      - plugin-slug
     api_docs: https://docs.example.com   # Optional. Original API documentation
     icon: your-service.svg               # Optional. Icon in public/icons/
     maintainer: your-github-handle       # Optional. GitHub username
@@ -86,9 +86,9 @@ Add your entry to `data/skills.yaml` under the `skills:` list:
     has_script: true                     # Optional. Whether this SKILL includes an executable script
     tags:                                # Optional
       - your-tag
-    upgrade_to: Fyrer                    # Optional. Commercial product name
-    bundles:                             # Optional. Bundle slug(s)
-      - bundle-slug
+    upgrade_to: Sindri                   # Optional. Commercial product name
+    plugins:                             # Optional. PlugIn slug(s)
+      - plugin-slug
     icon: your-skill.svg                 # Optional. Icon in public/icons/
     maintainer: your-github-handle       # Optional. GitHub username
 ```

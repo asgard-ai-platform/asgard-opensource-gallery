@@ -4,17 +4,17 @@ import Hero from '../components/Hero.astro';
 import StatsBar from '../components/StatsBar.astro';
 import CardGrid from '../components/CardGrid.astro';
 import McpCard from '../components/McpCard.astro';
-import BundleCard from '../components/BundleCard.astro';
-import { getMcpServers, getSkills, getBundles } from '../utils/data-loader';
+import PlugInCard from '../components/PlugInCard.astro';
+import { getMcpServers, getSkills, getPlugIns } from '../utils/data-loader';
 
 const servers = getMcpServers();
 const skills = getSkills();
-const bundles = getBundles();
+const plugins = getPlugIns();
 
 const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
 ---
 
-<BaseLayout title="Home" description="Open Source MCP Servers, SKILLs & Solution Bundles for the AI-native enterprise">
+<BaseLayout title="Home" description="Open Source MCP Servers, SKILLs & PlugIns for the AI-native enterprise">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -27,7 +27,7 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
   </Fragment>
 
   <Hero />
-  <StatsBar mcpCount={servers.length} skillCount={skills.length} bundleCount={bundles.length} />
+  <StatsBar mcpCount={servers.length} skillCount={skills.length} pluginCount={plugins.length} />
 
   {/* Featured / Recently Released */}
   {featured.length > 0 && (
@@ -53,7 +53,7 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
     </section>
   )}
 
-  {/* Solution Bundles Preview */}
+  {/* PlugIns Preview */}
   <section class="border-y border-border bg-card/30 py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center gap-3 mb-10">
@@ -64,19 +64,19 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
         </div>
         <div>
           <h2 class="text-2xl font-bold text-foreground">
-            <span class="lang-en">Solution Bundles</span><span class="lang-zh">解決方案套件</span>
+            <span class="lang-en">PlugIns</span><span class="lang-zh">解決方案套件</span>
           </h2>
           <p class="text-sm text-muted-foreground">
-            {bundles.length} <span class="lang-en">pre-packaged solutions</span><span class="lang-zh">個預打包解決方案</span>
+            {plugins.length} <span class="lang-en">pre-packaged solutions</span><span class="lang-zh">個預打包解決方案</span>
           </p>
         </div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {bundles.map((bundle) => <BundleCard bundle={bundle} />)}
+        {plugins.map((plugin) => <PlugInCard plugin={plugin} />)}
       </div>
       <div class="mt-10 text-center">
-        <a href="/bundles/" class="text-primary hover:underline text-sm font-medium">
-          <span class="lang-en">View all bundles</span><span class="lang-zh">查看所有解決方案</span> &rarr;
+        <a href="/plugins/" class="text-primary hover:underline text-sm font-medium">
+          <span class="lang-en">View all plugins</span><span class="lang-zh">查看所有解決方案</span> &rarr;
         </a>
       </div>
     </div>
@@ -123,7 +123,7 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
           </svg>
         </div>
         <div class="font-semibold text-foreground">
-          <span class="lang-en">Bundles</span><span class="lang-zh">解決方案</span>
+          <span class="lang-en">PlugIns</span><span class="lang-zh">解決方案</span>
         </div>
         <div class="text-xs text-muted-foreground mt-1">
           <span class="lang-en">Ready solutions</span><span class="lang-zh">現成方案</span>

@@ -31,7 +31,7 @@
           "has_script": { "type": "boolean" },
           "tags": { "type": "array", "items": { "type": "string" } },
           "upgrade_to": { "type": "string" },
-          "bundles": { "type": "array", "items": { "type": "string" } },
+          "plugins": { "type": "array", "items": { "type": "string" } },
           "icon": { "type": "string" },
           "maintainer": { "type": "string" }
         },

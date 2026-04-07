@@ -2,15 +2,15 @@
 interface Props {
   mcpCount: number;
   skillCount: number;
-  bundleCount: number;
+  pluginCount: number;
 }
 
-const { mcpCount, skillCount, bundleCount } = Astro.props;
+const { mcpCount, skillCount, pluginCount } = Astro.props;
 
 const stats = [
   { labelEn: 'MCP Servers', labelZh: 'MCP 伺服器', value: mcpCount, color: 'from-green-500/20 to-green-500/5' },
   { labelEn: 'SKILLs', labelZh: '技能', value: skillCount, color: 'from-cyan-500/20 to-cyan-500/5' },
-  { labelEn: 'Solution Bundles', labelZh: '解決方案套件', value: bundleCount, color: 'from-blue-500/20 to-blue-500/5' },
+  { labelEn: 'PlugIns', labelZh: '解決方案套件', value: pluginCount, color: 'from-blue-500/20 to-blue-500/5' },
 ];
 ---
 

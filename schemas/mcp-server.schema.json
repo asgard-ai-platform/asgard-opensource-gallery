@@ -29,7 +29,7 @@
           "tools_count": { "type": "integer", "minimum": 0 },
           "tags": { "type": "array", "items": { "type": "string" } },
           "upgrade_to": { "type": "string" },
-          "bundles": { "type": "array", "items": { "type": "string" } },
+          "plugins": { "type": "array", "items": { "type": "string" } },
           "api_docs": { "type": "string", "format": "uri" },
           "icon": { "type": "string" },
           "maintainer": { "type": "string" }

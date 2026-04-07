@@ -14,7 +14,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ecom-order-insight
     tags: [ecommerce, orders, analytics]
     requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: skill-rfm-analysis
@@ -29,7 +29,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-rfm-analysis
     tags: [customer-segmentation, rfm, marketing]
     requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: skill-inventory-health
@@ -44,7 +44,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-inventory-health
     tags: [inventory, supply-chain, operations]
     requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
-    bundles: [tw-ecommerce-ops, hospitality-ops]
+    plugins: [tw-ecommerce-ops, hospitality-ops]
     maintainer: asgard-ai-platform
 
   - slug: skill-promo-roi
@@ -59,7 +59,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-promo-roi
     tags: [promotion, roi, marketing]
     requires_mcp: [mcp-shopline, mcp-91app, mcp-cyberbiz]
-    bundles: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
   - slug: skill-media-monitoring
@@ -74,7 +74,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-media-monitoring
     tags: [media, monitoring, brand]
     requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: skill-pr-crisis
@@ -89,7 +89,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-pr-crisis
     tags: [pr, crisis, reputation]
     requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: skill-sentiment-analysis
@@ -104,7 +104,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sentiment-analysis
     tags: [nlp, sentiment, social-media]
     requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: skill-brand-tracking
@@ -119,7 +119,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-brand-tracking
     tags: [brand, tracking, competitive]
     requires_mcp: [mcp-ptt, mcp-tw-news, mcp-dcard]
-    bundles: [brand-media-pr]
+    plugins: [brand-media-pr]
     maintainer: asgard-ai-platform
 
   - slug: skill-oee-analysis
@@ -134,7 +134,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-oee-analysis
     tags: [manufacturing, oee, production]
     requires_mcp: [mcp-industrial-iot, mcp-thingsboard]
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: skill-financial-modeling
@@ -149,7 +149,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-financial-modeling
     tags: [finance, modeling, valuation]
     requires_mcp: [mcp-twse-mops, mcp-tpex, mcp-cnyes]
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   - slug: skill-churn-prediction
@@ -176,7 +176,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-customer-ltv
     tags: [ltv, customer-value, analytics]
-    bundles: [hospitality-ops]
+    plugins: [hospitality-ops]
     maintainer: asgard-ai-platform
 
   - slug: skill-supply-chain-opt
@@ -203,7 +203,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-demand-forecast
     tags: [forecasting, demand, planning]
-    bundles: [sea-marketplace, hospitality-ops]
+    plugins: [sea-marketplace, hospitality-ops]
     maintainer: asgard-ai-platform
 
   - slug: skill-price-optimization
@@ -218,7 +218,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-price-optimization
     tags: [pricing, optimization, revenue]
     requires_mcp: [mcp-shopee, mcp-lazada, mcp-tiktok-shop]
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   - slug: skill-cross-sell
@@ -233,7 +233,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cross-sell
     tags: [cross-sell, recommendation, revenue]
     requires_mcp: [mcp-shopee, mcp-lazada, mcp-tiktok-shop]
-    bundles: [sea-marketplace]
+    plugins: [sea-marketplace]
     maintainer: asgard-ai-platform
 
   - slug: skill-upsell-strategy
@@ -274,7 +274,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-cohort-analysis
     tags: [cohort, retention, analytics]
     requires_mcp: [mcp-ga4]
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   - slug: skill-retention-analysis
@@ -328,7 +328,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-ticket-routing
     tags: [ticketing, routing, automation]
     requires_mcp: [mcp-zendesk, mcp-freshdesk, mcp-crisp]
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   - slug: skill-knowledge-base
@@ -343,7 +343,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-knowledge-base
     tags: [knowledge-base, self-service, content]
     requires_mcp: [mcp-zendesk, mcp-freshdesk, mcp-crisp]
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   - slug: skill-sla-monitoring
@@ -358,7 +358,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-sla-monitoring
     tags: [sla, monitoring, compliance]
     requires_mcp: [mcp-zendesk, mcp-freshdesk, mcp-crisp]
-    bundles: [customer-service-hub]
+    plugins: [customer-service-hub]
     maintainer: asgard-ai-platform
 
   - slug: skill-workforce-planning
@@ -412,7 +412,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-campaign-roi
     tags: [campaign, roi, advertising]
     requires_mcp: [mcp-ga4, mcp-meta-ads, mcp-google-ads]
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   - slug: skill-attribution-model
@@ -427,7 +427,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-attribution-model
     tags: [attribution, marketing, analytics]
     requires_mcp: [mcp-ga4, mcp-meta-ads, mcp-google-ads]
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   - slug: skill-content-performance
@@ -494,7 +494,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-revenue-forecast
     tags: [revenue, forecasting, planning]
     requires_mcp: [mcp-twse-mops, mcp-tpex, mcp-cnyes]
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   - slug: skill-budget-allocation
@@ -535,7 +535,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-risk-assessment
     tags: [risk, assessment, management]
     requires_mcp: [mcp-twse-mops, mcp-tpex, mcp-cnyes]
-    bundles: [finance-investment]
+    plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
   - slug: skill-compliance-check
@@ -589,7 +589,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-quality-control
     tags: [quality, spc, manufacturing]
     requires_mcp: [mcp-industrial-iot, mcp-thingsboard]
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: skill-maintenance-predict
@@ -604,7 +604,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-maintenance-predict
     tags: [maintenance, prediction, iot]
     requires_mcp: [mcp-industrial-iot, mcp-thingsboard]
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: skill-energy-optimization
@@ -619,7 +619,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-energy-optimization
     tags: [energy, optimization, sustainability]
     requires_mcp: [mcp-industrial-iot, mcp-thingsboard, mcp-node-red]
-    bundles: [smart-manufacturing]
+    plugins: [smart-manufacturing]
     maintainer: asgard-ai-platform
 
   - slug: skill-yield-analysis
@@ -714,7 +714,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-customer-journey
     tags: [customer-journey, ux, touchpoints]
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: skill-design-thinking
@@ -741,7 +741,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-lean-canvas
     tags: [lean, startup, business-model]
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: skill-business-model-canvas
@@ -794,7 +794,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-okr-framework
     tags: [okr, goals, alignment]
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: skill-balanced-scorecard
@@ -990,7 +990,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-persona-creation
     tags: [persona, ux, user-research]
-    bundles: [tw-startup-kit]
+    plugins: [tw-startup-kit]
     maintainer: asgard-ai-platform
 
   - slug: skill-empathy-map
@@ -1017,7 +1017,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-stakeholder-map
     tags: [stakeholder, mapping, communication]
-    bundles: [agent-communication]
+    plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
   - slug: skill-decision-matrix
@@ -1266,7 +1266,7 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-funnel-analysis
     tags: [funnel, conversion, methodology]
     requires_mcp: [mcp-ga4]
-    bundles: [data-insight]
+    plugins: [data-insight]
     maintainer: asgard-ai-platform
 
   - slug: skill-aarrr-metrics
@@ -1501,7 +1501,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-change-management
     tags: [change-management, transformation, adoption]
-    bundles: [agent-communication]
+    plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
   - slug: skill-communication-plan
@@ -1515,7 +1515,7 @@ skills:
     region: global
     github: https://github.com/asgard-ai-platform/skills/tree/main/skill-communication-plan
     tags: [communication, planning, stakeholder]
-    bundles: [agent-communication]
+    plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
   - slug: skill-risk-matrix
