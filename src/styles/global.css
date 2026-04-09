@@ -106,3 +106,38 @@
 [data-lang="en"] .name-bilingual .name-zh { order: 2; font-size: 0.7em; opacity: 0.55; margin-top: 0.15em; }
 [data-lang="zh"] .name-bilingual .name-zh { order: 1; }
 [data-lang="zh"] .name-bilingual .name-en { order: 2; font-size: 0.7em; opacity: 0.55; margin-top: 0.15em; }
+
+/* Mobile: fix backdrop-filter flicker on sticky header */
+@supports (backdrop-filter: blur(1px)) {
+  @media (max-width: 768px) {
+    .sticky {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+}
+
+/* Mobile: disable heavy blur animations to prevent GPU flicker */
+@media (max-width: 768px) {
+  .animate-glow-pulse,
+  .animate-glow-pulse-delayed,
+  .animate-glow-pulse-delayed-2 {
+    animation: none !important;
+    opacity: 0.15 !important;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-glow-pulse,
+  .animate-glow-pulse-delayed,
+  .animate-glow-pulse-delayed-2 {
+    animation: none !important;
+    opacity: 0.15 !important;
+  }
+  .card-hover {
+    transition: none !important;
+  }
+}
