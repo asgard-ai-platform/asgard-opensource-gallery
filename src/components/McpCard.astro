@@ -26,11 +26,12 @@ const gradientColors: Record<string, string> = {
   finance: 'from-emerald-600 to-green-900',
 };
 const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-900';
+const isReleased = server.status === 'released';
 ---
 
 <a
   href={`/mcp/${server.slug}/`}
-  class="card-hover group block bg-card border border-border rounded-xl overflow-hidden"
+  class={`card-hover group block bg-card border rounded-xl overflow-hidden ${isReleased ? 'border-border' : 'border-border/50 opacity-60 hover:opacity-100 transition-opacity'}`}
   data-category={server.category}
   data-region={server.region}
   data-status={server.status}
@@ -48,11 +49,9 @@ const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-9
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
 
     <!-- Status badge top-right -->
-    {server.status === 'released' && (
-      <div class="absolute top-3 right-3 z-10">
-        <StatusBadge status={server.status} />
-      </div>
-    )}
+    <div class="absolute top-3 right-3 z-10">
+      <StatusBadge status={server.status} />
+    </div>
 
     <!-- Large centered icon letter -->
     <div class="relative z-10">
@@ -69,13 +68,10 @@ const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-9
   <!-- Card body -->
   <div class="relative p-5">
     <!-- Title -->
-    <div class="flex items-start justify-between gap-3">
-      <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors name-bilingual">
-        <span class="name-en">{server.name.en}</span>
-        <span class="name-zh">{server.name.zh}</span>
-      </h3>
-      {server.status !== 'released' && <StatusBadge status={server.status} />}
-    </div>
+    <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors name-bilingual">
+      <span class="name-en">{server.name.en}</span>
+      <span class="name-zh">{server.name.zh}</span>
+    </h3>
 
     <!-- Description (line-clamped to 2) -->
     <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-en">{truncatedEn}</p>

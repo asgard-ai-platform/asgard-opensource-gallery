@@ -27,11 +27,12 @@ const typeGradients: Record<string, string> = {
   algorithm: 'from-orange-600 to-amber-900',
 };
 const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-900';
+const isReleased = skill.status === 'released';
 ---
 
 <a
   href={`/skills/${skill.slug}/`}
-  class="card-hover group block bg-card border border-border rounded-xl overflow-hidden"
+  class={`card-hover group block bg-card border rounded-xl overflow-hidden ${isReleased ? 'border-border' : 'border-border/50 opacity-60 hover:opacity-100 transition-opacity'}`}
   data-category={skill.category}
   data-region={skill.region || 'global'}
   data-status={skill.status}
@@ -48,11 +49,9 @@ const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-9
   <div class={`relative h-40 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
 
-    {skill.status === 'released' && (
-      <div class="absolute top-3 right-3 z-10">
-        <StatusBadge status={skill.status} />
-      </div>
-    )}
+    <div class="absolute top-3 right-3 z-10">
+      <StatusBadge status={skill.status} />
+    </div>
 
     <div class="relative z-10">
       {skill.icon ? (
@@ -67,17 +66,14 @@ const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-9
 
   <!-- Card body -->
   <div class="relative p-5">
-    <div class="flex items-start justify-between gap-3">
-      <div>
-        <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors name-bilingual">
-          <span class="name-en">{skill.name.en}</span>
-          <span class="name-zh">{skill.name.zh}</span>
-        </h3>
-        <span class={`text-xs font-medium ${typeColors[skill.skill_type] || 'text-muted-foreground'}`}>
-          {skill.skill_type}
-        </span>
-      </div>
-      {skill.status !== 'released' && <StatusBadge status={skill.status} />}
+    <div>
+      <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors name-bilingual">
+        <span class="name-en">{skill.name.en}</span>
+        <span class="name-zh">{skill.name.zh}</span>
+      </h3>
+      <span class={`text-xs font-medium ${typeColors[skill.skill_type] || 'text-muted-foreground'}`}>
+        {skill.skill_type}
+      </span>
     </div>
 
     <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-en">{truncatedEn}</p>
