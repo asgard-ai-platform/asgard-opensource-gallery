@@ -3926,8 +3926,8 @@ skills:
       en: "Schema.org Structured Data"
       zh: "Schema.org 結構化資料"
     description:
-      en: "Implement Schema."
-      zh: "演算法技能：Schema.org Structured Data 分析與應用。"
+      en: "Implement Schema.org structured data markup in JSON-LD format for enhanced search results."
+      zh: "實作 Schema.org 結構化資料標記（JSON-LD 格式），提升搜尋結果呈現。"
     status: released
     category: algorithm
     skill_type: algorithm
