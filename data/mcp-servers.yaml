@@ -94,7 +94,7 @@ servers:
     maintainer: asgard-ai-platform
 
   # ============================================================
-  # M-02 Taiwan Payments & Invoicing (4) → Njord
+  # M-02 Taiwan Payments & Invoicing (6) → Njord
   # ============================================================
   - slug: mcp-ecpay
     name: "ECPay"
@@ -115,10 +115,11 @@ servers:
     description:
       en: "MCP Server for NewebPay payment gateway, providing payment integration and transaction management for AI agents."
       zh: "藍新金流 NewebPay MCP Server，為 AI 代理提供金流整合與交易管理功能。"
-    status: coming-soon
+    status: released
     category: payment
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-newebpay
+    tools_count: 8
     tags: [payment, gateway, taiwan]
     upgrade_to: Njord
     maintainer: asgard-ai-platform
@@ -137,21 +138,50 @@ servers:
     plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
 
-  - slug: mcp-tw-realprice
+  - slug: mcp-tw-lvr
     name: "Taiwan Real Price Registry"
     description:
-      en: "MCP Server for Taiwan's real estate transaction price registry, providing property price data and market insights for AI agents."
-      zh: "台灣實價登錄 MCP Server，為 AI 代理提供不動產交易價格資料與市場洞察。"
-    status: coming-soon
+      en: "MCP Server for querying Taiwan's real estate transaction registry (實價登錄) via lvr.land.moi.gov.tw, providing property price data and market insights for AI agents."
+      zh: "台灣實價登錄 MCP Server，透過內政部實價登錄網站查詢不動產交易價格資料與市場洞察。"
+    status: released
     category: data
     region: taiwan
-    github: https://github.com/asgard-ai-platform/mcp-tw-realprice
+    github: https://github.com/asgard-ai-platform/mcp-tw-lvr
+    tools_count: 1
     tags: [real-estate, open-data, taiwan]
     upgrade_to: Njord
     maintainer: asgard-ai-platform
 
+  - slug: mcp-ezpay-einvoice
+    name: "ezPay E-Invoice"
+    description:
+      en: "MCP Server for Taiwan's ezPay E-Invoice API — 7 AI-callable tools for invoice issuance (B2B/B2C), voiding, allowances, and querying via Model Context Protocol."
+      zh: "ezPay 電子發票 MCP Server — 7 個 AI 可呼叫工具，涵蓋開立發票（B2B/B2C）、作廢、折讓與查詢。"
+    status: released
+    category: payment
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-ezpay-einvoice
+    tools_count: 7
+    tags: [invoice, e-invoice, taiwan]
+    upgrade_to: Njord
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-universalec-e-invoice
+    name: "Universal EC E-Invoice"
+    description:
+      en: "MCP Server for Taiwan e-invoice (Universal EC / 汎宇電商) — 27 AI-callable tools covering all POS Web Service function codes (MIG 4.1)."
+      zh: "汎宇電商台灣電子發票 MCP Server — 27 個 AI 可呼叫工具，涵蓋所有 POS Web Service 功能碼（開立、作廢、折讓、查詢）。"
+    status: released
+    category: payment
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-universalec-e-invoice
+    tools_count: 27
+    tags: [invoice, e-invoice, pos, taiwan]
+    upgrade_to: Njord
+    maintainer: asgard-ai-platform
+
   # ============================================================
-  # M-03 Taiwan Government Data (4) → Mimir
+  # M-03 Taiwan Government & Open Data (6) → Mimir
   # ============================================================
   - slug: mcp-tw-company-reg
     name: "Taiwan Company Registration"
@@ -202,6 +232,34 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-tw-health-insurance
     tags: [government, health, insurance]
+    upgrade_to: Mimir
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-ly
+    name: "Taiwan Legislative Yuan"
+    description:
+      en: "MCP Server for Taiwan's Legislative Yuan open data — 18 tools for querying legislators, bills, meetings, interpellations, and IVOD entries."
+      zh: "立法院公開資料 MCP Server — 18 個工具查詢立委資料、法案、會議、質詢紀錄與 IVOD。"
+    status: released
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-ly
+    tools_count: 18
+    tags: [government, legislature, open-data, taiwan]
+    upgrade_to: Mimir
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-twfood
+    name: "Taiwan Agri Food Market"
+    description:
+      en: "MCP Server for twfood.cc — 6 AI-callable tools for Taiwan agricultural wholesale market price data including daily, weekly, monthly, and yearly reports."
+      zh: "台灣農產品批發市場即時價格 MCP Server — 6 個工具查詢日/週/月/年行情及跨市場比價。"
+    status: released
+    category: data
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-twfood
+    tools_count: 6
+    tags: [agriculture, food, market-data, taiwan]
     upgrade_to: Mimir
     maintainer: asgard-ai-platform
 
@@ -706,7 +764,7 @@ servers:
     maintainer: asgard-ai-platform
 
   # ============================================================
-  # M-13 Financial Data (4) → Njord
+  # M-13 Financial Data (5) → Njord
   # ============================================================
   - slug: mcp-twse-mops
     name: "TWSE MOPS"
@@ -764,8 +822,23 @@ servers:
     plugins: [finance-investment]
     maintainer: asgard-ai-platform
 
+  - slug: mcp-tdcc
+    name: "TDCC"
+    description:
+      en: "MCP Server for TDCC (Taiwan Depository & Clearing Corporation) — 8 AI-callable tools for Taiwan securities custody open data including shareholding distribution and fund NAV."
+      zh: "臺灣集中保管結算所 MCP Server — 8 個工具查詢股權分散表、庫存異動、境外基金淨值與電子投票等。"
+    status: released
+    category: finance
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tdcc
+    tools_count: 8
+    tags: [finance, securities, custody, taiwan]
+    upgrade_to: Njord
+    plugins: [finance-investment]
+    maintainer: asgard-ai-platform
+
   # ============================================================
-  # M-14 Logistics (4)
+  # M-14 Logistics (5)
   # ============================================================
   - slug: mcp-shippo
     name: "Shippo"
@@ -813,6 +886,19 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-family-pickup
     tags: [logistics, convenience-store, taiwan]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-ecpay-logistics
+    name: "ECPay Logistics"
+    description:
+      en: "MCP Server for ECPay logistics integration API — 3 tools for creating, querying, and cancelling logistics orders for convenience store pickup services."
+      zh: "綠界物流 MCP Server — 3 個工具：建立物流訂單、查詢訂單狀態、取消超商 C2C 訂單。"
+    status: released
+    category: ecommerce
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-ecpay-logistics
+    tools_count: 3
+    tags: [logistics, ecpay, convenience-store, taiwan]
     maintainer: asgard-ai-platform
 
   # ============================================================

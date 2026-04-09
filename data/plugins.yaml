@@ -8,7 +8,7 @@ plugins:
       en: "Ideal for Taiwan-based e-commerce businesses managing multiple storefronts across Shopline, 91APP, and CYBERBIZ with integrated ECPay payments and e-invoice compliance."
       zh: "適合在 Shopline、91APP 和 CYBERBIZ 上經營多家店面的台灣電商企業，整合綠界金流與電子發票合規。"
     mcp_servers: [mcp-shopline, mcp-91app, mcp-cyberbiz, mcp-ecpay, mcp-tw-einvoice]
-    skills: [skill-ecom-order-insight, skill-rfm-analysis, skill-inventory-health, skill-promo-roi]
+    skills: [skill-ecom-analytics, skill-ecom-rfm-analysis, skill-ecom-inventory-health, skill-ecom-promo-roi]
 
   - slug: brand-media-pr
     name: "Brand Media & PR"
@@ -20,7 +20,7 @@ plugins:
       zh: "適合行銷團隊在 PTT、Dcard 和台灣新聞媒體上監測品牌輿情，同時管理 Meta 廣告活動。"
     upgrade_to: Heimdall
     mcp_servers: [mcp-ptt, mcp-tw-news, mcp-dcard, mcp-meta-ads]
-    skills: [skill-media-monitoring, skill-pr-crisis, skill-sentiment-analysis, skill-brand-tracking]
+    skills: [skill-pr-media-monitoring, skill-pr-crisis-communication, skill-algo-social-sentiment, skill-biz-brand-positioning]
 
   - slug: smart-manufacturing
     name: "Smart Manufacturing"
@@ -32,7 +32,7 @@ plugins:
       zh: "專為整合工業物聯網感測器、ThingsBoard 儀表板與 Node-RED 自動化的製造營運設計，實現即時生產監控。"
     upgrade_to: Bragi
     mcp_servers: [mcp-industrial-iot, mcp-thingsboard, mcp-node-red]
-    skills: [skill-oee-analysis, skill-maintenance-predict, skill-quality-control, skill-energy-optimization]
+    skills: [skill-mfg-oee-analysis, skill-mfg-predictive-maintenance, skill-mfg-production-planning, skill-algo-mfg-cpk]
 
   - slug: data-insight
     name: "Data Insight"
@@ -44,7 +44,7 @@ plugins:
       zh: "為數據驅動團隊打造，運用 Google Analytics 4、Meta Ads、Google Ads 和 WooCommerce 資料優化行銷花費與轉換漏斗。"
     upgrade_to: Mimir
     mcp_servers: [mcp-ga4, mcp-meta-ads, mcp-google-ads, mcp-woocommerce]
-    skills: [skill-cohort-analysis, skill-attribution-model, skill-funnel-analysis, skill-campaign-roi]
+    skills: [skill-data-cohort-analysis, skill-mkt-ad-optimization, skill-ecom-analytics, skill-mkt-ab-testing]
 
   - slug: tw-startup-kit
     name: "Taiwan Startup Kit"
@@ -56,7 +56,7 @@ plugins:
       zh: "專為早期台灣新創設計，使用 Airtable 進行營運、HubSpot 進行銷售、104/CakeResume 進行人才招募。"
     upgrade_to: Basic-Lite
     mcp_servers: [mcp-airtable, mcp-hubspot, mcp-104, mcp-cakeresume]
-    skills: [skill-lean-canvas, skill-okr-framework, skill-customer-journey, skill-persona-creation]
+    skills: [skill-ops-business-model-canvas, skill-ops-okr-planning, skill-biz-customer-journey, skill-soc-user-research]
 
   - slug: agent-communication
     name: "Agent Communication"
@@ -68,7 +68,7 @@ plugins:
       zh: "適合透過 SendGrid 電郵活動、LINE 通知和 WhatsApp Business 訊息自動化客戶觸及的企業。"
     upgrade_to: Sindri
     mcp_servers: [mcp-sendgrid, mcp-line-notify, mcp-whatsapp-business]
-    skills: [skill-communication-plan, skill-stakeholder-map, skill-change-management]
+    skills: [skill-cs-notification-strategy, skill-soc-stakeholder, skill-ops-negotiation]
 
   - slug: sea-marketplace
     name: "SE Asia Marketplace"
@@ -79,7 +79,7 @@ plugins:
       en: "Built for sellers operating across Shopee, Lazada, and TikTok Shop in Southeast Asia with Omise and GrabPay payment integration."
       zh: "為在東南亞 Shopee、Lazada 和 TikTok Shop 上營運的賣家打造，整合 Omise 和 GrabPay 金流。"
     mcp_servers: [mcp-shopee, mcp-lazada, mcp-tiktok-shop, mcp-omise, mcp-grabpay]
-    skills: [skill-cross-sell, skill-price-optimization, skill-demand-forecast]
+    skills: [skill-ecom-conversational, skill-algo-price-dynamic, skill-algo-forecast-arima]
 
   - slug: finance-investment
     name: "Finance & Investment"
@@ -91,7 +91,7 @@ plugins:
       zh: "為投資分析師和金融專業人士設計，存取台灣證交所、櫃買中心、鉅亨網財經新聞與台灣企業財務資料。"
     upgrade_to: Njord
     mcp_servers: [mcp-twse-mops, mcp-tpex, mcp-cnyes, mcp-tw-company-fin]
-    skills: [skill-financial-modeling, skill-risk-assessment, skill-revenue-forecast]
+    skills: [skill-fin-modeling, skill-algo-risk-var, skill-algo-forecast-ensemble]
 
   - slug: customer-service-hub
     name: "Customer Service Hub"
@@ -103,7 +103,7 @@ plugins:
       zh: "適合使用 Zendesk、Freshdesk 或 Crisp 搭配漸強實驗室在台灣提供 LINE 客服的客服團隊。"
     upgrade_to: Sindri
     mcp_servers: [mcp-zendesk, mcp-freshdesk, mcp-crisp, mcp-crescendo-lab]
-    skills: [skill-ticket-routing, skill-knowledge-base, skill-sla-monitoring]
+    skills: [skill-cs-sop, skill-cs-chatbot-design, skill-cs-analytics]
 
   - slug: hospitality-ops
     name: "Hospitality Operations"
@@ -114,4 +114,4 @@ plugins:
       en: "Tailored for restaurant groups using iCHEF POS with EZTABLE and TableCheck reservation systems for unified dining operations management."
       zh: "專為使用 iCHEF POS 搭配 EZTABLE 和 TableCheck 訂位系統的餐飲集團設計，實現統一餐飲營運管理。"
     mcp_servers: [mcp-ichef, mcp-eztable, mcp-tablecheck]
-    skills: [skill-demand-forecast, skill-inventory-health, skill-customer-ltv]
+    skills: [skill-algo-forecast-arima, skill-ecom-inventory-health, skill-biz-cac-ltv]
