@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Yggdrasil** is a static open-source gallery site for the Asgard AI Platform ecosystem. It showcases 63 MCP Servers, 277 SKILLs, and 10 PlugIns, plus an Asgard AI Solution (Ecosystem) page describing the commercial product suite. All catalog content is YAML-driven; community contributors add entries via PRs.
+**Yggdrasil** is a static open-source gallery site for the Asgard AI Platform ecosystem. It showcases 69 MCP Servers, 263 SKILLs, and 10 PlugIns, plus an Asgard AI Solution (Ecosystem) page describing the commercial product suite. All catalog content is YAML-driven; community contributors add entries via PRs.
 
 - **Repo:** `asgard-ai-platform/asgard-opensource-gallery`
 - **Domain:** `vault.asgard-ai.com`
@@ -24,7 +24,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev          # Dev server at localhost:4321
-npm run build        # Build static site to dist/ (357 pages)
+npm run build        # Build static site to dist/ (349 pages)
 npm run preview      # Preview production build locally
 npm run validate     # YAML schema validation
 npx playwright test  # Run e2e tests (requires preview server on :4321)
@@ -34,8 +34,8 @@ npx playwright test  # Run e2e tests (requires preview server on :4321)
 
 ```
 data/
-  mcp-servers.yaml          # 63 MCP Server entries
-  skills.yaml               # 277 SKILL entries
+  mcp-servers.yaml          # 69 MCP Server entries
+  skills.yaml               # 263 SKILL entries
   plugins.yaml              # 10 PlugIn entries
 schemas/                    # JSON Schema for YAML validation
 scripts/
@@ -123,7 +123,7 @@ Categories: ecommerce, payment, analytics, communication, data, crm, restaurant,
 - **Sidebar** is `lg:sticky lg:top-24 lg:self-start` with `lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto`.
 - **Mobile menu** overlay and sidebar are rendered **outside** `<header>` to avoid stacking context issues. Z-index: overlay `z-[60]`, sidebar `z-[70]`.
 - **Ecosystem page** has its own image gallery JS with auto-rotation and dot navigation. Gallery uses `display:flex + flex:1` chain for height propagation.
-- **Build** generates 357 static pages (1 home + 1 ecosystem + 2 list + 340 detail + 10 plugin detail + 1 contribute + 1 plugins list + 1 404).
+- **Build** generates 349 static pages (1 home + 1 ecosystem + 2 list + 332 detail + 10 plugin detail + 1 contribute + 1 plugins list + 1 404).
 
 ## Naming Conventions
 
