@@ -7,13 +7,13 @@ servers:
       en: "Shopline"
       zh: "Shopline 電商平台"
     description:
-      en: "MCP Server for Shopline e-commerce platform, enabling product, order, and inventory management through AI agents."
-      zh: "Shopline 電商平台 MCP Server，支援透過 AI 代理進行商品、訂單與庫存管理。"
+      en: "MCP Server for Shopline e-commerce platform — 143 AI-callable tools (75 read + 68 write) covering orders, products, inventory, customers, promotions, and more."
+      zh: "Shopline 電商平台 MCP Server — 143 個 AI 可呼叫工具（75 讀 + 68 寫），涵蓋訂單、商品、庫存、顧客、促銷等。"
     status: released
     category: ecommerce
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-shopline
-    tools_count: 19
+    tools_count: 143
     tags: [ecommerce, shopline, taiwan]
     plugins: [tw-ecommerce-ops]
     maintainer: asgard-ai-platform
