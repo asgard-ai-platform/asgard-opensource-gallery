@@ -34,7 +34,7 @@ const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-9
   data-category={server.category}
   data-region={server.region}
   data-status={server.status}
-  data-name={server.name.toLowerCase()}
+  data-name={`${server.name.en} ${server.name.zh}`.toLowerCase()}
   data-slug={server.slug}
   data-tags={server.tags?.join(',') || ''}
   data-description={searchDesc}
@@ -60,7 +60,7 @@ const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-9
         <img src={`/icons/${server.icon}`} alt="" class="h-16 w-16 rounded-xl" />
       ) : (
         <div class="h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10">
-          {server.name.charAt(0)}
+          {server.name.en.charAt(0)}
         </div>
       )}
     </div>
@@ -70,7 +70,10 @@ const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-9
   <div class="relative p-5">
     <!-- Title -->
     <div class="flex items-start justify-between gap-3">
-      <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors">{server.name}</h3>
+      <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors name-bilingual">
+        <span class="name-en">{server.name.en}</span>
+        <span class="name-zh">{server.name.zh}</span>
+      </h3>
       {server.status !== 'released' && <StatusBadge status={server.status} />}
     </div>
 
@@ -95,6 +98,9 @@ const gradient = gradientColors[server.category] || 'from-green-600 to-emerald-9
         <span class="text-muted-foreground">
           {server.tools_count} <span class="lang-en">tools</span><span class="lang-zh">工具</span>
         </span>
+      )}
+      {server.maintainer && (
+        <span class="ml-auto text-muted-foreground/70">by @{server.maintainer}</span>
       )}
     </div>
 

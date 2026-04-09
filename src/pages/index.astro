@@ -147,18 +147,20 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
     </div>
   </section>
 
-  {/* How to Contribute */}
+  {/* How to Get Listed */}
   <section class="border-t border-border bg-card/30 py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-2xl font-bold mb-10 text-gradient">
-        <span class="lang-en">Contribute to the Ecosystem</span><span class="lang-zh">貢獻到生態系</span>
+        <span class="lang-en">Get Your Project Listed</span><span class="lang-zh">申請你的專案上架</span>
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
         <div class="glass-card rounded-xl p-6">
           <div class="text-4xl font-bold text-gradient mb-3">1</div>
-          <div class="font-semibold text-foreground">Fork</div>
+          <div class="font-semibold text-foreground">
+            <span class="lang-en">Open Source</span><span class="lang-zh">開源專案</span>
+          </div>
           <div class="text-sm text-muted-foreground mt-1">
-            <span class="lang-en">Fork the repository</span><span class="lang-zh">Fork 此倉庫</span>
+            <span class="lang-en">Publish your project as a public repo</span><span class="lang-zh">將專案發佈為公開 Repo</span>
           </div>
         </div>
         <div class="glass-card rounded-xl p-6">
@@ -167,7 +169,7 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
             <span class="lang-en">Add YAML</span><span class="lang-zh">新增 YAML</span>
           </div>
           <div class="text-sm text-muted-foreground mt-1">
-            <span class="lang-en">Add your tool entry</span><span class="lang-zh">新增你的工具條目</span>
+            <span class="lang-en">Fork this repo, add your entry</span><span class="lang-zh">Fork 此 Repo，新增條目</span>
           </div>
         </div>
         <div class="glass-card rounded-xl p-6">
@@ -176,12 +178,12 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
             <span class="lang-en">Submit PR</span><span class="lang-zh">提交 PR</span>
           </div>
           <div class="text-sm text-muted-foreground mt-1">
-            <span class="lang-en">CI validates automatically</span><span class="lang-zh">CI 自動驗證</span>
+            <span class="lang-en">CI validates, team reviews &amp; merges</span><span class="lang-zh">CI 驗證，團隊審核合併</span>
           </div>
         </div>
       </div>
       <a href="/contribute/" class="mt-10 inline-block btn-gradient px-6 py-3 rounded-lg text-sm font-semibold">
-        <span class="lang-en">Learn How to Contribute</span><span class="lang-zh">了解如何貢獻</span>
+        <span class="lang-en">Submit a Listing &rarr;</span><span class="lang-zh">申請上架 &rarr;</span>
       </a>
     </div>
   </section>

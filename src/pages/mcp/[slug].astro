@@ -24,7 +24,7 @@ const related = allServers
 ---
 
 <BaseLayout
-  title={server.name}
+  title={server.name.en}
   description={server.description.en}
 >
   <Fragment slot="head">
@@ -45,12 +45,15 @@ const related = allServers
         <img src={`/icons/${server.icon}`} alt="" class="h-16 w-16 rounded-xl" />
       ) : (
         <div class="h-16 w-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl border border-border">
-          {server.name.charAt(0)}
+          {server.name.en.charAt(0)}
         </div>
       )}
       <div>
         <div class="flex items-center gap-3">
-          <h1 class="text-3xl font-bold text-foreground">{server.name}</h1>
+          <h1 class="text-3xl font-bold text-foreground name-bilingual">
+            <span class="name-en">{server.name.en}</span>
+            <span class="name-zh">{server.name.zh}</span>
+          </h1>
           <StatusBadge status={server.status} />
         </div>
         <div class="mt-2 flex flex-wrap gap-2 text-sm">
@@ -142,7 +145,10 @@ const related = allServers
         <div class="space-y-2">
           {plugins.map((p) => (
             <a href={`/plugins/${p.slug}/`} class="block glass-card rounded-lg p-4 hover:border-primary/40 transition-colors">
-              <div class="font-medium text-foreground">{p.name}</div>
+              <div class="font-medium text-foreground name-bilingual" style="flex-direction:row;gap:0.5rem;align-items:baseline;">
+                <span class="name-en">{p.name.en}</span>
+                <span class="name-zh">{p.name.zh}</span>
+              </div>
               <div class="text-sm text-muted-foreground mt-1 lang-en">{p.description.en}</div>
               <div class="text-sm text-muted-foreground mt-1 lang-zh">{p.description.zh}</div>
             </a>

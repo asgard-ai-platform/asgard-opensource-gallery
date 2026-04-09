@@ -10,7 +10,14 @@
         "required": ["slug", "name", "description", "scenario", "mcp_servers", "skills"],
         "properties": {
           "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "name": { "type": "string" },
+          "name": {
+            "type": "object",
+            "required": ["en", "zh"],
+            "properties": {
+              "en": { "type": "string" },
+              "zh": { "type": "string" }
+            }
+          },
           "description": {
             "type": "object",
             "required": ["en", "zh"],

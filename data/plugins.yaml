@@ -1,6 +1,8 @@
 plugins:
   - slug: tw-ecommerce-ops
-    name: "Taiwan E-Commerce Operations"
+    name:
+      en: "Taiwan E-Commerce Operations"
+      zh: "台灣電商營運"
     description:
       en: "Complete Taiwan e-commerce operations bundle covering multi-platform store management, payment processing, and electronic invoicing for seamless online retail."
       zh: "完整的台灣電商營運組合包，涵蓋多平台商店管理、金流處理與電子發票，實現無縫線上零售。"
@@ -11,7 +13,9 @@ plugins:
     skills: [skill-ecom-analytics, skill-ecom-rfm-analysis, skill-ecom-inventory-health, skill-ecom-promo-roi]
 
   - slug: brand-media-pr
-    name: "Brand Media & PR"
+    name:
+      en: "Brand Media & PR"
+      zh: "品牌媒體與公關"
     description:
       en: "Brand monitoring and public relations bundle combining Taiwan social media tracking, news monitoring, and advertising analytics for comprehensive brand management."
       zh: "品牌監測與公關組合包，結合台灣社群媒體追蹤、新聞監測與廣告分析，實現全面品牌管理。"
@@ -23,19 +27,23 @@ plugins:
     skills: [skill-pr-media-monitoring, skill-pr-crisis-communication, skill-algo-social-sentiment, skill-biz-brand-positioning]
 
   - slug: smart-manufacturing
-    name: "Smart Manufacturing"
+    name:
+      en: "Smart Manufacturing"
+      zh: "智慧製造"
     description:
       en: "Industrial IoT and smart manufacturing bundle providing sensor data integration, workflow automation, and predictive maintenance capabilities for modern factories."
       zh: "工業物聯網與智慧製造組合包，提供感測器資料整合、工作流自動化與預測性維護功能，適用於現代化工廠。"
     scenario:
       en: "Designed for manufacturing operations integrating Industrial IoT sensors with ThingsBoard dashboards and Node-RED automation for real-time production monitoring."
       zh: "專為整合工業物聯網感測器、ThingsBoard 儀表板與 Node-RED 自動化的製造營運設計，實現即時生產監控。"
-    upgrade_to: Bragi
+    upgrade_to: Asgard
     mcp_servers: [mcp-industrial-iot, mcp-thingsboard, mcp-node-red]
     skills: [skill-mfg-oee-analysis, skill-mfg-predictive-maintenance, skill-mfg-production-planning, skill-algo-mfg-cpk]
 
   - slug: data-insight
-    name: "Data Insight"
+    name:
+      en: "Data Insight"
+      zh: "數據洞察"
     description:
       en: "Comprehensive data analytics bundle combining web analytics, advertising platforms, and e-commerce data for unified business intelligence and marketing optimization."
       zh: "全方位數據分析組合包，結合網站分析、廣告平台與電商數據，實現統一商業情報與行銷優化。"
@@ -47,19 +55,23 @@ plugins:
     skills: [skill-data-cohort-analysis, skill-mkt-ad-optimization, skill-ecom-analytics, skill-mkt-ab-testing]
 
   - slug: tw-startup-kit
-    name: "Taiwan Startup Kit"
+    name:
+      en: "Taiwan Startup Kit"
+      zh: "台灣新創工具包"
     description:
       en: "Essential toolkit for Taiwan startups combining project management, CRM, and talent acquisition platforms for lean team operations."
       zh: "台灣新創必備工具包，結合專案管理、CRM 與人才招募平台，實現精實團隊運營。"
     scenario:
       en: "Tailored for early-stage Taiwan startups using Airtable for operations, HubSpot for sales, and 104/CakeResume for talent recruitment."
       zh: "專為早期台灣新創設計，使用 Airtable 進行營運、HubSpot 進行銷售、104/CakeResume 進行人才招募。"
-    upgrade_to: Basic-Lite
+    upgrade_to: Asgard
     mcp_servers: [mcp-airtable, mcp-hubspot, mcp-104, mcp-cakeresume]
     skills: [skill-ops-business-model-canvas, skill-ops-okr-planning, skill-biz-customer-journey, skill-soc-user-research]
 
   - slug: agent-communication
-    name: "Agent Communication"
+    name:
+      en: "Agent Communication"
+      zh: "AI 代理通訊"
     description:
       en: "Multi-channel communication bundle enabling AI agents to send emails, push notifications, and messages across SendGrid, LINE, and WhatsApp."
       zh: "多通路溝通組合包，讓 AI 代理透過 SendGrid、LINE 和 WhatsApp 發送電子郵件、推播通知與訊息。"
@@ -71,7 +83,9 @@ plugins:
     skills: [skill-cs-notification-strategy, skill-soc-stakeholder, skill-ops-negotiation]
 
   - slug: sea-marketplace
-    name: "SE Asia Marketplace"
+    name:
+      en: "SE Asia Marketplace"
+      zh: "東南亞電商市集"
     description:
       en: "Southeast Asian marketplace bundle covering Shopee, Lazada, and TikTok Shop with integrated regional payment solutions for cross-border e-commerce."
       zh: "東南亞電商市集組合包，涵蓋 Shopee、Lazada 和 TikTok Shop，整合區域金流方案實現跨境電商。"
@@ -82,19 +96,23 @@ plugins:
     skills: [skill-ecom-conversational, skill-algo-price-dynamic, skill-algo-forecast-arima]
 
   - slug: finance-investment
-    name: "Finance & Investment"
+    name:
+      en: "Finance & Investment"
+      zh: "金融與投資"
     description:
       en: "Taiwan financial data bundle providing access to stock exchange data, OTC market information, financial news, and corporate financial statements."
       zh: "台灣金融資料組合包，提供證交所資料、櫃買市場資訊、財經新聞與企業財務報表存取。"
     scenario:
       en: "Designed for investment analysts and financial professionals accessing TWSE, TPEx, Cnyes financial news, and Taiwan corporate financial data."
       zh: "為投資分析師和金融專業人士設計，存取台灣證交所、櫃買中心、鉅亨網財經新聞與台灣企業財務資料。"
-    upgrade_to: Njord
+    upgrade_to: Asgard
     mcp_servers: [mcp-twse-mops, mcp-tpex, mcp-cnyes, mcp-tw-company-fin]
     skills: [skill-fin-modeling, skill-algo-risk-var, skill-algo-forecast-ensemble]
 
   - slug: customer-service-hub
-    name: "Customer Service Hub"
+    name:
+      en: "Customer Service Hub"
+      zh: "客服中心"
     description:
       en: "Unified customer service bundle integrating global helpdesk platforms with Taiwan-specific LINE customer engagement for comprehensive support operations."
       zh: "統一客服組合包，整合全球客服平台與台灣 LINE 客戶互動，實現全面的客戶支援營運。"
@@ -106,7 +124,9 @@ plugins:
     skills: [skill-cs-sop, skill-cs-chatbot-design, skill-cs-analytics]
 
   - slug: hospitality-ops
-    name: "Hospitality Operations"
+    name:
+      en: "Hospitality Operations"
+      zh: "餐旅營運"
     description:
       en: "Restaurant and hospitality operations bundle combining POS, reservation, and guest management platforms for seamless dining service operations."
       zh: "餐飲與餐旅營運組合包，結合 POS、訂位與賓客管理平台，實現無縫用餐服務營運。"
