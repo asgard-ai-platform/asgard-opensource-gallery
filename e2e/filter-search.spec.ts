@@ -60,7 +60,7 @@ test.describe('FilterBar & Search - Desktop', () => {
     const resultCount = page.locator('#result-count');
     await expect(resultCount).toBeVisible();
     const text = await resultCount.textContent();
-    expect(text).toMatch(/Showing \d+ of \d+/);
+    expect(text).toMatch(/Showing \d+-\d+ of \d+/);
   });
 
   test('Skills page: skill type filter exists', async ({ page }) => {

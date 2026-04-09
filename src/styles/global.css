@@ -94,6 +94,46 @@
   }
 }
 
+/* Pagination buttons */
+.pg-btn {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #86a68a;
+  border: 1px solid rgba(74, 222, 128, 0.12);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.pg-btn:hover:not(.pg-disabled):not(.pg-active) {
+  border-color: rgba(74, 222, 128, 0.4);
+  color: #e8f5e9;
+}
+.pg-active {
+  background: linear-gradient(to right, #22c55e, #06b6d4);
+  color: #000;
+  border-color: transparent;
+  font-weight: 600;
+}
+.pg-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.pg-ellipsis {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #86a68a;
+  font-size: 0.875rem;
+}
+
 /* i18n: Language switching */
 [data-lang="en"] .lang-zh { display: none !important; }
 [data-lang="zh"] .lang-en { display: none !important; }
