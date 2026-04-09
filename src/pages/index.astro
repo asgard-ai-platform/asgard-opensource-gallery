@@ -11,7 +11,9 @@ const servers = getMcpServers();
 const skills = getSkills();
 const plugins = getPlugIns();
 
-const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
+const releasedMcp = servers.filter((s) => s.status === 'released');
+const releasedSkills = skills.filter((s) => s.status === 'released');
+const featured = releasedMcp.slice(0, 6);
 ---
 
 <BaseLayout title="Home" description="Open Source MCP Servers, SKILLs & PlugIns for the AI-native enterprise">
@@ -27,7 +29,11 @@ const featured = servers.filter((s) => s.status === 'released').slice(0, 6);
   </Fragment>
 
   <Hero />
-  <StatsBar mcpCount={servers.length} skillCount={skills.length} pluginCount={plugins.length} />
+  <StatsBar
+    mcpReleased={releasedMcp.length} mcpTotal={servers.length}
+    skillReleased={releasedSkills.length} skillTotal={skills.length}
+    pluginCount={plugins.length}
+  />
 
   {/* Featured / Recently Released */}
   {featured.length > 0 && (
