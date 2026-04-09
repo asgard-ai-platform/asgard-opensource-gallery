@@ -3,8 +3,8 @@
 //
 // Products in ONLINE_UPGRADE_PRODUCTS have a dedicated product page at
 // /products/{lowercase}. Everything else falls back to the products listing
-// page (e.g. tiers like "Basic-Lite", or products that have not yet launched
-// such as "Bragi" and "Njord"). When a new product launches, add its name to
+// page (e.g. products that have not yet launched
+// such as "Asgard"). When a new product launches, add its name to
 // ONLINE_UPGRADE_PRODUCTS.
 
 const ONLINE_UPGRADE_PRODUCTS = new Set([

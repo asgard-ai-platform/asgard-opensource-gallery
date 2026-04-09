@@ -17,14 +17,17 @@ const { plugin } = Astro.props;
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
     <div class="relative z-10">
       <div class="h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10">
-        {plugin.name.charAt(0)}
+        {plugin.name.en.charAt(0)}
       </div>
     </div>
   </div>
 
   <!-- Card body -->
   <div class="relative p-5">
-    <h3 class="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{plugin.name}</h3>
+    <h3 class="font-semibold text-foreground text-lg group-hover:text-primary transition-colors name-bilingual">
+      <span class="name-en">{plugin.name.en}</span>
+      <span class="name-zh">{plugin.name.zh}</span>
+    </h3>
     <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-en">
       {plugin.scenario.en}
     </p>

@@ -25,9 +25,12 @@ const pluginSkills = allSkills.filter((s) => plugin.skills.includes(s.slug));
 const upgradeLink = plugin.upgrade_to ? getUpgradeLink(plugin.upgrade_to) : null;
 ---
 
-<BaseLayout title={plugin.name} description={plugin.description.en}>
+<BaseLayout title={plugin.name.en} description={plugin.description.en}>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold mb-3 text-gradient">{plugin.name}</h1>
+    <h1 class="text-3xl font-bold mb-3 text-gradient name-bilingual">
+      <span class="name-en">{plugin.name.en}</span>
+      <span class="name-zh">{plugin.name.zh}</span>
+    </h1>
     <p class="text-muted-foreground mb-4 lang-en">{plugin.scenario.en}</p>
     <p class="text-muted-foreground mb-4 lang-zh">{plugin.scenario.zh}</p>
 

@@ -36,7 +36,7 @@ const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-9
   data-region={skill.region || 'global'}
   data-status={skill.status}
   data-skilltype={skill.skill_type}
-  data-name={skill.name.toLowerCase()}
+  data-name={`${skill.name.en} ${skill.name.zh}`.toLowerCase()}
   data-slug={skill.slug}
   data-tags={skill.tags?.join(',') || ''}
   data-description={searchDesc}
@@ -59,7 +59,7 @@ const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-9
         <img src={`/icons/${skill.icon}`} alt="" class="h-16 w-16 rounded-xl" />
       ) : (
         <div class="h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10">
-          {skill.name.charAt(0)}
+          {skill.name.en.charAt(0)}
         </div>
       )}
     </div>
@@ -69,7 +69,10 @@ const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-9
   <div class="relative p-5">
     <div class="flex items-start justify-between gap-3">
       <div>
-        <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors">{skill.name}</h3>
+        <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors name-bilingual">
+          <span class="name-en">{skill.name.en}</span>
+          <span class="name-zh">{skill.name.zh}</span>
+        </h3>
         <span class={`text-xs font-medium ${typeColors[skill.skill_type] || 'text-muted-foreground'}`}>
           {skill.skill_type}
         </span>
@@ -94,6 +97,9 @@ const gradient = typeGradients[skill.skill_type] || 'from-green-600 to-emerald-9
         <span class="px-2 py-0.5 bg-primary/10 text-primary rounded">
           <span class="lang-en">Contains Script</span><span class="lang-zh">含腳本</span>
         </span>
+      )}
+      {skill.maintainer && (
+        <span class="ml-auto text-muted-foreground/70">by @{skill.maintainer}</span>
       )}
     </div>
 

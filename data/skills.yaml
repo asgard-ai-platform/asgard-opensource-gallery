@@ -3,7 +3,9 @@ skills:
   # E-Commerce Industry Skills (7)
   # ============================================================
   - slug: skill-ecom-analytics
-    name: "E-Commerce Analytics"
+    name:
+      en: "E-Commerce Analytics"
+      zh: "電商數據分析"
     description:
       en: "Analyze e-commerce performance using GA4 metrics, conversion funnel analysis, and key e-commerce KPIs."
       zh: "電商技能：E-Commerce Analytics 分析與應用。"
@@ -16,7 +18,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ecom-conversational
-    name: "Conversational Commerce"
+    name:
+      en: "Conversational Commerce"
+      zh: "對話式商務"
     description:
       en: "Design conversational commerce experiences across messaging platforms including chatbot flows, product cards, and conversion strategies."
       zh: "電商技能：Conversational Commerce 分析與應用。"
@@ -29,7 +33,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ecom-inventory-health
-    name: "Inventory Health Analysis"
+    name:
+      en: "Inventory Health Analysis"
+      zh: "庫存健康分析"
     description:
       en: "Analyze inventory health using turnover ratios, ABC classification, safety stock calculations, and stockout vs overstock diagnostics."
       zh: "電商技能：Inventory Health Analysis 分析與應用。"
@@ -42,7 +48,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ecom-multilingual-listing
-    name: "Multilingual Listing Optimization"
+    name:
+      en: "Multilingual Listing Optimization"
+      zh: "多語系商品優化"
     description:
       en: "Optimize multilingual product listings for international e-commerce including SEO localization, machine translation workflows, and cultural adaptation."
       zh: "電商技能：Multilingual Listing Optimization 分析與應用。"
@@ -55,7 +63,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ecom-promo-roi
-    name: "Promotion ROI Analysis"
+    name:
+      en: "Promotion ROI Analysis"
+      zh: "促銷 ROI 分析"
     description:
       en: "Calculate and analyze promotional ROI including incremental sales lift, margin impact, and promo type comparison."
       zh: "電商技能：Promotion ROI Analysis 分析與應用。"
@@ -68,7 +78,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ecom-rfm-analysis
-    name: "RFM Analysis"
+    name:
+      en: "RFM Analysis"
+      zh: "RFM 客戶分群"
     description:
       en: "Perform RFM (Recency, Frequency, Monetary) customer segmentation from transaction data."
       zh: "電商技能：RFM Analysis 分析與應用。"
@@ -82,7 +94,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ecom-sea-strategy
-    name: "Southeast Asia E-Commerce Strategy"
+    name:
+      en: "Southeast Asia E-Commerce Strategy"
+      zh: "東南亞電商策略"
     description:
       en: "Develop e-commerce strategy for Southeast Asian markets including platform selection, payment infrastructure, logistics challenges, and localization requirements."
       zh: "電商技能：Southeast Asia E-Commerce Strategy 分析與應用。"
@@ -98,7 +112,9 @@ skills:
   # Finance Industry Skills (2)
   # ============================================================
   - slug: skill-fin-earnings-summary
-    name: "Earnings Call Summary & Analysis"
+    name:
+      en: "Earnings Call Summary & Analysis"
+      zh: "法說會摘要分析"
     description:
       en: "Summarize and analyze earnings calls (法說會) including financial highlights, management commentary, guidance, and analyst Q&A key takeaways."
       zh: "金融技能：Earnings Call Summary & Analysis 分析與應用。"
@@ -111,7 +127,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-fin-modeling
-    name: "Three-Statement Financial Modeling"
+    name:
+      en: "Three-Statement Financial Modeling"
+      zh: "三表財務建模"
     description:
       en: "Build three-statement financial models (Income Statement, Balance Sheet, Cash Flow) with revenue forecasting, assumption management, and scenario analysis."
       zh: "金融技能：Three-Statement Financial Modeling 分析與應用。"
@@ -127,7 +145,9 @@ skills:
   # Manufacturing Industry Skills (4)
   # ============================================================
   - slug: skill-mfg-oee-analysis
-    name: "OEE Analysis"
+    name:
+      en: "OEE Analysis"
+      zh: "OEE 設備效率分析"
     description:
       en: "Calculate and diagnose Overall Equipment Effectiveness (OEE) by decomposing into Availability, Performance, and Quality rates."
       zh: "製造技能：OEE Analysis 分析與應用。"
@@ -140,7 +160,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-mfg-predictive-maintenance
-    name: "Predictive Maintenance"
+    name:
+      en: "Predictive Maintenance"
+      zh: "預測性維護"
     description:
       en: "Design predictive maintenance strategies using sensor data, ML models for remaining useful life (RUL), and the P-F curve framework."
       zh: "製造技能：Predictive Maintenance 分析與應用。"
@@ -153,7 +175,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-mfg-production-planning
-    name: "Production Planning (MPS/MRP)"
+    name:
+      en: "Production Planning (MPS/MRP)"
+      zh: "生產排程（MPS/MRP）"
     description:
       en: "Design production plans using MPS (Master Production Schedule), MRP (Material Requirements Planning), and capacity planning."
       zh: "製造技能：Production Planning (MPS/MRP) 分析與應用。"
@@ -166,7 +190,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-mfg-supplier-scorecard
-    name: "Supplier Scorecard"
+    name:
+      en: "Supplier Scorecard"
+      zh: "供應商評分卡"
     description:
       en: "Evaluate and manage suppliers using weighted scorecards across quality, delivery, price, and service dimensions."
       zh: "製造技能：Supplier Scorecard 分析與應用。"
@@ -182,7 +208,9 @@ skills:
   # Customer Service Industry Skills (4)
   # ============================================================
   - slug: skill-cs-analytics
-    name: "Customer Service Analytics"
+    name:
+      en: "Customer Service Analytics"
+      zh: "客服數據分析"
     description:
       en: "Measure and optimize customer service performance using CSAT, NPS, CES, First Contact Resolution, and text mining on support tickets."
       zh: "客服技能：Customer Service Analytics 分析與應用。"
@@ -195,7 +223,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-cs-chatbot-design
-    name: "Chatbot Design"
+    name:
+      en: "Chatbot Design"
+      zh: "聊天機器人設計"
     description:
       en: "Design conversational AI chatbots including intent recognition, slot filling, dialogue flow, and response generation."
       zh: "客服技能：Chatbot Design 分析與應用。"
@@ -208,7 +238,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-cs-notification-strategy
-    name: "Notification Strategy"
+    name:
+      en: "Notification Strategy"
+      zh: "通知策略"
     description:
       en: "Design push notification and messaging strategies including channel selection, timing optimization, personalization, and fatigue management."
       zh: "客服技能：Notification Strategy 分析與應用。"
@@ -221,7 +253,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-cs-sop
-    name: "Customer Service SOP"
+    name:
+      en: "Customer Service SOP"
+      zh: "客服 SOP"
     description:
       en: "Design customer service operations including tiered support (L1/L2/L3), response templates, SLA definitions, escalation procedures, and complaint handling."
       zh: "客服技能：Customer Service SOP 分析與應用。"
@@ -237,7 +271,9 @@ skills:
   # PR & Media Industry Skills (5)
   # ============================================================
   - slug: skill-pr-crisis-communication
-    name: "Crisis Communication"
+    name:
+      en: "Crisis Communication"
+      zh: "危機溝通"
     description:
       en: "Manage crisis communication across prevention, response, and recovery phases using SCCT theory and crisis statement frameworks."
       zh: "公關媒體技能：Crisis Communication 分析與應用。"
@@ -250,7 +286,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-pr-crisis-response
-    name: "PR Crisis Management"
+    name:
+      en: "PR Crisis Management"
+      zh: "公關危機處理"
     description:
       en: "Manage PR crises using classification, golden hour response, crisis statement templates (3C framework), and reputation recovery planning."
       zh: "公關媒體技能：PR Crisis Management 分析與應用。"
@@ -263,7 +301,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-pr-media-monitoring
-    name: "Media Monitoring"
+    name:
+      en: "Media Monitoring"
+      zh: "媒體監測"
     description:
       en: "Set up and conduct media monitoring to track brand mentions, sentiment, and share of voice across news, social, and online channels."
       zh: "公關媒體技能：Media Monitoring 分析與應用。"
@@ -276,7 +316,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-pr-press-release
-    name: "Press Release Writing"
+    name:
+      en: "Press Release Writing"
+      zh: "新聞稿撰寫"
     description:
       en: "Write effective press releases using inverted pyramid structure, headline best practices, and media distribution strategy."
       zh: "公關媒體技能：Press Release Writing 分析與應用。"
@@ -289,7 +331,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-pr-social-copywriting
-    name: "Social Media Copywriting"
+    name:
+      en: "Social Media Copywriting"
+      zh: "社群文案撰寫"
     description:
       en: "Write platform-optimized social media copy for Instagram, Facebook, LinkedIn, and X/Twitter with hooks, CTAs, and hashtag strategies."
       zh: "公關媒體技能：Social Media Copywriting 分析與應用。"
@@ -305,7 +349,9 @@ skills:
   # Marketing Industry Skills (4)
   # ============================================================
   - slug: skill-mkt-ab-testing
-    name: "Marketing A/B Testing"
+    name:
+      en: "Marketing A/B Testing"
+      zh: "行銷 A/B 測試"
     description:
       en: "Design and execute marketing A/B tests for landing pages, email campaigns, ad creatives, and pricing with proper test design and result analysis."
       zh: "行銷技能：Marketing A/B Testing 分析與應用。"
@@ -319,7 +365,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-mkt-ad-optimization
-    name: "Digital Ad Optimization"
+    name:
+      en: "Digital Ad Optimization"
+      zh: "數位廣告優化"
     description:
       en: "Optimize digital advertising campaigns across Google Ads, Meta Ads, and LINE LAP including bidding strategies, audience targeting, creative testing, and ROAS optimization."
       zh: "行銷技能：Digital Ad Optimization 分析與應用。"
@@ -332,7 +380,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-mkt-content-calendar
-    name: "Content Calendar"
+    name:
+      en: "Content Calendar"
+      zh: "內容行事曆"
     description:
       en: "Build and manage content calendars for multi-platform content marketing including editorial planning, content type allocation, and team workflow."
       zh: "行銷技能：Content Calendar 分析與應用。"
@@ -345,7 +395,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-mkt-seo-audit
-    name: "SEO Audit"
+    name:
+      en: "SEO Audit"
+      zh: "SEO 稽核"
     description:
       en: "Conduct technical and on-page SEO audits covering crawlability, site speed, mobile-friendliness, and content optimization."
       zh: "行銷技能：SEO Audit 分析與應用。"
@@ -361,7 +413,9 @@ skills:
   # Taiwan-Specific Industry Skills (9)
   # ============================================================
   - slug: skill-tw-einvoice-guide
-    name: "Taiwan E-Invoice System (電子發票)"
+    name:
+      en: "Taiwan E-Invoice System (電子發票)"
+      zh: "台灣電子發票指南"
     description:
       en: "Implement Taiwan's e-invoice (電子發票) system including platform integration, B2B vs B2C formats, carrier consolidation, and tax filing reconciliation."
       zh: "台灣產業技能：Taiwan E-Invoice System (電子發票) 分析與應用。"
@@ -374,7 +428,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-fintech-compliance
-    name: "Taiwan Fintech Compliance"
+    name:
+      en: "Taiwan Fintech Compliance"
+      zh: "台灣金融科技合規"
     description:
       en: "Navigate Taiwan fintech regulations including FSC oversight, electronic payment laws, VASP rules, AML/KYC requirements, and the regulatory sandbox."
       zh: "台灣產業技能：Taiwan Fintech Compliance 分析與應用。"
@@ -387,7 +443,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-healthcare-regulations
-    name: "Taiwan Healthcare Regulations"
+    name:
+      en: "Taiwan Healthcare Regulations"
+      zh: "台灣醫療法規"
     description:
       en: "Navigate Taiwan healthcare regulations including NHI system, medical device classification, drug registration, telemedicine rules, and health data protection."
       zh: "台灣產業技能：Taiwan Healthcare Regulations 分析與應用。"
@@ -400,7 +458,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-manufacturing
-    name: "Taiwan Manufacturing Industry"
+    name:
+      en: "Taiwan Manufacturing Industry"
+      zh: "台灣製造業"
     description:
       en: "Analyze Taiwan's manufacturing industry structure including semiconductor, electronics, machinery, and petrochemical sectors."
       zh: "台灣產業技能：Taiwan Manufacturing Industry 分析與應用。"
@@ -413,7 +473,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-payment-integration
-    name: "Taiwan Payment Integration"
+    name:
+      en: "Taiwan Payment Integration"
+      zh: "台灣金流整合"
     description:
       en: "Integrate Taiwan payment service providers including credit card, ATM transfer, convenience store payment, and mobile wallets (LINE Pay, JKoPay)."
       zh: "台灣產業技能：Taiwan Payment Integration 分析與應用。"
@@ -426,7 +488,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-retail-landscape
-    name: "Taiwan Retail Landscape"
+    name:
+      en: "Taiwan Retail Landscape"
+      zh: "台灣零售生態"
     description:
       en: "Analyze Taiwan's retail industry including convenience stores, department stores, supermarkets, hypermarkets, and e-commerce with omnichannel trends."
       zh: "台灣產業技能：Taiwan Retail Landscape 分析與應用。"
@@ -439,7 +503,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-startup-legal
-    name: "Taiwan Company Registration & Legal Setup"
+    name:
+      en: "Taiwan Company Registration & Legal Setup"
+      zh: "台灣公司設立與法規"
     description:
       en: "Guide Taiwan company registration and legal setup including business entity selection, commercial registration, company registration, and tax ID application."
       zh: "台灣產業技能：Taiwan Company Registration & Legal Setup 分析與應用。"
@@ -452,7 +518,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-stock-analysis
-    name: "Taiwan Stock Fundamental Analysis"
+    name:
+      en: "Taiwan Stock Fundamental Analysis"
+      zh: "台灣股票基本面分析"
     description:
       en: "Analyze Taiwan-listed stocks using fundamental analysis including EPS, P/E ratio, dividend yield, and financial statement review."
       zh: "台灣產業技能：Taiwan Stock Fundamental Analysis 分析與應用。"
@@ -465,7 +533,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tw-tax-basics
-    name: "Taiwan Tax Basics"
+    name:
+      en: "Taiwan Tax Basics"
+      zh: "台灣稅務基礎"
     description:
       en: "Navigate Taiwan's tax system including corporate income tax (營所稅), business tax (營業稅), personal income tax, withholding obligations, and startup tax incentives."
       zh: "台灣產業技能：Taiwan Tax Basics 分析與應用。"
@@ -481,7 +551,9 @@ skills:
   # Cross-Border Industry Skills (2)
   # ============================================================
   - slug: skill-xborder-logistics
-    name: "Cross-Border Logistics"
+    name:
+      en: "Cross-Border Logistics"
+      zh: "跨境物流"
     description:
       en: "Design cross-border logistics strategies including direct mail, overseas warehousing, and bonded warehouse models for international e-commerce."
       zh: "跨境電商技能：Cross-Border Logistics 分析與應用。"
@@ -494,7 +566,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-xborder-sea-entry
-    name: "Southeast Asia Market Entry"
+    name:
+      en: "Southeast Asia Market Entry"
+      zh: "東南亞市場進入"
     description:
       en: "Plan Southeast Asia market entry including mode selection, regulatory requirements, cultural research, and go-to-market timeline."
       zh: "跨境電商技能：Southeast Asia Market Entry 分析與應用。"
@@ -510,7 +584,9 @@ skills:
   # Business Methodology Skills (22)
   # ============================================================
   - slug: skill-biz-4p-7p
-    name: "Marketing Mix: 4P / 7P"
+    name:
+      en: "Marketing Mix: 4P / 7P"
+      zh: "行銷組合 4P / 7P"
     description:
       en: "Apply the Marketing Mix (4P/7P) framework to design tactical marketing decisions across Product, Price, Place, Promotion — plus People, Process, Physical Evidence for services."
       zh: "商業方法論技能：Marketing Mix: 4P / 7P 分析與應用。"
@@ -523,7 +599,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-ansoff
-    name: "Ansoff Matrix (Growth Strategy)"
+    name:
+      en: "Ansoff Matrix (Growth Strategy)"
+      zh: "Ansoff 矩陣（成長策略）"
     description:
       en: "Apply Ansoff Matrix to evaluate growth strategy options across market and product dimensions."
       zh: "商業方法論技能：Ansoff Matrix (Growth Strategy) 分析與應用。"
@@ -536,7 +614,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-bcg-matrix
-    name: "BCG Growth-Share Matrix"
+    name:
+      en: "BCG Growth-Share Matrix"
+      zh: "BCG 成長-市佔矩陣"
     description:
       en: "Apply BCG Growth-Share Matrix to analyze a product or business unit portfolio for resource allocation decisions."
       zh: "商業方法論技能：BCG Growth-Share Matrix 分析與應用。"
@@ -549,7 +629,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-blue-ocean
-    name: "Blue Ocean Strategy"
+    name:
+      en: "Blue Ocean Strategy"
+      zh: "藍海策略"
     description:
       en: "Apply Blue Ocean Strategy to create uncontested market space through value innovation."
       zh: "商業方法論技能：Blue Ocean Strategy 分析與應用。"
@@ -562,7 +644,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-brand-positioning
-    name: "Brand Positioning"
+    name:
+      en: "Brand Positioning"
+      zh: "品牌定位"
     description:
       en: "Develop brand positioning strategy including positioning statements, perceptual maps, and brand personality/archetype analysis."
       zh: "商業方法論技能：Brand Positioning 分析與應用。"
@@ -575,7 +659,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-breakeven
-    name: "Break-Even Analysis"
+    name:
+      en: "Break-Even Analysis"
+      zh: "損益兩平分析"
     description:
       en: "Perform break-even analysis to determine the sales volume or revenue needed to cover all costs."
       zh: "商業方法論技能：Break-Even Analysis 分析與應用。"
@@ -589,7 +675,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-bsc
-    name: "Balanced Scorecard (BSC)"
+    name:
+      en: "Balanced Scorecard (BSC)"
+      zh: "平衡計分卡 BSC"
     description:
       en: "Apply the Balanced Scorecard (BSC) framework to translate strategy into measurable objectives across Financial, Customer, Internal Process, and Learning & Growth perspectives."
       zh: "商業方法論技能：Balanced Scorecard (BSC) 分析與應用。"
@@ -602,7 +690,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-cac-ltv
-    name: "CAC and LTV Analysis"
+    name:
+      en: "CAC and LTV Analysis"
+      zh: "CAC / LTV 分析"
     description:
       en: "Calculate and analyze Customer Acquisition Cost (CAC) and Customer Lifetime Value (LTV) to evaluate unit economics and marketing efficiency."
       zh: "商業方法論技能：CAC and LTV Analysis 分析與應用。"
@@ -616,7 +706,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-customer-journey
-    name: "Customer Journey Mapping"
+    name:
+      en: "Customer Journey Mapping"
+      zh: "顧客旅程地圖"
     description:
       en: "Map and analyze the customer journey across Awareness, Consideration, Decision, Usage, and Advocacy stages."
       zh: "商業方法論技能：Customer Journey Mapping 分析與應用。"
@@ -629,7 +721,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-dcf
-    name: "Discounted Cash Flow (DCF) Valuation"
+    name:
+      en: "Discounted Cash Flow (DCF) Valuation"
+      zh: "折現現金流估值 DCF"
     description:
       en: "Build Discounted Cash Flow (DCF) valuation models to estimate intrinsic value."
       zh: "商業方法論技能：Discounted Cash Flow (DCF) Valuation 分析與應用。"
@@ -643,7 +737,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-dupont
-    name: "DuPont Analysis"
+    name:
+      en: "DuPont Analysis"
+      zh: "杜邦分析"
     description:
       en: "Apply DuPont Analysis to decompose Return on Equity (ROE) into profitability, efficiency, and leverage components."
       zh: "商業方法論技能：DuPont Analysis 分析與應用。"
@@ -657,7 +753,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-financial-ratios
-    name: "Financial Ratio Analysis"
+    name:
+      en: "Financial Ratio Analysis"
+      zh: "財務比率分析"
     description:
       en: "Analyze financial health using ratio categories: profitability, liquidity, leverage, efficiency, and valuation."
       zh: "商業方法論技能：Financial Ratio Analysis 分析與應用。"
@@ -671,7 +769,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-lean-six-sigma
-    name: "Lean Six Sigma"
+    name:
+      en: "Lean Six Sigma"
+      zh: "精實六標準差"
     description:
       en: "Apply Lean and Six Sigma principles to eliminate waste and reduce process variation."
       zh: "商業方法論技能：Lean Six Sigma 分析與應用。"
@@ -684,7 +784,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-pestel
-    name: "PESTEL Analysis"
+    name:
+      en: "PESTEL Analysis"
+      zh: "PESTEL 分析"
     description:
       en: "Apply PESTEL framework to scan the macro-environment across Political, Economic, Social, Technological, Environmental, and Legal dimensions."
       zh: "商業方法論技能：PESTEL Analysis 分析與應用。"
@@ -697,7 +799,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-porters-five-forces
-    name: "Porter's Five Forces Analysis"
+    name:
+      en: "Porter's Five Forces Analysis"
+      zh: "波特五力分析"
     description:
       en: "Apply Porter's Five Forces framework to assess industry competitive dynamics and attractiveness."
       zh: "商業方法論技能：Porter's Five Forces Analysis 分析與應用。"
@@ -710,7 +814,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-pricing-strategy
-    name: "Pricing Strategy"
+    name:
+      en: "Pricing Strategy"
+      zh: "定價策略"
     description:
       en: "Analyze and design pricing strategies including cost-plus, value-based, competitive, penetration, and skimming approaches with psychological pricing techniques."
       zh: "商業方法論技能：Pricing Strategy 分析與應用。"
@@ -723,7 +829,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-stp
-    name: "STP: Segmentation, Targeting, Positioning"
+    name:
+      en: "STP: Segmentation, Targeting, Positioning"
+      zh: "STP 市場區隔定位"
     description:
       en: "Apply STP (Segmentation, Targeting, Positioning) framework for market strategy."
       zh: "商業方法論技能：STP: Segmentation, Targeting, Positioning 分析與應用。"
@@ -736,7 +844,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-supply-chain
-    name: "Supply Chain Analysis (SCOR Model)"
+    name:
+      en: "Supply Chain Analysis (SCOR Model)"
+      zh: "供應鏈分析（SCOR 模型）"
     description:
       en: "Analyze supply chain operations using the SCOR model across Plan, Source, Make, Deliver, and Return processes."
       zh: "商業方法論技能：Supply Chain Analysis (SCOR Model) 分析與應用。"
@@ -749,7 +859,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-swot
-    name: "SWOT Analysis with TOWS Matrix"
+    name:
+      en: "SWOT Analysis with TOWS Matrix"
+      zh: "SWOT 分析與 TOWS 矩陣"
     description:
       en: "Conduct SWOT analysis with TOWS matrix for strategic planning."
       zh: "商業方法論技能：SWOT Analysis with TOWS Matrix 分析與應用。"
@@ -762,7 +874,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-toc
-    name: "Theory of Constraints (TOC)"
+    name:
+      en: "Theory of Constraints (TOC)"
+      zh: "限制理論 TOC"
     description:
       en: "Apply Theory of Constraints (TOC) to identify and manage system bottlenecks."
       zh: "商業方法論技能：Theory of Constraints (TOC) 分析與應用。"
@@ -775,7 +889,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-unit-economics
-    name: "Unit Economics"
+    name:
+      en: "Unit Economics"
+      zh: "單位經濟分析"
     description:
       en: "Analyze unit economics to evaluate per-unit profitability and business model scalability."
       zh: "商業方法論技能：Unit Economics 分析與應用。"
@@ -789,7 +905,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-biz-value-chain
-    name: "Value Chain Analysis"
+    name:
+      en: "Value Chain Analysis"
+      zh: "價值鏈分析"
     description:
       en: "Apply Porter's Value Chain Analysis to identify competitive advantage sources within an organization's activities."
       zh: "商業方法論技能：Value Chain Analysis 分析與應用。"
@@ -805,7 +923,9 @@ skills:
   # Data & Analytics Methodology Skills (4)
   # ============================================================
   - slug: skill-data-cohort-analysis
-    name: "Cohort Analysis"
+    name:
+      en: "Cohort Analysis"
+      zh: "世代分析"
     description:
       en: "Conduct cohort analysis to track user behavior over time, build retention matrices, and compare cohort performance."
       zh: "數據分析技能：Cohort Analysis 分析與應用。"
@@ -818,7 +938,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-data-dashboard-design
-    name: "Dashboard Design"
+    name:
+      en: "Dashboard Design"
+      zh: "儀表板設計"
     description:
       en: "Design effective data dashboards with proper KPI hierarchy, chart type selection, and interactive features."
       zh: "數據分析技能：Dashboard Design 分析與應用。"
@@ -831,7 +953,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-data-financial-analysis
-    name: "Financial Statement Analysis"
+    name:
+      en: "Financial Statement Analysis"
+      zh: "財務報表分析"
     description:
       en: "Interpret the three core financial statements (income statement, balance sheet, cash flow statement) to assess business health and performance."
       zh: "數據分析技能：Financial Statement Analysis 分析與應用。"
@@ -844,7 +968,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-data-sql-optimization
-    name: "SQL Query Optimization"
+    name:
+      en: "SQL Query Optimization"
+      zh: "SQL 查詢優化"
     description:
       en: "Optimize SQL query performance using EXPLAIN analysis, indexing strategies, and common anti-pattern fixes."
       zh: "數據分析技能：SQL Query Optimization 分析與應用。"
@@ -860,7 +986,9 @@ skills:
   # Meta / Thinking Framework Skills (6)
   # ============================================================
   - slug: skill-meta-decision-analysis
-    name: "Decision Analysis"
+    name:
+      en: "Decision Analysis"
+      zh: "決策分析"
     description:
       en: "Apply structured decision analysis using decision matrices, decision trees, expected value, and multi-criteria decision analysis (MCDA)."
       zh: "思維框架技能：Decision Analysis 分析與應用。"
@@ -873,7 +1001,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-meta-first-principles
-    name: "First Principles Thinking"
+    name:
+      en: "First Principles Thinking"
+      zh: "第一性原理思維"
     description:
       en: "Apply first principles thinking to break problems down to fundamental truths and reason up from there."
       zh: "思維框架技能：First Principles Thinking 分析與應用。"
@@ -886,7 +1016,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-meta-mental-models
-    name: "Mental Models Toolkit"
+    name:
+      en: "Mental Models Toolkit"
+      zh: "心智模型工具箱"
     description:
       en: "Apply a latticework of mental models from multiple disciplines to improve decision quality."
       zh: "思維框架技能：Mental Models Toolkit 分析與應用。"
@@ -899,7 +1031,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-meta-scenario-planning
-    name: "Scenario Planning"
+    name:
+      en: "Scenario Planning"
+      zh: "情境規劃"
     description:
       en: "Conduct scenario planning to prepare for multiple plausible futures using driving forces, uncertainty axes, and the 2x2 scenario matrix."
       zh: "思維框架技能：Scenario Planning 分析與應用。"
@@ -912,7 +1046,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-meta-structured-problem
-    name: "Structured Problem Solving"
+    name:
+      en: "Structured Problem Solving"
+      zh: "結構化問題解決"
     description:
       en: "Apply structured problem-solving using MECE principle, issue trees, hypothesis-driven approach, and the Pyramid Principle."
       zh: "思維框架技能：Structured Problem Solving 分析與應用。"
@@ -925,7 +1061,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-meta-systems-thinking
-    name: "Systems Thinking"
+    name:
+      en: "Systems Thinking"
+      zh: "系統思維"
     description:
       en: "Apply systems thinking — causal loop diagrams, stock-and-flow models, system archetypes, and leverage-point analysis — to organizational, economic, or social problems where feedback loops, delays, or."
       zh: "思維框架技能：Systems Thinking 分析與應用。"
@@ -941,7 +1079,9 @@ skills:
   # Operations Methodology Skills (6)
   # ============================================================
   - slug: skill-ops-business-model-canvas
-    name: "Business Model Canvas"
+    name:
+      en: "Business Model Canvas"
+      zh: "商業模式畫布"
     description:
       en: "Apply the Business Model Canvas (BMC) to map and evaluate business models across nine building blocks."
       zh: "營運方法論技能：Business Model Canvas 分析與應用。"
@@ -954,7 +1094,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ops-contract-review
-    name: "Business Contract Review"
+    name:
+      en: "Business Contract Review"
+      zh: "商業合約審閱"
     description:
       en: "Review business contracts for risk identification including liability clauses, IP ownership, termination terms, and payment conditions."
       zh: "營運方法論技能：Business Contract Review 分析與應用。"
@@ -967,7 +1109,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ops-meeting-minutes
-    name: "Meeting Minutes"
+    name:
+      en: "Meeting Minutes"
+      zh: "會議紀錄"
     description:
       en: "Create structured meeting minutes with decisions, action items, and follow-up tracking."
       zh: "營運方法論技能：Meeting Minutes 分析與應用。"
@@ -980,7 +1124,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ops-negotiation
-    name: "Negotiation (Harvard Method)"
+    name:
+      en: "Negotiation (Harvard Method)"
+      zh: "談判策略（哈佛法）"
     description:
       en: "Apply principled negotiation using BATNA, ZOPA, and the Harvard method to prepare for and conduct negotiations."
       zh: "營運方法論技能：Negotiation (Harvard Method) 分析與應用。"
@@ -993,7 +1139,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ops-okr-planning
-    name: "OKR Planning"
+    name:
+      en: "OKR Planning"
+      zh: "OKR 規劃"
     description:
       en: "Design and implement OKR (Objectives and Key Results) for goal-setting and strategic alignment across organizational levels."
       zh: "營運方法論技能：OKR Planning 分析與應用。"
@@ -1006,7 +1154,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ops-pitch-deck
-    name: "Pitch Deck"
+    name:
+      en: "Pitch Deck"
+      zh: "募資簡報"
     description:
       en: "Structure and write investor pitch decks covering problem, solution, market, business model, traction, team, and financials."
       zh: "營運方法論技能：Pitch Deck 分析與應用。"
@@ -1022,7 +1172,9 @@ skills:
   # Statistics Methodology Skills (4)
   # ============================================================
   - slug: skill-stat-ab-testing
-    name: "A/B Testing Statistics"
+    name:
+      en: "A/B Testing Statistics"
+      zh: "A/B 測試統計"
     description:
       en: "Design and analyze A/B tests with proper statistical methodology including sample size calculation, randomization, frequentist and Bayesian approaches, and sequential testing."
       zh: "統計方法論技能：A/B Testing Statistics 分析與應用。"
@@ -1035,7 +1187,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-stat-causal-inference
-    name: "Causal Inference"
+    name:
+      en: "Causal Inference"
+      zh: "因果推論"
     description:
       en: "Apply causal inference methods — counterfactual framework, instrumental variables, propensity score matching, and difference-in-differences — to estimate causal effects from observational data."
       zh: "統計方法論技能：Causal Inference 分析與應用。"
@@ -1048,7 +1202,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-stat-eda
-    name: "Exploratory Data Analysis (EDA)"
+    name:
+      en: "Exploratory Data Analysis (EDA)"
+      zh: "探索性資料分析 EDA"
     description:
       en: "Conduct Exploratory Data Analysis (EDA) using descriptive statistics, visualizations, and data quality checks."
       zh: "統計方法論技能：Exploratory Data Analysis (EDA) 分析與應用。"
@@ -1061,7 +1217,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-stat-hypothesis-testing
-    name: "Hypothesis Testing"
+    name:
+      en: "Hypothesis Testing"
+      zh: "假設檢定"
     description:
       en: "Conduct statistical hypothesis testing including null/alternative hypothesis formulation, p-values, Type I/II errors, and test statistic selection."
       zh: "統計方法論技能：Hypothesis Testing 分析與應用。"
@@ -1077,7 +1235,9 @@ skills:
   # Technology Methodology Skills (4)
   # ============================================================
   - slug: skill-tech-api-integration
-    name: "REST API Integration Guide"
+    name:
+      en: "REST API Integration Guide"
+      zh: "REST API 整合指南"
     description:
       en: "Guide REST API integration including HTTP methods, authentication, error handling, and rate limiting."
       zh: "技術方法論技能：REST API Integration Guide 分析與應用。"
@@ -1090,7 +1250,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tech-data-pipeline
-    name: "Data Pipeline Design"
+    name:
+      en: "Data Pipeline Design"
+      zh: "資料管線設計"
     description:
       en: "Design data pipelines covering ETL vs ELT architectures, data source integration, scheduling, quality checks, and warehouse design."
       zh: "技術方法論技能：Data Pipeline Design 分析與應用。"
@@ -1103,7 +1265,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tech-mcp-server-dev
-    name: "MCP Server Development"
+    name:
+      en: "MCP Server Development"
+      zh: "MCP Server 開發"
     description:
       en: "Build MCP (Model Context Protocol) servers including tool definition, schema design, authentication, error handling, and Claude Code integration."
       zh: "技術方法論技能：MCP Server Development 分析與應用。"
@@ -1116,7 +1280,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-tech-prompt-engineering
-    name: "Production Prompt Engineering"
+    name:
+      en: "Production Prompt Engineering"
+      zh: "提示工程"
     description:
       en: "Debug and harden production LLM prompts — handle prompt injection, output format drift, instruction forgetting in long contexts, and cross-model portability issues."
       zh: "技術方法論技能：Production Prompt Engineering 分析與應用。"
@@ -1132,7 +1298,9 @@ skills:
   # UX Methodology Skills (4)
   # ============================================================
   - slug: skill-ux-design-thinking
-    name: "Design Thinking"
+    name:
+      en: "Design Thinking"
+      zh: "設計思維"
     description:
       en: "Apply Design Thinking's five stages — Empathize, Define, Ideate, Prototype, Test — to solve user-centered problems."
       zh: "使用者體驗技能：Design Thinking 分析與應用。"
@@ -1145,7 +1313,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ux-heuristic
-    name: "Heuristic Evaluation (Nielsen's 10 Principles)"
+    name:
+      en: "Heuristic Evaluation (Nielsen's 10 Principles)"
+      zh: "啟發式評估（Nielsen 十大原則）"
     description:
       en: "Conduct heuristic evaluation of user interfaces using Nielsen's 10 usability principles."
       zh: "使用者體驗技能：Heuristic Evaluation (Nielsen's 10 Principles) 分析與應用。"
@@ -1158,7 +1328,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ux-jtbd
-    name: "Jobs to Be Done (JTBD)"
+    name:
+      en: "Jobs to Be Done (JTBD)"
+      zh: "待完成工作 JTBD"
     description:
       en: "Apply Jobs to Be Done (JTBD) framework to understand customer motivation through functional, emotional, and social jobs."
       zh: "使用者體驗技能：Jobs to Be Done (JTBD) 分析與應用。"
@@ -1171,7 +1343,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-ux-lean-startup
-    name: "Lean Startup"
+    name:
+      en: "Lean Startup"
+      zh: "精實創業"
     description:
       en: "Apply Lean Startup methodology — Build-Measure-Learn loop, MVP, validated learning, and pivot decisions."
       zh: "使用者體驗技能：Lean Startup 分析與應用。"
@@ -1187,7 +1361,9 @@ skills:
   # Economics Theory Skills (6)
   # ============================================================
   - slug: skill-econ-behavioral
-    name: "Behavioral Economics"
+    name:
+      en: "Behavioral Economics"
+      zh: "行為經濟學"
     description:
       en: "Apply behavioral economics concepts including bounded rationality, prospect theory, mental accounting, and nudge theory to analyze decision-making biases."
       zh: "經濟學技能：Behavioral Economics 分析與應用。"
@@ -1200,7 +1376,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-econ-business-cycle
-    name: "Business Cycle Analysis"
+    name:
+      en: "Business Cycle Analysis"
+      zh: "景氣循環分析"
     description:
       en: "Analyze business cycle phases (expansion, peak, contraction, trough) and their implications for business strategy and policy response."
       zh: "經濟學技能：Business Cycle Analysis 分析與應用。"
@@ -1213,7 +1391,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-econ-game-theory
-    name: "Game Theory Basics"
+    name:
+      en: "Game Theory Basics"
+      zh: "賽局理論基礎"
     description:
       en: "Apply basic game theory concepts including Nash equilibrium, dominant strategies, and the Prisoner's Dilemma to analyze strategic interactions."
       zh: "經濟學技能：Game Theory Basics 分析與應用。"
@@ -1226,7 +1406,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-econ-macro-indicators
-    name: "Macroeconomic Indicators"
+    name:
+      en: "Macroeconomic Indicators"
+      zh: "總體經濟指標"
     description:
       en: "Interpret macroeconomic indicators including GDP, inflation, unemployment, interest rates, and exchange rates to assess economic health and predict trends."
       zh: "經濟學技能：Macroeconomic Indicators 分析與應用。"
@@ -1239,7 +1421,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-econ-market-structure
-    name: "Market Structure Analysis"
+    name:
+      en: "Market Structure Analysis"
+      zh: "市場結構分析"
     description:
       en: "Analyze market structures across perfect competition, monopolistic competition, oligopoly, and monopoly to predict firm behavior and market outcomes."
       zh: "經濟學技能：Market Structure Analysis 分析與應用。"
@@ -1252,7 +1436,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-econ-supply-demand
-    name: "Supply and Demand Analysis"
+    name:
+      en: "Supply and Demand Analysis"
+      zh: "供需分析"
     description:
       en: "Apply supply and demand analysis to explain price determination, market equilibrium, and the effects of policy interventions."
       zh: "經濟學技能：Supply and Demand Analysis 分析與應用。"
@@ -1268,7 +1454,9 @@ skills:
   # Graduate Research Theory Skills (87)
   # ============================================================
   - slug: skill-grad-action-research
-    name: "Action Research"
+    name:
+      en: "Action Research"
+      zh: "行動研究"
     description:
       en: "Apply action research through Plan-Act-Observe-Reflect cycles and Participatory Action Research (PAR) to generate knowledge while improving practice."
       zh: "學術研究技能：Action Research 分析與應用。"
@@ -1281,7 +1469,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-affordance
-    name: "Affordance Theory (Gibson / Norman)"
+    name:
+      en: "Affordance Theory (Gibson / Norman)"
+      zh: "可供性理論"
     description:
       en: "Apply Affordance Theory (Gibson, 1979; Norman, 1988) to analyze the action possibilities that an artifact provides to an actor."
       zh: "學術研究技能：Affordance Theory (Gibson / Norman) 分析與應用。"
@@ -1294,7 +1484,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-agenda-setting
-    name: "Agenda-Setting Theory"
+    name:
+      en: "Agenda-Setting Theory"
+      zh: "議題設定理論"
     description:
       en: "Apply agenda-setting theory (McCombs & Shaw) to analyze how media salience transfers to public perception."
       zh: "學術研究技能：Agenda-Setting Theory 分析與應用。"
@@ -1307,7 +1499,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-ai-ethics
-    name: "AI Ethics"
+    name:
+      en: "AI Ethics"
+      zh: "AI 倫理"
     description:
       en: "Apply AI ethics frameworks (fairness, accountability, transparency, privacy) to evaluate AI systems for algorithmic bias, explainability gaps, and value alignment failures."
       zh: "學術研究技能：AI Ethics 分析與應用。"
@@ -1320,7 +1514,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-ambidexterity
-    name: "Organizational Ambidexterity: Exploration vs Exploitation"
+    name:
+      en: "Organizational Ambidexterity: Exploration vs Exploitation"
+      zh: "組織雙元性"
     description:
       en: "Apply organizational ambidexterity theory to balance exploration and exploitation activities."
       zh: "學術研究技能：Organizational Ambidexterity: Exploration vs Exploitation 分析與應用。"
@@ -1333,7 +1529,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-ant
-    name: "Actor-Network Theory (ANT)"
+    name:
+      en: "Actor-Network Theory (ANT)"
+      zh: "行動者網路理論 ANT"
     description:
       en: "Apply Actor-Network Theory (Latour, Callon) to trace how human and non-human actors (actants) form networks through translation processes."
       zh: "學術研究技能：Actor-Network Theory (ANT) 分析與應用。"
@@ -1346,7 +1544,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-auction-theory
-    name: "Auction Theory: Four Canonical Formats and Revenue Equivalence"
+    name:
+      en: "Auction Theory: Four Canonical Formats and Revenue Equivalence"
+      zh: "拍賣理論"
     description:
       en: "Apply auction theory to compare the four canonical auction formats and assess revenue equivalence."
       zh: "學術研究技能：Auction Theory: Four Canonical Formats and Revenue Equivalence 分析與應用。"
@@ -1359,7 +1559,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-behavioral-finance
-    name: "Behavioral Finance"
+    name:
+      en: "Behavioral Finance"
+      zh: "行為財務學"
     description:
       en: "Apply behavioral finance theory to identify systematic investor biases and their impact on asset prices."
       zh: "學術研究技能：Behavioral Finance 分析與應用。"
@@ -1372,7 +1574,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-blooms
-    name: "Bloom's Revised Taxonomy"
+    name:
+      en: "Bloom's Revised Taxonomy"
+      zh: "Bloom 修訂版分類學"
     description:
       en: "Apply Bloom's revised taxonomy to classify learning objectives and design assessments across six cognitive levels."
       zh: "學術研究技能：Bloom's Revised Taxonomy 分析與應用。"
@@ -1385,7 +1589,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-born-global
-    name: "Born Global: Resource-Constrained Rapid Internationalization"
+    name:
+      en: "Born Global: Resource-Constrained Rapid Internationalization"
+      zh: "天生全球化企業"
     description:
       en: "Apply the Born Global framework to analyze firms that internationalize rapidly from inception under resource constraints."
       zh: "學術研究技能：Born Global: Resource-Constrained Rapid Internationalization 分析與應用。"
@@ -1398,7 +1604,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-brand-equity
-    name: "Brand Equity"
+    name:
+      en: "Brand Equity"
+      zh: "品牌權益"
     description:
       en: "Apply brand equity frameworks (Aaker, 1991; Keller, 1993) to assess and build customer-based brand value."
       zh: "學術研究技能：Brand Equity 分析與應用。"
@@ -1411,7 +1619,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-business-ecosystems
-    name: "Business Ecosystems (Moore)"
+    name:
+      en: "Business Ecosystems (Moore)"
+      zh: "商業生態系統"
     description:
       en: "Apply Moore's business ecosystem framework to analyze how firms co-evolve through four stages (birth, expansion, authority, renewal) and occupy different ecosystem roles."
       zh: "學術研究技能：Business Ecosystems (Moore) 分析與應用。"
@@ -1424,7 +1634,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-capm
-    name: "Capital Asset Pricing Model (CAPM)"
+    name:
+      en: "Capital Asset Pricing Model (CAPM)"
+      zh: "資本資產定價模型 CAPM"
     description:
       en: "Apply the Capital Asset Pricing Model (CAPM) to estimate expected returns and assess risk-return tradeoffs."
       zh: "學術研究技能：Capital Asset Pricing Model (CAPM) 分析與應用。"
@@ -1438,7 +1650,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-cas
-    name: "Complex Adaptive Systems (CAS)"
+    name:
+      en: "Complex Adaptive Systems (CAS)"
+      zh: "複雜適應系統 CAS"
     description:
       en: "Apply Complex Adaptive Systems theory to analyze phenomena exhibiting emergence, self-organization, co-evolution, and edge-of-chaos dynamics."
       zh: "學術研究技能：Complex Adaptive Systems (CAS) 分析與應用。"
@@ -1451,7 +1665,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-case-study
-    name: "Case Study Research (Yin)"
+    name:
+      en: "Case Study Research (Yin)"
+      zh: "個案研究法"
     description:
       en: "Apply case study research design (Yin) to investigate how and why questions within real-life contexts using single or multiple case designs and triangulation."
       zh: "學術研究技能：Case Study Research (Yin) 分析與應用。"
@@ -1464,7 +1680,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-cct
-    name: "Consumer Culture Theory (CCT)"
+    name:
+      en: "Consumer Culture Theory (CCT)"
+      zh: "消費文化理論 CCT"
     description:
       en: "Apply Consumer Culture Theory to analyze consumption as a cultural practice shaped by identity, marketplace cultures, and ideology."
       zh: "學術研究技能：Consumer Culture Theory (CCT) 分析與應用。"
@@ -1477,7 +1695,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-cognitive-load
-    name: "Cognitive Load Theory (CLT)"
+    name:
+      en: "Cognitive Load Theory (CLT)"
+      zh: "認知負荷理論"
     description:
       en: "Apply Cognitive Load Theory to optimize instructional design by managing intrinsic, extraneous, and germane load within working memory limits."
       zh: "學術研究技能：Cognitive Load Theory (CLT) 分析與應用。"
@@ -1490,7 +1710,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-constructivism
-    name: "Constructivism"
+    name:
+      en: "Constructivism"
+      zh: "建構主義"
     description:
       en: "Apply constructivist learning theory to design instruction based on active knowledge construction, scaffolding, and the zone of proximal development."
       zh: "學術研究技能：Constructivism 分析與應用。"
@@ -1503,7 +1725,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-contract-theory
-    name: "Contract Theory: Moral Hazard, Adverse Selection, and Incentive Design"
+    name:
+      en: "Contract Theory: Moral Hazard, Adverse Selection, and Incentive Design"
+      zh: "契約理論"
     description:
       en: "Apply contract theory to design incentive-compatible agreements under moral hazard and adverse selection."
       zh: "學術研究技能：Contract Theory: Moral Hazard, Adverse Selection, and Incentive Design 分析與應用。"
@@ -1516,7 +1740,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-coopetition
-    name: "Co-opetition: The Value Net (Brandenburger & Nalebuff, 1996)"
+    name:
+      en: "Co-opetition: The Value Net (Brandenburger & Nalebuff, 1996)"
+      zh: "競合策略"
     description:
       en: "Apply the Co-opetition Value Net framework (Brandenburger and Nalebuff, 1996) to map cooperative and competitive dynamics in business relationships."
       zh: "學術研究技能：Co-opetition: The Value Net (Brandenburger & Nalebuff, 1996) 分析與應用。"
@@ -1529,7 +1755,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-critical-realism
-    name: "Critical Realism (Bhaskar)"
+    name:
+      en: "Critical Realism (Bhaskar)"
+      zh: "批判實在論"
     description:
       en: "Apply Bhaskar's critical realism to analyze phenomena through three ontological domains (real, actual, empirical), identify generative causal mechanisms via retroduction, and examine structure-agency."
       zh: "學術研究技能：Critical Realism (Bhaskar) 分析與應用。"
@@ -1542,7 +1770,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-cultivation
-    name: "Cultivation Theory"
+    name:
+      en: "Cultivation Theory"
+      zh: "涵化理論"
     description:
       en: "Apply cultivation theory (Gerbner) to analyze how long-term media exposure shapes worldviews."
       zh: "學術研究技能：Cultivation Theory 分析與應用。"
@@ -1555,7 +1785,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-diamond
-    name: "Diamond Model (Porter, 1990): National Competitive Advantage"
+    name:
+      en: "Diamond Model (Porter, 1990): National Competitive Advantage"
+      zh: "鑽石模型（國家競爭優勢）"
     description:
       en: "Apply Porter's Diamond Model to analyze national competitive advantage for a specific industry."
       zh: "學術研究技能：Diamond Model (Porter, 1990): National Competitive Advantage 分析與應用。"
@@ -1568,7 +1800,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-did
-    name: "雙重差分法 (Difference-in-Differences)"
+    name:
+      en: "雙重差分法 (Difference-in-Differences)"
+      zh: "雙重差分法 DID"
     description:
       en: "Apply Difference-in-Differences (DID) to estimate causal treatment effects by comparing changes in outcomes between treatment and control groups."
       zh: "學術研究技能：雙重差分法 (Difference-in-Differences) 分析與應用。"
@@ -1581,7 +1815,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-digital-transformation
-    name: "Digital Transformation: Digitization, Digitalization, and DX"
+    name:
+      en: "Digital Transformation: Digitization, Digitalization, and DX"
+      zh: "數位轉型"
     description:
       en: "Apply the three-level framework of digital transformation — Digitization, Digitalization, and Digital Transformation — to diagnose and plan organizational change enabled by digital technologies."
       zh: "學術研究技能：Digital Transformation: Digitization, Digitalization, and DX 分析與應用。"
@@ -1594,7 +1830,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-disruptive-innovation
-    name: "Disruptive Innovation (Christensen, 1997)"
+    name:
+      en: "Disruptive Innovation (Christensen, 1997)"
+      zh: "破壞式創新"
     description:
       en: "Apply Christensen's Disruptive Innovation theory to assess low-end and new-market threats to incumbents."
       zh: "學術研究技能：Disruptive Innovation (Christensen, 1997) 分析與應用。"
@@ -1607,7 +1845,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-dual-process
-    name: "Dual-Process Theory"
+    name:
+      en: "Dual-Process Theory"
+      zh: "雙程序理論"
     description:
       en: "Apply dual-process theory to diagnose whether judgments arise from fast intuitive (System 1) or slow analytical (System 2) processing and identify resulting cognitive biases."
       zh: "學術研究技能：Dual-Process Theory 分析與應用。"
@@ -1620,7 +1860,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-elm
-    name: "Elaboration Likelihood Model (ELM)"
+    name:
+      en: "Elaboration Likelihood Model (ELM)"
+      zh: "推敲可能性模型 ELM"
     description:
       en: "Apply the Elaboration Likelihood Model to design persuasion strategies by matching message type to audience elaboration level."
       zh: "學術研究技能：Elaboration Likelihood Model (ELM) 分析與應用。"
@@ -1633,7 +1875,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-embeddedness
-    name: "Embeddedness Theory (Granovetter)"
+    name:
+      en: "Embeddedness Theory (Granovetter)"
+      zh: "鑲嵌理論"
     description:
       en: "Apply Granovetter's embeddedness theory to analyze how economic behavior is embedded in ongoing social relations, avoiding both over-socialized and under-socialized accounts."
       zh: "學術研究技能：Embeddedness Theory (Granovetter) 分析與應用。"
@@ -1646,7 +1890,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-emh
-    name: "Efficient Market Hypothesis (EMH)"
+    name:
+      en: "Efficient Market Hypothesis (EMH)"
+      zh: "效率市場假說 EMH"
     description:
       en: "Apply the Efficient Market Hypothesis (Fama, 1970) to evaluate information incorporation in asset prices across weak, semi-strong, and strong forms."
       zh: "學術研究技能：Efficient Market Hypothesis (EMH) 分析與應用。"
@@ -1659,7 +1905,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-ethnography
-    name: "Ethnography"
+    name:
+      en: "Ethnography"
+      zh: "民族誌研究"
     description:
       en: "Apply ethnographic methods including prolonged engagement, participant observation, thick description, and netnography to study cultures and communities."
       zh: "學術研究技能：Ethnography 分析與應用。"
@@ -1672,7 +1920,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-event-study
-    name: "事件研究法 (Event Study)"
+    name:
+      en: "事件研究法 (Event Study)"
+      zh: "事件研究法"
     description:
       en: "Apply event study methodology to measure abnormal returns and cumulative abnormal returns (CAR) around corporate or market events."
       zh: "學術研究技能：事件研究法 (Event Study) 分析與應用。"
@@ -1685,7 +1935,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-fama-french
-    name: "Fama-French Three-Factor Model"
+    name:
+      en: "Fama-French Three-Factor Model"
+      zh: "Fama-French 三因子模型"
     description:
       en: "Apply the Fama-French three-factor model to decompose asset returns into market, size, and value factors."
       zh: "學術研究技能：Fama-French Three-Factor Model 分析與應用。"
@@ -1698,7 +1950,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-field-theory
-    name: "Bourdieu's Field Theory"
+    name:
+      en: "Bourdieu's Field Theory"
+      zh: "Bourdieu 場域理論"
     description:
       en: "Apply Bourdieu's field theory to analyze power relations through the interplay of field, capital, and habitus."
       zh: "學術研究技能：Bourdieu's Field Theory 分析與應用。"
@@ -1711,7 +1965,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-flow
-    name: "Flow Theory"
+    name:
+      en: "Flow Theory"
+      zh: "心流理論"
     description:
       en: "Apply flow theory to diagnose optimal experience conditions and design environments that balance challenge and skill for sustained engagement."
       zh: "學術研究技能：Flow Theory 分析與應用。"
@@ -1724,7 +1980,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-framing
-    name: "Framing Theory"
+    name:
+      en: "Framing Theory"
+      zh: "框架理論"
     description:
       en: "Apply framing theory to analyze how selection, emphasis, and exclusion shape interpretation of issues."
       zh: "學術研究技能：Framing Theory 分析與應用。"
@@ -1737,7 +1995,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-governance
-    name: "Governance Theory"
+    name:
+      en: "Governance Theory"
+      zh: "治理理論"
     description:
       en: "Apply governance theory to analyze multi-level, network, and collaborative governance arrangements beyond traditional government."
       zh: "學術研究技能：Governance Theory 分析與應用。"
@@ -1750,7 +2010,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-grounded-theory
-    name: "Grounded Theory (Glaser & Strauss)"
+    name:
+      en: "Grounded Theory (Glaser & Strauss)"
+      zh: "扎根理論"
     description:
       en: "Apply Grounded Theory (Glaser and Strauss) to build theory inductively from qualitative data through open, axial, and selective coding."
       zh: "學術研究技能：Grounded Theory (Glaser & Strauss) 分析與應用。"
@@ -1763,7 +2025,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-hlm
-    name: "階層線性模型 (Hierarchical Linear Modeling)"
+    name:
+      en: "階層線性模型 (Hierarchical Linear Modeling)"
+      zh: "階層線性模型 HLM"
     description:
       en: "Apply Hierarchical Linear Modeling (HLM) to analyze nested data structures with random intercepts and slopes, accounting for intra-class correlation and cross-level interactions."
       zh: "學術研究技能：階層線性模型 (Hierarchical Linear Modeling) 分析與應用。"
@@ -1776,7 +2040,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-info-economics
-    name: "Information Economics: Adverse Selection, Moral Hazard, and Signaling"
+    name:
+      en: "Information Economics: Adverse Selection, Moral Hazard, and Signaling"
+      zh: "資訊經濟學"
     description:
       en: "Apply information economics to diagnose and remedy market failures caused by asymmetric information."
       zh: "學術研究技能：Information Economics: Adverse Selection, Moral Hazard, and Signaling 分析與應用。"
@@ -1789,7 +2055,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-innovation-diffusion-bass
-    name: "Bass Diffusion Model"
+    name:
+      en: "Bass Diffusion Model"
+      zh: "Bass 擴散模型"
     description:
       en: "Apply the Bass Diffusion Model (1969) to forecast innovation adoption using innovation and imitation coefficients."
       zh: "學術研究技能：Bass Diffusion Model 分析與應用。"
@@ -1802,7 +2070,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-is-success
-    name: "IS Success Model (DeLone & McLean)"
+    name:
+      en: "IS Success Model (DeLone & McLean)"
+      zh: "資訊系統成功模型"
     description:
       en: "Apply the DeLone and McLean Information Systems Success Model to evaluate IS effectiveness through six interdependent dimensions."
       zh: "學術研究技能：IS Success Model (DeLone & McLean) 分析與應用。"
@@ -1815,7 +2085,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-mechanism-design
-    name: "Mechanism Design: Reverse Game Theory and Incentive Compatibility"
+    name:
+      en: "Mechanism Design: Reverse Game Theory and Incentive Compatibility"
+      zh: "機制設計理論"
     description:
       en: "Apply mechanism design (reverse game theory) to engineer incentive-compatible rules for allocation problems."
       zh: "學術研究技能：Mechanism Design: Reverse Game Theory and Incentive Compatibility 分析與應用。"
@@ -1828,7 +2100,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-meta-analysis
-    name: "後設分析 (Meta-Analysis)"
+    name:
+      en: "後設分析 (Meta-Analysis)"
+      zh: "後設分析"
     description:
       en: "Apply meta-analysis to synthesize effect sizes across multiple studies, assess heterogeneity, and evaluate publication bias."
       zh: "學術研究技能：後設分析 (Meta-Analysis) 分析與應用。"
@@ -1841,7 +2115,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-mixed-methods
-    name: "Mixed Methods Research"
+    name:
+      en: "Mixed Methods Research"
+      zh: "混合方法研究"
     description:
       en: "Design and conduct mixed methods research using convergent, explanatory sequential, or exploratory sequential strategies with genuine integration of qualitative and quantitative strands."
       zh: "學術研究技能：Mixed Methods Research 分析與應用。"
@@ -1854,7 +2130,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-mm-theorem
-    name: "Modigliani-Miller Theorem"
+    name:
+      en: "Modigliani-Miller Theorem"
+      zh: "Modigliani-Miller 定理"
     description:
       en: "Apply the Modigliani-Miller theorem to analyze capital structure decisions and identify when financing choices affect firm value."
       zh: "學術研究技能：Modigliani-Miller Theorem 分析與應用。"
@@ -1867,7 +2145,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-narrative
-    name: "Narrative Research"
+    name:
+      en: "Narrative Research"
+      zh: "敘事研究"
     description:
       en: "Apply narrative research methods to understand human experience through stories, analyzing narrative structure, temporality, and meaning-making in life stories and oral histories."
       zh: "學術研究技能：Narrative Research 分析與應用。"
@@ -1880,7 +2160,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-network-economics
-    name: "Network Economics: Network Effects, Critical Mass, Lock-In, and Standards Wars"
+    name:
+      en: "Network Economics: Network Effects, Critical Mass, Lock-In, and Standards Wars"
+      zh: "網路經濟學"
     description:
       en: "Apply network economics to analyze markets with network effects, critical mass dynamics, and platform competition."
       zh: "學術研究技能：Network Economics: Network Effects, Critical Mass, Lock-In, and Standards Wars 分析與應用。"
@@ -1893,7 +2175,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-oli
-    name: "OLI Paradigm (Dunning, 1977): Eclectic Theory of FDI"
+    name:
+      en: "OLI Paradigm (Dunning, 1977): Eclectic Theory of FDI"
+      zh: "OLI 折衷理論"
     description:
       en: "Apply Dunning's OLI Paradigm (Eclectic Theory) to evaluate foreign direct investment decisions based on Ownership, Location, and Internalization advantages."
       zh: "學術研究技能：OLI Paradigm (Dunning, 1977): Eclectic Theory of FDI 分析與應用。"
@@ -1906,7 +2190,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-org-ecology
-    name: "Organizational Ecology (Hannan & Freeman)"
+    name:
+      en: "Organizational Ecology (Hannan & Freeman)"
+      zh: "組織生態學"
     description:
       en: "Apply organizational ecology (Hannan and Freeman) to analyze population-level dynamics of organizational founding, failure, and selection."
       zh: "學術研究技能：Organizational Ecology (Hannan & Freeman) 分析與應用。"
@@ -1919,7 +2205,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-panel-data
-    name: "追蹤資料分析 (Panel Data Analysis)"
+    name:
+      en: "追蹤資料分析 (Panel Data Analysis)"
+      zh: "追蹤資料分析"
     description:
       en: "Apply panel data analysis with fixed effects, random effects, and dynamic GMM to exploit longitudinal variation and control for unobserved heterogeneity."
       zh: "學術研究技能：追蹤資料分析 (Panel Data Analysis) 分析與應用。"
@@ -1932,7 +2220,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-paradigms
-    name: "Paradigm Theory (Kuhn)"
+    name:
+      en: "Paradigm Theory (Kuhn)"
+      zh: "典範理論"
     description:
       en: "Apply Kuhn's paradigm theory to analyze scientific progress through the cycle of normal science, anomalies, crisis, and revolution."
       zh: "學術研究技能：Paradigm Theory (Kuhn) 分析與應用。"
@@ -1945,7 +2235,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-paradox-theory
-    name: "Paradox Theory (Smith & Lewis)"
+    name:
+      en: "Paradox Theory (Smith & Lewis)"
+      zh: "矛盾理論"
     description:
       en: "Apply Smith and Lewis's paradox theory to identify and manage organizational tensions across performing, organizing, belonging, and learning dimensions."
       zh: "學術研究技能：Paradox Theory (Smith & Lewis) 分析與應用。"
@@ -1958,7 +2250,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-pecking-order
-    name: "Pecking Order Theory"
+    name:
+      en: "Pecking Order Theory"
+      zh: "融資順位理論"
     description:
       en: "Apply pecking order theory (Myers and Majluf, 1984) to analyze how information asymmetry drives financing hierarchy decisions."
       zh: "學術研究技能：Pecking Order Theory 分析與應用。"
@@ -1971,7 +2265,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-phenomenology
-    name: "Phenomenology"
+    name:
+      en: "Phenomenology"
+      zh: "現象學"
     description:
       en: "Apply phenomenological methods including bracketing (epoche), lived experience inquiry, and Interpretive Phenomenological Analysis (IPA) to uncover the essence of human experience."
       zh: "學術研究技能：Phenomenology 分析與應用。"
@@ -1984,7 +2280,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-platform-economics
-    name: "Platform Economics: Network Effects and Multi-Sided Markets"
+    name:
+      en: "Platform Economics: Network Effects and Multi-Sided Markets"
+      zh: "平台經濟學"
     description:
       en: "Apply platform economics to analyze network effects, solve chicken-and-egg problems, and design multi-sided platform pricing strategies."
       zh: "學術研究技能：Platform Economics: Network Effects and Multi-Sided Markets 分析與應用。"
@@ -1997,7 +2295,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-pls-sem
-    name: "PLS-SEM 偏最小平方法結構方程模型"
+    name:
+      en: "PLS-SEM 偏最小平方法結構方程模型"
+      zh: "PLS-SEM 偏最小平方法"
     description:
       en: "Apply Partial Least Squares SEM (PLS-SEM) with reflective and formative measurement models to maximize explained variance in endogenous constructs."
       zh: "學術研究技能：PLS-SEM 偏最小平方法結構方程模型 分析與應用。"
@@ -2010,7 +2310,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-policy-streams
-    name: "Multiple Streams Framework"
+    name:
+      en: "Multiple Streams Framework"
+      zh: "多元流理論"
     description:
       en: "Apply Kingdon's multiple streams framework to analyze how problems, policies, and politics converge to open policy windows."
       zh: "學術研究技能：Multiple Streams Framework 分析與應用。"
@@ -2023,7 +2325,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-pragmatism
-    name: "Pragmatism"
+    name:
+      en: "Pragmatism"
+      zh: "實用主義"
     description:
       en: "Apply pragmatist philosophy (Peirce, James, Dewey) to frame knowledge as instrumental for action, evaluate ideas by their practical consequences, and conduct inquiry as problem-solving."
       zh: "學術研究技能：Pragmatism 分析與應用。"
@@ -2036,7 +2340,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-public-choice
-    name: "Public Choice Theory: Rational Politics, Rent-Seeking, and Government Failure"
+    name:
+      en: "Public Choice Theory: Rational Politics, Rent-Seeking, and Government Failure"
+      zh: "公共選擇理論"
     description:
       en: "Apply public choice theory to analyze political decision-making as rational self-interested behavior."
       zh: "學術研究技能：Public Choice Theory: Rational Politics, Rent-Seeking, and Government Failure 分析與應用。"
@@ -2049,7 +2355,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-real-options
-    name: "Real Options"
+    name:
+      en: "Real Options"
+      zh: "實質選擇權"
     description:
       en: "Apply real options analysis to value managerial flexibility embedded in investment decisions."
       zh: "學術研究技能：Real Options 分析與應用。"
@@ -2062,7 +2370,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-sd-logic
-    name: "Service-Dominant Logic (S-D Logic)"
+    name:
+      en: "Service-Dominant Logic (S-D Logic)"
+      zh: "服務主導邏輯 S-D Logic"
     description:
       en: "Apply Service-Dominant Logic (Vargo and Lusch, 2004) and value co-creation principles to reframe exchange and value creation."
       zh: "學術研究技能：Service-Dominant Logic (S-D Logic) 分析與應用。"
@@ -2075,7 +2385,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-sdt
-    name: "Self-Determination Theory (SDT)"
+    name:
+      en: "Self-Determination Theory (SDT)"
+      zh: "自我決定理論 SDT"
     description:
       en: "Apply Self-Determination Theory to analyze motivation quality along the autonomy continuum and design interventions that satisfy basic psychological needs."
       zh: "學術研究技能：Self-Determination Theory (SDT) 分析與應用。"
@@ -2088,7 +2400,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-sem
-    name: "SEM 結構方程模型"
+    name:
+      en: "SEM 結構方程模型"
+      zh: "結構方程模型 SEM"
     description:
       en: "Apply Structural Equation Modeling (SEM) to test hypothesized causal structures by combining measurement models (CFA) and structural models (path analysis)."
       zh: "學術研究技能：SEM 結構方程模型 分析與應用。"
@@ -2101,7 +2415,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-sensemaking
-    name: "Weick's Sensemaking Theory"
+    name:
+      en: "Weick's Sensemaking Theory"
+      zh: "意義建構理論"
     description:
       en: "Apply Weick's sensemaking theory to analyze how individuals and organizations construct meaning from ambiguous situations."
       zh: "學術研究技能：Weick's Sensemaking Theory 分析與應用。"
@@ -2114,7 +2430,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-servqual
-    name: "SERVQUAL Model"
+    name:
+      en: "SERVQUAL Model"
+      zh: "SERVQUAL 服務品質模型"
     description:
       en: "Apply the SERVQUAL model (Parasuraman, Zeithaml, and Berry, 1988) to measure service quality gaps across five dimensions."
       zh: "學術研究技能：SERVQUAL Model 分析與應用。"
@@ -2127,7 +2445,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-signaling
-    name: "Signaling Theory"
+    name:
+      en: "Signaling Theory"
+      zh: "訊號理論"
     description:
       en: "Apply signaling theory (Spence, 1973) to analyze how agents communicate private information through costly, credible signals under information asymmetry."
       zh: "學術研究技能：Signaling Theory 分析與應用。"
@@ -2140,7 +2460,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-social-capital
-    name: "Social Capital Theory"
+    name:
+      en: "Social Capital Theory"
+      zh: "社會資本理論"
     description:
       en: "Apply social capital theory (Putnam, Coleman, Bourdieu, Burt) to analyze how network structures and trust generate value or impose constraints."
       zh: "學術研究技能：Social Capital Theory 分析與應用。"
@@ -2153,7 +2475,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-social-identity
-    name: "Social Identity Theory (SIT)"
+    name:
+      en: "Social Identity Theory (SIT)"
+      zh: "社會認同理論 SIT"
     description:
       en: "Apply Social Identity Theory to analyze how group categorization, identification, and intergroup comparison drive behavior, bias, and conflict."
       zh: "學術研究技能：Social Identity Theory (SIT) 分析與應用。"
@@ -2166,7 +2490,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-sociotechnical
-    name: "Sociotechnical Systems Theory (STS)"
+    name:
+      en: "Sociotechnical Systems Theory (STS)"
+      zh: "社會技術系統理論"
     description:
       en: "Apply Sociotechnical Systems Theory to analyze and design work systems through joint optimization of social and technical subsystems."
       zh: "學術研究技能：Sociotechnical Systems Theory (STS) 分析與應用。"
@@ -2179,7 +2505,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-spiral-of-silence
-    name: "Spiral of Silence"
+    name:
+      en: "Spiral of Silence"
+      zh: "沉默螺旋"
     description:
       en: "Apply spiral of silence theory (Noelle-Neumann) to analyze how perceived opinion climate suppresses minority expression."
       zh: "學術研究技能：Spiral of Silence 分析與應用。"
@@ -2192,7 +2520,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-agency
-    name: "Agency Theory"
+    name:
+      en: "Agency Theory"
+      zh: "代理理論"
     description:
       en: "Apply Agency Theory (Jensen and Meckling, 1976) to diagnose principal-agent problems — moral hazard, adverse selection — and design governance mechanisms to align interests."
       zh: "學術研究技能：Agency Theory 分析與應用。"
@@ -2205,7 +2535,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-dynamic-cap
-    name: "Dynamic Capabilities"
+    name:
+      en: "Dynamic Capabilities"
+      zh: "動態能力理論"
     description:
       en: "Apply the Dynamic Capabilities framework (Teece et al."
       zh: "學術研究技能：Dynamic Capabilities 分析與應用。"
@@ -2218,7 +2550,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-institutional
-    name: "Institutional Theory"
+    name:
+      en: "Institutional Theory"
+      zh: "制度理論"
     description:
       en: "Apply Institutional Theory (DiMaggio and Powell, 1983) to analyze how coercive, mimetic, and normative isomorphic pressures shape organizational structures and practices."
       zh: "學術研究技能：Institutional Theory 分析與應用。"
@@ -2231,7 +2565,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-kbv
-    name: "Knowledge-Based View (KBV)"
+    name:
+      en: "Knowledge-Based View (KBV)"
+      zh: "知識基礎觀 KBV"
     description:
       en: "Apply the Knowledge-Based View (Grant, 1996) and Nonaka and Takeuchi's SECI model to analyze how organizations create, transfer, and integrate knowledge for competitive advantage."
       zh: "學術研究技能：Knowledge-Based View (KBV) 分析與應用。"
@@ -2244,7 +2580,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-rbv
-    name: "Resource-Based View (RBV)"
+    name:
+      en: "Resource-Based View (RBV)"
+      zh: "資源基礎觀 RBV"
     description:
       en: "Apply the Resource-Based View (Barney, 1991) and VRIO framework to evaluate whether a firm's resources and capabilities confer sustained competitive advantage."
       zh: "學術研究技能：Resource-Based View (RBV) 分析與應用。"
@@ -2257,7 +2595,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-stakeholder
-    name: "Stakeholder Theory"
+    name:
+      en: "Stakeholder Theory"
+      zh: "利害關係人理論"
     description:
       en: "Apply Stakeholder Theory (Freeman, 1984) and the Mitchell et al."
       zh: "學術研究技能：Stakeholder Theory 分析與應用。"
@@ -2270,7 +2610,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-tce
-    name: "Transaction Cost Economics (TCE)"
+    name:
+      en: "Transaction Cost Economics (TCE)"
+      zh: "交易成本經濟學 TCE"
     description:
       en: "Apply Transaction Cost Economics (Williamson, 1975, 1985) to analyze governance structure choices — market, hybrid, or hierarchy — based on transaction characteristics."
       zh: "學術研究技能：Transaction Cost Economics (TCE) 分析與應用。"
@@ -2283,7 +2625,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-strat-upper-echelons
-    name: "Upper Echelons Theory"
+    name:
+      en: "Upper Echelons Theory"
+      zh: "高層梯隊理論"
     description:
       en: "Apply Upper Echelons Theory (Hambrick and Mason, 1984) to analyze how top management team characteristics — demographics, experiences, values — shape strategic choices and organizational outcomes."
       zh: "學術研究技能：Upper Echelons Theory 分析與應用。"
@@ -2296,7 +2640,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-structuration
-    name: "Structuration Theory (Giddens)"
+    name:
+      en: "Structuration Theory (Giddens)"
+      zh: "結構化理論"
     description:
       en: "Apply Giddens' structuration theory to analyze the duality of structure — how social structures are both the medium and outcome of the practices they organize."
       zh: "學術研究技能：Structuration Theory (Giddens) 分析與應用。"
@@ -2309,7 +2655,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-survey-design
-    name: "問卷設計 (Survey Design)"
+    name:
+      en: "問卷設計 (Survey Design)"
+      zh: "問卷設計"
     description:
       en: "Apply rigorous survey design principles including construct operationalization, Likert scale development, reliability and validity assessment, and common method variance control."
       zh: "學術研究技能：問卷設計 (Survey Design) 分析與應用。"
@@ -2322,7 +2670,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-sustainability
-    name: "Sustainability"
+    name:
+      en: "Sustainability"
+      zh: "永續發展"
     description:
       en: "Apply sustainability frameworks (triple bottom line, SDGs, ESG, circular economy) to evaluate whether strategies balance economic, social, and environmental dimensions."
       zh: "學術研究技能：Sustainability 分析與應用。"
@@ -2335,7 +2685,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-systematic-review
-    name: "Systematic Literature Review (PRISMA)"
+    name:
+      en: "Systematic Literature Review (PRISMA)"
+      zh: "系統性文獻回顧 PRISMA"
     description:
       en: "Conduct a systematic literature review following the PRISMA framework with explicit search strategy, inclusion and exclusion criteria, quality assessment, and transparent synthesis."
       zh: "學術研究技能：Systematic Literature Review (PRISMA) 分析與應用。"
@@ -2348,7 +2700,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-tam-utaut
-    name: "Technology Acceptance Model (TAM) and UTAUT"
+    name:
+      en: "Technology Acceptance Model (TAM) and UTAUT"
+      zh: "科技接受模型 TAM / UTAUT"
     description:
       en: "Apply the Technology Acceptance Model (Davis, 1989) and Unified Theory of Acceptance and Use of Technology (Venkatesh et al."
       zh: "學術研究技能：Technology Acceptance Model (TAM) and UTAUT 分析與應用。"
@@ -2361,7 +2715,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-tpack
-    name: "TPACK Framework"
+    name:
+      en: "TPACK Framework"
+      zh: "TPACK 教學框架"
     description:
       en: "Apply the TPACK framework to evaluate and design technology-integrated instruction at the intersection of technological, pedagogical, and content knowledge."
       zh: "學術研究技能：TPACK Framework 分析與應用。"
@@ -2374,7 +2730,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-tpb
-    name: "Theory of Planned Behavior (TPB)"
+    name:
+      en: "Theory of Planned Behavior (TPB)"
+      zh: "計畫行為理論 TPB"
     description:
       en: "Apply the Theory of Planned Behavior to predict behavioral intentions from attitudes, subjective norms, and perceived behavioral control, and identify intervention leverage points."
       zh: "學術研究技能：Theory of Planned Behavior (TPB) 分析與應用。"
@@ -2387,7 +2745,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-grad-uppsala
-    name: "Uppsala Internationalization Model (Johanson & Vahlne, 1977)"
+    name:
+      en: "Uppsala Internationalization Model (Johanson & Vahlne, 1977)"
+      zh: "Uppsala 國際化模型"
     description:
       en: "Apply the Uppsala Internationalization Model to analyze gradual foreign market entry based on psychic distance and experiential learning."
       zh: "學術研究技能：Uppsala Internationalization Model (Johanson & Vahlne, 1977) 分析與應用。"
@@ -2403,7 +2763,9 @@ skills:
   # Humanities Theory Skills (9)
   # ============================================================
   - slug: skill-hum-critical-thinking
-    name: "Critical Thinking Framework"
+    name:
+      en: "Critical Thinking Framework"
+      zh: "批判性思維框架"
     description:
       en: "Apply structured critical thinking — identifying claims, evidence, reasoning chains, hidden assumptions, and logical fallacies — to evaluate or construct specific written arguments rigorously."
       zh: "人文技能：Critical Thinking Framework 分析與應用。"
@@ -2416,7 +2778,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-dialectics
-    name: "Dialectical Analysis"
+    name:
+      en: "Dialectical Analysis"
+      zh: "辯證分析"
     description:
       en: "Apply Hegelian dialectics (thesis-antithesis-synthesis) to analyze contradictions and generate higher-order understanding."
       zh: "人文技能：Dialectical Analysis 分析與應用。"
@@ -2429,7 +2793,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-discourse
-    name: "Discourse Analysis"
+    name:
+      en: "Discourse Analysis"
+      zh: "論述分析"
     description:
       en: "Apply discourse analysis to examine how language constructs meaning, power relationships, and social reality in texts and communications."
       zh: "人文技能：Discourse Analysis 分析與應用。"
@@ -2442,7 +2808,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-ethics
-    name: "Ethical Analysis"
+    name:
+      en: "Ethical Analysis"
+      zh: "倫理分析"
     description:
       en: "Apply ethical frameworks — deontology, utilitarianism, virtue ethics, and justice theory — to analyze moral dilemmas and make principled decisions."
       zh: "人文技能：Ethical Analysis 分析與應用。"
@@ -2455,7 +2823,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-historical-analogy
-    name: "Historical Analogy"
+    name:
+      en: "Historical Analogy"
+      zh: "歷史類比"
     description:
       en: "Use historical analogies to inform strategic decisions by identifying structural similarities and differences between past and present situations."
       zh: "人文技能：Historical Analogy 分析與應用。"
@@ -2468,7 +2838,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-narrative
-    name: "Narrative & Storytelling"
+    name:
+      en: "Narrative & Storytelling"
+      zh: "敘事與故事"
     description:
       en: "Apply narrative structure and storytelling techniques for brand, business, and communication contexts."
       zh: "人文技能：Narrative & Storytelling 分析與應用。"
@@ -2481,7 +2853,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-rhetoric
-    name: "Rhetoric: The Art of Persuasion"
+    name:
+      en: "Rhetoric: The Art of Persuasion"
+      zh: "修辭學：說服的藝術"
     description:
       en: "Apply classical rhetoric — Ethos, Pathos, Logos — to analyze persuasive communication and craft effective arguments."
       zh: "人文技能：Rhetoric: The Art of Persuasion 分析與應用。"
@@ -2494,7 +2868,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-socratic
-    name: "Socratic Questioning"
+    name:
+      en: "Socratic Questioning"
+      zh: "蘇格拉底提問法"
     description:
       en: "Apply Socratic questioning — systematic inquiry via clarification, assumption-probing, evidence-testing, perspective-shifting, implication-tracing, and meta-questions — to coach learning or surface."
       zh: "人文技能：Socratic Questioning 分析與應用。"
@@ -2507,7 +2883,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-hum-source-criticism
-    name: "Source Criticism"
+    name:
+      en: "Source Criticism"
+      zh: "史料批判"
     description:
       en: "Evaluate source credibility using primary/secondary classification, internal/external criticism, triangulation, and misinformation detection."
       zh: "人文技能：Source Criticism 分析與應用。"
@@ -2523,7 +2901,9 @@ skills:
   # Legal Theory Skills (5)
   # ============================================================
   - slug: skill-law-contract
-    name: "Contract Analysis"
+    name:
+      en: "Contract Analysis"
+      zh: "合約分析"
     description:
       en: "Analyze contract fundamentals including formation requirements (offer, acceptance, consideration), essential clauses, and common risk areas."
       zh: "法律技能：Contract Analysis 分析與應用。"
@@ -2536,7 +2916,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-law-gdpr-pdpa
-    name: "Data Privacy Compliance (GDPR & Taiwan PDPA)"
+    name:
+      en: "Data Privacy Compliance (GDPR & Taiwan PDPA)"
+      zh: "資料隱私合規（GDPR / 個資法）"
     description:
       en: "Analyze data privacy compliance requirements under GDPR, Taiwan's Personal Data Protection Act (PDPA), and related regulations."
       zh: "法律技能：Data Privacy Compliance (GDPR & Taiwan PDPA) 分析與應用。"
@@ -2549,7 +2931,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-law-ip
-    name: "Intellectual Property Analysis"
+    name:
+      en: "Intellectual Property Analysis"
+      zh: "智慧財產權分析"
     description:
       en: "Analyze intellectual property rights across patents, trademarks, copyrights, and trade secrets."
       zh: "法律技能：Intellectual Property Analysis 分析與應用。"
@@ -2562,7 +2946,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-law-irac
-    name: "IRAC Legal Analysis Method"
+    name:
+      en: "IRAC Legal Analysis Method"
+      zh: "IRAC 法律分析法"
     description:
       en: "Apply IRAC (Issue, Rule, Application, Conclusion) method for structured legal analysis."
       zh: "法律技能：IRAC Legal Analysis Method 分析與應用。"
@@ -2575,7 +2961,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-law-labor
-    name: "Taiwan Labor Law (Labor Standards Act)"
+    name:
+      en: "Taiwan Labor Law (Labor Standards Act)"
+      zh: "台灣勞動基準法"
     description:
       en: "Analyze Taiwan labor law fundamentals under the Labor Standards Act including working hours, overtime, leave, and termination rules."
       zh: "法律技能：Taiwan Labor Law (Labor Standards Act) 分析與應用。"
@@ -2591,7 +2979,9 @@ skills:
   # Social Science Theory Skills (7)
   # ============================================================
   - slug: skill-soc-cialdini
-    name: "Cialdini's Six Principles of Persuasion"
+    name:
+      en: "Cialdini's Six Principles of Persuasion"
+      zh: "Cialdini 六大說服原則"
     description:
       en: "Apply Cialdini's six principles of persuasion — Reciprocity, Commitment/Consistency, Social Proof, Liking, Authority, and Scarcity — to analyze or design influence strategies."
       zh: "社會科學技能：Cialdini's Six Principles of Persuasion 分析與應用。"
@@ -2604,7 +2994,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-soc-cognitive-bias
-    name: "Cognitive Bias Analysis"
+    name:
+      en: "Cognitive Bias Analysis"
+      zh: "認知偏誤分析"
     description:
       en: "Identify and analyze cognitive biases including confirmation bias, anchoring, availability heuristic, and sunk cost fallacy in decision-making contexts."
       zh: "社會科學技能：Cognitive Bias Analysis 分析與應用。"
@@ -2617,7 +3009,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-soc-innovation-diffusion
-    name: "Diffusion of Innovations"
+    name:
+      en: "Diffusion of Innovations"
+      zh: "創新擴散理論"
     description:
       en: "Apply Rogers' Diffusion of Innovations theory to analyze how new products, ideas, or technologies spread through populations."
       zh: "社會科學技能：Diffusion of Innovations 分析與應用。"
@@ -2630,7 +3024,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-soc-policy-analysis
-    name: "Policy Analysis"
+    name:
+      en: "Policy Analysis"
+      zh: "政策分析"
     description:
       en: "Conduct structured policy analysis including problem definition, alternative evaluation, and evidence-based recommendation."
       zh: "社會科學技能：Policy Analysis 分析與應用。"
@@ -2643,7 +3039,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-soc-social-network
-    name: "Social Network Analysis"
+    name:
+      en: "Social Network Analysis"
+      zh: "社會網路分析"
     description:
       en: "Apply social network analysis concepts including nodes, ties, centrality, structural holes, and strong/weak ties to map and analyze relationship structures."
       zh: "社會科學技能：Social Network Analysis 分析與應用。"
@@ -2656,7 +3054,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-soc-stakeholder
-    name: "Stakeholder Analysis"
+    name:
+      en: "Stakeholder Analysis"
+      zh: "利害關係人分析"
     description:
       en: "Conduct stakeholder analysis using identification, Power-Interest matrix classification, and influence strategy development."
       zh: "社會科學技能：Stakeholder Analysis 分析與應用。"
@@ -2669,7 +3069,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-soc-user-research
-    name: "User Research Methods"
+    name:
+      en: "User Research Methods"
+      zh: "使用者研究方法"
     description:
       en: "Design and conduct user research using interviews, focus groups, surveys, and field observation."
       zh: "社會科學技能：User Research Methods 分析與應用。"
@@ -2685,7 +3087,9 @@ skills:
   # Algorithm Skills (62)
   # ============================================================
   - slug: skill-algo-ad-bidding
-    name: "Ad Bidding Strategies"
+    name:
+      en: "Ad Bidding Strategies"
+      zh: "廣告出價策略"
     description:
       en: "Implement and select ad bidding strategies from manual CPC to automated target-CPA and target-ROAS."
       zh: "演算法技能：Ad Bidding Strategies 分析與應用。"
@@ -2698,7 +3102,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ad-budget
-    name: "Ad Budget Allocation Optimization"
+    name:
+      en: "Ad Budget Allocation Optimization"
+      zh: "廣告預算分配最佳化"
     description:
       en: "Optimize advertising budget allocation across campaigns using marginal returns analysis."
       zh: "演算法技能：Ad Budget Allocation Optimization 分析與應用。"
@@ -2711,7 +3117,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ad-ctr
-    name: "CTR Prediction Model"
+    name:
+      en: "CTR Prediction Model"
+      zh: "CTR 點擊率預測模型"
     description:
       en: "Build CTR prediction models for estimating ad click-through rates from features."
       zh: "演算法技能：CTR Prediction Model 分析與應用。"
@@ -2724,7 +3132,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ad-gsp
-    name: "Generalized Second Price Auction"
+    name:
+      en: "Generalized Second Price Auction"
+      zh: "廣義第二價格拍賣 GSP"
     description:
       en: "Implement Generalized Second Price auction for ad slot allocation and pricing."
       zh: "演算法技能：Generalized Second Price Auction 分析與應用。"
@@ -2737,7 +3147,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ad-vcg
-    name: "VCG Mechanism (Vickrey-Clarke-Groves)"
+    name:
+      en: "VCG Mechanism (Vickrey-Clarke-Groves)"
+      zh: "VCG 拍賣機制"
     description:
       en: "Implement VCG mechanism for incentive-compatible ad slot allocation with truthful bidding."
       zh: "演算法技能：VCG Mechanism (Vickrey-Clarke-Groves) 分析與應用。"
@@ -2750,7 +3162,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-blockchain-basics
-    name: "Blockchain Fundamentals"
+    name:
+      en: "Blockchain Fundamentals"
+      zh: "區塊鏈基礎"
     description:
       en: "Explain blockchain fundamentals including distributed ledger architecture, consensus mechanisms, and block structure."
       zh: "演算法技能：Blockchain Fundamentals 分析與應用。"
@@ -2763,7 +3177,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-blockchain-smart-contract
-    name: "Smart Contracts"
+    name:
+      en: "Smart Contracts"
+      zh: "智能合約"
     description:
       en: "Design and implement smart contracts as self-executing programmatic agreements on blockchain."
       zh: "演算法技能：Smart Contracts 分析與應用。"
@@ -2776,7 +3192,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ecom-bm25
-    name: "BM25 Ranking Function"
+    name:
+      en: "BM25 Ranking Function"
+      zh: "BM25 排序函數"
     description:
       en: "Implement BM25 ranking function for e-commerce product search relevance scoring."
       zh: "演算法技能：BM25 Ranking Function 分析與應用。"
@@ -2790,7 +3208,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ecom-ranking
-    name: "E-Commerce Product Ranking"
+    name:
+      en: "E-Commerce Product Ranking"
+      zh: "電商商品排序"
     description:
       en: "Design multi-objective e-commerce product ranking combining relevance, conversion, and business metrics."
       zh: "演算法技能：E-Commerce Product Ranking 分析與應用。"
@@ -2803,7 +3223,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-ecom-search
-    name: "E-Commerce Search Relevance"
+    name:
+      en: "E-Commerce Search Relevance"
+      zh: "電商搜尋相關性"
     description:
       en: "Optimize e-commerce search relevance across the full pipeline from query understanding to result presentation."
       zh: "演算法技能：E-Commerce Search Relevance 分析與應用。"
@@ -2816,7 +3238,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-forecast-arima
-    name: "ARIMA Time Series Model"
+    name:
+      en: "ARIMA Time Series Model"
+      zh: "ARIMA 時間序列模型"
     description:
       en: "Build ARIMA models for time series forecasting with trend and seasonality decomposition."
       zh: "演算法技能：ARIMA Time Series Model 分析與應用。"
@@ -2829,7 +3253,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-forecast-ensemble
-    name: "Ensemble Forecasting"
+    name:
+      en: "Ensemble Forecasting"
+      zh: "整合預測方法"
     description:
       en: "Combine multiple forecasting models into ensemble predictions for improved accuracy."
       zh: "演算法技能：Ensemble Forecasting 分析與應用。"
@@ -2842,7 +3268,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-forecast-exponential
-    name: "Exponential Smoothing"
+    name:
+      en: "Exponential Smoothing"
+      zh: "指數平滑法"
     description:
       en: "Apply exponential smoothing methods for time series forecasting with weighted moving averages."
       zh: "演算法技能：Exponential Smoothing 分析與應用。"
@@ -2855,7 +3283,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-forecast-prophet
-    name: "Prophet Forecasting"
+    name:
+      en: "Prophet Forecasting"
+      zh: "Prophet 預測模型"
     description:
       en: "Build forecasting models with Meta's Prophet for business time series with holidays and changepoints."
       zh: "演算法技能：Prophet Forecasting 分析與應用。"
@@ -2868,7 +3298,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-hr-compensation
-    name: "Compensation Benchmarking"
+    name:
+      en: "Compensation Benchmarking"
+      zh: "薪酬標竿分析"
     description:
       en: "Conduct compensation benchmarking analysis to position salaries against market data."
       zh: "演算法技能：Compensation Benchmarking 分析與應用。"
@@ -2881,7 +3313,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-hr-matching
-    name: "Gale-Shapley Stable Matching"
+    name:
+      en: "Gale-Shapley Stable Matching"
+      zh: "Gale-Shapley 穩定配對"
     description:
       en: "Implement Gale-Shapley stable matching algorithm for two-sided matching problems."
       zh: "演算法技能：Gale-Shapley Stable Matching 分析與應用。"
@@ -2894,7 +3328,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-hr-turnover
-    name: "Employee Turnover Prediction"
+    name:
+      en: "Employee Turnover Prediction"
+      zh: "員工離職預測"
     description:
       en: "Build employee turnover prediction models to identify flight risk and retention drivers."
       zh: "演算法技能：Employee Turnover Prediction 分析與應用。"
@@ -2907,7 +3343,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-mfg-cpk
-    name: "Cpk Process Capability Index"
+    name:
+      en: "Cpk Process Capability Index"
+      zh: "Cpk 製程能力指數"
     description:
       en: "Calculate Cpk process capability index to assess whether a process meets specification requirements."
       zh: "演算法技能：Cpk Process Capability Index 分析與應用。"
@@ -2921,7 +3359,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-mfg-doe
-    name: "Design of Experiments (DOE)"
+    name:
+      en: "Design of Experiments (DOE)"
+      zh: "實驗設計 DOE"
     description:
       en: "Design and analyze factorial experiments to identify significant process factors and optimize settings."
       zh: "演算法技能：Design of Experiments (DOE) 分析與應用。"
@@ -2934,7 +3374,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-mfg-fmea
-    name: "FMEA (Failure Mode and Effects Analysis)"
+    name:
+      en: "FMEA (Failure Mode and Effects Analysis)"
+      zh: "FMEA 失效模式與效應分析"
     description:
       en: "Conduct FMEA to systematically identify, prioritize, and mitigate potential failure modes."
       zh: "演算法技能：FMEA (Failure Mode and Effects Analysis) 分析與應用。"
@@ -2947,7 +3389,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-mfg-spc
-    name: "Statistical Process Control"
+    name:
+      en: "Statistical Process Control"
+      zh: "統計製程管制 SPC"
     description:
       en: "Implement Statistical Process Control charts to monitor production process stability."
       zh: "演算法技能：Statistical Process Control 分析與應用。"
@@ -2960,7 +3404,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-net-centrality
-    name: "Network Centrality Metrics"
+    name:
+      en: "Network Centrality Metrics"
+      zh: "網路中心性指標"
     description:
       en: "Calculate network centrality metrics to identify important nodes in graphs."
       zh: "演算法技能：Network Centrality Metrics 分析與應用。"
@@ -2973,7 +3419,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-net-community
-    name: "Louvain Community Detection"
+    name:
+      en: "Louvain Community Detection"
+      zh: "Louvain 社群偵測"
     description:
       en: "Implement Louvain community detection to discover densely connected groups in networks."
       zh: "演算法技能：Louvain Community Detection 分析與應用。"
@@ -2986,7 +3434,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-net-influence
-    name: "Influence Maximization"
+    name:
+      en: "Influence Maximization"
+      zh: "影響力最大化"
     description:
       en: "Solve the influence maximization problem to select optimal seed nodes for maximum information spread."
       zh: "演算法技能：Influence Maximization 分析與應用。"
@@ -2999,7 +3449,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-nlp-lda
-    name: "LDA Topic Modeling"
+    name:
+      en: "LDA Topic Modeling"
+      zh: "LDA 主題模型"
     description:
       en: "Implement LDA topic modeling to discover latent topics in document collections."
       zh: "演算法技能：LDA Topic Modeling 分析與應用。"
@@ -3012,7 +3464,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-nlp-ner
-    name: "Named Entity Recognition"
+    name:
+      en: "Named Entity Recognition"
+      zh: "命名實體辨識 NER"
     description:
       en: "Implement Named Entity Recognition to identify and classify entities in text."
       zh: "演算法技能：Named Entity Recognition 分析與應用。"
@@ -3025,7 +3479,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-nlp-similarity
-    name: "Text Similarity"
+    name:
+      en: "Text Similarity"
+      zh: "文字相似度"
     description:
       en: "Calculate text similarity using lexical and semantic methods for matching and deduplication."
       zh: "演算法技能：Text Similarity 分析與應用。"
@@ -3038,7 +3494,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-nlp-summarization
-    name: "Text Summarization"
+    name:
+      en: "Text Summarization"
+      zh: "文字摘要"
     description:
       en: "Implement text summarization using extractive and abstractive approaches."
       zh: "演算法技能：Text Summarization 分析與應用。"
@@ -3051,7 +3509,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-price-bundle
-    name: "Bundle Pricing Strategy"
+    name:
+      en: "Bundle Pricing Strategy"
+      zh: "組合定價策略"
     description:
       en: "Design bundle pricing strategies using pure bundling, mixed bundling, and consumer surplus analysis."
       zh: "演算法技能：Bundle Pricing Strategy 分析與應用。"
@@ -3064,7 +3524,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-price-conjoint
-    name: "Conjoint Analysis"
+    name:
+      en: "Conjoint Analysis"
+      zh: "聯合分析"
     description:
       en: "Run conjoint analysis to measure how product attributes drive consumer preferences and willingness to pay."
       zh: "演算法技能：Conjoint Analysis 分析與應用。"
@@ -3077,7 +3539,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-price-dynamic
-    name: "Dynamic Pricing"
+    name:
+      en: "Dynamic Pricing"
+      zh: "動態定價"
     description:
       en: "Implement dynamic pricing strategies that adjust prices in real-time based on demand, time, and competition."
       zh: "演算法技能：Dynamic Pricing 分析與應用。"
@@ -3090,7 +3554,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-price-elasticity
-    name: "Price Elasticity of Demand"
+    name:
+      en: "Price Elasticity of Demand"
+      zh: "需求價格彈性"
     description:
       en: "Calculate price elasticity of demand to quantify how price changes affect sales volume."
       zh: "演算法技能：Price Elasticity of Demand 分析與應用。"
@@ -3104,7 +3570,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-price-van-westendorp
-    name: "Van Westendorp Price Sensitivity Meter"
+    name:
+      en: "Van Westendorp Price Sensitivity Meter"
+      zh: "Van Westendorp 價格敏感度"
     description:
       en: "Conduct Van Westendorp Price Sensitivity Meter analysis to identify acceptable price ranges."
       zh: "演算法技能：Van Westendorp Price Sensitivity Meter 分析與應用。"
@@ -3117,7 +3585,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rank-bayesian
-    name: "Bayesian Average Rating"
+    name:
+      en: "Bayesian Average Rating"
+      zh: "貝氏平均評分"
     description:
       en: "Apply Bayesian averaging to rank items by combining observed ratings with prior expectations."
       zh: "演算法技能：Bayesian Average Rating 分析與應用。"
@@ -3131,7 +3601,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rank-elo
-    name: "Elo Rating System"
+    name:
+      en: "Elo Rating System"
+      zh: "Elo 評等系統"
     description:
       en: "Implement Elo rating system to rank items or players from pairwise comparison outcomes."
       zh: "演算法技能：Elo Rating System 分析與應用。"
@@ -3145,7 +3617,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rank-trueskill
-    name: "TrueSkill Rating System"
+    name:
+      en: "TrueSkill Rating System"
+      zh: "TrueSkill 評等系統"
     description:
       en: "Implement TrueSkill rating system for multiplayer and team-based competitive ranking."
       zh: "演算法技能：TrueSkill Rating System 分析與應用。"
@@ -3158,7 +3632,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rank-wilson
-    name: "Wilson Score Ranking"
+    name:
+      en: "Wilson Score Ranking"
+      zh: "Wilson 分數排序"
     description:
       en: "Calculate Wilson Score confidence intervals for ranking items by positive proportion with sample size correction."
       zh: "演算法技能：Wilson Score Ranking 分析與應用。"
@@ -3172,7 +3648,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rec-cf
-    name: "Collaborative Filtering"
+    name:
+      en: "Collaborative Filtering"
+      zh: "協同過濾推薦"
     description:
       en: "Implement collaborative filtering for recommendations based on user behavior patterns."
       zh: "演算法技能：Collaborative Filtering 分析與應用。"
@@ -3185,7 +3663,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rec-content
-    name: "Content-Based Recommendation"
+    name:
+      en: "Content-Based Recommendation"
+      zh: "內容式推薦"
     description:
       en: "Implement content-based recommendation by matching item features to user preference profiles."
       zh: "演算法技能：Content-Based Recommendation 分析與應用。"
@@ -3198,7 +3678,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rec-hybrid
-    name: "Hybrid Recommendation System"
+    name:
+      en: "Hybrid Recommendation System"
+      zh: "混合推薦系統"
     description:
       en: "Design hybrid recommendation systems combining multiple strategies for improved accuracy."
       zh: "演算法技能：Hybrid Recommendation System 分析與應用。"
@@ -3211,7 +3693,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rec-mf
-    name: "Matrix Factorization"
+    name:
+      en: "Matrix Factorization"
+      zh: "矩陣分解推薦"
     description:
       en: "Implement matrix factorization to decompose user-item interaction matrices into latent factor representations."
       zh: "演算法技能：Matrix Factorization 分析與應用。"
@@ -3224,7 +3708,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-rec-session
-    name: "Session-Based Recommendation"
+    name:
+      en: "Session-Based Recommendation"
+      zh: "工作階段式推薦"
     description:
       en: "Implement session-based recommendation from short-term user behavior sequences without long-term profiles."
       zh: "演算法技能：Session-Based Recommendation 分析與應用。"
@@ -3237,7 +3723,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-risk-altman-z
-    name: "Altman Z-Score"
+    name:
+      en: "Altman Z-Score"
+      zh: "Altman Z 分數"
     description:
       en: "Calculate Altman Z-Score to predict corporate bankruptcy probability from financial ratios."
       zh: "演算法技能：Altman Z-Score 分析與應用。"
@@ -3251,7 +3739,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-risk-benford
-    name: "Benford's Law Analysis"
+    name:
+      en: "Benford's Law Analysis"
+      zh: "Benford 定律分析"
     description:
       en: "Apply Benford's Law to detect anomalies in numerical datasets by analyzing first-digit frequency distributions."
       zh: "演算法技能：Benford's Law Analysis 分析與應用。"
@@ -3264,7 +3754,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-risk-credit
-    name: "Credit Scoring Model"
+    name:
+      en: "Credit Scoring Model"
+      zh: "信用評分模型"
     description:
       en: "Build credit scoring models to predict default probability from borrower characteristics."
       zh: "演算法技能：Credit Scoring Model 分析與應用。"
@@ -3277,7 +3769,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-risk-var
-    name: "Value at Risk (VaR)"
+    name:
+      en: "Value at Risk (VaR)"
+      zh: "風險值 VaR"
     description:
       en: "Calculate Value at Risk to estimate maximum portfolio loss at a given confidence level."
       zh: "演算法技能：Value at Risk (VaR) 分析與應用。"
@@ -3290,7 +3784,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-sc-bullwhip
-    name: "Bullwhip Effect Analysis"
+    name:
+      en: "Bullwhip Effect Analysis"
+      zh: "長鞭效應分析"
     description:
       en: "Analyze and mitigate the bullwhip effect where demand variability amplifies upstream in supply chains."
       zh: "演算法技能：Bullwhip Effect Analysis 分析與應用。"
@@ -3303,7 +3799,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-sc-eoq
-    name: "Economic Order Quantity (EOQ)"
+    name:
+      en: "Economic Order Quantity (EOQ)"
+      zh: "經濟訂購量 EOQ"
     description:
       en: "Calculate Economic Order Quantity to minimize total inventory cost (ordering + holding)."
       zh: "演算法技能：Economic Order Quantity (EOQ) 分析與應用。"
@@ -3317,7 +3815,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-sc-newsvendor
-    name: "Newsvendor Model"
+    name:
+      en: "Newsvendor Model"
+      zh: "報童模型"
     description:
       en: "Solve the newsvendor problem for single-period ordering decisions under uncertain demand."
       zh: "演算法技能：Newsvendor Model 分析與應用。"
@@ -3331,7 +3831,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-sc-routing
-    name: "Vehicle Routing Problem (VRP)"
+    name:
+      en: "Vehicle Routing Problem (VRP)"
+      zh: "車輛路徑問題 VRP"
     description:
       en: "Solve vehicle routing problems to optimize delivery routes under capacity and time constraints."
       zh: "演算法技能：Vehicle Routing Problem (VRP) 分析與應用。"
@@ -3344,7 +3846,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-sc-safety-stock
-    name: "Safety Stock Calculation"
+    name:
+      en: "Safety Stock Calculation"
+      zh: "安全庫存計算"
     description:
       en: "Calculate safety stock levels to buffer against demand and lead time uncertainty."
       zh: "演算法技能：Safety Stock Calculation 分析與應用。"
@@ -3358,7 +3862,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-backlink
-    name: "Backlink Quality Assessment"
+    name:
+      en: "Backlink Quality Assessment"
+      zh: "反向連結品質評估"
     description:
       en: "Evaluate backlink quality using Domain Authority, Domain Rating, and trust metrics."
       zh: "演算法技能：Backlink Quality Assessment 分析與應用。"
@@ -3371,7 +3877,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-content
-    name: "Content SEO Strategy"
+    name:
+      en: "Content SEO Strategy"
+      zh: "內容 SEO 策略"
     description:
       en: "Execute content SEO strategy from keyword research through content planning, writing, and on-page optimization."
       zh: "演算法技能：Content SEO Strategy 分析與應用。"
@@ -3384,7 +3892,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-crawl
-    name: "Web Crawler"
+    name:
+      en: "Web Crawler"
+      zh: "網頁爬蟲"
     description:
       en: "Implement a web crawler pipeline covering URL discovery, fetching, parsing, and storage."
       zh: "演算法技能：Web Crawler 分析與應用。"
@@ -3397,7 +3907,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-pagerank
-    name: "PageRank Algorithm"
+    name:
+      en: "PageRank Algorithm"
+      zh: "PageRank 演算法"
     description:
       en: "Implement PageRank algorithm to compute web page importance scores using the random surfer model."
       zh: "演算法技能：PageRank Algorithm 分析與應用。"
@@ -3410,7 +3922,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-schema
-    name: "Schema.org Structured Data"
+    name:
+      en: "Schema.org Structured Data"
+      zh: "Schema.org 結構化資料"
     description:
       en: "Implement Schema."
       zh: "演算法技能：Schema.org Structured Data 分析與應用。"
@@ -3423,7 +3937,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-technical
-    name: "Core Web Vitals Optimization"
+    name:
+      en: "Core Web Vitals Optimization"
+      zh: "Core Web Vitals 優化"
     description:
       en: "Optimize Core Web Vitals (LCP, INP, CLS) for better search rankings and user experience."
       zh: "演算法技能：Core Web Vitals Optimization 分析與應用。"
@@ -3436,7 +3952,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-seo-tfidf
-    name: "TF-IDF"
+    name:
+      en: "TF-IDF"
+      zh: "TF-IDF 詞頻分析"
     description:
       en: "Implement TF-IDF scoring to measure term importance relative to a document corpus."
       zh: "演算法技能：TF-IDF 分析與應用。"
@@ -3450,7 +3968,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-social-engagement
-    name: "Engagement Rate Calculation"
+    name:
+      en: "Engagement Rate Calculation"
+      zh: "互動率計算"
     description:
       en: "Calculate and benchmark social media engagement rates across platforms and variants."
       zh: "演算法技能：Engagement Rate Calculation 分析與應用。"
@@ -3463,7 +3983,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-social-influence
-    name: "Social Influence Measurement"
+    name:
+      en: "Social Influence Measurement"
+      zh: "社群影響力衡量"
     description:
       en: "Measure social media influence using engagement-weighted metrics beyond follower count."
       zh: "演算法技能：Social Influence Measurement 分析與應用。"
@@ -3476,7 +3998,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-social-sentiment
-    name: "VADER Sentiment Analysis"
+    name:
+      en: "VADER Sentiment Analysis"
+      zh: "VADER 情感分析"
     description:
       en: "Implement VADER sentiment analysis for social media text scoring."
       zh: "演算法技能：VADER Sentiment Analysis 分析與應用。"
@@ -3489,7 +4013,9 @@ skills:
     maintainer: asgard-ai-platform
 
   - slug: skill-algo-social-virality
-    name: "Viral Spread Models"
+    name:
+      en: "Viral Spread Models"
+      zh: "病毒式傳播模型"
     description:
       en: "Model viral spread dynamics using SIR/SIS/SEIR compartmental models."
       zh: "演算法技能：Viral Spread Models 分析與應用。"

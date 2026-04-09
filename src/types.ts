@@ -5,7 +5,7 @@ export interface BilingualText {
 
 export interface McpServer {
   slug: string;
-  name: string;
+  name: BilingualText;
   description: BilingualText;
   status: 'released' | 'coming-soon' | 'planned';
   category: string;
@@ -22,7 +22,7 @@ export interface McpServer {
 
 export interface Skill {
   slug: string;
-  name: string;
+  name: BilingualText;
   description: BilingualText;
   status: 'released' | 'coming-soon' | 'planned';
   category: string;
@@ -40,7 +40,7 @@ export interface Skill {
 
 export interface PlugIn {
   slug: string;
-  name: string;
+  name: BilingualText;
   description: BilingualText;
   scenario: BilingualText;
   upgrade_to?: string;

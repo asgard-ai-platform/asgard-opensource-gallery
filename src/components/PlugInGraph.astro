@@ -52,7 +52,8 @@ function skillY(i: number) {
       <g>
         <circle cx={mcpX} cy={mcpY(i)} r="8" fill="#4ade80" opacity="0.8" />
         <text x={mcpX - 15} y={mcpY(i) + 4} text-anchor="end" fill="#86a68a" font-size="11">
-          {m.name}
+          <tspan class="lang-en">{m.name.en}</tspan>
+          <tspan class="lang-zh">{m.name.zh}</tspan>
         </text>
       </g>
     ))}
@@ -60,7 +61,8 @@ function skillY(i: number) {
       <g>
         <circle cx={skillX} cy={skillY(i)} r="8" fill="#22d3ee" opacity="0.8" />
         <text x={skillX + 15} y={skillY(i) + 4} text-anchor="start" fill="#86a68a" font-size="11">
-          {s.name}
+          <tspan class="lang-en">{s.name.en}</tspan>
+          <tspan class="lang-zh">{s.name.zh}</tspan>
         </text>
       </g>
     ))}
