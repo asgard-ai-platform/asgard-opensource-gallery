@@ -13,7 +13,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-analytics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-analytics/SKILL.md
     tags: [e-commerce, analytics, ga4, conversion]
     maintainer: asgard-ai-platform
 
@@ -28,7 +28,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-conversational
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-conversational/SKILL.md
     tags: [e-commerce, conversational-commerce, chatbot, messaging]
     maintainer: asgard-ai-platform
 
@@ -43,7 +43,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-inventory-health
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-inventory-health/SKILL.md
     tags: [e-commerce, inventory, supply-chain, abc-analysis]
     maintainer: asgard-ai-platform
 
@@ -58,7 +58,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-multilingual-listing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-multilingual-listing/SKILL.md
     tags: [e-commerce, localization, seo, multilingual]
     maintainer: asgard-ai-platform
 
@@ -73,7 +73,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-promo-roi
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-promo-roi/SKILL.md
     tags: [e-commerce, promotion, roi, marketing]
     maintainer: asgard-ai-platform
 
@@ -88,7 +88,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-rfm-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-rfm-analysis/SKILL.md
     tags: [e-commerce, rfm, segmentation, customer-analytics]
     has_script: true
     maintainer: asgard-ai-platform
@@ -104,7 +104,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ecom-sea-strategy
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ecom-sea-strategy/SKILL.md
     tags: [e-commerce, southeast-asia, cross-border, localization]
     maintainer: asgard-ai-platform
 
@@ -122,7 +122,7 @@ skills:
     category: finance
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/fin-earnings-summary
+    github: https://github.com/asgard-ai-platform/skills/blob/main/fin-earnings-summary/SKILL.md
     tags: [finance, earnings, investor-relations, analysis]
     maintainer: asgard-ai-platform
 
@@ -137,7 +137,7 @@ skills:
     category: finance
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/fin-modeling
+    github: https://github.com/asgard-ai-platform/skills/blob/main/fin-modeling/SKILL.md
     tags: [finance, financial-modeling, forecasting, three-statement]
     maintainer: asgard-ai-platform
 
@@ -155,7 +155,7 @@ skills:
     category: manufacturing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mfg-oee-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mfg-oee-analysis/SKILL.md
     tags: [manufacturing, oee, production-efficiency]
     maintainer: asgard-ai-platform
 
@@ -170,7 +170,7 @@ skills:
     category: manufacturing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mfg-predictive-maintenance
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mfg-predictive-maintenance/SKILL.md
     tags: [manufacturing, predictive-maintenance, iot, reliability]
     maintainer: asgard-ai-platform
 
@@ -185,7 +185,7 @@ skills:
     category: manufacturing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mfg-production-planning
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mfg-production-planning/SKILL.md
     tags: [manufacturing, production-planning, mrp, scheduling]
     maintainer: asgard-ai-platform
 
@@ -200,7 +200,7 @@ skills:
     category: manufacturing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mfg-supplier-scorecard
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mfg-supplier-scorecard/SKILL.md
     tags: [manufacturing, procurement, supplier-management]
     maintainer: asgard-ai-platform
 
@@ -218,7 +218,7 @@ skills:
     category: customer-service
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/cs-analytics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/cs-analytics/SKILL.md
     tags: [customer-service, analytics, nps, csat]
     maintainer: asgard-ai-platform
 
@@ -233,7 +233,7 @@ skills:
     category: customer-service
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/cs-chatbot-design
+    github: https://github.com/asgard-ai-platform/skills/blob/main/cs-chatbot-design/SKILL.md
     tags: [chatbot, conversational-ai, nlu, dialogue]
     maintainer: asgard-ai-platform
 
@@ -248,7 +248,7 @@ skills:
     category: customer-service
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/cs-notification-strategy
+    github: https://github.com/asgard-ai-platform/skills/blob/main/cs-notification-strategy/SKILL.md
     tags: [notification, push, engagement, retention]
     maintainer: asgard-ai-platform
 
@@ -263,7 +263,7 @@ skills:
     category: customer-service
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/cs-sop
+    github: https://github.com/asgard-ai-platform/skills/blob/main/cs-sop/SKILL.md
     tags: [customer-service, sop, support, operations]
     maintainer: asgard-ai-platform
 
@@ -281,7 +281,7 @@ skills:
     category: media
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/pr-crisis-communication
+    github: https://github.com/asgard-ai-platform/skills/blob/main/pr-crisis-communication/SKILL.md
     tags: [communication, crisis-management, pr]
     maintainer: asgard-ai-platform
 
@@ -296,7 +296,7 @@ skills:
     category: media
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/pr-crisis-response
+    github: https://github.com/asgard-ai-platform/skills/blob/main/pr-crisis-response/SKILL.md
     tags: [pr, crisis-management, reputation, communication]
     maintainer: asgard-ai-platform
 
@@ -311,7 +311,7 @@ skills:
     category: media
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/pr-media-monitoring
+    github: https://github.com/asgard-ai-platform/skills/blob/main/pr-media-monitoring/SKILL.md
     tags: [pr, media-monitoring, brand, reputation]
     maintainer: asgard-ai-platform
 
@@ -326,7 +326,7 @@ skills:
     category: media
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/pr-press-release
+    github: https://github.com/asgard-ai-platform/skills/blob/main/pr-press-release/SKILL.md
     tags: [pr, press-release, media-relations]
     maintainer: asgard-ai-platform
 
@@ -341,7 +341,7 @@ skills:
     category: media
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/pr-social-copywriting
+    github: https://github.com/asgard-ai-platform/skills/blob/main/pr-social-copywriting/SKILL.md
     tags: [pr, social-media, copywriting, content]
     maintainer: asgard-ai-platform
 
@@ -359,7 +359,7 @@ skills:
     category: marketing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mkt-ab-testing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mkt-ab-testing/SKILL.md
     tags: [digital-marketing, ab-testing, conversion, experimentation]
     has_script: true
     maintainer: asgard-ai-platform
@@ -375,7 +375,7 @@ skills:
     category: marketing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mkt-ad-optimization
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mkt-ad-optimization/SKILL.md
     tags: [digital-marketing, advertising, google-ads, meta-ads]
     maintainer: asgard-ai-platform
 
@@ -390,7 +390,7 @@ skills:
     category: marketing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mkt-content-calendar
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mkt-content-calendar/SKILL.md
     tags: [digital-marketing, content, editorial-calendar, planning]
     maintainer: asgard-ai-platform
 
@@ -405,7 +405,7 @@ skills:
     category: marketing
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/mkt-seo-audit
+    github: https://github.com/asgard-ai-platform/skills/blob/main/mkt-seo-audit/SKILL.md
     tags: [digital-marketing, seo, technical-seo, audit]
     maintainer: asgard-ai-platform
 
@@ -423,7 +423,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-einvoice-guide
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-einvoice-guide/SKILL.md
     tags: [taiwan, e-invoice, tax-compliance, integration]
     maintainer: asgard-ai-platform
 
@@ -438,7 +438,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-fintech-compliance
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-fintech-compliance/SKILL.md
     tags: [industry, taiwan, fintech, compliance]
     maintainer: asgard-ai-platform
 
@@ -453,7 +453,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-healthcare-regulations
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-healthcare-regulations/SKILL.md
     tags: [industry, taiwan, healthcare, regulation]
     maintainer: asgard-ai-platform
 
@@ -468,7 +468,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-manufacturing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-manufacturing/SKILL.md
     tags: [industry, taiwan, manufacturing, semiconductor]
     maintainer: asgard-ai-platform
 
@@ -483,7 +483,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-payment-integration
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-payment-integration/SKILL.md
     tags: [taiwan, payment, fintech, integration]
     maintainer: asgard-ai-platform
 
@@ -498,7 +498,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-retail-landscape
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-retail-landscape/SKILL.md
     tags: [industry, taiwan, retail, omnichannel]
     maintainer: asgard-ai-platform
 
@@ -513,7 +513,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-startup-legal
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-startup-legal/SKILL.md
     tags: [taiwan, startup, legal, company-registration]
     maintainer: asgard-ai-platform
 
@@ -528,7 +528,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-stock-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-stock-analysis/SKILL.md
     tags: [finance, taiwan-stocks, fundamental-analysis, investment]
     maintainer: asgard-ai-platform
 
@@ -543,7 +543,7 @@ skills:
     category: data
     skill_type: industry
     region: taiwan
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tw-tax-basics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-tax-basics/SKILL.md
     tags: [taiwan, tax, corporate-tax, startup]
     maintainer: asgard-ai-platform
 
@@ -561,7 +561,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/xborder-logistics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/xborder-logistics/SKILL.md
     tags: [cross-border, logistics, fulfillment, international]
     maintainer: asgard-ai-platform
 
@@ -576,7 +576,7 @@ skills:
     category: ecommerce
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/xborder-sea-entry
+    github: https://github.com/asgard-ai-platform/skills/blob/main/xborder-sea-entry/SKILL.md
     tags: [cross-border, market-entry, southeast-asia, strategy]
     maintainer: asgard-ai-platform
 
@@ -594,7 +594,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-4p-7p
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-4p-7p/SKILL.md
     tags: [marketing, 4p, 7p, marketing-mix]
     maintainer: asgard-ai-platform
 
@@ -609,7 +609,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-ansoff
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-ansoff/SKILL.md
     tags: [business-strategy, ansoff-matrix, growth-strategy]
     maintainer: asgard-ai-platform
 
@@ -624,7 +624,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-bcg-matrix
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-bcg-matrix/SKILL.md
     tags: [business-strategy, bcg-matrix, portfolio-management]
     maintainer: asgard-ai-platform
 
@@ -639,7 +639,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-blue-ocean
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-blue-ocean/SKILL.md
     tags: [business-strategy, blue-ocean, value-innovation]
     maintainer: asgard-ai-platform
 
@@ -654,7 +654,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-brand-positioning
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-brand-positioning/SKILL.md
     tags: [marketing, brand-positioning, brand-strategy]
     maintainer: asgard-ai-platform
 
@@ -669,7 +669,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-breakeven
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-breakeven/SKILL.md
     tags: [finance, breakeven, cost-analysis]
     has_script: true
     maintainer: asgard-ai-platform
@@ -685,7 +685,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-bsc
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-bsc/SKILL.md
     tags: [business-strategy, balanced-scorecard, performance-management]
     maintainer: asgard-ai-platform
 
@@ -700,7 +700,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-cac-ltv
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-cac-ltv/SKILL.md
     tags: [marketing, unit-economics, cac, ltv]
     has_script: true
     maintainer: asgard-ai-platform
@@ -716,7 +716,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-customer-journey
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-customer-journey/SKILL.md
     tags: [marketing, customer-journey, experience-design]
     maintainer: asgard-ai-platform
 
@@ -731,7 +731,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-dcf
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-dcf/SKILL.md
     tags: [finance, dcf, valuation]
     has_script: true
     maintainer: asgard-ai-platform
@@ -747,7 +747,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-dupont
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-dupont/SKILL.md
     tags: [finance, dupont, roe-analysis]
     has_script: true
     maintainer: asgard-ai-platform
@@ -763,7 +763,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-financial-ratios
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-financial-ratios/SKILL.md
     tags: [finance, financial-ratios, financial-analysis]
     has_script: true
     maintainer: asgard-ai-platform
@@ -779,7 +779,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-lean-six-sigma
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-lean-six-sigma/SKILL.md
     tags: [operations, lean, six-sigma, process-improvement]
     maintainer: asgard-ai-platform
 
@@ -794,7 +794,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-pestel
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-pestel/SKILL.md
     tags: [business-strategy, pestel, macro-environment]
     maintainer: asgard-ai-platform
 
@@ -809,7 +809,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-porters-five-forces
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-porters-five-forces/SKILL.md
     tags: [business-strategy, porters-five-forces, industry-analysis]
     maintainer: asgard-ai-platform
 
@@ -824,7 +824,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-pricing-strategy
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-pricing-strategy/SKILL.md
     tags: [marketing, pricing, revenue-strategy]
     maintainer: asgard-ai-platform
 
@@ -839,7 +839,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-stp
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-stp/SKILL.md
     tags: [marketing, stp, segmentation, positioning]
     maintainer: asgard-ai-platform
 
@@ -854,7 +854,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-supply-chain
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-supply-chain/SKILL.md
     tags: [operations, supply-chain, scor, logistics]
     maintainer: asgard-ai-platform
 
@@ -869,7 +869,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-swot
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-swot/SKILL.md
     tags: [business-strategy, swot, tows]
     maintainer: asgard-ai-platform
 
@@ -884,7 +884,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-toc
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-toc/SKILL.md
     tags: [operations, toc, bottleneck, throughput]
     maintainer: asgard-ai-platform
 
@@ -899,7 +899,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-unit-economics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-unit-economics/SKILL.md
     tags: [finance, unit-economics, business-model]
     has_script: true
     maintainer: asgard-ai-platform
@@ -915,7 +915,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/biz-value-chain
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-value-chain/SKILL.md
     tags: [business-strategy, value-chain, operations]
     maintainer: asgard-ai-platform
 
@@ -933,7 +933,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/data-cohort-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/data-cohort-analysis/SKILL.md
     tags: [data-analysis, cohort, retention, product-analytics]
     maintainer: asgard-ai-platform
 
@@ -948,7 +948,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/data-dashboard-design
+    github: https://github.com/asgard-ai-platform/skills/blob/main/data-dashboard-design/SKILL.md
     tags: [data-analysis, dashboard, visualization, bi]
     maintainer: asgard-ai-platform
 
@@ -963,7 +963,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/data-financial-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/data-financial-analysis/SKILL.md
     tags: [data-analysis, financial-statements, accounting]
     maintainer: asgard-ai-platform
 
@@ -978,7 +978,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/data-sql-optimization
+    github: https://github.com/asgard-ai-platform/skills/blob/main/data-sql-optimization/SKILL.md
     tags: [data-analysis, sql, database, performance]
     maintainer: asgard-ai-platform
 
@@ -996,7 +996,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/meta-decision-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/meta-decision-analysis/SKILL.md
     tags: [meta-thinking, decision-analysis, decision-matrix]
     maintainer: asgard-ai-platform
 
@@ -1011,7 +1011,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/meta-first-principles
+    github: https://github.com/asgard-ai-platform/skills/blob/main/meta-first-principles/SKILL.md
     tags: [meta-thinking, first-principles, problem-solving]
     maintainer: asgard-ai-platform
 
@@ -1026,7 +1026,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/meta-mental-models
+    github: https://github.com/asgard-ai-platform/skills/blob/main/meta-mental-models/SKILL.md
     tags: [meta-thinking, mental-models, munger, decision-making]
     maintainer: asgard-ai-platform
 
@@ -1041,7 +1041,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/meta-scenario-planning
+    github: https://github.com/asgard-ai-platform/skills/blob/main/meta-scenario-planning/SKILL.md
     tags: [meta-thinking, scenario-planning, strategy, uncertainty]
     maintainer: asgard-ai-platform
 
@@ -1056,7 +1056,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/meta-structured-problem
+    github: https://github.com/asgard-ai-platform/skills/blob/main/meta-structured-problem/SKILL.md
     tags: [meta-thinking, structured-problem-solving, mece, mckinsey]
     maintainer: asgard-ai-platform
 
@@ -1071,7 +1071,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/meta-systems-thinking
+    github: https://github.com/asgard-ai-platform/skills/blob/main/meta-systems-thinking/SKILL.md
     tags: [meta-thinking, systems-thinking, complexity]
     maintainer: asgard-ai-platform
 
@@ -1089,7 +1089,7 @@ skills:
     category: ops
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ops-business-model-canvas
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-business-model-canvas/SKILL.md
     tags: [business, business-model-canvas, strategy]
     maintainer: asgard-ai-platform
 
@@ -1104,7 +1104,7 @@ skills:
     category: ops
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ops-contract-review
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-contract-review/SKILL.md
     tags: [business, contract, legal, risk-management]
     maintainer: asgard-ai-platform
 
@@ -1119,7 +1119,7 @@ skills:
     category: ops
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ops-meeting-minutes
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-meeting-minutes/SKILL.md
     tags: [business, meetings, documentation, productivity]
     maintainer: asgard-ai-platform
 
@@ -1134,7 +1134,7 @@ skills:
     category: ops
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ops-negotiation
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-negotiation/SKILL.md
     tags: [negotiation, batna, conflict-resolution]
     maintainer: asgard-ai-platform
 
@@ -1149,7 +1149,7 @@ skills:
     category: ops
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ops-okr-planning
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-okr-planning/SKILL.md
     tags: [business, okr, goal-setting, performance]
     maintainer: asgard-ai-platform
 
@@ -1164,7 +1164,7 @@ skills:
     category: ops
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ops-pitch-deck
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-pitch-deck/SKILL.md
     tags: [business, pitch-deck, fundraising, startup]
     maintainer: asgard-ai-platform
 
@@ -1182,7 +1182,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/stat-ab-testing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/stat-ab-testing/SKILL.md
     tags: [statistics, ab-testing, experimentation]
     maintainer: asgard-ai-platform
 
@@ -1197,7 +1197,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/stat-causal-inference
+    github: https://github.com/asgard-ai-platform/skills/blob/main/stat-causal-inference/SKILL.md
     tags: [statistics, causal-inference, econometrics]
     maintainer: asgard-ai-platform
 
@@ -1212,7 +1212,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/stat-eda
+    github: https://github.com/asgard-ai-platform/skills/blob/main/stat-eda/SKILL.md
     tags: [data-analysis, eda, statistics, visualization]
     maintainer: asgard-ai-platform
 
@@ -1227,7 +1227,7 @@ skills:
     category: analytics
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/stat-hypothesis-testing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/stat-hypothesis-testing/SKILL.md
     tags: [statistics, hypothesis-testing, p-value, inference]
     maintainer: asgard-ai-platform
 
@@ -1245,7 +1245,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tech-api-integration
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tech-api-integration/SKILL.md
     tags: [technology, api, rest, integration]
     maintainer: asgard-ai-platform
 
@@ -1260,7 +1260,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tech-data-pipeline
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tech-data-pipeline/SKILL.md
     tags: [technology, data-pipeline, etl, data-engineering]
     maintainer: asgard-ai-platform
 
@@ -1275,7 +1275,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tech-mcp-server-dev
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tech-mcp-server-dev/SKILL.md
     tags: [technology, mcp, claude-code, ai-agents]
     maintainer: asgard-ai-platform
 
@@ -1290,7 +1290,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/tech-prompt-engineering
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tech-prompt-engineering/SKILL.md
     tags: [technology, llm, production, debugging]
     maintainer: asgard-ai-platform
 
@@ -1308,7 +1308,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ux-design-thinking
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ux-design-thinking/SKILL.md
     tags: [design, design-thinking, innovation, ux]
     maintainer: asgard-ai-platform
 
@@ -1323,7 +1323,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ux-heuristic
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ux-heuristic/SKILL.md
     tags: [ux, heuristic-evaluation, usability, nielsen]
     maintainer: asgard-ai-platform
 
@@ -1338,7 +1338,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ux-jtbd
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ux-jtbd/SKILL.md
     tags: [product, jtbd, jobs-to-be-done, customer-insight]
     maintainer: asgard-ai-platform
 
@@ -1353,7 +1353,7 @@ skills:
     category: methodology
     skill_type: methodology
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/ux-lean-startup
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ux-lean-startup/SKILL.md
     tags: [product, lean-startup, mvp, validation]
     maintainer: asgard-ai-platform
 
@@ -1371,7 +1371,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/econ-behavioral
+    github: https://github.com/asgard-ai-platform/skills/blob/main/econ-behavioral/SKILL.md
     tags: [economics, behavioral-economics, decision-making]
     maintainer: asgard-ai-platform
 
@@ -1386,7 +1386,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/econ-business-cycle
+    github: https://github.com/asgard-ai-platform/skills/blob/main/econ-business-cycle/SKILL.md
     tags: [economics, business-cycle, macroeconomics]
     maintainer: asgard-ai-platform
 
@@ -1401,7 +1401,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/econ-game-theory
+    github: https://github.com/asgard-ai-platform/skills/blob/main/econ-game-theory/SKILL.md
     tags: [economics, game-theory, strategy]
     maintainer: asgard-ai-platform
 
@@ -1416,7 +1416,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/econ-macro-indicators
+    github: https://github.com/asgard-ai-platform/skills/blob/main/econ-macro-indicators/SKILL.md
     tags: [economics, macroeconomics, economic-indicators]
     maintainer: asgard-ai-platform
 
@@ -1431,7 +1431,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/econ-market-structure
+    github: https://github.com/asgard-ai-platform/skills/blob/main/econ-market-structure/SKILL.md
     tags: [economics, market-structure, industrial-organization]
     maintainer: asgard-ai-platform
 
@@ -1446,7 +1446,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/econ-supply-demand
+    github: https://github.com/asgard-ai-platform/skills/blob/main/econ-supply-demand/SKILL.md
     tags: [economics, supply-demand, microeconomics]
     maintainer: asgard-ai-platform
 
@@ -1464,7 +1464,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-action-research
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-action-research/SKILL.md
     tags: [action-research, PAR, participatory-action-research, practitioner-research]
     maintainer: asgard-ai-platform
 
@@ -1479,7 +1479,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-affordance
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-affordance/SKILL.md
     tags: [affordance, Gibson, Norman, perceived-affordance]
     maintainer: asgard-ai-platform
 
@@ -1494,7 +1494,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-agenda-setting
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-agenda-setting/SKILL.md
     tags: [communication, agenda-setting, media-effects, public-opinion]
     maintainer: asgard-ai-platform
 
@@ -1509,7 +1509,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-ai-ethics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-ai-ethics/SKILL.md
     tags: [AI-ethics, fairness, accountability, transparency]
     maintainer: asgard-ai-platform
 
@@ -1524,7 +1524,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-ambidexterity
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-ambidexterity/SKILL.md
     tags: [ambidexterity, exploration-exploitation, march-1991, structural-ambidexterity]
     maintainer: asgard-ai-platform
 
@@ -1539,7 +1539,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-ant
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-ant/SKILL.md
     tags: [ANT, actor-network-theory, Latour, Callon]
     maintainer: asgard-ai-platform
 
@@ -1554,7 +1554,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-auction-theory
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-auction-theory/SKILL.md
     tags: [auction-theory, revenue-equivalence, Vickrey-auction, English-auction]
     maintainer: asgard-ai-platform
 
@@ -1569,7 +1569,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-behavioral-finance
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-behavioral-finance/SKILL.md
     tags: [behavioral-finance, prospect-theory, loss-aversion, disposition-effect]
     maintainer: asgard-ai-platform
 
@@ -1584,7 +1584,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-blooms
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-blooms/SKILL.md
     tags: [education, blooms-taxonomy, learning-objectives, assessment]
     maintainer: asgard-ai-platform
 
@@ -1599,7 +1599,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-born-global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-born-global/SKILL.md
     tags: [born-global, international-new-ventures, rapid-internationalization, knowledge-intensive]
     maintainer: asgard-ai-platform
 
@@ -1614,7 +1614,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-brand-equity
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-brand-equity/SKILL.md
     tags: [brand-equity, Aaker, Keller, CBBE]
     maintainer: asgard-ai-platform
 
@@ -1629,7 +1629,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-business-ecosystems
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-business-ecosystems/SKILL.md
     tags: [business-ecosystems, Moore, keystone, platform]
     maintainer: asgard-ai-platform
 
@@ -1644,7 +1644,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-capm
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-capm/SKILL.md
     tags: [CAPM, beta, systematic-risk, expected-return]
     has_script: true
     maintainer: asgard-ai-platform
@@ -1660,7 +1660,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-cas
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-cas/SKILL.md
     tags: [CAS, complex-adaptive-systems, emergence, self-organization]
     maintainer: asgard-ai-platform
 
@@ -1675,7 +1675,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-case-study
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-case-study/SKILL.md
     tags: [case-study, Yin, single-case, multiple-case]
     maintainer: asgard-ai-platform
 
@@ -1690,7 +1690,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-cct
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-cct/SKILL.md
     tags: [CCT, consumer-culture, identity, marketplace-culture]
     maintainer: asgard-ai-platform
 
@@ -1705,7 +1705,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-cognitive-load
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-cognitive-load/SKILL.md
     tags: [cognitive-load-theory, Sweller, working-memory, instructional-design]
     maintainer: asgard-ai-platform
 
@@ -1720,7 +1720,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-constructivism
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-constructivism/SKILL.md
     tags: [education, constructivism, learning-theory, scaffolding]
     maintainer: asgard-ai-platform
 
@@ -1735,7 +1735,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-contract-theory
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-contract-theory/SKILL.md
     tags: [contract-theory, moral-hazard, adverse-selection, principal-agent]
     maintainer: asgard-ai-platform
 
@@ -1750,7 +1750,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-coopetition
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-coopetition/SKILL.md
     tags: [coopetition, value-net, brandenburger-nalebuff, PARTS-framework]
     maintainer: asgard-ai-platform
 
@@ -1765,7 +1765,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-critical-realism
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-critical-realism/SKILL.md
     tags: [critical-realism, Bhaskar, retroduction, generative-mechanisms]
     maintainer: asgard-ai-platform
 
@@ -1780,7 +1780,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-cultivation
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-cultivation/SKILL.md
     tags: [communication, cultivation, media-effects, television]
     maintainer: asgard-ai-platform
 
@@ -1795,7 +1795,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-diamond
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-diamond/SKILL.md
     tags: [porter-diamond, national-competitive-advantage, factor-conditions, demand-conditions]
     maintainer: asgard-ai-platform
 
@@ -1810,7 +1810,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-did
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-did/SKILL.md
     tags: [DID, difference-in-differences, causal-inference, parallel-trends]
     maintainer: asgard-ai-platform
 
@@ -1825,7 +1825,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-digital-transformation
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-digital-transformation/SKILL.md
     tags: [digital-transformation, digitization, digitalization, DX]
     maintainer: asgard-ai-platform
 
@@ -1840,7 +1840,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-disruptive-innovation
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-disruptive-innovation/SKILL.md
     tags: [disruptive-innovation, christensen, low-end-disruption, new-market-foothold]
     maintainer: asgard-ai-platform
 
@@ -1855,7 +1855,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-dual-process
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-dual-process/SKILL.md
     tags: [dual-process, system-1, system-2, heuristics]
     maintainer: asgard-ai-platform
 
@@ -1870,7 +1870,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-elm
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-elm/SKILL.md
     tags: [elaboration-likelihood-model, ELM, Petty-Cacioppo, central-route]
     maintainer: asgard-ai-platform
 
@@ -1885,7 +1885,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-embeddedness
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-embeddedness/SKILL.md
     tags: [embeddedness, Granovetter, economic-sociology, social-relations]
     maintainer: asgard-ai-platform
 
@@ -1900,7 +1900,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-emh
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-emh/SKILL.md
     tags: [EMH, efficient-market, Fama, market-efficiency]
     maintainer: asgard-ai-platform
 
@@ -1915,7 +1915,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-ethnography
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-ethnography/SKILL.md
     tags: [ethnography, participant-observation, thick-description, netnography]
     maintainer: asgard-ai-platform
 
@@ -1930,7 +1930,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-event-study
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-event-study/SKILL.md
     tags: [event-study, abnormal-return, CAR, market-reaction]
     maintainer: asgard-ai-platform
 
@@ -1945,7 +1945,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-fama-french
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-fama-french/SKILL.md
     tags: [Fama-French, three-factor, SMB, HML]
     maintainer: asgard-ai-platform
 
@@ -1960,7 +1960,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-field-theory
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-field-theory/SKILL.md
     tags: [Bourdieu, field-theory, capital, habitus]
     maintainer: asgard-ai-platform
 
@@ -1975,7 +1975,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-flow
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-flow/SKILL.md
     tags: [flow-theory, optimal-experience, Csikszentmihalyi, skill-challenge-balance]
     maintainer: asgard-ai-platform
 
@@ -1990,7 +1990,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-framing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-framing/SKILL.md
     tags: [communication, framing, media-effects, persuasion]
     maintainer: asgard-ai-platform
 
@@ -2005,7 +2005,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-governance
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-governance/SKILL.md
     tags: [public-administration, governance, network-governance, ppp]
     maintainer: asgard-ai-platform
 
@@ -2020,7 +2020,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-grounded-theory
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-grounded-theory/SKILL.md
     tags: [grounded-theory, Glaser, Strauss, open-coding]
     maintainer: asgard-ai-platform
 
@@ -2035,7 +2035,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-hlm
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-hlm/SKILL.md
     tags: [HLM, multilevel-model, nested-data, ICC]
     maintainer: asgard-ai-platform
 
@@ -2050,7 +2050,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-info-economics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-info-economics/SKILL.md
     tags: [information-economics, adverse-selection, moral-hazard, signaling]
     maintainer: asgard-ai-platform
 
@@ -2065,7 +2065,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-innovation-diffusion-bass
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-innovation-diffusion-bass/SKILL.md
     tags: [Bass-model, diffusion, innovation, adoption]
     maintainer: asgard-ai-platform
 
@@ -2080,7 +2080,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-is-success
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-is-success/SKILL.md
     tags: [IS-success, DeLone-McLean, system-quality, information-quality]
     maintainer: asgard-ai-platform
 
@@ -2095,7 +2095,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-mechanism-design
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-mechanism-design/SKILL.md
     tags: [mechanism-design, incentive-compatibility, revelation-principle, Myerson-Satterthwaite]
     maintainer: asgard-ai-platform
 
@@ -2110,7 +2110,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-meta-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-meta-analysis/SKILL.md
     tags: [meta-analysis, effect-size, heterogeneity, publication-bias]
     maintainer: asgard-ai-platform
 
@@ -2125,7 +2125,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-mixed-methods
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-mixed-methods/SKILL.md
     tags: [mixed-methods, convergent-design, explanatory-sequential, exploratory-sequential]
     maintainer: asgard-ai-platform
 
@@ -2140,7 +2140,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-mm-theorem
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-mm-theorem/SKILL.md
     tags: [Modigliani-Miller, capital-structure, leverage, tax-shield]
     maintainer: asgard-ai-platform
 
@@ -2155,7 +2155,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-narrative
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-narrative/SKILL.md
     tags: [narrative-research, narrative-analysis, life-story, oral-history]
     maintainer: asgard-ai-platform
 
@@ -2170,7 +2170,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-network-economics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-network-economics/SKILL.md
     tags: [network-effects, critical-mass, lock-in, switching-costs]
     maintainer: asgard-ai-platform
 
@@ -2185,7 +2185,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-oli
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-oli/SKILL.md
     tags: [OLI-paradigm, dunning, eclectic-theory, FDI]
     maintainer: asgard-ai-platform
 
@@ -2200,7 +2200,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-org-ecology
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-org-ecology/SKILL.md
     tags: [organizational-ecology, Hannan, Freeman, population-ecology]
     maintainer: asgard-ai-platform
 
@@ -2215,7 +2215,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-panel-data
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-panel-data/SKILL.md
     tags: [panel-data, fixed-effects, random-effects, Hausman-test]
     maintainer: asgard-ai-platform
 
@@ -2230,7 +2230,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-paradigms
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-paradigms/SKILL.md
     tags: [Kuhn, paradigm-shift, normal-science, scientific-revolution]
     maintainer: asgard-ai-platform
 
@@ -2245,7 +2245,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-paradox-theory
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-paradox-theory/SKILL.md
     tags: [paradox-theory, Smith-Lewis, tension-management, dynamic-equilibrium]
     maintainer: asgard-ai-platform
 
@@ -2260,7 +2260,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-pecking-order
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-pecking-order/SKILL.md
     tags: [pecking-order, information-asymmetry, Myers-Majluf, financing-hierarchy]
     maintainer: asgard-ai-platform
 
@@ -2275,7 +2275,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-phenomenology
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-phenomenology/SKILL.md
     tags: [phenomenology, epoche, bracketing, lived-experience]
     maintainer: asgard-ai-platform
 
@@ -2290,7 +2290,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-platform-economics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-platform-economics/SKILL.md
     tags: [platform-economics, network-effects, two-sided-markets, chicken-and-egg]
     maintainer: asgard-ai-platform
 
@@ -2305,7 +2305,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-pls-sem
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-pls-sem/SKILL.md
     tags: [PLS-SEM, partial-least-squares, SmartPLS, formative]
     maintainer: asgard-ai-platform
 
@@ -2320,7 +2320,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-policy-streams
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-policy-streams/SKILL.md
     tags: [public-administration, policy-analysis, multiple-streams, agenda-setting]
     maintainer: asgard-ai-platform
 
@@ -2335,7 +2335,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-pragmatism
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-pragmatism/SKILL.md
     tags: [pragmatism, Peirce, James, Dewey]
     maintainer: asgard-ai-platform
 
@@ -2350,7 +2350,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-public-choice
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-public-choice/SKILL.md
     tags: [public-choice, Buchanan, Tullock, rent-seeking]
     maintainer: asgard-ai-platform
 
@@ -2365,7 +2365,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-real-options
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-real-options/SKILL.md
     tags: [real-options, NPV, managerial-flexibility, option-to-defer]
     maintainer: asgard-ai-platform
 
@@ -2380,7 +2380,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-sd-logic
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-sd-logic/SKILL.md
     tags: [SD-logic, service-dominant, value-co-creation, Vargo-Lusch]
     maintainer: asgard-ai-platform
 
@@ -2395,7 +2395,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-sdt
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-sdt/SKILL.md
     tags: [self-determination-theory, intrinsic-motivation, autonomy, competence]
     maintainer: asgard-ai-platform
 
@@ -2410,7 +2410,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-sem
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-sem/SKILL.md
     tags: [SEM, structural-equation-modeling, CFA, path-analysis]
     maintainer: asgard-ai-platform
 
@@ -2425,7 +2425,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-sensemaking
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-sensemaking/SKILL.md
     tags: [sensemaking, Weick, crisis, organizational-cognition]
     maintainer: asgard-ai-platform
 
@@ -2440,7 +2440,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-servqual
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-servqual/SKILL.md
     tags: [SERVQUAL, service-quality, gap-model, Parasuraman]
     maintainer: asgard-ai-platform
 
@@ -2455,7 +2455,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-signaling
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-signaling/SKILL.md
     tags: [signaling, Spence, information-asymmetry, separating-equilibrium]
     maintainer: asgard-ai-platform
 
@@ -2470,7 +2470,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-social-capital
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-social-capital/SKILL.md
     tags: [social-capital, Putnam, Coleman, Burt]
     maintainer: asgard-ai-platform
 
@@ -2485,7 +2485,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-social-identity
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-social-identity/SKILL.md
     tags: [social-identity-theory, Tajfel, Turner, in-group-bias]
     maintainer: asgard-ai-platform
 
@@ -2500,7 +2500,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-sociotechnical
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-sociotechnical/SKILL.md
     tags: [sociotechnical, STS, joint-optimization, Tavistock]
     maintainer: asgard-ai-platform
 
@@ -2515,7 +2515,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-spiral-of-silence
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-spiral-of-silence/SKILL.md
     tags: [communication, spiral-of-silence, public-opinion, media-effects]
     maintainer: asgard-ai-platform
 
@@ -2530,7 +2530,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-agency
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-agency/SKILL.md
     tags: [strategy, agency-theory, Jensen-Meckling, principal-agent]
     maintainer: asgard-ai-platform
 
@@ -2545,7 +2545,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-dynamic-cap
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-dynamic-cap/SKILL.md
     tags: [strategy, dynamic-capabilities, Teece, sensing]
     maintainer: asgard-ai-platform
 
@@ -2560,7 +2560,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-institutional
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-institutional/SKILL.md
     tags: [strategy, institutional-theory, isomorphism, DiMaggio-Powell]
     maintainer: asgard-ai-platform
 
@@ -2575,7 +2575,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-kbv
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-kbv/SKILL.md
     tags: [strategy, knowledge-based-view, Grant, Nonaka]
     maintainer: asgard-ai-platform
 
@@ -2590,7 +2590,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-rbv
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-rbv/SKILL.md
     tags: [strategy, resource-based-view, VRIO, competitive-advantage]
     maintainer: asgard-ai-platform
 
@@ -2605,7 +2605,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-stakeholder
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-stakeholder/SKILL.md
     tags: [strategy, stakeholder-theory, Freeman, Mitchell]
     maintainer: asgard-ai-platform
 
@@ -2620,7 +2620,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-tce
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-tce/SKILL.md
     tags: [strategy, transaction-cost-economics, Williamson, governance]
     maintainer: asgard-ai-platform
 
@@ -2635,7 +2635,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-strat-upper-echelons
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-strat-upper-echelons/SKILL.md
     tags: [strategy, upper-echelons, Hambrick-Mason, TMT]
     maintainer: asgard-ai-platform
 
@@ -2650,7 +2650,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-structuration
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-structuration/SKILL.md
     tags: [structuration, Giddens, duality-of-structure, agency]
     maintainer: asgard-ai-platform
 
@@ -2665,7 +2665,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-survey-design
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-survey-design/SKILL.md
     tags: [survey-design, questionnaire, Likert-scale, reliability]
     maintainer: asgard-ai-platform
 
@@ -2680,7 +2680,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-sustainability
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-sustainability/SKILL.md
     tags: [sustainability, ESG, SDGs, circular-economy]
     maintainer: asgard-ai-platform
 
@@ -2695,7 +2695,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-systematic-review
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-systematic-review/SKILL.md
     tags: [systematic-review, PRISMA, search-strategy, inclusion-exclusion]
     maintainer: asgard-ai-platform
 
@@ -2710,7 +2710,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-tam-utaut
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-tam-utaut/SKILL.md
     tags: [TAM, UTAUT, technology-acceptance, adoption]
     maintainer: asgard-ai-platform
 
@@ -2725,7 +2725,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-tpack
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-tpack/SKILL.md
     tags: [education, tpack, educational-technology, teacher-knowledge]
     maintainer: asgard-ai-platform
 
@@ -2740,7 +2740,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-tpb
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-tpb/SKILL.md
     tags: [theory-of-planned-behavior, TPB, Ajzen, behavioral-intention]
     maintainer: asgard-ai-platform
 
@@ -2755,7 +2755,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/grad-uppsala
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-uppsala/SKILL.md
     tags: [uppsala-model, psychic-distance, internationalization-process, experiential-learning]
     maintainer: asgard-ai-platform
 
@@ -2773,7 +2773,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-critical-thinking
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-critical-thinking/SKILL.md
     tags: [humanities, critical-thinking, logic, argumentation]
     maintainer: asgard-ai-platform
 
@@ -2788,7 +2788,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-dialectics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-dialectics/SKILL.md
     tags: [humanities, dialectics, hegel, synthesis]
     maintainer: asgard-ai-platform
 
@@ -2803,7 +2803,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-discourse
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-discourse/SKILL.md
     tags: [humanities, discourse-analysis, critical-analysis, language]
     maintainer: asgard-ai-platform
 
@@ -2818,7 +2818,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-ethics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-ethics/SKILL.md
     tags: [humanities, ethics, moral-philosophy, decision-making]
     maintainer: asgard-ai-platform
 
@@ -2833,7 +2833,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-historical-analogy
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-historical-analogy/SKILL.md
     tags: [humanities, historical-analogy, strategic-thinking]
     maintainer: asgard-ai-platform
 
@@ -2848,7 +2848,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-narrative
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-narrative/SKILL.md
     tags: [humanities, narrative, storytelling, brand]
     maintainer: asgard-ai-platform
 
@@ -2863,7 +2863,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-rhetoric
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-rhetoric/SKILL.md
     tags: [humanities, rhetoric, persuasion, communication]
     maintainer: asgard-ai-platform
 
@@ -2878,7 +2878,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-socratic
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-socratic/SKILL.md
     tags: [humanities, socratic-method, questioning, pedagogy]
     maintainer: asgard-ai-platform
 
@@ -2893,7 +2893,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/hum-source-criticism
+    github: https://github.com/asgard-ai-platform/skills/blob/main/hum-source-criticism/SKILL.md
     tags: [humanities, source-criticism, fact-checking, information-literacy]
     maintainer: asgard-ai-platform
 
@@ -2911,7 +2911,7 @@ skills:
     category: theory
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/law-contract
+    github: https://github.com/asgard-ai-platform/skills/blob/main/law-contract/SKILL.md
     tags: [law, contract, legal-analysis]
     maintainer: asgard-ai-platform
 
@@ -2926,7 +2926,7 @@ skills:
     category: theory
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/law-gdpr-pdpa
+    github: https://github.com/asgard-ai-platform/skills/blob/main/law-gdpr-pdpa/SKILL.md
     tags: [law, gdpr, pdpa, data-privacy]
     maintainer: asgard-ai-platform
 
@@ -2941,7 +2941,7 @@ skills:
     category: theory
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/law-ip
+    github: https://github.com/asgard-ai-platform/skills/blob/main/law-ip/SKILL.md
     tags: [law, intellectual-property, patents, trademarks]
     maintainer: asgard-ai-platform
 
@@ -2956,7 +2956,7 @@ skills:
     category: theory
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/law-irac
+    github: https://github.com/asgard-ai-platform/skills/blob/main/law-irac/SKILL.md
     tags: [law, irac, legal-reasoning]
     maintainer: asgard-ai-platform
 
@@ -2971,7 +2971,7 @@ skills:
     category: theory
     skill_type: industry
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/law-labor
+    github: https://github.com/asgard-ai-platform/skills/blob/main/law-labor/SKILL.md
     tags: [law, labor, employment, taiwan]
     maintainer: asgard-ai-platform
 
@@ -2989,7 +2989,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-cialdini
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-cialdini/SKILL.md
     tags: [social-science, persuasion, cialdini, influence]
     maintainer: asgard-ai-platform
 
@@ -3004,7 +3004,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-cognitive-bias
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-cognitive-bias/SKILL.md
     tags: [social-science, cognitive-bias, decision-making]
     maintainer: asgard-ai-platform
 
@@ -3019,7 +3019,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-innovation-diffusion
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-innovation-diffusion/SKILL.md
     tags: [social-science, innovation-diffusion, adoption]
     maintainer: asgard-ai-platform
 
@@ -3034,7 +3034,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-policy-analysis
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-policy-analysis/SKILL.md
     tags: [social-science, policy-analysis, public-policy]
     maintainer: asgard-ai-platform
 
@@ -3049,7 +3049,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-social-network
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-social-network/SKILL.md
     tags: [social-science, social-network-analysis, organizational-behavior]
     maintainer: asgard-ai-platform
 
@@ -3064,7 +3064,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-stakeholder
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-stakeholder/SKILL.md
     tags: [social-science, stakeholder-analysis, project-management]
     maintainer: asgard-ai-platform
 
@@ -3079,7 +3079,7 @@ skills:
     category: theory
     skill_type: theory
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/soc-user-research
+    github: https://github.com/asgard-ai-platform/skills/blob/main/soc-user-research/SKILL.md
     tags: [social-science, user-research, qualitative-methods]
     maintainer: asgard-ai-platform
 
@@ -3097,7 +3097,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ad-bidding
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ad-bidding/SKILL.md
     tags: [advertising, bidding-strategy, automated-bidding, optimization]
     maintainer: asgard-ai-platform
 
@@ -3112,7 +3112,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ad-budget
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ad-budget/SKILL.md
     tags: [advertising, budget-optimization, allocation, marginal-returns]
     maintainer: asgard-ai-platform
 
@@ -3127,7 +3127,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ad-ctr
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ad-ctr/SKILL.md
     tags: [advertising, ctr-prediction, machine-learning, ranking]
     maintainer: asgard-ai-platform
 
@@ -3142,7 +3142,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ad-gsp
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ad-gsp/SKILL.md
     tags: [advertising, auction, gsp, ad-pricing]
     maintainer: asgard-ai-platform
 
@@ -3157,7 +3157,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ad-vcg
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ad-vcg/SKILL.md
     tags: [advertising, auction, vcg, mechanism-design]
     maintainer: asgard-ai-platform
 
@@ -3172,7 +3172,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-blockchain-basics
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-blockchain-basics/SKILL.md
     tags: [blockchain, distributed-ledger, consensus, cryptography]
     maintainer: asgard-ai-platform
 
@@ -3187,7 +3187,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-blockchain-smart-contract
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-blockchain-smart-contract/SKILL.md
     tags: [blockchain, smart-contract, solidity, defi]
     maintainer: asgard-ai-platform
 
@@ -3202,7 +3202,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ecom-bm25
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ecom-bm25/SKILL.md
     tags: [ecommerce, bm25, search, information-retrieval]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3218,7 +3218,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ecom-ranking
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ecom-ranking/SKILL.md
     tags: [ecommerce, ranking, learning-to-rank, multi-objective]
     maintainer: asgard-ai-platform
 
@@ -3233,7 +3233,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-ecom-search
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-ecom-search/SKILL.md
     tags: [ecommerce, search, relevance, query-understanding]
     maintainer: asgard-ai-platform
 
@@ -3248,7 +3248,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-forecast-arima
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-forecast-arima/SKILL.md
     tags: [forecasting, arima, time-series, statistics]
     maintainer: asgard-ai-platform
 
@@ -3263,7 +3263,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-forecast-ensemble
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-forecast-ensemble/SKILL.md
     tags: [forecasting, ensemble, model-combination, accuracy]
     maintainer: asgard-ai-platform
 
@@ -3278,7 +3278,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-forecast-exponential
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-forecast-exponential/SKILL.md
     tags: [forecasting, exponential-smoothing, holt-winters, time-series]
     maintainer: asgard-ai-platform
 
@@ -3293,7 +3293,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-forecast-prophet
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-forecast-prophet/SKILL.md
     tags: [forecasting, prophet, time-series, business-analytics]
     maintainer: asgard-ai-platform
 
@@ -3308,7 +3308,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-hr-compensation
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-hr-compensation/SKILL.md
     tags: [hr, compensation, benchmarking, salary-analysis]
     maintainer: asgard-ai-platform
 
@@ -3323,7 +3323,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-hr-matching
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-hr-matching/SKILL.md
     tags: [hr, stable-matching, gale-shapley, assignment]
     maintainer: asgard-ai-platform
 
@@ -3338,7 +3338,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-hr-turnover
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-hr-turnover/SKILL.md
     tags: [hr, turnover-prediction, attrition, retention]
     maintainer: asgard-ai-platform
 
@@ -3353,7 +3353,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-mfg-cpk
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-mfg-cpk/SKILL.md
     tags: [manufacturing, cpk, process-capability, quality]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3369,7 +3369,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-mfg-doe
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-mfg-doe/SKILL.md
     tags: [manufacturing, doe, factorial-design, optimization]
     maintainer: asgard-ai-platform
 
@@ -3384,7 +3384,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-mfg-fmea
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-mfg-fmea/SKILL.md
     tags: [manufacturing, fmea, risk-analysis, quality]
     maintainer: asgard-ai-platform
 
@@ -3399,7 +3399,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-mfg-spc
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-mfg-spc/SKILL.md
     tags: [manufacturing, spc, control-chart, quality]
     maintainer: asgard-ai-platform
 
@@ -3414,7 +3414,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-net-centrality
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-net-centrality/SKILL.md
     tags: [network, centrality, graph-analysis, social-network]
     maintainer: asgard-ai-platform
 
@@ -3429,7 +3429,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-net-community
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-net-community/SKILL.md
     tags: [network, community-detection, louvain, modularity]
     maintainer: asgard-ai-platform
 
@@ -3444,7 +3444,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-net-influence
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-net-influence/SKILL.md
     tags: [network, influence-maximization, seed-selection, viral-marketing]
     maintainer: asgard-ai-platform
 
@@ -3459,7 +3459,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-nlp-lda
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-nlp-lda/SKILL.md
     tags: [nlp, lda, topic-modeling, text-mining]
     maintainer: asgard-ai-platform
 
@@ -3474,7 +3474,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-nlp-ner
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-nlp-ner/SKILL.md
     tags: [nlp, ner, entity-extraction, information-extraction]
     maintainer: asgard-ai-platform
 
@@ -3489,7 +3489,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-nlp-similarity
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-nlp-similarity/SKILL.md
     tags: [nlp, text-similarity, embeddings, deduplication]
     maintainer: asgard-ai-platform
 
@@ -3504,7 +3504,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-nlp-summarization
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-nlp-summarization/SKILL.md
     tags: [nlp, summarization, extractive, abstractive]
     maintainer: asgard-ai-platform
 
@@ -3519,7 +3519,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-price-bundle
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-price-bundle/SKILL.md
     tags: [pricing, bundling, consumer-surplus, product-strategy]
     maintainer: asgard-ai-platform
 
@@ -3534,7 +3534,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-price-conjoint
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-price-conjoint/SKILL.md
     tags: [pricing, conjoint-analysis, market-research, preference]
     maintainer: asgard-ai-platform
 
@@ -3549,7 +3549,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-price-dynamic
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-price-dynamic/SKILL.md
     tags: [pricing, dynamic-pricing, revenue-management, real-time]
     maintainer: asgard-ai-platform
 
@@ -3564,7 +3564,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-price-elasticity
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-price-elasticity/SKILL.md
     tags: [pricing, elasticity, demand-analysis, economics]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3580,7 +3580,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-price-van-westendorp
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-price-van-westendorp/SKILL.md
     tags: [pricing, van-westendorp, survey, price-sensitivity]
     maintainer: asgard-ai-platform
 
@@ -3595,7 +3595,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rank-bayesian
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rank-bayesian/SKILL.md
     tags: [ranking, bayesian-average, rating, prior]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3611,7 +3611,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rank-elo
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rank-elo/SKILL.md
     tags: [ranking, elo, pairwise-comparison, rating-system]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3627,7 +3627,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rank-trueskill
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rank-trueskill/SKILL.md
     tags: [ranking, trueskill, matchmaking, bayesian-rating]
     maintainer: asgard-ai-platform
 
@@ -3642,7 +3642,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rank-wilson
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rank-wilson/SKILL.md
     tags: [ranking, wilson-score, confidence-interval, rating]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3658,7 +3658,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rec-cf
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rec-cf/SKILL.md
     tags: [recommendation, collaborative-filtering, similarity]
     maintainer: asgard-ai-platform
 
@@ -3673,7 +3673,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rec-content
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rec-content/SKILL.md
     tags: [recommendation, content-based, feature-matching]
     maintainer: asgard-ai-platform
 
@@ -3688,7 +3688,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rec-hybrid
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rec-hybrid/SKILL.md
     tags: [recommendation, hybrid, ensemble, system-design]
     maintainer: asgard-ai-platform
 
@@ -3703,7 +3703,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rec-mf
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rec-mf/SKILL.md
     tags: [recommendation, matrix-factorization, svd, latent-factors]
     maintainer: asgard-ai-platform
 
@@ -3718,7 +3718,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-rec-session
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-rec-session/SKILL.md
     tags: [recommendation, session-based, sequential, real-time]
     maintainer: asgard-ai-platform
 
@@ -3733,7 +3733,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-risk-altman-z
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-risk-altman-z/SKILL.md
     tags: [risk, altman-z-score, bankruptcy, financial-analysis]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3749,7 +3749,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-risk-benford
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-risk-benford/SKILL.md
     tags: [risk, benfords-law, fraud-detection, data-audit]
     maintainer: asgard-ai-platform
 
@@ -3764,7 +3764,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-risk-credit
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-risk-credit/SKILL.md
     tags: [risk, credit-scoring, default-prediction, lending]
     maintainer: asgard-ai-platform
 
@@ -3779,7 +3779,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-risk-var
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-risk-var/SKILL.md
     tags: [risk, value-at-risk, portfolio, risk-management]
     maintainer: asgard-ai-platform
 
@@ -3794,7 +3794,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-sc-bullwhip
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-sc-bullwhip/SKILL.md
     tags: [supply-chain, bullwhip-effect, demand-variability, coordination]
     maintainer: asgard-ai-platform
 
@@ -3809,7 +3809,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-sc-eoq
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-sc-eoq/SKILL.md
     tags: [supply-chain, eoq, inventory, ordering]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3825,7 +3825,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-sc-newsvendor
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-sc-newsvendor/SKILL.md
     tags: [supply-chain, newsvendor, inventory, demand-uncertainty]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3841,7 +3841,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-sc-routing
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-sc-routing/SKILL.md
     tags: [supply-chain, vrp, routing, logistics]
     maintainer: asgard-ai-platform
 
@@ -3856,7 +3856,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-sc-safety-stock
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-sc-safety-stock/SKILL.md
     tags: [supply-chain, safety-stock, inventory, service-level]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3872,7 +3872,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-backlink
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-backlink/SKILL.md
     tags: [seo, backlinks, domain-authority, link-building]
     maintainer: asgard-ai-platform
 
@@ -3887,7 +3887,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-content
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-content/SKILL.md
     tags: [seo, content-strategy, keyword-research, on-page-seo]
     maintainer: asgard-ai-platform
 
@@ -3902,7 +3902,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-crawl
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-crawl/SKILL.md
     tags: [seo, web-crawler, scraping, site-audit]
     maintainer: asgard-ai-platform
 
@@ -3917,7 +3917,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-pagerank
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-pagerank/SKILL.md
     tags: [seo, pagerank, graph-algorithm, link-analysis]
     maintainer: asgard-ai-platform
 
@@ -3932,7 +3932,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-schema
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-schema/SKILL.md
     tags: [seo, schema-org, json-ld, structured-data]
     maintainer: asgard-ai-platform
 
@@ -3947,7 +3947,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-technical
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-technical/SKILL.md
     tags: [seo, core-web-vitals, performance, page-speed]
     maintainer: asgard-ai-platform
 
@@ -3962,7 +3962,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-seo-tfidf
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-seo-tfidf/SKILL.md
     tags: [seo, tfidf, information-retrieval, text-analysis]
     has_script: true
     maintainer: asgard-ai-platform
@@ -3978,7 +3978,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-social-engagement
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-social-engagement/SKILL.md
     tags: [social-media, engagement-rate, analytics, benchmarking]
     maintainer: asgard-ai-platform
 
@@ -3993,7 +3993,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-social-influence
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-social-influence/SKILL.md
     tags: [social-media, influence, influencer-marketing, metrics]
     maintainer: asgard-ai-platform
 
@@ -4008,7 +4008,7 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-social-sentiment
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-social-sentiment/SKILL.md
     tags: [social-media, sentiment-analysis, vader, nlp]
     maintainer: asgard-ai-platform
 
@@ -4023,6 +4023,6 @@ skills:
     category: algorithm
     skill_type: algorithm
     region: global
-    github: https://github.com/asgard-ai-platform/skills/tree/main/algo-social-virality
+    github: https://github.com/asgard-ai-platform/skills/blob/main/algo-social-virality/SKILL.md
     tags: [social-media, virality, epidemic-model, sir]
     maintainer: asgard-ai-platform
