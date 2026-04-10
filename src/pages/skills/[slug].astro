@@ -4,7 +4,8 @@ import StatusBadge from '../../components/StatusBadge.astro';
 import UpgradeCTA from '../../components/UpgradeCTA.astro';
 import McpCard from '../../components/McpCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
-import { getSkills, getMcpServers, getPlugIns } from '../../utils/data-loader';
+import { getSkills, getMcpServers, getPlugIns, getSkillContentBySlug } from '../../utils/data-loader';
+import { renderMarkdown } from '../../utils/markdown';
 import type { Skill } from '../../types';
 
 export function getStaticPaths() {
@@ -19,12 +20,32 @@ const { skill } = Astro.props as { skill: Skill };
 const allMcp = getMcpServers();
 const requiredMcp = allMcp.filter((m) => skill.requires_mcp?.includes(m.slug));
 const plugins = getPlugIns().filter((p) => skill.plugins?.includes(p.slug));
+const rawDetail = getSkillContentBySlug(skill.slug);
+
+// Render markdown sections to HTML at build time
+const detail = rawDetail ? {
+  overview: rawDetail.overview ? renderMarkdown(rawDetail.overview) : '',
+  when_to_use: rawDetail.when_to_use ? renderMarkdown(rawDetail.when_to_use) : '',
+  when_not_to_use: rawDetail.when_not_to_use ? renderMarkdown(rawDetail.when_not_to_use) : '',
+  assumptions: rawDetail.assumptions ? renderMarkdown(rawDetail.assumptions) : '',
+  framework: rawDetail.framework ? renderMarkdown(rawDetail.framework) : '',
+  output_format: rawDetail.output_format ? renderMarkdown(rawDetail.output_format) : '',
+  examples: rawDetail.examples ? renderMarkdown(rawDetail.examples) : '',
+  gotchas: rawDetail.gotchas ? renderMarkdown(rawDetail.gotchas) : '',
+  references: rawDetail.references ? renderMarkdown(rawDetail.references) : '',
+} : null;
 
 const typeColors: Record<string, string> = {
   industry: 'text-primary',
   methodology: 'text-emerald-400',
   theory: 'text-purple-400',
   algorithm: 'text-orange-400',
+};
+const typeGradients: Record<string, string> = {
+  industry: 'from-green-500/20 to-emerald-500/20',
+  methodology: 'from-emerald-500/20 to-teal-500/20',
+  theory: 'from-purple-500/20 to-indigo-500/20',
+  algorithm: 'from-orange-500/20 to-amber-500/20',
 };
 ---
 
@@ -81,9 +102,114 @@ const typeColors: Record<string, string> = {
       <section class="mb-8">
         <a href={skill.github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-foreground hover:border-primary/40 transition-colors">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          GitHub
+          <span class="lang-en">View on GitHub</span><span class="lang-zh">在 GitHub 查看</span>
         </a>
       </section>
+    )}
+
+    {/* ── Rich Content Sections (from SKILL.md) ── */}
+    {detail && (
+      <div class="space-y-8 mb-8">
+        {/* Overview */}
+        {detail.overview && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span class="lang-en">Overview</span><span class="lang-zh">概述</span>
+            </h2>
+            <div class="skill-content" set:html={detail.overview} />
+          </section>
+        )}
+
+        {/* When to Use */}
+        {detail.when_to_use && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span class="lang-en">When to Use</span><span class="lang-zh">使用時機</span>
+            </h2>
+            <div class="skill-content" set:html={detail.when_to_use} />
+          </section>
+        )}
+
+        {/* When NOT to Use */}
+        {detail.when_not_to_use && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+              <span class="lang-en">When NOT to Use</span><span class="lang-zh">不適用時機</span>
+            </h2>
+            <div class="skill-content" set:html={detail.when_not_to_use} />
+          </section>
+        )}
+
+        {/* Assumptions */}
+        {detail.assumptions && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+              <span class="lang-en">Assumptions</span><span class="lang-zh">前提假設</span>
+            </h2>
+            <div class="skill-content" set:html={detail.assumptions} />
+          </section>
+        )}
+
+        {/* Framework / Algorithm / Methodology */}
+        {detail.framework && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              <span class="lang-en">{skill.skill_type === 'algorithm' ? 'Algorithm' : skill.skill_type === 'methodology' ? 'Methodology' : 'Framework'}</span>
+              <span class="lang-zh">{skill.skill_type === 'algorithm' ? '演算法' : skill.skill_type === 'methodology' ? '方法論' : '框架'}</span>
+            </h2>
+            <div class="skill-content" set:html={detail.framework} />
+          </section>
+        )}
+
+        {/* Output Format */}
+        {detail.output_format && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              <span class="lang-en">Output Format</span><span class="lang-zh">輸出格式</span>
+            </h2>
+            <div class="skill-content" set:html={detail.output_format} />
+          </section>
+        )}
+
+        {/* Examples */}
+        {detail.examples && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+              <span class="lang-en">Examples</span><span class="lang-zh">範例</span>
+            </h2>
+            <div class="skill-content" set:html={detail.examples} />
+          </section>
+        )}
+
+        {/* Gotchas */}
+        {detail.gotchas && (
+          <section class="skill-section skill-section-warn">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
+              <span class="lang-en">Gotchas</span><span class="lang-zh">注意事項</span>
+            </h2>
+            <div class="skill-content" set:html={detail.gotchas} />
+          </section>
+        )}
+
+        {/* References */}
+        {detail.references && (
+          <section class="skill-section">
+            <h2 class="skill-section-title">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+              <span class="lang-en">References</span><span class="lang-zh">參考資料</span>
+            </h2>
+            <div class="skill-content" set:html={detail.references} />
+          </section>
+        )}
+      </div>
     )}
 
     {/* Tags */}

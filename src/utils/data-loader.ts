@@ -46,3 +46,56 @@ export function getSkillBySlug(slug: string): Skill | undefined {
 export function getPlugInBySlug(slug: string): PlugIn | undefined {
   return getPlugIns().find((p) => p.slug === slug);
 }
+
+export interface SkillContent {
+  display_name: string;
+  frontmatter_description: string;
+  frontmatter_tags: string[];
+  frontmatter_category: string;
+  overview?: string;
+  when_to_use?: string;
+  when_not_to_use?: string;
+  framework?: string;
+  output_format?: string;
+  gotchas?: string;
+  examples?: string;
+  references?: string;
+  assumptions?: string;
+  [key: string]: string | string[] | undefined;
+}
+
+let _skillContentCache: Record<string, SkillContent> | null = null;
+
+export function getSkillContent(): Record<string, SkillContent> {
+  if (_skillContentCache) return _skillContentCache;
+  const filePath = path.join(DATA_DIR, 'skill-content.json');
+  if (!fs.existsSync(filePath)) return {};
+  _skillContentCache = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  return _skillContentCache!;
+}
+
+export function getSkillContentBySlug(slug: string): SkillContent | undefined {
+  return getSkillContent()[slug];
+}
+
+export interface McpContent {
+  intro: { en: string; zh?: string };
+  sections: {
+    en: Record<string, string>;
+    zh: Record<string, string>;
+  };
+}
+
+let _mcpContentCache: Record<string, McpContent> | null = null;
+
+export function getMcpContent(): Record<string, McpContent> {
+  if (_mcpContentCache) return _mcpContentCache;
+  const filePath = path.join(DATA_DIR, 'mcp-content.json');
+  if (!fs.existsSync(filePath)) return {};
+  _mcpContentCache = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  return _mcpContentCache!;
+}
+
+export function getMcpContentBySlug(slug: string): McpContent | undefined {
+  return getMcpContent()[slug];
+}

@@ -4,7 +4,8 @@ import StatusBadge from '../../components/StatusBadge.astro';
 import UpgradeCTA from '../../components/UpgradeCTA.astro';
 import McpCard from '../../components/McpCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
-import { getMcpServers, getPlugIns } from '../../utils/data-loader';
+import { getMcpServers, getPlugIns, getMcpContentBySlug } from '../../utils/data-loader';
+import { renderMarkdown } from '../../utils/markdown';
 import type { McpServer } from '../../types';
 
 export function getStaticPaths() {
@@ -21,6 +22,36 @@ const plugins = getPlugIns().filter((p) => server.plugins?.includes(p.slug));
 const related = allServers
   .filter((s) => s.slug !== server.slug && s.category === server.category)
   .slice(0, 3);
+
+const rawContent = getMcpContentBySlug(server.slug);
+
+// Pre-render markdown sections for both languages
+function renderSections(sections: Record<string, string> | undefined) {
+  if (!sections) return {};
+  const rendered: Record<string, string> = {};
+  for (const [key, md] of Object.entries(sections)) {
+    rendered[key] = renderMarkdown(md);
+  }
+  return rendered;
+}
+
+const detail = rawContent ? {
+  intro: {
+    en: rawContent.intro?.en ? renderMarkdown(rawContent.intro.en) : '',
+    zh: rawContent.intro?.zh ? renderMarkdown(rawContent.intro.zh) : '',
+  },
+  en: renderSections(rawContent.sections?.en),
+  zh: renderSections(rawContent.sections?.zh),
+} : null;
+
+// Section display config: key → { icon, labelEn, labelZh }
+const sectionConfig: Record<string, { icon: string; labelEn: string; labelZh: string }> = {
+  features: { icon: 'M13 10V3L4 14h7v7l9-11h-7z', labelEn: 'Features', labelZh: '功能特色' },
+  api_reference: { icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', labelEn: 'API Reference', labelZh: 'API 參考文件' },
+  quick_start: { icon: 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z', labelEn: 'Quick Start', labelZh: '快速開始' },
+  available_tools: { icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z', labelEn: 'Available Tools', labelZh: '可用工具' },
+};
+const sectionOrder = ['features', 'api_reference', 'quick_start', 'available_tools'];
 ---
 
 <BaseLayout
@@ -63,7 +94,7 @@ const related = allServers
       </div>
     </div>
 
-    {/* Description */}
+    {/* Description — from YAML */}
     <section class="mb-8">
       <p class="text-foreground leading-relaxed lang-en">{server.description.en}</p>
       <p class="text-foreground leading-relaxed lang-zh">{server.description.zh}</p>
@@ -121,6 +152,32 @@ const related = allServers
         </a>
       )}
     </section>
+
+    {/* ── Rich Content Sections (from README) ── */}
+    {detail && (
+      <div class="space-y-8 mb-8">
+        {sectionOrder.map((key) => {
+          const enHtml = detail.en[key];
+          const zhHtml = detail.zh[key];
+          const cfg = sectionConfig[key];
+          if (!enHtml && !zhHtml) return null;
+          return (
+            <section class="skill-section">
+              <h2 class="skill-section-title">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={cfg.icon} /></svg>
+                <span class="lang-en">{cfg.labelEn}</span><span class="lang-zh">{cfg.labelZh}</span>
+              </h2>
+              {enHtml && <div class="skill-content lang-en" set:html={enHtml} />}
+              {zhHtml ? (
+                <div class="skill-content lang-zh" set:html={zhHtml} />
+              ) : enHtml ? (
+                <div class="skill-content lang-zh" set:html={enHtml} />
+              ) : null}
+            </section>
+          );
+        })}
+      </div>
+    )}
 
     {/* Tags */}
     {server.tags && server.tags.length > 0 && (
