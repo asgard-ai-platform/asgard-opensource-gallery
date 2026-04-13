@@ -48,10 +48,6 @@ export function getPlugInBySlug(slug: string): PlugIn | undefined {
 }
 
 export interface SkillContent {
-  display_name: string;
-  frontmatter_description: string;
-  frontmatter_tags: string[];
-  frontmatter_category: string;
   overview?: string;
   when_to_use?: string;
   when_not_to_use?: string;
@@ -61,7 +57,6 @@ export interface SkillContent {
   examples?: string;
   references?: string;
   assumptions?: string;
-  [key: string]: string | string[] | undefined;
 }
 
 let _skillContentCache: Record<string, SkillContent> | null = null;
