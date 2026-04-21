@@ -26,9 +26,6 @@ pnpm-debug.log*
 # reference / spec files (local only)
 reference/
 
-# internal sync scripts (not for public repo)
-scripts/sync-gallery/
-
 # playwright
 test-results/
 playwright-report/
