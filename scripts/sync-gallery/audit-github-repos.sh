@@ -41,7 +41,8 @@ echo "  YAML entries: $YAML_TOTAL total, $YAML_RELEASED released"
 # Check public repos not marked released
 ISSUES=0
 while IFS= read -r repo; do
-  STATUS=$(echo "$YAML_SLUGS" | grep "^$repo " | awk '{print $2}')
+  [ -z "$repo" ] && continue
+  STATUS=$(echo "$YAML_SLUGS" | grep "^$repo " | awk '{print $2}' || true)
   if [ -z "$STATUS" ]; then
     echo "  ⚠️  PUBLIC repo $repo is NOT in YAML (should add)"
     ISSUES=$((ISSUES + 1))
@@ -60,7 +61,8 @@ echo ""
 echo "[3/5] Checking tools_count from READMEs ..."
 TOOLS_ISSUES=0
 while IFS= read -r repo; do
-  YAML_LINE=$(echo "$YAML_SLUGS" | grep "^$repo ")
+  [ -z "$repo" ] && continue
+  YAML_LINE=$(echo "$YAML_SLUGS" | grep "^$repo " || true)
   YAML_TC=$(echo "$YAML_LINE" | awk '{print $3}')
 
   # Fetch README and extract tools count

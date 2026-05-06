@@ -29,3 +29,6 @@ reference/
 # playwright
 test-results/
 playwright-report/
+
+# sync-gallery script outputs (regenerate via generate-new-entries.mjs)
+scripts/sync-gallery/_generated/
