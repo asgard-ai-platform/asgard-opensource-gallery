@@ -10,7 +10,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: action-runner-scale-set
     permissions:
       contents: read
       deployments: write
@@ -21,7 +21,7 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npm run build
-      - uses: cloudflare/wrangler-action@v3.14.1
+      - uses: cloudflare/wrangler-action@v3.15.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
