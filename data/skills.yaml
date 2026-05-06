@@ -4026,3 +4026,748 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/blob/main/algo-social-virality/SKILL.md
     tags: [social-media, virality, epidemic-model, sir]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Media Industry Skills (9)
+  # ============================================================
+  - slug: skill-med-business
+    name:
+      en: "Business & Finance News Reporting"
+      zh: "媒體技能：Business & Finance News Reporting"
+    description:
+      en: "Use when writing financial news — earnings, IPO/M&A, regulatory changes, industry trends — from transcripts, filings, or investor materials. Activates business-beat workflow: financial-figure provenance, analyst-stake disclosure, securities-law risk, and number stewardship. Triggers on '寫一篇財報季報導', '分析這份財報', '整理 IPO 新聞', 'turn earnings call into a piece', 'write up M&A announcement'. Defers general craft to med-news-reporter. Do NOT use for press releases (pr-press-release), investment advice (fin-investment-thesis), or marketing (mkt-*)."
+      zh: "媒體技能：Business & Finance News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-business/SKILL.md
+    tags:
+    - news
+    - journalism
+    - business-news
+    - finance-news
+    - earnings
+    - financial-reporting
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-culture
+    name:
+      en: "Culture & Arts Reporting"
+      zh: "媒體技能：Culture & Arts Reporting"
+    description:
+      en: "Use when the user wants to write a culture-and-arts news piece — exhibition coverage, performance reviews, artist interviews, cultural policy analysis, art market reporting, or cultural heritage reporting — from supplied material. Activates culture-beat-specific workflow on top of the general news-reporter workflow: cultural appropriation audit, indigenous knowledge protection, source credibility (institutional PR vs. independent critic), aesthetic judgment marking, and translation/cross-cultural framing discipline. Also triggers on phrases like 'draft an exhibition review', 'write up this gallery opening', 'turn into an album review', '整理展覽新聞', '寫一篇評論', '幫我做藝術家訪談', 'cover this museum exhibition', '草擬一篇文化評論'. Defers general news craft to med-news-reporter; do NOT use for art-marketing copy (use mkt-*) or artist/gallery press releases (use pr-press-release)."
+      zh: "媒體技能：Culture & Arts Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-culture/SKILL.md
+    tags:
+    - news
+    - journalism
+    - culture-news
+    - arts-journalism
+    - criticism
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-education
+    name:
+      en: "Education News Reporting"
+      zh: "媒體技能：Education News Reporting"
+    description:
+      en: "Use when the user wants to write an education news piece — school policy, research findings, student achievement data, teacher issues, curriculum reform, or campus events — from supplied material (transcripts, press releases, research papers, data, policy documents, interviews). Specializes the parent med-news-reporter skill for the education beat with research-methodology discipline, demographic verification, effect-size auditing, and education-law red lines. Triggers on phrases like 'write up this education story', 'turn this research into a news piece', '整理校園事件成新聞', '寫一篇教育政策新聞', '幫我把這份 108 課綱新聞寫好', 'draft an education research story', '解讀這份 PISA 排名報導'. Do NOT use for press releases (use pr-press-release), school marketing (use mkt-*), or teacher-training content (use tech-teaching or ecom-*)"
+      zh: "媒體技能：Education News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-education/SKILL.md
+    tags:
+    - news
+    - journalism
+    - education-news
+    - research-methodology
+    - media-ethics
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-entertainment
+    name:
+      en: "Entertainment News Reporting"
+      zh: "媒體技能：Entertainment News Reporting"
+    description:
+      en: "Use when writing entertainment news — reviews, box office analysis, streaming reports, festival coverage, casting news — from supplied material (junkets, studio PR, embargoed reviews, interviews). Activates beat-specific discipline: press-junket disclosure, embargo-compliance, PR-vs-news, entertainment-law, industry-data literacy. Triggers: '寫電影評論', 'draft streaming piece', '整理藝人新聞', 'cover premiere', 'analyze box office'. Defers general workflow to med-news-reporter. NOT for fan content, movie marketing (mkt-*), or press releases (pr-press-release)."
+      zh: "媒體技能：Entertainment News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-entertainment/SKILL.md
+    tags:
+    - news
+    - journalism
+    - entertainment-news
+    - film-tv-journalism
+    - press-ethics
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-health
+    name:
+      en: "Medical & Health News Reporting"
+      zh: "媒體技能：Medical & Health News Reporting"
+    description:
+      en: "Use when writing a medical or health news story — clinical research breakthroughs, public health alerts, drug approvals, epidemiology, health policy, patient stories, risk communication — from research papers, press releases, health authority statements, or interviews. Specializes the med-news-reporter workflow for health-beat discipline: relative risk framing, absolute baseline inclusion, evidence-hierarchy verification, deidentification protocol, and WHO suicide-reporting compliance. Triggers on phrases like '寫一篇醫學新研究', 'draft a health news piece', '整理流行病新聞', '幫我把這份臨床試驗結果寫成新聞', '健康新聞報導', 'write up this drug approval', 'health story from this study'. Do NOT use for medical advice (→ consult healthcare provider), pharmaceutical marketing (→ mkt-pharma), hospital PR/press release in house voice (→ pr-press-release)."
+      zh: "媒體技能：Medical & Health News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-health/SKILL.md
+    tags:
+    - news
+    - journalism
+    - health-news
+    - medical-journalism
+    - public-health
+    - epidemiology
+    - media-ethics
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-international
+    name:
+      en: "International News Reporting"
+      zh: "媒體技能：International News Reporting"
+    description:
+      en: "Use when writing an international news piece — foreign affairs, diplomatic coverage, cross-border conflict, UN/multilateral updates, development news, or geopolitical analysis. Activates international-beat workflow: primary-source verification for distant claims, translation accuracy, conflict-side balance, regional context, source-chain auditing. Triggers on phrases like 'write this UN report', '寫一篇國際新聞', 'international story', 'draft conflict analysis', '整理聯合國決議', 'foreign affairs coverage'. Do NOT use for domestic political stories (use med-political), company press releases (use pr-press-release), or international business news (use med-business)."
+      zh: "媒體技能：International News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-international/SKILL.md
+    tags:
+    - news
+    - journalism
+    - international-news
+    - foreign-affairs
+    - media-ethics
+    - conflict-reporting
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-news-reporter
+    name:
+      en: "News Reporter — Professional News Writing"
+      zh: "媒體技能：News Reporter — Professional News Writing"
+    description:
+      en: "Use when the user wants to turn raw material — transcripts, interviews, event notes, data, direct quotes — into a publishable news piece (breaking news, investigative report, feature, or op-ed). Activates the full newsroom workflow: type selection, material audit, fact-checking, balance, media-ethics red lines, and media-literacy self-check. Also triggers on phrases like 'write up this transcript', 'turn into a news article', 'organize into a feature', 'polish into a report', 'draft an op-ed', '幫我寫成新聞稿', '潤成一篇報導', '整理成專訪', '寫一篇關於 X 的評論', '把逐字稿做成 feature' — even when the user does not say the word 'news'. Do NOT use for press releases (use pr-press-release) or marketing copy (use mkt-*)."
+      zh: "媒體技能：News Reporter — Professional News Writing 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-news-reporter/SKILL.md
+    tags:
+    - news
+    - journalism
+    - reporting
+    - media-ethics
+    - media-literacy
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-political
+    name:
+      en: "Political News Reporting"
+      zh: "媒體技能：Political News Reporting"
+    description:
+      en: "Use when the user wants to write a political news piece — election coverage, legislative reporting, policy analysis, official-statement coverage, poll interpretation, or political profile — from supplied material (transcripts, press releases, poll data, vote records, leaked documents, interviews). Activates political-beat-specific workflow on top of the general news-reporter workflow: stance tagging, poll-reading discipline, defamation/election-law red lines, and frame-neutrality audit. Also triggers on phrases like 'write up this 質詢', 'turn into an election report', 'analyze this poll', '幫我寫成政策追蹤報導', '寫一篇選戰分析', '把這份立委發言整理成新聞', 'cover this candidate's policy platform'. Defers general news craft to med-news-reporter; do NOT use for press releases (use pr-press-release) or government PR (use pr-*)."
+      zh: "媒體技能：Political News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-political/SKILL.md
+    tags:
+    - news
+    - journalism
+    - political-news
+    - elections
+    - policy
+    - media-ethics
+    maintainer: asgard-ai-platform
+
+  - slug: skill-med-sports
+    name:
+      en: "Sports News Reporting"
+      zh: "媒體技能：Sports News Reporting"
+    description:
+      en: "Use when the user wants to write a sports news piece — game recaps, athlete profiles, league/rule changes, injury reports, trade announcements, doping/discipline coverage — from supplied material (box scores, interviews, official statements, stats, medical updates). Specializes med-news-reporter for the sports beat: era-adjusted stats, source vetting for sports data, medical/injury disclosure limits, athlete-as-public-figure doctrine, doping allegations vs. allegations, sports-betting sensitivity, and on-field performance ≠ off-field authority. Triggers on phrases like 'write up this game', 'turn into a sports feature', 'cover this athlete trade', 'draft a piece on this injury', '寫一篇 MLB 賽季報導', '整理 NBA 交易消息', '寫一篇選手專訪', 'draft an Olympic piece', '報導棒球禁賽風波'. Do NOT use for fantasy sports tips (use fin-*), gambling advice, team marketing/press releases (use pr-*), or player agents' PR (use pr-press-release)."
+      zh: "媒體技能：Sports News Reporting 分析與應用。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/asgard-ai-platform/skills/blob/main/med-sports/SKILL.md
+    tags:
+    - news
+    - journalism
+    - sports-news
+    - athletics
+    - media-ethics
+    - sports-governance
+    maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Taiwan E-Commerce Industry Skills (29)
+  # ============================================================
+  - slug: skill-tw-ecom-analytics-benchmarks
+    name:
+      en: "Taiwan E-Commerce Benchmarks"
+      zh: "台灣電商：Taiwan E-Commerce Benchmarks"
+    description:
+      en: "Taiwan e-commerce benchmark ranges for CVR, ROAS, LTV, AOV, repeat rate, cart-abandon — segmented by vertical (3C, 美妝, 服飾, 母嬰, 生鮮) and channel (DTC, Shopee, momo). Use when a TW merchant asks 'is my CVR / ROAS good?' or when sizing a business case. Source discipline: cite industry report or vendor data; mark undocumented ranges as estimates. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Taiwan E-Commerce Benchmarks 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-analytics-benchmarks/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - benchmarks
+    - metrics
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-analytics-ga4
+    name:
+      en: "GA4 for Taiwan E-Commerce"
+      zh: "台灣電商：GA4 for Taiwan E-Commerce"
+    description:
+      en: "Implement GA4 for Taiwan e-commerce — Enhanced Ecommerce events (view_item, add_to_cart, begin_checkout, purchase), TW-specific parameter conventions (含稅 revenue, NT$ currency, 統編 as user property), Looker Studio reporting, and Big Query export. Use when instrumenting a TW store with GA4 or auditing existing GA4 setup. Do NOT use for generic analytics (use `ecom-analytics`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：GA4 for Taiwan E-Commerce 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-analytics-ga4/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - ga4
+    - analytics
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-channel-strategy
+    name:
+      en: "Taiwan E-Commerce Channel Strategy"
+      zh: "台灣電商：Taiwan E-Commerce Channel Strategy"
+    description:
+      en: "Choose the right e-commerce platform mix for a Taiwan business — DTC platforms (Shopline, 91APP, Shopify), marketplaces (Shopee, momo, PChome), or hybrid. Use when comparing platform fees, traffic potential, brand control trade-offs, or designing a go-to-market channel strategy for Taiwan. Do NOT use for specific platform integration details (see platform-specific skills). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Taiwan E-Commerce Channel Strategy 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-channel-strategy/SKILL.md
+    requires_mcp: [mcp-shopline, mcp-91app]
+    tags:
+    - taiwan
+    - e-commerce
+    - platform
+    - strategy
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-compliance-consumer
+    name:
+      en: "Consumer Protection (消保法) Compliance"
+      zh: "台灣電商：Consumer Protection (消保法) Compliance"
+    description:
+      en: "Comply with Taiwan consumer protection law (消保法) — 7-day 鑑賞期 scope and exceptions (生鮮 / 客製化 / 數位商品 / 藥品), return / refund timing, disclosure requirements, and unfair-term invalidation. Use when drafting T&C, handling return disputes, or assessing if a SKU is exempt from 鑑賞期. Do NOT use for PDPA (use `tw-ecom-compliance-pdpa`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Consumer Protection (消保法) Compliance 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-consumer/SKILL.md
+    tags:
+    - taiwan
+    - compliance
+    - consumer-protection
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-compliance-cross-border
+    name:
+      en: "Cross-Border Compliance"
+      zh: "台灣電商：Cross-Border Compliance"
+    description:
+      en: "Tax and regulatory compliance for cross-border e-commerce involving Taiwan — import duty rates, VAT (5%), HS-code classification, 報單 filing, 境外電商 sales-tax registration, and de minimis thresholds. Use when calculating duty/tax obligations, registering as a 境外電商, classifying goods by HS code, or advising on de minimis exemption eligibility. Do NOT use for carrier selection or physical shipping operations (see tw-ecom-logistics-cross-border). Do NOT use for domestic 營業稅 only. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Cross-Border Compliance 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-cross-border/SKILL.md
+    tags:
+    - taiwan
+    - compliance
+    - cross-border
+    - tax
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-compliance-pdpa
+    name:
+      en: "E-Commerce PDPA Compliance"
+      zh: "台灣電商：E-Commerce PDPA Compliance"
+    description:
+      en: "E-commerce-specific PDPA (個資法) compliance — member consent at signup, cookie consent, order / payment data retention, DSAR (data subject access request) handling, and cross-border data transfer for TW merchants. Use when building a TW e-commerce signup / CRM flow, responding to member data requests, or auditing cookies. For generic PDPA / GDPR basics see `law-gdpr-pdpa`. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：E-Commerce PDPA Compliance 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-pdpa/SKILL.md
+    tags:
+    - taiwan
+    - compliance
+    - pdpa
+    - privacy
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-compliance-product
+    name:
+      en: "Product-Category Regulation"
+      zh: "台灣電商：Product-Category Regulation"
+    description:
+      en: "Comply with Taiwan product-specific regulations — 食品 (食安法), 藥品 (藥事法), 化妝品 (化妝品衛生安全管理法), 保健食品, 酒類 (菸酒管理法), 醫療器材. Covers import permit, product registration, labeling, advertising restrictions, and e-commerce listing compliance. Use when selling any of these categories online. Do NOT use for general consumer protection (`tw-ecom-compliance-consumer`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Product-Category Regulation 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-product/SKILL.md
+    tags:
+    - taiwan
+    - compliance
+    - product-regulation
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-dtc-91app
+    name:
+      en: "91APP Integration Methodology"
+      zh: "台灣電商：91APP Integration Methodology"
+    description:
+      en: "Integrate and operate 91APP in Taiwan e-commerce context via mcp-91app. Use when syncing orders/products/members on 91APP, running OMO (online-merge-offline) flows, integrating 91APP's app-first storefronts, or comparing 91APP vs Shopline/Shopify for mid-market DTC. Do NOT use for Shopline-specific integration (see tw-ecom-dtc-shopline). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：91APP Integration Methodology 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-dtc-91app/SKILL.md
+    requires_mcp: [mcp-91app]
+    tags:
+    - taiwan
+    - e-commerce
+    - 91app
+    - platform
+    - integration
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-dtc-shopify-localization
+    name:
+      en: "Shopify for Taiwan"
+      zh: "台灣電商：Shopify for Taiwan"
+    description:
+      en: "Run Shopify stores for Taiwan market — localization (NT$ pricing, Traditional Chinese, TW address format), payment apps (ECPay / NewebPay / TapPay Shopify apps), shipping apps (CVS / 黑貓), and e-invoice integration. Use when setting up Shopify for TW, choosing TW payment/shipping apps, or adapting a global Shopify theme for TW. Do NOT use for general (non-TW) Shopify dev. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Shopify for Taiwan 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-dtc-shopify-localization/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - shopify
+    - localization
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-dtc-shopline
+    name:
+      en: "Shopline Integration Methodology"
+      zh: "台灣電商：Shopline Integration Methodology"
+    description:
+      en: "Integrate and operate Shopline in Taiwan e-commerce context via mcp-shopline. Use when the user needs to sync orders, manage products, run promotions, or reconcile inventory on Shopline stores; when comparing Shopline vs 91APP/Shopify for Taiwan DTC; or when debugging async write propagation. Do NOT use for API schema lookup (go to mcp-shopline docs) or non-Taiwan Shopline deployments."
+      zh: "台灣電商技能：Shopline Integration Methodology 分析與應用。"
+    status: released
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-dtc-shopline/SKILL.md
+    requires_mcp: [mcp-shopline]
+    tags:
+    - taiwan
+    - e-commerce
+    - shopline
+    - platform
+    - integration
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-invoice-carrier
+    name:
+      en: "E-Invoice Carriers (載具)"
+      zh: "台灣電商：E-Invoice Carriers (載具)"
+    description:
+      en: "Handle Taiwan e-invoice carriers (載具) — 手機條碼, 自然人憑證, 會員載具, plus 捐贈碼 donation flow. Covers carrier validation, scan-to-store UX, member-carrier consolidation, and prize-draw winner notification. Use when designing carrier scanning UX, debugging invalid-carrier rejections, or implementing donation-code flow. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：E-Invoice Carriers (載具) 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-carrier/SKILL.md
+    tags:
+    - taiwan
+    - e-invoice
+    - carrier
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-invoice-ezpay
+    name:
+      en: "ezPay E-Invoice Methodology"
+      zh: "台灣電商：ezPay E-Invoice Methodology"
+    description:
+      en: "Issue and manage Taiwan e-invoices via ezPay (加值服務中心) through mcp-ezpay-einvoice. Use when issuing B2B/B2C invoices, handling carrier codes (手機條碼, 自然人憑證), voiding within the same bimonthly window, or issuing allowances (折讓) across periods. Do NOT use for direct 財政部 API integration (see tw-einvoice-guide) or for UniversalEC-backed flows (see tw-ecom-invoice-universalec)."
+      zh: "台灣電商技能：ezPay E-Invoice Methodology 分析與應用。"
+    status: released
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-ezpay/SKILL.md
+    requires_mcp: [mcp-ezpay-einvoice]
+    tags:
+    - taiwan
+    - e-invoice
+    - ezpay
+    - tax-compliance
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-invoice-universalec
+    name:
+      en: "UniversalEC (汎宇電商) E-Invoice Integration"
+      zh: "台灣電商：UniversalEC (汎宇電商) E-Invoice Integration"
+    description:
+      en: "Issue Taiwan e-invoices via UniversalEC (汎宇電商) using mcp-universalec-e-invoice (27 tools). Use when a merchant uses UniversalEC as their 加值服務中心 instead of ezPay, or when migrating between centers. Do NOT use for ezPay flows (`tw-ecom-invoice-ezpay`) or MOF direct integration (`tw-einvoice-guide`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：UniversalEC (汎宇電商) E-Invoice Integration 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-universalec/SKILL.md
+    requires_mcp: [mcp-universalec-e-invoice]
+    tags:
+    - taiwan
+    - e-invoice
+    - universalec
+    - tax-compliance
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-invoice-void
+    name:
+      en: "Invoice Void & Allowance (作廢 / 折讓)"
+      zh: "台灣電商：Invoice Void & Allowance (作廢 / 折讓)"
+    description:
+      en: "Void Taiwan e-invoices within the same bimonthly window, or issue allowances (折讓) for cross-period corrections. Use when handling returns / refunds that affect invoice state. Do NOT use for initial issuance — see the 加值中心-specific skills. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Invoice Void & Allowance (作廢 / 折讓) 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-void/SKILL.md
+    tags:
+    - taiwan
+    - e-invoice
+    - void
+    - allowance
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-logistics-cold-chain
+    name:
+      en: "Cold-Chain Logistics"
+      zh: "台灣電商：Cold-Chain Logistics"
+    description:
+      en: "Ship refrigerated / frozen products in Taiwan — 宅配通 宅配通冷藏 / 黑貓宅急便 低溫, cold-chain CVS pickup limitations, packaging (保冷劑 / 乾冰), and shelf-life SLA. Use for 生鮮 / 冷凍 / 冰品 / 藥品 delivery. Do NOT use for ambient-temperature shipping. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Cold-Chain Logistics 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-cold-chain/SKILL.md
+    tags:
+    - taiwan
+    - logistics
+    - cold-chain
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-logistics-cross-border
+    name:
+      en: "Cross-Border Logistics"
+      zh: "台灣電商：Cross-Border Logistics"
+    description:
+      en: "Select carriers and manage cross-border shipping operations for Taiwan — carrier choices (DHL / FedEx / UPS / 郵局 國際), customs clearance operations (報關), DDP vs DDU trade-offs, label generation, and returns handling. Use when choosing a carrier, estimating shipping cost or transit time, or managing the physical movement of cross-border goods. Do NOT use for duty/tax calculation, HS-code classification, or 境外電商 tax registration (see tw-ecom-compliance-cross-border). Do NOT use for domestic TW shipping. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Cross-Border Logistics 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-cross-border/SKILL.md
+    tags:
+    - taiwan
+    - logistics
+    - cross-border
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-logistics-cvs
+    name:
+      en: "Convenience Store Pickup (超商取貨)"
+      zh: "台灣電商：Convenience Store Pickup (超商取貨)"
+    description:
+      en: "Ship via Taiwan convenience store pickup (7-11 賣貨便 / 全家 / 萊爾富 / OK) — store selection API, shipping-label format, pickup SLA, COD reconciliation, return shipping. Use when setting up CVS 超取 on a TW store, choosing which chains to support, or debugging label printing. Do NOT use for home delivery or cross-border. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Convenience Store Pickup (超商取貨) 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-cvs/SKILL.md
+    requires_mcp: [mcp-ecpay-logistics]
+    tags:
+    - taiwan
+    - logistics
+    - cvs
+    - super-pickup
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-logistics-home
+    name:
+      en: "Home Delivery Logistics (宅配)"
+      zh: "台灣電商：Home Delivery Logistics (宅配)"
+    description:
+      en: "Ship via Taiwan home delivery carriers — 黑貓宅急便, 宅配通, 新竹物流, 郵局. Use when setting up home delivery, choosing carriers by region / parcel size, integrating label printing, or handling redelivery. Do NOT use for CVS pickup (`tw-ecom-logistics-cvs`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Home Delivery Logistics (宅配) 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-home/SKILL.md
+    tags:
+    - taiwan
+    - logistics
+    - home-delivery
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-marketplace-momo
+    name:
+      en: "momo購物網 Operations"
+      zh: "台灣電商：momo購物網 Operations"
+    description:
+      en: "Operate on momo購物網 — listing approval workflow, price-matching rules, momo's next-day delivery SLA, campaign participation, and fast-fashion SKU rotation. Use when setting up or running momo operations, negotiating MOQ / margin with 採購, or participating in momo campaigns. Do NOT use for Shopee (different platform, different rules) or DTC. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：momo購物網 Operations 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-marketplace-momo/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - momo
+    - marketplace
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-marketplace-shopee
+    name:
+      en: "Shopee Taiwan Operations"
+      zh: "台灣電商：Shopee Taiwan Operations"
+    description:
+      en: "Operate a Shopee Taiwan store — listings, promotions, flash sales, SIP (Shopee Supported Program) cross-border, ads (蝦皮廣告), and reputation/review management. Use when setting up or running Shopee TW operations, participating in platform campaigns (雙11, 618), or managing seller-center workflows. Do NOT use for Shopee API integration specifics (no official Asgard MCP yet) or DTC platforms. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Shopee Taiwan Operations 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-marketplace-shopee/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - shopee
+    - marketplace
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-operations-customer-service
+    name:
+      en: "Taiwan E-Commerce Customer Service"
+      zh: "台灣電商：Taiwan E-Commerce Customer Service"
+    description:
+      en: "Taiwan e-commerce customer service — LINE / Messenger / email / phone channel mix, 消保法鑑賞期 scripts, PTT/Dcard reputation monitoring, 負評 response, and SLA targets for the TW market. Use when designing CS SOP, training CS agents, or responding to viral 負評. Do NOT use for generic chatbot design (use `cs-chatbot-design`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Taiwan E-Commerce Customer Service 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-customer-service/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - customer-service
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-operations-line-oa
+    name:
+      en: "LINE OA CRM Operations"
+      zh: "台灣電商：LINE OA CRM Operations"
+    description:
+      en: "Run CRM and member retention via LINE Official Account — broadcast cost model, rich menu, auto-response, tagging, 1-to-1 chat, and LINE Pay integration. Use when designing LINE OA strategy for a TW brand, segmenting members for broadcasts, or measuring LINE OA ROI. Do NOT use for generic CRM (use `ecom-rfm-analysis` or `biz-cac-ltv`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：LINE OA CRM Operations 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-line-oa/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - crm
+    - line-oa
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-operations-pricing
+    name:
+      en: "Taiwan E-Commerce Pricing"
+      zh: "台灣電商：Taiwan E-Commerce Pricing"
+    description:
+      en: "Set prices for Taiwan e-commerce — 含稅 vs 未稅 presentation, price-ending conventions (0/8/9 endings), marketplace price-match rules (momo best-price), 檔期 discount planning, and cross-channel price-parity. Use when pricing a new SKU for TW, rebalancing prices across platforms, or designing a 檔期 discount ladder. Do NOT use for generic pricing theory (use `biz-pricing-strategy`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Taiwan E-Commerce Pricing 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-pricing/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - pricing
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-operations-promotion
+    name:
+      en: "Taiwan Promotional Campaign Operations"
+      zh: "台灣電商：Taiwan Promotional Campaign Operations"
+    description:
+      en: "Run Taiwan e-commerce promotional campaigns — 雙11, 618, 年中慶, 雙12, 週年慶, 母親節. Covers promo calendar, stacking rules across platforms, 檔期 pricing strategy, inventory allocation, and post-campaign 退貨 handling. Use when planning a specific campaign or building a year-round 檔期 schedule. Do NOT use for ad ROI measurement (use `ecom-promo-roi`). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Taiwan Promotional Campaign Operations 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-promotion/SKILL.md
+    tags:
+    - taiwan
+    - e-commerce
+    - promotion
+    - campaign
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-payment-dispute
+    name:
+      en: "Payment Dispute Handling"
+      zh: "台灣電商：Payment Dispute Handling"
+    description:
+      en: "Handle Taiwan e-commerce payment disputes — credit card chargebacks (扣款爭議), refund across bimonthly boundaries (retro 折讓 trigger), acquirer dispute timelines, and evidence packets. Use when a customer files a chargeback, when issuing cross-period refunds that affect invoices, or when building internal dispute SOP. Do NOT use for simple in-period refunds (gateway-specific skills handle those). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：Payment Dispute Handling 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-dispute/SKILL.md
+    tags:
+    - taiwan
+    - payment
+    - dispute
+    - chargeback
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-payment-ecpay
+    name:
+      en: "ECPay (綠界) Integration"
+      zh: "台灣電商：ECPay (綠界) Integration"
+    description:
+      en: "Integrate 綠界 (ECPay) for Taiwan e-commerce — credit card, ATM, CVS 代碼, 超商取貨付款, and CheckMacValue signature. Use when ECPay is the chosen PSP, setting up logistics-payment combined flows (超取+COD), computing or verifying CheckMacValue, or handling ECPay callbacks. Do NOT use for gateway selection or comparison (see tw-payment-integration). Do NOT use for non-ECPay providers. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：ECPay (綠界) Integration 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-ecpay/SKILL.md
+    requires_mcp: [mcp-ecpay]
+    tags:
+    - taiwan
+    - payment
+    - ecpay
+    - fintech
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-payment-jkopay
+    name:
+      en: "街口支付 (JKOPay) Integration"
+      zh: "台灣電商：街口支付 (JKOPay) Integration"
+    description:
+      en: "Integrate 街口支付 (JKOPay) for Taiwan e-commerce — web/app flow, JKO 幣 rewards, merchant settlement cycle, and scan-to-pay vs app-to-pay UX. Use when targeting younger TW demographic or integrating in-app JKO flow. Do NOT use for generic wallet integration (LINE Pay / Apple Pay handled elsewhere). STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：街口支付 (JKOPay) Integration 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-jkopay/SKILL.md
+    tags:
+    - taiwan
+    - payment
+    - jkopay
+    - e-wallet
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-payment-newebpay
+    name:
+      en: "NewebPay Integration Methodology"
+      zh: "台灣電商：NewebPay Integration Methodology"
+    description:
+      en: "Integrate NewebPay (藍新金流) for Taiwan e-commerce via mcp-newebpay. Use when accepting credit card / ATM / CVS / LINE Pay / periodical payments on NewebPay, handling 3DS 2.0 flows, computing TradeSha signatures, or reconciling callback webhooks. Do NOT use for comparing gateways (see tw-payment-integration) or for non-NewebPay providers (TapPay, ECPay have their own skills)."
+      zh: "台灣電商技能：NewebPay Integration Methodology 分析與應用。"
+    status: released
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-newebpay/SKILL.md
+    requires_mcp: [mcp-newebpay]
+    tags:
+    - taiwan
+    - payment
+    - newebpay
+    - fintech
+    maintainer: asgard-ai-platform
+
+  - slug: skill-tw-ecom-payment-tappay
+    name:
+      en: "TapPay Integration for Taiwan E-Commerce"
+      zh: "台灣電商：TapPay Integration for Taiwan E-Commerce"
+    description:
+      en: "Integrate TapPay for Taiwan e-commerce — TapPay Web/iOS/Android SDK, 3DS 2.0 flow, Apple Pay / Google Pay / LINE Pay integration via TapPay, TCS (TapPay Card Service) for tokenized recurring payments. Use when TapPay is chosen as PSP, comparing TapPay vs NewebPay, or debugging 3DS flows. Do NOT use for other gateways. STATUS: SKELETON — body pending."
+      zh: "台灣電商技能：TapPay Integration for Taiwan E-Commerce 分析與應用。"
+    status: coming-soon
+    category: ecommerce
+    skill_type: industry
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-tappay/SKILL.md
+    tags:
+    - taiwan
+    - payment
+    - tappay
+    - fintech
+    maintainer: asgard-ai-platform

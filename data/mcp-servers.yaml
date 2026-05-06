@@ -1108,3 +1108,79 @@ servers:
     tags: [scheduling, calendar, automation]
     upgrade_to: Odin
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # M-16 Taiwan Data & Government Open Sources (5)
+  # ============================================================
+  - slug: mcp-591
+    name:
+      en: "591 Real Estate"
+      zh: "591 房地產資料"
+    description:
+      en: "An MCP server to fetch and query real estate listings from 591.com.tw for AI assistants."
+      zh: "591 房地產資料 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: released
+    category: data
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-591
+    tags: [real-estate, taiwan, listings]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-cwa
+    name:
+      en: "CWA Weather"
+      zh: "中央氣象署"
+    description:
+      en: "MCP server for CWA (中央氣象署, Central Weather Administration) Open Data API. Provides 36 read-only tools across 7 weather data categories for AI agents such as Claude."
+      zh: "中央氣象署 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: released
+    category: data
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-cwa
+    tools_count: 36
+    tags: [weather, taiwan, gov]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-mayo
+    name:
+      en: "MAYO Apollo HRM"
+      zh: "MAYO Apollo 人力資源"
+    description:
+      en: "MCP Server for MAYO Apollo HRM — 33 AI-callable tools for people, attendance, and payroll via Model Context Protocol"
+      zh: "MAYO Apollo 人力資源 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: released
+    category: ops
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-mayo
+    tools_count: 33
+    tags: [hrm, payroll, taiwan]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-company
+    name:
+      en: "Taiwan Business Registry"
+      zh: "台灣公司登記查詢"
+    description:
+      en: "Model Context Protocol (MCP) server for Taiwan Business Registry. Provides real-time access to company registration data from MOEA GCIS."
+      zh: "台灣公司登記查詢 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: released
+    category: data
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-company
+    tools_count: 9
+    tags: [company, taiwan, gov, moea]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-judgment
+    name:
+      en: "Taiwan Judicial Judgments"
+      zh: "台灣司法判決書"
+    description:
+      en: "MCP server for searching Taiwan judicial judgments (司法院裁判書系統) — 2 AI-callable tools over Model Context Protocol"
+      zh: "台灣司法判決書 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: released
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-judgment
+    tags: [legal, taiwan, gov, judiciary]
+    maintainer: asgard-ai-platform
