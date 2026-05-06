@@ -10,7 +10,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: action-runner-scale-set
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       deployments: write
