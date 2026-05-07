@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup } from './_lib.mjs';
+import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError } from './_lib.mjs';
 
 test('decodeBase64Content decodes base64 to utf-8', () => {
   assert.equal(decodeBase64Content('aGVsbG8='), 'hello');
@@ -16,6 +16,31 @@ test('decodeBase64Content tolerates whitespace in input', () => {
 test('exports ghFetchFile and ghJSON functions', () => {
   assert.equal(typeof ghFetchFile, 'function');
   assert.equal(typeof ghJSON, 'function');
+});
+
+test('classifyGhError: HTTP 404 stderr -> definitive missing', () => {
+  assert.deepEqual(classifyGhError('gh: Not Found (HTTP 404)\n'), { status: 'missing' });
+});
+
+test('classifyGhError: HTTP 503 stderr -> ambiguous error (do NOT treat as missing)', () => {
+  const r = classifyGhError('gh: Service Unavailable (HTTP 503)');
+  assert.equal(r.status, 'error');
+  assert.match(r.message, /503/);
+});
+
+test('classifyGhError: bad credentials -> ambiguous error', () => {
+  const r = classifyGhError('gh: Bad credentials (HTTP 401)');
+  assert.equal(r.status, 'error');
+  assert.match(r.message, /credentials/);
+});
+
+test('classifyGhError: network error with no HTTP code -> ambiguous error', () => {
+  const r = classifyGhError('connect ETIMEDOUT api.github.com');
+  assert.equal(r.status, 'error');
+});
+
+test('classifyGhError: empty stderr (e.g. timeout) -> ambiguous error with empty message', () => {
+  assert.deepEqual(classifyGhError(''), { status: 'error', message: '' });
 });
 
 function withTmp(fn) {

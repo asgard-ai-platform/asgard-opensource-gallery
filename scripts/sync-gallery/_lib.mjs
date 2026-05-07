@@ -56,6 +56,45 @@ export function ghJSON(apiPath, jq = null) {
 }
 
 /**
+ * Classify a `gh api` failure (its stderr text) into one of:
+ *   - `{ status: 'missing' }`           — definitive HTTP 404
+ *   - `{ status: 'error', message }`    — anything else (5xx, auth, network, parse fail)
+ *
+ * Pure helper exposed for unit testing; the live caller is `ghRepoLookup`.
+ */
+export function classifyGhError(stderr) {
+  if (/HTTP\s+404\b/i.test(stderr)) {
+    return { status: 'missing' };
+  }
+  return { status: 'error', message: (stderr || '').trim() };
+}
+
+/**
+ * Look up a GitHub repo via `gh api repos/<org>/<slug>`. Distinguishes a
+ * definitive 404 (the repo is missing) from any other failure (transient
+ * GitHub flake, token auth issue, etc.) so callers do not turn an outage
+ * into mass false orphan findings.
+ *
+ * @returns one of:
+ *   - `{ status: 'exists', repo }`     — 2xx, parsed JSON body in `repo`
+ *   - `{ status: 'missing' }`          — definitive HTTP 404
+ *   - `{ status: 'error', message }`   — anything else; caller decides whether to abort or skip
+ */
+export function ghRepoLookup(org, slug) {
+  try {
+    const result = execFileSync(
+      'gh',
+      ['api', `repos/${org}/${slug}`],
+      { encoding: 'utf-8', timeout: 20000, stdio: ['pipe', 'pipe', 'pipe'] },
+    ).trim();
+    return { status: 'exists', repo: JSON.parse(result) };
+  } catch (err) {
+    const stderr = err && err.stderr ? err.stderr.toString() : '';
+    return classifyGhError(stderr || (err && err.message) || '');
+  }
+}
+
+/**
  * Append `lines` (plain bullet text, no leading `- `) under the H2 group
  * `## ${groupName}` in the markdown file at `reportPath`.
  *
