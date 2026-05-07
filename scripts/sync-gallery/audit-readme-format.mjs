@@ -1,0 +1,123 @@
+#!/usr/bin/env node
+/**
+ * audit-readme-format.mjs
+ *
+ * Validate each released MCP repo's README.md against the golden sample
+ * structure (mcp-shopline). Findings are appended under each mcp-* group
+ * in the audit report.
+ *
+ * Calibration: mcp-shopline must pass with zero findings. If a rule
+ * triggers on shopline, the rule is wrong, not shopline.
+ */
+import { readFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import yaml from 'js-yaml';
+import { ghFetchFile, appendGroup } from './_lib.mjs';
+
+const ORG = 'asgard-ai-platform';
+const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
+const REPORT_PATH = join(ROOT, 'scripts/sync-gallery/_generated/repo-audit-report.md');
+
+const REQUIRED_BADGES = [
+  { name: 'PyPI version',       pattern: /img\.shields\.io\/pypi\/v\// },
+  { name: 'Python versions',    pattern: /img\.shields\.io\/pypi\/pyversions\// },
+  { name: 'License',            pattern: /img\.shields\.io\/badge\/License-MIT/ },
+  { name: 'GitHub stars',       pattern: /img\.shields\.io\/github\/stars\// },
+  { name: 'GitHub issues',      pattern: /img\.shields\.io\/github\/issues\// },
+  { name: 'GitHub last commit', pattern: /img\.shields\.io\/github\/last-commit\// },
+  { name: 'MCP compatible',     pattern: /MCP-compatible/ },
+];
+
+const REQUIRED_H2 = ['What This Does', 'Quick Start', 'License'];
+const REQUIRED_QUICKSTART_H3 = ['Install', 'Use with Claude Code', 'Use with Claude Desktop'];
+
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+export function checkReadme(text, expectedToolsCount) {
+  const findings = [];
+  const lines = text.split('\n');
+
+  // 1. H1
+  const h1Line = lines.find(l => /^#\s+/.test(l));
+  if (!h1Line) {
+    findings.push('H1 heading missing');
+  } else if (!/^#\s+MCP\s+\S+/.test(h1Line)) {
+    findings.push(`H1 does not match "# MCP <ServiceName>": "${h1Line.trim()}"`);
+  }
+
+  // 2. Pre-H2 region: badges + intro + 繁體中文 link
+  const firstH2Idx = lines.findIndex(l => /^##\s+/.test(l));
+  const preface = (firstH2Idx === -1 ? lines : lines.slice(0, firstH2Idx)).join('\n');
+
+  for (const badge of REQUIRED_BADGES) {
+    if (!badge.pattern.test(preface)) {
+      findings.push(`Badge missing: ${badge.name}`);
+    }
+  }
+  if (!/\[繁體中文\]\(README\.zh-TW\.md\)/.test(preface)) {
+    findings.push('Missing [繁體中文](README.zh-TW.md) link');
+  }
+
+  // 3. Required H2 sections
+  const h2Titles = lines
+    .filter(l => /^##\s+/.test(l))
+    .map(l => l.replace(/^##\s+/, '').trim());
+
+  for (const required of REQUIRED_H2) {
+    if (!h2Titles.includes(required)) {
+      findings.push(`Required section missing: ## ${required}`);
+    }
+  }
+
+  // 4. ## Tools (N)
+  const toolsTitle = h2Titles.find(t => /^Tools \(\d+\)$/.test(t));
+  if (!toolsTitle) {
+    findings.push('Required section missing: ## Tools (N)');
+  } else if (expectedToolsCount > 0) {
+    const declaredN = parseInt(toolsTitle.match(/\((\d+)\)/)[1]);
+    if (declaredN !== expectedToolsCount) {
+      findings.push(`## ${toolsTitle} declares ${declaredN} but YAML tools_count is ${expectedToolsCount}`);
+    }
+  }
+
+  // 5. Quick Start subsections
+  if (h2Titles.includes('Quick Start')) {
+    const startIdx = lines.findIndex(l => l.trim() === '## Quick Start');
+    const nextH2Idx = lines.findIndex((l, i) => i > startIdx && /^##\s+/.test(l));
+    const block = lines.slice(startIdx, nextH2Idx === -1 ? lines.length : nextH2Idx).join('\n');
+    for (const h3 of REQUIRED_QUICKSTART_H3) {
+      const re = new RegExp(`^###\\s+${escapeRegex(h3)}\\b`, 'm');
+      if (!re.test(block)) {
+        findings.push(`## Quick Start: missing ### ${h3}`);
+      }
+    }
+    if (!/```bash\s*\n[\s\S]*?pip install\s+\S+/.test(block)) {
+      findings.push('## Quick Start ### Install: missing fenced `pip install` code block');
+    }
+  }
+
+  return findings;
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const dataDir = join(ROOT, 'data');
+  const mcps = yaml.load(readFileSync(join(dataDir, 'mcp-servers.yaml'), 'utf-8')).servers;
+  let totalFindings = 0;
+
+  for (const mcp of mcps) {
+    if (mcp.status !== 'released') continue;
+    const readme = ghFetchFile(ORG, mcp.slug, 'README.md');
+    if (!readme) {
+      appendGroup(REPORT_PATH, mcp.slug, ['README.md missing or unreachable']);
+      totalFindings++;
+      continue;
+    }
+    const findings = checkReadme(readme, mcp.tools_count || 0);
+    appendGroup(REPORT_PATH, mcp.slug, findings);
+    totalFindings += findings.length;
+  }
+
+  console.log(`audit-readme-format: ${totalFindings} finding(s) appended to ${REPORT_PATH}`);
+}
