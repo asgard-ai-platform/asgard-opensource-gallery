@@ -6,8 +6,8 @@
 
 ## Background
 
-`scripts/sync-gallery/` already contains three scripts that pull data from upstream
-GitHub repos and report drift, but they only run on a developer's laptop:
+`scripts/sync-gallery/` already contains four scripts (and a `SKILL.md`
+describing the manual workflow), but they only run on a developer's laptop:
 
 - `sync-mcp-content.mjs` — fetches `README.md` (+ `README.zh-TW.md`) from each
   released MCP repo via `gh api`, extracts H2 sections, writes
@@ -18,7 +18,14 @@ GitHub repos and report drift, but they only run on a developer's laptop:
   `data/skills.yaml` when the upstream description is meaningfully longer.
 - `audit-github-repos.sh` — Bash + inline Python audit comparing org repos to
   YAML state (status, `tools_count`, skill directory ↔ YAML, `has_script`,
-  description). Today this only prints to stdout.
+  description). Prints to stdout only.
+- `generate-new-entries.mjs` — auto-discovers public MCP repos / skill
+  directories not in YAML and emits drafts to
+  `scripts/sync-gallery/_generated/` (gitignored): `new-mcp-entries.yaml`,
+  `new-skill-entries.yaml`, and `repo-audit-report.md`. The last file groups
+  upstream defects (missing `README.zh-TW.md`, empty repo description,
+  unparseable `tools_count`, skeleton-status skills, missing tags, broken
+  `related_mcps` cross-references, missing H1 in `SKILL.md`) by repo.
 
 The goal is to run these continuously without human babysitting and surface
 findings in places maintainers already watch. The only existing workflow is
@@ -35,26 +42,38 @@ findings in places maintainers already watch. The only existing workflow is
 ## Non-Goals
 
 - Auto-add or auto-remove YAML entries. Even if audit detects "public repo not
-  in YAML", a human still adds the entry via PR.
+  in YAML", a human still adds the entry via PR. The audit workflow runs
+  `generate-new-entries.mjs` only to obtain `repo-audit-report.md`; the YAML
+  drafts in `_generated/` are not committed, not uploaded as artifacts, and
+  not appended to data files.
 - Touch `validate.mjs`, `generate-og.mjs`, or `deploy.sh`.
 - Add a PR-time `validate.yml` workflow (orthogonal; tracked separately).
 - Auto-merge sync PRs.
 - Slack / email notifications.
 - Change schemas, `data/*.json` shape, or Astro rendering.
+- Rewrite `audit-github-repos.sh`. It stays as-is and is not invoked by either
+  workflow. (Earlier draft proposed a Node rewrite; superseded by reusing
+  `generate-new-entries.mjs`'s richer report.)
 
 ## Architecture
 
-Two independent scheduled workflows, plus a Node rewrite of the audit tool so it
-emits structured JSON consumable by an issue-posting helper.
+Two independent scheduled workflows, plus one new helper script
+(`post-audit-issues.mjs`) that consumes the existing
+`generate-new-entries.mjs` markdown report.
 
 | Workflow | Cron (UTC) | Local (TW) | Output |
 |---|---|---|---|
 | `.github/workflows/sync-content.yml` | `0 18 * * 0` | Mon 02:00 | Single rolling PR `chore/sync-gallery-content` |
-| `.github/workflows/audit-content.yml` | `0 19 * * 0` | Mon 03:00 | One rolling issue per `mcp-*` repo + one on `skills` |
+| `.github/workflows/audit-content.yml` | `0 19 * * *` | Daily 03:00 | One rolling issue per `mcp-*` repo + one on `skills` |
 
-Audit runs one hour after sync purely to space out GitHub API load — there is
-no data dependency. Both workflows also expose `workflow_dispatch` for manual
-runs.
+Sync is weekly because it produces a PR a human reviews; weekly cadence
+keeps review noise down. Audit is daily because it surfaces drift without
+mutating gallery state — faster feedback is strictly better, and rolling
+issues mean repeat runs do not create extra notifications past the initial
+edit. On Sunday, audit naturally runs one hour after sync (incidental load
+spacing); other days it runs alone.
+
+Both workflows also expose `workflow_dispatch` for manual runs.
 
 ### Auth
 
@@ -120,7 +139,13 @@ jobs:
             See workflow run for processed counts.
           commit-message: 'chore: sync MCP & skill content'
           delete-branch: false
+          add-paths: |
+            data/**
 ```
+
+`add-paths: data/**` ensures only the data files get staged. If a future
+change makes `generate-new-entries.mjs` run earlier (or anything else writes
+to `_generated/`), those files will not accidentally land in the PR.
 
 ### PR behaviour
 
@@ -160,80 +185,53 @@ no-op move.
 
 **File:** `.github/workflows/audit-content.yml`
 
-### Decision: rewrite `audit-github-repos.sh` as Node
+### Decision: reuse `generate-new-entries.mjs`, add only `post-audit-issues.mjs`
 
-`audit-github-repos.sh` only emits human-readable stdout. Per-repo issue
-posting needs structured per-target output. Three options were considered:
+`generate-new-entries.mjs` already produces a per-repo upstream-defect report
+at `scripts/sync-gallery/_generated/repo-audit-report.md`. Its issue
+categories (see Background) are richer than what `audit-github-repos.sh`
+checks. Reusing it removes the need to write a parallel audit tool.
 
-- **A. Keep Bash, parse stdout in a wrapper.** Fragile regex-on-logs.
-- **B. Add a `--json` mode to Bash.** Two output paths to maintain; Bash JSON
-  handling is awkward.
-- **C. Rewrite as Node.js.** Matches the rest of `scripts/sync-gallery/`,
-  shares helpers, single output path. **Chosen.**
+The audit workflow:
 
-The original Bash script is deleted as part of this work.
+1. Runs `generate-new-entries.mjs`. The script also writes
+   `new-mcp-entries.yaml` and `new-skill-entries.yaml` drafts; these are
+   discarded (the working directory is ephemeral CI state, and `_generated/`
+   is gitignored anyway).
+2. Runs a new `post-audit-issues.mjs` that parses the markdown report and
+   posts/updates one tracking issue per target repo.
 
-### New script: `scripts/sync-gallery/audit-github-repos.mjs`
-
-Same checks the Bash script performs today, plus structured output:
-
-1. List `mcp-*` repos in org (public vs private).
-2. Cross-reference each with `data/mcp-servers.yaml` (status mismatches,
-   missing entries).
-3. Parse `tools_count` from each released MCP's README using the same four
-   regex patterns; compare against YAML.
-4. Compare `data/skills.yaml` to the directory list of
-   `asgard-ai-platform/skills` (additions / removals).
-5. For each skill directory, compare `SKILL.md` H1 ↔ YAML name, `scripts/`
-   existence ↔ `has_script`, frontmatter description ↔ YAML description.
-
-Writes `audit-report.json`:
-
-```json
-{
-  "mcp-shopline": {
-    "findings": [
-      { "severity": "warn", "code": "tools_count_mismatch",
-        "msg": "README=143, YAML=140" }
-    ]
-  },
-  "mcp-foo": {
-    "findings": [
-      { "severity": "warn", "code": "public_not_in_yaml",
-        "msg": "Public repo missing from gallery YAML" }
-    ]
-  },
-  "skills": {
-    "findings": [
-      { "severity": "warn", "code": "skill_not_in_yaml",
-        "msg": "Directory `xyz` not in skills.yaml" },
-      { "severity": "warn", "code": "has_script_mismatch",
-        "msg": "ecom-foo: repo=true, yaml=false" }
-    ]
-  }
-}
-```
+`audit-github-repos.sh` is not invoked. It stays in the repo for the manual
+workflow described in `scripts/sync-gallery/SKILL.md` but plays no role in
+the cron flow.
 
 ### New script: `scripts/sync-gallery/post-audit-issues.mjs`
 
-Reads `audit-report.json`. For each target repo key:
+Input: `scripts/sync-gallery/_generated/repo-audit-report.md` produced by
+`generate-new-entries.mjs`. The report groups findings by repo using H2
+headings (e.g. `## mcp-shopline`, `## skills`); each group lists bullets that
+are upstream defects.
+
+For each target repo that appears in the parsed report (i.e., has at least one
+finding):
 
 1. Search the target repo for the existing tracking issue:
    `gh issue list --repo asgard-ai-platform/<repo> --state open --label yggdrasil-audit --limit 1`
    (fallback: search by marker comment `<!-- yggdrasil-audit:auto-managed -->`
    if label lookup fails).
-2. **Hit + non-empty findings** → `gh issue edit` to update body with new
-   timestamp + finding list.
-3. **Hit + empty findings** → update body to "✅ no current findings"
-   variant. Do NOT auto-close (human closes once they verify).
-4. **Miss + non-empty findings** → `gh issue create` with title
+2. **Hit** → `gh issue edit` to update body with new timestamp + finding list.
+3. **Miss** → `gh issue create` with title
    `[yggdrasil-audit] Gallery sync report`, label `yggdrasil-audit`, marker
    comment in body.
-5. **Miss + empty findings** → no-op.
 
 If the `yggdrasil-audit` label does not yet exist on a repo, attempt to create
 it (`gh label create yggdrasil-audit`); on failure, fall back to creating the
 issue without a label and rely on the marker-comment identifier.
+
+**Stale issues (open issue exists but the repo no longer appears in the
+report)**: not auto-closed. Maintainer closes manually once they verify.
+Auto-closing is a follow-up — would require listing all open
+`yggdrasil-audit`-labelled issues across the org each run and diffing.
 
 #### Issue body template
 
@@ -276,18 +274,21 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: node scripts/sync-gallery/audit-github-repos.mjs > audit-report.json
-      - run: node scripts/sync-gallery/post-audit-issues.mjs audit-report.json
+      - run: node scripts/sync-gallery/generate-new-entries.mjs
+      - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: audit-report
-          path: audit-report.json
+          name: repo-audit-report
+          path: scripts/sync-gallery/_generated/repo-audit-report.md
 ```
 
 `permissions.contents` is `read` because the audit workflow does not push to
 this repo. Cross-repo issue write is granted by `secrets.GH_TOKEN`, not by
 the workflow's `GITHUB_TOKEN` permissions block.
+
+The artifact uploads only the audit markdown — never `new-mcp-entries.yaml` /
+`new-skill-entries.yaml`, to keep the non-goal of "no auto-add" honest.
 
 ### Failure handling
 
@@ -306,8 +307,12 @@ for contributors.
 ### `asgard-ai-platform/skills` repo
 
 - Token has `Contents: Read` on the repo.
-- Skill directories on `main` start with a lowercase letter and are not named
-  `eval` or `tools`.
+- Skill directories on `main` start with a lowercase letter and are not in
+  the exclusion list. Note: `sync-skill-content.mjs` excludes `eval` and
+  `tools`; `generate-new-entries.mjs` additionally excludes `docs`. Both
+  scripts run in this design, so any directory named `docs` is filtered out
+  by the audit path but would still be processed by sync. Pre-existing
+  inconsistency; out of scope to align here.
 - Each skill directory contains `SKILL.md`.
 - `SKILL.md` has YAML frontmatter delimited by `---`.
 - Frontmatter `description` is a single-line string.
@@ -337,8 +342,8 @@ for contributors.
 - `secrets.GH_TOKEN` exists with the scopes listed in the Auth section above.
 - `gh` CLI is available on `action-runner-scale-set` (open assumption).
 - Node 22 + `js-yaml` (already in `package.json`).
-- Rate limit: ~700 API calls per audit run, ~700 per sync run; weekly cadence
-  is well under PAT 5000/h limits.
+- Rate limit: ~700 API calls per audit run × daily ≈ 4900/week; ~700 per
+  sync run × weekly = 700/week. Combined cadence is well under PAT 5000/h.
 
 ## Risks
 
@@ -351,22 +356,24 @@ for contributors.
 | `peter-evans/create-pull-request@v7` incompatible with self-hosted runner | Same runner already executes a Node-based action in `deploy.yml` (`cloudflare/wrangler-action@v3.15.0`); precedent. |
 | PR merged by token identity does not trigger `deploy.yml` | Sync PR is human-merged; deploy.yml fires on push-to-main as today. |
 | GitHub label `yggdrasil-audit` missing on a repo | Script attempts to create it; falls back to label-less issue keyed by marker comment. |
+| `_generated/` YAML drafts accidentally committed | Audit workflow uploads only the markdown report; sync workflow uses `add-paths: data/**` so `_generated/` cannot leak into the PR. |
+| `repo-audit-report.md` format changes in a future `generate-new-entries.mjs` revision | `post-audit-issues.mjs` parser is the only consumer; bump together. Pin a fixture-based test if drift becomes a concern. |
 
 ## Implementation Outline
 
 This is a sketch only. Detailed steps and tests belong in the implementation
 plan produced by the writing-plans skill.
 
-1. Rewrite `audit-github-repos.sh` → `audit-github-repos.mjs` (delete the
-   `.sh`). Verify locally that JSON output matches today's stdout findings.
-2. Add `post-audit-issues.mjs`. Test against a fixture `audit-report.json` and
-   a sandbox repo before pointing at production.
-3. Add `.github/workflows/sync-content.yml`. First run via
-   `workflow_dispatch`; verify rolling PR opens correctly.
-4. Add `.github/workflows/audit-content.yml`. First run via
+1. Add `scripts/sync-gallery/post-audit-issues.mjs`. Test against a sample
+   `repo-audit-report.md` fixture and a sandbox repo before pointing at
+   production.
+2. Add `.github/workflows/sync-content.yml`. First run via
+   `workflow_dispatch`; verify rolling PR opens correctly and only `data/`
+   files are staged.
+3. Add `.github/workflows/audit-content.yml`. First run via
    `workflow_dispatch`; verify per-repo issues are created with correct title
-   + label + marker.
-5. Once both manual runs are clean, the cron triggers take over.
+   + label + marker, and `_generated/` YAML drafts are not in the artifact.
+4. Once both manual runs are clean, the cron triggers take over.
 
 ## Open Assumptions Tracker
 
