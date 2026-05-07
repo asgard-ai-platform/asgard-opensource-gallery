@@ -37,7 +37,13 @@ findings in places maintainers already watch. The only existing workflow is
 2. Audit the gallery against upstream repos automatically; surface findings as
    issues on the offending repo (the source of truth lives where the maintainer
    works).
-3. Two flows are independent: audit failures must NOT block sync.
+3. Audit MCP repos for **PyPI publishing conformance** — packaging metadata
+   present and the package actually published — surfacing gaps via the same
+   per-repo issue.
+4. Detect **orphan YAML entries** (entries pointing at upstream repos /
+   directories that no longer exist) so the gallery does not silently render
+   broken detail pages.
+5. Two flows are independent: audit failures must NOT block sync.
 
 ## Non-Goals
 
@@ -125,8 +131,14 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      # Fail loud if the token is dead before any bulk fetching happens.
+      - name: Verify token
+        run: gh api user > /dev/null
       - run: node scripts/sync-gallery/sync-mcp-content.mjs
       - run: node scripts/sync-gallery/sync-skill-content.mjs
+      # Guard against silent gh-api failure mid-run (see Risks).
+      - name: Sanity-check sync output
+        run: node scripts/sync-gallery/check-sync-thresholds.mjs
       - run: npm run validate
       - run: npm run build
       - uses: peter-evans/create-pull-request@v7
@@ -163,54 +175,187 @@ and forces cleanup logic. A single rolling PR is always the latest snapshot.
 
 ### Failure handling
 
+- `gh api user` fails → job fails immediately, no bulk fetch attempted.
 - Any sync script exits non-zero → job fails before `create-pull-request` step.
+- Sanity check fails → job fails (see below).
 - `npm run validate` fail → job fails (catches upstream content that breaks
   schema, e.g., a description that smashes a length cap).
 - `npm run build` fail → job fails (catches structural issues the schema does
   not catch).
 
-### Optional follow-up (not in this spec)
+### New helper: `scripts/sync-gallery/check-sync-thresholds.mjs`
 
-The sync scripts currently swallow `gh api` failures (return `null`). If a
-token expires mid-run the output silently shrinks. Adding a sanity check
-("processed < 80 % of last run → fail") would prevent a quietly-empty PR. Not
-in scope for this design.
+Both `sync-mcp-content.mjs` and `sync-skill-content.mjs` swallow `gh api`
+failures (`catch { return null; }`). If the token expires mid-run, half the
+upstream fetches return null and the output JSON quietly shrinks — the PR
+deletes a chunk of content with no signal that anything is wrong.
+
+This helper runs after both sync scripts and fails the job if either output
+is suspiciously small:
+
+- Count released MCPs in `data/mcp-servers.yaml` → expect at least 80 % of
+  them as keys in `data/mcp-content.json`.
+- Count skill directories that should sync (entries in `data/skills.yaml`)
+  → expect at least 80 % as keys in `data/skill-content.json`.
+
+The 80 % threshold tolerates a handful of legitimate per-repo failures (a
+single repo whose README was just deleted) but stops a token-expiry-style
+mass failure from landing.
 
 ### Script changes
 
-None to the sync scripts. They already work from CLI; running them in CI is a
-no-op move.
+None to existing sync scripts. New helper `check-sync-thresholds.mjs` added.
 
 ## Audit Workflow
 
 **File:** `.github/workflows/audit-content.yml`
 
-### Decision: reuse `generate-new-entries.mjs`, add only `post-audit-issues.mjs`
+### Decision: reuse `generate-new-entries.mjs`, augment with PyPI + README + orphan checks
 
 `generate-new-entries.mjs` already produces a per-repo upstream-defect report
 at `scripts/sync-gallery/_generated/repo-audit-report.md`. Its issue
 categories (see Background) are richer than what `audit-github-repos.sh`
 checks. Reusing it removes the need to write a parallel audit tool.
 
+Three gaps that `generate-new-entries.mjs` does not cover, all surfaced in
+the risk review and added to scope:
+
+- **PyPI conformance** — none of the existing scripts check whether an MCP
+  repo is packaged and published.
+- **README format conformance** — current checks only verify that an H1 and
+  *some* H2 sections exist. They do not verify that an MCP repo follows the
+  golden-sample structure (`mcp-shopline`) for sections, badges, install
+  instructions, and tool tables.
+- **Orphan detection** — `generate-new-entries.mjs` only finds repos /
+  directories that exist upstream but are missing from YAML. It does not
+  catch the reverse: YAML entries pointing at upstream that no longer
+  exists (renamed / deleted / made private).
+
+Three new scripts cover these gaps and append to the same
+`repo-audit-report.md` so `post-audit-issues.mjs` has a single source.
+
 The audit workflow:
 
-1. Runs `generate-new-entries.mjs`. The script also writes
-   `new-mcp-entries.yaml` and `new-skill-entries.yaml` drafts; these are
-   discarded (the working directory is ephemeral CI state, and `_generated/`
-   is gitignored anyway).
-2. Runs a new `post-audit-issues.mjs` that parses the markdown report and
-   posts/updates one tracking issue per target repo.
+1. Verify token (`gh api user`) — fail loud if dead.
+2. Run `generate-new-entries.mjs`. The YAML drafts in `_generated/` are
+   discarded (CI working directory is ephemeral; `_generated/` is gitignored).
+3. Run `audit-pypi.mjs` — append PyPI findings to `repo-audit-report.md`.
+4. Run `audit-readme-format.mjs` — append README structure findings.
+5. Run `audit-orphans.mjs` — append orphan-entry findings.
+6. Run `post-audit-issues.mjs` — parse the merged report, post/update one
+   tracking issue per target repo.
 
-`audit-github-repos.sh` is not invoked. It stays in the repo for the manual
-workflow described in `scripts/sync-gallery/SKILL.md` but plays no role in
-the cron flow.
+`audit-github-repos.sh` is not invoked by the workflow. It stays in the repo
+for the manual flow described in `scripts/sync-gallery/SKILL.md`.
+
+### New script: `scripts/sync-gallery/audit-pypi.mjs`
+
+For each released MCP repo in `data/mcp-servers.yaml`, append findings to
+`repo-audit-report.md`. Checks:
+
+**Packaging metadata** (read `pyproject.toml` from repo root via `gh api`):
+
+- File exists (else: `pyproject.toml missing`).
+- Parses as TOML (else: `pyproject.toml is not valid TOML`).
+- `[project]` table has: `name`, `version`, `description`, `readme`,
+  `requires-python`, `license`, `authors`, `classifiers`. Each missing field
+  is one finding (e.g. `pyproject.toml [project] missing 'classifiers'`).
+- `[build-system]` table present with `build-backend` set.
+- LICENSE file at repo root (else: `LICENSE file missing at repo root`).
+
+**PyPI publish status** (`GET https://pypi.org/pypi/<name>/json`, where
+`<name>` is `pyproject.toml`'s `[project].name`):
+
+- 404 → `Package <name> is not published on PyPI`.
+- 200 → compare `info.version` to local `pyproject.toml` version. Mismatch →
+  `pyproject.toml version <X> ahead of latest PyPI release <Y>` (informational).
+- Check `info.description_content_type` is `text/markdown` (else: README will
+  not render correctly on PyPI).
+
+PyPI is queried unauthenticated (public endpoint). On network failure or
+non-2xx/4xx response, the script logs a warning but does not append a finding
+(prevents false positives from PyPI outages).
+
+### New script: `scripts/sync-gallery/audit-readme-format.mjs`
+
+Source of truth: `mcp-shopline`'s `README.md` is the **golden sample** for
+every published MCP repo. `mcp-template`'s `README.md` is the bootstrap
+template that a new repo starts from; before a repo is marked
+`status: released` in the gallery, its README must match the shopline
+shape.
+
+For each released MCP repo in `data/mcp-servers.yaml`, fetch `README.md`
+and append findings if any of the following fail:
+
+**Header / metadata**
+
+- H1 matches `^MCP\s+\S+` (e.g., `# MCP Shopline`).
+- Badge row immediately under H1, containing references to all of:
+  PyPI version, Python versions, License, GitHub stars, GitHub issues,
+  GitHub last-commit, and `MCP-compatible`. Detected by URL substring
+  match (`shields.io`, `pypi.org`, `github.com/.../stargazers`, etc.).
+  Each missing badge is one finding.
+- `[繁體中文](README.zh-TW.md)` link (or equivalent) before the first H2.
+- An intro paragraph between the badges and the first H2 (non-empty after
+  trimming).
+
+**Required H2 sections** (case-sensitive headings):
+
+- `## What This Does`
+- `## Quick Start`
+- `## Tools (N)` where `N` matches the YAML `tools_count`.
+- `## License`
+
+**Required H3 subsections under `## Quick Start`**:
+
+- `### Install` containing a fenced code block with `pip install <name>`.
+- `### Use with Claude Code`
+- `### Use with Claude Desktop`
+
+**Required structure under `## Tools (N)`**:
+
+- `### Read Tools (M)` and (if any write tools) `### Write Tools (K)`.
+- At least one Markdown table per subsection with header `| Tool |
+  Description |`.
+- The sum of tool-rows across both subsections equals `N` from the parent
+  H2.
+
+**Optional sections** are allowed but not required:
+`API Reference`, `Important: Write Tools`, `API Endpoint Coverage`,
+`Project Structure`, `API Constraints`, `Development`,
+`Known Test Gaps`, `Roadmap`, `Usage Examples`, `Contributing`.
+
+Findings are concise and reference the exact section name, e.g.:
+
+- `README missing required section: ## What This Does`
+- `README ## Tools (N) — N=143 in heading but 140 tool rows counted`
+- `README badge row missing: PyPI version`
+- `README ### Install: no fenced 'pip install mcp-shopline' code block found`
+
+`mcp-shopline` is itself audited and is expected to pass; if a check rule
+fails on `mcp-shopline`, the rule is wrong and should be relaxed (the rule
+set is calibrated to the golden sample).
+
+### New script: `scripts/sync-gallery/audit-orphans.mjs`
+
+Detects YAML entries whose upstream is gone:
+
+- For each entry in `data/mcp-servers.yaml` with `status: released`: confirm
+  the repo exists on GitHub (`gh api repos/asgard-ai-platform/<slug>` returns
+  200 and `private: false`). Else: append finding to the **gallery** repo's
+  group in `repo-audit-report.md` (since the gallery YAML is what's wrong).
+- For each entry in `data/skills.yaml`: confirm the directory still exists in
+  the `skills` repo's `main` tree. Else: append finding under `skills` group.
+
+Findings target the gallery / skills repo because the YAML is the side that
+needs fixing, not the (vanished) upstream.
 
 ### New script: `scripts/sync-gallery/post-audit-issues.mjs`
 
-Input: `scripts/sync-gallery/_generated/repo-audit-report.md` produced by
-`generate-new-entries.mjs`. The report groups findings by repo using H2
-headings (e.g. `## mcp-shopline`, `## skills`); each group lists bullets that
-are upstream defects.
+Input: `scripts/sync-gallery/_generated/repo-audit-report.md` after the three
+audit scripts have appended to it. The report groups findings by repo using
+H2 headings (e.g. `## mcp-shopline`, `## skills`,
+`## asgard-opensource-gallery`); each group lists bullets that are findings.
 
 For each target repo that appears in the parsed report (i.e., has at least one
 finding):
@@ -274,7 +419,12 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      - name: Verify token
+        run: gh api user > /dev/null
       - run: node scripts/sync-gallery/generate-new-entries.mjs
+      - run: node scripts/sync-gallery/audit-pypi.mjs
+      - run: node scripts/sync-gallery/audit-readme-format.mjs
+      - run: node scripts/sync-gallery/audit-orphans.mjs
       - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
       - uses: actions/upload-artifact@v4
         if: always()
@@ -325,17 +475,49 @@ for contributors.
 
 ### Each `mcp-*` repo
 
+The reference repos are:
+
+- **`mcp-template`** — bootstrap template for a new MCP repo (light README).
+- **`mcp-shopline`** — golden sample. Every repo with `status: released`
+  in the gallery is expected to match shopline's README structure (see
+  `audit-readme-format.mjs` for the explicit rules).
+
+Required for the cron flow to work without false-positive findings:
+
 - Slug in `data/mcp-servers.yaml` matches the actual repo name.
-- `status: released` to be eligible for content sync.
+- `status: released` to be eligible for content sync. (`released` is also
+  what makes README format conformance audited; `coming-soon` and `planned`
+  are excluded from the format audit.)
 - Token has `Contents: Read` (private repos require explicit scope).
-- Has `README.md` at repo root with H1 + intro + H2 sections.
-- Optional `README.zh-TW.md` for Chinese translation.
-- For audit `tools_count` check: README contains one of `N AI-callable tools`,
-  `**N tools**`, `N MCP tools`, or an `## Available Tools` table whose rows
-  start with `` | `tool_name` | ``.
+- `README.md` at repo root following the golden-sample structure:
+  - H1 `# MCP <ServiceName>`
+  - Badge row (PyPI version, Python versions, License, GitHub stars /
+    issues / last-commit, MCP-compatible)
+  - `[繁體中文](README.zh-TW.md)` link
+  - Intro paragraph
+  - H2 sections: `What This Does`, `Quick Start`, `Tools (N)`, `License`
+    (others optional)
+  - `## Quick Start` includes `### Install` with a `pip install` fenced
+    block, plus `### Use with Claude Code` and `### Use with Claude Desktop`
+  - `## Tools (N)` includes `### Read Tools (M)` and (if applicable)
+    `### Write Tools (K)`, each with a `| Tool | Description |` table; row
+    count sums to `N`
+- `README.zh-TW.md` parallel translation.
+- `pyproject.toml` at repo root with `[project]` (`name`, `version`,
+  `description`, `readme`, `requires-python`, `license`, `authors`,
+  `classifiers`) and `[build-system]` `build-backend` set.
+- `LICENSE` file at repo root.
+- Package published on PyPI under `pyproject.toml` `[project].name`, with
+  `description_content_type` = `text/markdown` for proper README rendering.
+- For the legacy bash audit `tools_count` check: README contains one of
+  `N AI-callable tools`, `**N tools**`, `N MCP tools`, or an
+  `## Available Tools` table whose rows start with `` | `tool_name` | ``.
+  (The cron audit reads tools_count from the `## Tools (N)` heading
+  instead.)
 - H2 titles matching `sectionKey()` keywords (features / quick_start /
   available_tools / api_reference / install / configuration / license /
-  contributing / usage) render as structured sections.
+  contributing / usage) render as structured sections in the gallery
+  detail page.
 
 ### GitHub Actions
 
@@ -347,33 +529,75 @@ for contributors.
 
 ## Risks
 
+### Workflow-level risks
+
 | Risk | Mitigation |
 |---|---|
-| `secrets.GH_TOKEN` missing or insufficiently scoped | First run fails with a 401/403 in the API step; log identifies missing scope. |
+| `secrets.GH_TOKEN` missing or insufficiently scoped | `gh api user` precheck step fails the job loud before bulk fetching. |
 | `description.en` overwritten unintentionally | PR mode + human review; no auto-merge. |
-| `gh api` silent failure (current behaviour: catch → null) | Out of scope; called out as follow-up. |
 | Audit issue body is hand-edited and clobbered next run | Marker comment + label + body opening line warns "Auto-maintained". |
 | `peter-evans/create-pull-request@v7` incompatible with self-hosted runner | Same runner already executes a Node-based action in `deploy.yml` (`cloudflare/wrangler-action@v3.15.0`); precedent. |
 | PR merged by token identity does not trigger `deploy.yml` | Sync PR is human-merged; deploy.yml fires on push-to-main as today. |
 | GitHub label `yggdrasil-audit` missing on a repo | Script attempts to create it; falls back to label-less issue keyed by marker comment. |
 | `_generated/` YAML drafts accidentally committed | Audit workflow uploads only the markdown report; sync workflow uses `add-paths: data/**` so `_generated/` cannot leak into the PR. |
 | `repo-audit-report.md` format changes in a future `generate-new-entries.mjs` revision | `post-audit-issues.mjs` parser is the only consumer; bump together. Pin a fixture-based test if drift becomes a concern. |
+| pypi.org outage causes false-positive "not published" findings | `audit-pypi.mjs` treats network errors / 5xx as warning logs, not findings. Only 404 turns into a finding. |
+
+### Risks rooted in existing scripts (carried over, partially mitigated)
+
+| Risk | Mitigation |
+|---|---|
+| `gh api` failure silently returns `null` in all four sync-gallery scripts → resulting JSON / errors lists become wrong | Mitigated for sync via `check-sync-thresholds.mjs` (80 % floor) and for both workflows via the `gh api user` precheck. Not fully eliminated: a token that goes 401 *during* the run still produces shrunken output, but mass failure is now caught. |
+| `sync-skill-content.mjs` surgical YAML rewrite escapes only `"` — backslash, real newline, control chars in upstream `description` produce invalid YAML | `npm run validate` catches it → job fails before PR. **`data/skills.yaml` is left half-rewritten on disk for that CI job**, but CI workspaces are ephemeral so no follow-on damage. Reviewer of the next clean run sees the same input again. Out of scope to refactor the rewriter; flagged for follow-up. |
+| `sync-skill-content.mjs` rewrite assumes `description:` is followed *immediately* by `en:` — a comment, blank line, or reordered `zh: / en:` silently skips the update | Validation does not catch this (no error, just no change). Accept for now; flag follow-up to use `yaml.dump`-based rewrite. |
+| `tools_count` regex differs between `audit-github-repos.sh` (4 patterns including table-row counting) and `generate-new-entries.mjs` (3 patterns) | Audit workflow uses only `generate-new-entries.mjs`, so the table-row case is no longer recognised. False-positive `tools_count not parseable` findings on repos that document tools as a Markdown table. **Follow-up:** add the 4th pattern to `generate-new-entries.mjs`. |
+| Non-atomic file writes (`writeFileSync` straight to target) — a runner kill mid-write produces a half file | Low probability in CI (no manual interrupts). Not mitigated; flagged for follow-up. |
+| No retry on transient `gh api` 502/503 | Daily/weekly cadence keeps blast radius small; sanity threshold catches widespread failure. Not mitigated; flagged for follow-up. |
+| Heuristic checks in `generate-new-entries.mjs` (missing `metadata.tags`, missing H1, etc.) are surfaced as upstream defects | Intentional — these are gallery-side expectations of upstream contributors. Maintainers may push back; in that case adjust `generate-new-entries.mjs` to drop the check. Documented as policy here, not a bug. |
+| Renamed / deleted upstream skill leaves orphan YAML entry with no rich content | Now caught by `audit-orphans.mjs` and reported on the gallery repo's tracking issue. |
 
 ## Implementation Outline
 
 This is a sketch only. Detailed steps and tests belong in the implementation
 plan produced by the writing-plans skill.
 
-1. Add `scripts/sync-gallery/post-audit-issues.mjs`. Test against a sample
+1. Add `scripts/sync-gallery/check-sync-thresholds.mjs`. Test against
+   current `data/` to confirm the 80 % threshold passes on a healthy run.
+2. Add `scripts/sync-gallery/audit-pypi.mjs`. Calibrate against
+   `mcp-shopline` (must pass) and a known-incomplete repo (must produce
+   findings).
+3. Add `scripts/sync-gallery/audit-readme-format.mjs`. Calibrate against
+   `mcp-shopline` (must pass cleanly — if it doesn't, the rule is wrong).
+4. Add `scripts/sync-gallery/audit-orphans.mjs`. Test by temporarily
+   inserting a fake YAML entry pointing at a non-existent repo.
+5. Add `scripts/sync-gallery/post-audit-issues.mjs`. Test against a sample
    `repo-audit-report.md` fixture and a sandbox repo before pointing at
    production.
-2. Add `.github/workflows/sync-content.yml`. First run via
+6. Add `.github/workflows/sync-content.yml`. First run via
    `workflow_dispatch`; verify rolling PR opens correctly and only `data/`
    files are staged.
-3. Add `.github/workflows/audit-content.yml`. First run via
-   `workflow_dispatch`; verify per-repo issues are created with correct title
-   + label + marker, and `_generated/` YAML drafts are not in the artifact.
-4. Once both manual runs are clean, the cron triggers take over.
+7. Add `.github/workflows/audit-content.yml`. First run via
+   `workflow_dispatch`; verify per-repo issues are created with correct
+   title + label + marker, and `_generated/` YAML drafts are not in the
+   artifact.
+8. Once both manual runs are clean, the cron triggers take over.
+
+## Optional Follow-ups (out of scope here)
+
+- Refactor `sync-skill-content.mjs` `updateYamlDescriptions` to use
+  `yaml.dump` round-trip instead of regex line-replace. Removes the
+  escape-fragility risk for backslash / newline / control chars.
+- Atomic file writes (`writeFileSync(tmp); rename(tmp, target)`) in all
+  three sync scripts.
+- Retry-with-backoff wrapper around `gh api` calls.
+- Add the 4th `tools_count` regex pattern (table-row counting) to
+  `generate-new-entries.mjs` to match `audit-github-repos.sh`.
+- Auto-close `yggdrasil-audit` issues whose repo no longer appears in any
+  `repo-audit-report.md`. Requires listing all `yggdrasil-audit`-labelled
+  issues across the org each run.
+- Add a `validate.yml` PR workflow (mentioned in `README.md` as existing
+  but not yet present) so YAML changes are schema-checked at PR time
+  independently of the deploy path.
 
 ## Open Assumptions Tracker
 
@@ -384,3 +608,9 @@ Resolve before / during implementation:
 - [ ] Confirm `gh` CLI is on `action-runner-scale-set`.
 - [ ] Confirm `peter-evans/create-pull-request@v7` runs on the self-hosted
       runner (or fall back to `ubuntu-latest` for the sync workflow).
+- [ ] Confirm with maintainers that the README format rules in
+      `audit-readme-format.mjs` (calibrated to `mcp-shopline`) are the
+      target — every released MCP repo should match, or the rule is wrong.
+- [ ] Confirm PyPI publishing is the target for every released MCP repo
+      (vs. some repos intentionally not on PyPI). If selective, add an
+      opt-out flag in `data/mcp-servers.yaml`.
