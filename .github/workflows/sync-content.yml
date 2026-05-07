@@ -7,6 +7,12 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+# Serialise scheduled and manual runs so a workflow_dispatch never overlaps
+# the cron run. Both write to the same rolling branch.
+concurrency:
+  group: sync-gallery-content
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: action-runner-scale-set

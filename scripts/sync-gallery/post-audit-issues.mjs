@@ -13,6 +13,8 @@
  */
 import { readFileSync, writeFileSync, unlinkSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import { join as pathJoin } from 'node:path';
 
 const ORG = 'asgard-ai-platform';
 const LABEL = 'yggdrasil-audit';
@@ -27,7 +29,9 @@ export function parseReport(md) {
     const h2 = line.match(/^##\s+(\S.*?)\s*$/);
     if (h2) {
       current = h2[1].trim();
-      groups[current] = [];
+      // Don't reset on duplicate H2 — accumulate into the existing array
+      // so a re-encountered group preserves earlier findings (M6 fix).
+      if (!groups[current]) groups[current] = [];
       continue;
     }
     if (current === null) continue;
@@ -77,20 +81,27 @@ function gh(args) {
   }).trim();
 }
 
-function findExistingIssue(repo) {
+/**
+ * Find every open tracking issue for a repo, deduped by issue number.
+ * Looks up via label first, then via the marker-comment search — both
+ * always run so an unlabelled marker issue is found even when label search
+ * returns zero (M2 fix). Returns an array (possibly empty); the caller
+ * updates each one (M1 fix — multiple labelled issues should not go stale).
+ */
+function findExistingIssues(repo) {
+  const found = new Map();
   try {
     const out = gh([
       'issue', 'list',
       '--repo', `${ORG}/${repo}`,
       '--state', 'open',
       '--label', LABEL,
-      '--limit', '1',
+      '--limit', '50',
       '--json', 'number,body',
     ]);
-    const arr = JSON.parse(out);
-    if (arr.length > 0) return arr[0];
+    for (const issue of JSON.parse(out)) found.set(issue.number, issue);
   } catch {
-    // Label may not exist on the repo yet — fall through.
+    // Label may not exist on the repo yet — fall through to marker search.
   }
   try {
     const out = gh([
@@ -98,16 +109,25 @@ function findExistingIssue(repo) {
       '--repo', `${ORG}/${repo}`,
       '--state', 'open',
       '--search', MARKER_COMMENT,
-      '--limit', '5',
+      '--limit', '50',
       '--json', 'number,body',
     ]);
-    const arr = JSON.parse(out);
-    return arr.find(i => i.body && i.body.includes(MARKER_COMMENT)) || null;
+    for (const issue of JSON.parse(out)) {
+      if (issue.body && issue.body.includes(MARKER_COMMENT)) {
+        found.set(issue.number, issue);
+      }
+    }
   } catch {
-    return null;
+    // Search disabled / GitHub flake — best effort.
   }
+  return [...found.values()];
 }
 
+/**
+ * Try to create (or `--force`-update) the audit label on the repo.
+ * Returns true on success. False on failure (token lacks label scope, etc.) —
+ * the caller should then create the issue without `--label` (M7 fix).
+ */
 function ensureLabelExists(repo) {
   try {
     gh([
@@ -117,36 +137,56 @@ function ensureLabelExists(repo) {
       '--description', 'Auto-maintained by Yggdrasil gallery audit',
       '--force',
     ]);
+    return true;
   } catch {
-    // Already exists, or token lacks label-create scope. Non-fatal.
+    return false;
   }
+}
+
+/**
+ * Sanitize a parsed H2 heading for safe use in a temp file name. The parser
+ * accepts any non-empty string after `## `; without sanitization, a heading
+ * containing `/` (e.g. a future audit script that uses `## skills/foo`)
+ * would expand into a path like `/tmp/yggdrasil-audit-skills/foo-<pid>.md`
+ * and `writeFileSync` would fail because the intermediate dir does not
+ * exist. Replace anything outside `[A-Za-z0-9._-]` with `_`. (P1 fix.)
+ */
+export function safeRepoForFilename(repo) {
+  const cleaned = repo.replace(/[^A-Za-z0-9._-]/g, '_').slice(0, 100);
+  return /[A-Za-z0-9]/.test(cleaned) ? cleaned : 'unknown';
 }
 
 function postOrUpdate(repo, findings) {
   const runId = process.env.GITHUB_RUN_ID || 'local';
   const timestamp = new Date().toISOString();
   const body = formatIssueBody({ repo, findings, runId, timestamp });
-  const existing = findExistingIssue(repo);
-  const tmpFile = `/tmp/yggdrasil-audit-${repo}-${process.pid}.md`;
+  const existing = findExistingIssues(repo);
+  const tmpFile = pathJoin(tmpdir(), `yggdrasil-audit-${safeRepoForFilename(repo)}-${process.pid}.md`);
   writeFileSync(tmpFile, body, 'utf-8');
   try {
-    if (existing) {
-      gh([
-        'issue', 'edit', String(existing.number),
-        '--repo', `${ORG}/${repo}`,
-        '--body-file', tmpFile,
-      ]);
-      return { repo, action: 'updated', number: existing.number };
+    if (existing.length > 0) {
+      // Update every match so duplicates do not silently go stale.
+      const numbers = [];
+      for (const issue of existing) {
+        gh([
+          'issue', 'edit', String(issue.number),
+          '--repo', `${ORG}/${repo}`,
+          '--body-file', tmpFile,
+        ]);
+        numbers.push(issue.number);
+      }
+      return { repo, action: 'updated', number: numbers.join(','), count: numbers.length };
     } else {
-      ensureLabelExists(repo);
-      const out = gh([
+      const labelOk = ensureLabelExists(repo);
+      const args = [
         'issue', 'create',
         '--repo', `${ORG}/${repo}`,
         '--title', TITLE,
-        '--label', LABEL,
         '--body-file', tmpFile,
-      ]);
-      return { repo, action: 'created', url: out };
+      ];
+      if (labelOk) args.push('--label', LABEL);
+      const out = gh(args);
+      return { repo, action: labelOk ? 'created' : 'created (unlabelled — token missing label scope)', url: out };
     }
   } finally {
     try { unlinkSync(tmpFile); } catch { /* ignore */ }

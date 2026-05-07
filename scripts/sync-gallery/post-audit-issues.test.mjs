@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { parseReport, formatIssueBody, MARKER_COMMENT } from './post-audit-issues.mjs';
+import { parseReport, formatIssueBody, MARKER_COMMENT, safeRepoForFilename } from './post-audit-issues.mjs';
 
 const FIXTURES = resolve(new URL('.', import.meta.url).pathname, '_fixtures');
 
@@ -47,4 +47,43 @@ test('formatIssueBody mentions correct fix location for gallery findings', () =>
     findings: ['x'], runId: 1, timestamp: 't',
   });
   assert.match(body, /asgard-opensource-gallery/);
+});
+
+test('parseReport accumulates findings when an H2 group repeats', () => {
+  // M6 fix: a repeated `## mcp-foo` must not reset the existing array.
+  const md = [
+    '## mcp-foo',
+    '',
+    '- first finding',
+    '',
+    '## mcp-bar',
+    '',
+    '- bar finding',
+    '',
+    '## mcp-foo',
+    '',
+    '- second finding',
+    '',
+  ].join('\n');
+  const groups = parseReport(md);
+  assert.deepEqual(groups['mcp-foo'], ['first finding', 'second finding']);
+  assert.deepEqual(groups['mcp-bar'], ['bar finding']);
+});
+
+test('safeRepoForFilename: well-formed slug passes through unchanged', () => {
+  assert.equal(safeRepoForFilename('mcp-shopline'), 'mcp-shopline');
+  assert.equal(safeRepoForFilename('skills'), 'skills');
+  assert.equal(safeRepoForFilename('asgard-opensource-gallery'), 'asgard-opensource-gallery');
+});
+
+test('safeRepoForFilename: replaces path separators and other unsafe chars', () => {
+  // P1 fix: a heading like `## skills/foo` must not produce a tmp path with `/`.
+  assert.equal(safeRepoForFilename('skills/foo'), 'skills_foo');
+  assert.equal(safeRepoForFilename('../etc/passwd'), '.._etc_passwd');
+  assert.equal(safeRepoForFilename('a b c'), 'a_b_c');
+});
+
+test('safeRepoForFilename: empty / all-unsafe input falls back to "unknown"', () => {
+  assert.equal(safeRepoForFilename(''), 'unknown');
+  assert.equal(safeRepoForFilename('///'), 'unknown');
 });
