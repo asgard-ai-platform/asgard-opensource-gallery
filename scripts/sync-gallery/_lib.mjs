@@ -14,6 +14,12 @@ export function decodeBase64Content(b64) {
   return Buffer.from(b64.replace(/\s+/g, ''), 'base64').toString('utf-8');
 }
 
+/**
+ * Fetch a file's decoded text content from a GitHub repo via `gh api`.
+ * @returns {string|null} File body, or null on any error (404, network,
+ *   rate limit, auth failure, or path resolves to a directory listing
+ *   rather than a file).
+ */
 export function ghFetchFile(org, repo, path) {
   try {
     const b64 = execFileSync(
@@ -27,6 +33,12 @@ export function ghFetchFile(org, repo, path) {
   }
 }
 
+/**
+ * Call `gh api <apiPath>` and JSON-parse the result.
+ * @param {string|null} jq Optional `--jq` filter; omit / null for raw JSON.
+ * @returns {*|null} Parsed value, or null on any error (network, non-2xx,
+ *   parse failure, timeout).
+ */
 export function ghJSON(apiPath, jq = null) {
   try {
     const args = ['api', apiPath];
