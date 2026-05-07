@@ -9,7 +9,7 @@
  *
  * Usage: node scripts/sync-gallery/sync-skill-content.mjs
  */
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
@@ -25,8 +25,9 @@ const OUTPUT_JSON = join(DATA_DIR, 'skill-content.json');
 
 function ghFetchFile(path) {
   try {
-    const result = execSync(
-      `gh api "repos/${ORG}/${REPO}/contents/${path}" --jq '.content'`,
+    const result = execFileSync(
+      'gh',
+      ['api', `repos/${ORG}/${REPO}/contents/${path}`, '--jq', '.content'],
       { encoding: 'utf-8', timeout: 15000, stdio: ['pipe', 'pipe', 'pipe'] }
     ).trim();
     return Buffer.from(result, 'base64').toString('utf-8');
@@ -36,8 +37,14 @@ function ghFetchFile(path) {
 }
 
 function ghListDirs() {
-  const result = execSync(
-    `gh api "repos/${ORG}/${REPO}/git/trees/main" --jq '[.tree[] | select(.type == "tree") | .path | select(test("^[a-z]"))]'`,
+  const result = execFileSync(
+    'gh',
+    [
+      'api',
+      `repos/${ORG}/${REPO}/git/trees/main`,
+      '--jq',
+      '[.tree[] | select(.type == "tree") | .path | select(test("^[a-z]"))]',
+    ],
     { encoding: 'utf-8', timeout: 15000 }
   );
   return JSON.parse(result).filter(d => !['eval', 'tools'].includes(d)).sort();

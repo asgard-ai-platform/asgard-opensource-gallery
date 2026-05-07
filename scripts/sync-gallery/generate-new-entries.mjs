@@ -16,7 +16,7 @@
  * After review, append the *.yaml files to data/mcp-servers.yaml /
  * data/skills.yaml, then run npm run validate.
  */
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { writeFileSync, readFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
@@ -29,13 +29,15 @@ mkdirSync(OUT_DIR, { recursive: true });
 
 // ── GitHub helpers ───────────────────────────────────────────────
 
-function gh(cmd) {
-  return execSync(cmd, { encoding: 'utf-8', timeout: 20000, stdio: ['pipe', 'pipe', 'pipe'] }).trim();
+// All gh shell-out goes through this helper as an argv array (no shell parsing).
+// Interpolated repo / path / parent values cannot inject shell commands.
+function gh(args) {
+  return execFileSync('gh', args, { encoding: 'utf-8', timeout: 20000, stdio: ['pipe', 'pipe', 'pipe'] }).trim();
 }
 
 function ghFetchFile(repo, path) {
   try {
-    const result = gh(`gh api "repos/${ORG}/${repo}/contents/${path}" --jq '.content'`);
+    const result = gh(['api', `repos/${ORG}/${repo}/contents/${path}`, '--jq', '.content']);
     return Buffer.from(result, 'base64').toString('utf-8');
   } catch {
     return null;
@@ -44,14 +46,14 @@ function ghFetchFile(repo, path) {
 
 function ghGetRepo(repo) {
   try {
-    return JSON.parse(gh(`gh api "repos/${ORG}/${repo}"`));
+    return JSON.parse(gh(['api', `repos/${ORG}/${repo}`]));
   } catch {
     return null;
   }
 }
 
 function ghListPublicMcpRepos() {
-  const json = gh(`gh repo list ${ORG} --limit 200 --json name,isPrivate`);
+  const json = gh(['repo', 'list', ORG, '--limit', '200', '--json', 'name,isPrivate']);
   return JSON.parse(json)
     .filter(r => r.name.startsWith('mcp-') && !r.isPrivate && r.name !== 'mcp-template')
     .map(r => r.name)
@@ -59,7 +61,12 @@ function ghListPublicMcpRepos() {
 }
 
 function ghListSkillDirs() {
-  const json = gh(`gh api "repos/${ORG}/skills/git/trees/main" --jq '[.tree[] | select(.type == "tree") | .path | select(test("^[a-z]"))]'`);
+  const json = gh([
+    'api',
+    `repos/${ORG}/skills/git/trees/main`,
+    '--jq',
+    '[.tree[] | select(.type == "tree") | .path | select(test("^[a-z]"))]',
+  ]);
   return JSON.parse(json)
     .filter(d => !['eval', 'tools', 'docs'].includes(d))
     .sort();
@@ -67,7 +74,12 @@ function ghListSkillDirs() {
 
 function ghHasSubdir(repo, parent, sub) {
   try {
-    const list = JSON.parse(gh(`gh api "repos/${ORG}/${repo}/contents/${parent}" --jq '[.[] | select(.type == "dir") | .name]'`));
+    const list = JSON.parse(gh([
+      'api',
+      `repos/${ORG}/${repo}/contents/${parent}`,
+      '--jq',
+      '[.[] | select(.type == "dir") | .name]',
+    ]));
     return list.includes(sub);
   } catch {
     return false;
@@ -224,7 +236,7 @@ for (const dir of newSkills) {
   const skillMd = ghFetchFile('skills', `${dir}/SKILL.md`);
   if (!skillMd) {
     console.error('⚠  no SKILL.md');
-    errors.push({ repo: `skills/${dir}`, kind: 'skill', issue: 'SKILL.md missing or unreachable' });
+    errors.push({ repo: 'skills', kind: 'skill', issue: `\`${dir}\`: SKILL.md missing or unreachable` });
     continue;
   }
   const { meta, body } = parseFrontmatter(skillMd);
@@ -237,11 +249,11 @@ for (const dir of newSkills) {
   const droppedMcps = requiresMcpRaw.filter(s => !existingMcpSlugs.has(s));
   const hasScript = ghHasSubdir('skills', dir, 'scripts');
 
-  if (!extractH1(body)) errors.push({ repo: `skills/${dir}`, kind: 'skill', issue: 'SKILL.md has no H1 heading' });
-  if (!descEn) errors.push({ repo: `skills/${dir}`, kind: 'skill', issue: 'frontmatter "description" missing or empty' });
-  if (!Array.isArray(mdTags) || mdTags.length === 0) errors.push({ repo: `skills/${dir}`, kind: 'skill', issue: 'frontmatter metadata.tags missing — used for filter UI' });
-  if (mdStatus === 'skeleton') errors.push({ repo: `skills/${dir}`, kind: 'skill', issue: 'metadata.status="skeleton" — content is incomplete' });
-  if (droppedMcps.length) errors.push({ repo: `skills/${dir}`, kind: 'skill', issue: `metadata.related_mcps references unknown slug(s): ${droppedMcps.join(', ')}` });
+  if (!extractH1(body)) errors.push({ repo: 'skills', kind: 'skill', issue: `\`${dir}\`: SKILL.md has no H1 heading` });
+  if (!descEn) errors.push({ repo: 'skills', kind: 'skill', issue: `\`${dir}\`: frontmatter "description" missing or empty` });
+  if (!Array.isArray(mdTags) || mdTags.length === 0) errors.push({ repo: 'skills', kind: 'skill', issue: `\`${dir}\`: frontmatter metadata.tags missing — used for filter UI` });
+  if (mdStatus === 'skeleton') errors.push({ repo: 'skills', kind: 'skill', issue: `\`${dir}\`: metadata.status="skeleton" — content is incomplete` });
+  if (droppedMcps.length) errors.push({ repo: 'skills', kind: 'skill', issue: `\`${dir}\`: metadata.related_mcps references unknown slug(s): ${droppedMcps.join(', ')}` });
 
   const zhPrefix = category === 'media' ? '媒體技能'
     : category === 'ecommerce' && region === 'taiwan' ? '台灣電商'
