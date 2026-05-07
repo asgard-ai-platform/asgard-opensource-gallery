@@ -664,8 +664,7 @@ import { readFileSync, writeFileSync, existsSync, appendFileSync } from 'node:fs
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
 import { parse as parseToml } from 'smol-toml';
-import { ghFetchFile } from './_lib.mjs';
-import { appendGroup } from './audit-orphans.mjs';
+import { ghFetchFile, appendGroup } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -897,8 +896,7 @@ Create `scripts/sync-gallery/audit-readme-format.mjs`:
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
-import { ghFetchFile } from './_lib.mjs';
-import { appendGroup } from './audit-orphans.mjs';
+import { ghFetchFile, appendGroup } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');

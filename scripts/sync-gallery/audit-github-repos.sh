@@ -26,13 +26,14 @@ echo ""
 
 # ── 2. YAML status check ────────────────────────────────────────
 echo "[2/5] Cross-referencing MCP YAML ..."
-YAML_SLUGS=$(python3 -c "
-import yaml
-with open('$DATA_DIR/mcp-servers.yaml') as f:
+YAML_SLUGS=$(python3 - "$DATA_DIR/mcp-servers.yaml" <<'PYEOF'
+import sys, yaml
+with open(sys.argv[1]) as f:
     data = yaml.safe_load(f)
 for s in data['servers']:
     print(s['slug'], s['status'], s.get('tools_count', ''))
-")
+PYEOF
+)
 
 YAML_TOTAL=$(echo "$YAML_SLUGS" | wc -l | tr -d ' ')
 YAML_RELEASED=$(echo "$YAML_SLUGS" | grep -c 'released' || true)
@@ -111,12 +112,13 @@ echo ""
 echo "[4/5] Auditing skills repo ..."
 SKILL_DIRS=$(gh api "repos/$ORG/skills/git/trees/main" \
   --jq '[.tree[] | select(.type == "tree") | .path | select(test("^[a-z]"))] | length')
-SKILL_YAML=$(python3 -c "
-import yaml
-with open('$DATA_DIR/skills.yaml') as f:
+SKILL_YAML=$(python3 - "$DATA_DIR/skills.yaml" <<'PYEOF'
+import sys, yaml
+with open(sys.argv[1]) as f:
     data = yaml.safe_load(f)
 print(len(data['skills']))
-")
+PYEOF
+)
 
 echo "  Skills repo directories: $SKILL_DIRS"
 echo "  Skills YAML entries:     $SKILL_YAML"
@@ -130,13 +132,13 @@ else
     --jq '.tree[] | select(.type == "tree") | .path | select(test("^[a-z]"))' | sort > /tmp/gh-skill-dirs.txt
 
   # Get all skill slugs from YAML (strip skill- prefix)
-  python3 -c "
-import yaml
-with open('$DATA_DIR/skills.yaml') as f:
+  python3 - "$DATA_DIR/skills.yaml" <<'PYEOF' | sort > /tmp/yaml-skill-dirs.txt
+import sys, yaml
+with open(sys.argv[1]) as f:
     data = yaml.safe_load(f)
 for s in sorted(data['skills'], key=lambda x: x['slug']):
     print(s['slug'].removeprefix('skill-'))
-" | sort > /tmp/yaml-skill-dirs.txt
+PYEOF
 
   NEW=$(comm -23 /tmp/gh-skill-dirs.txt /tmp/yaml-skill-dirs.txt)
   REMOVED=$(comm -13 /tmp/gh-skill-dirs.txt /tmp/yaml-skill-dirs.txt)

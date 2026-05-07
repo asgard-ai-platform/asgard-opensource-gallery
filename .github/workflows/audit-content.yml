@@ -1,0 +1,45 @@
+name: Audit gallery content
+on:
+  schedule:
+    - cron: '0 19 * * *'    # Daily 19:00 UTC = 03:00 TW
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# Serialise scheduled and manual runs so two parallel jobs cannot both miss
+# the dedup check and create duplicate tracking issues.
+concurrency:
+  group: audit-gallery-content
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: action-runner-scale-set
+    permissions:
+      contents: read
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Verify token
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::secrets.GH_TOKEN is empty. This workflow needs a fine-grained PAT with: cross-repo Contents:Read AND Issues:Write on asgard-ai-platform/* — the default GITHUB_TOKEN cannot create issues on other repos in the org."
+            exit 1
+          fi
+          gh api user > /dev/null
+      - run: node scripts/sync-gallery/generate-new-entries.mjs
+      - run: node scripts/sync-gallery/audit-pypi.mjs
+      - run: node scripts/sync-gallery/audit-readme-format.mjs
+      - run: node scripts/sync-gallery/audit-orphans.mjs
+      - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: repo-audit-report
+          path: scripts/sync-gallery/_generated/repo-audit-report.md

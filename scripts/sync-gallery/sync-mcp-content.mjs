@@ -7,7 +7,7 @@
  * Usage: node scripts/sync-gallery/sync-mcp-content.mjs
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
 
@@ -21,8 +21,9 @@ const OUTPUT_JSON = join(DATA_DIR, 'mcp-content.json');
 
 function ghFetchFile(repo, path) {
   try {
-    const result = execSync(
-      `gh api "repos/${ORG}/${repo}/contents/${path}" --jq '.content'`,
+    const result = execFileSync(
+      'gh',
+      ['api', `repos/${ORG}/${repo}/contents/${path}`, '--jq', '.content'],
       { encoding: 'utf-8', timeout: 15000, stdio: ['pipe', 'pipe', 'pipe'] }
     ).trim();
     return Buffer.from(result, 'base64').toString('utf-8');
