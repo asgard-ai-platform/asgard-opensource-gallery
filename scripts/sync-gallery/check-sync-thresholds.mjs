@@ -12,20 +12,33 @@ import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
 
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
-const FLOOR = 0.8;
+export const FLOOR = 0.8;
 
-export function evaluateThresholds({ expectedMcps, actualMcpKeys, expectedSkills, actualSkillKeys, floor }) {
+/**
+ * Compare expected vs actual identifier sets and return a failure list when
+ * any side falls below FLOOR coverage. Pure function — no IO.
+ *
+ * Both sides should use the same identifier shape (e.g. both pass full slugs
+ * including any `skill-` prefix). The CLI block below normalises the YAML
+ * side before calling.
+ */
+export function evaluateThresholds({ expectedMcps, actualMcpKeys, expectedSkills, actualSkillKeys }) {
   const failures = [];
+  const mcpSet = new Set(actualMcpKeys);
+  const skillSet = new Set(actualSkillKeys);
+
   const mcpExpected = expectedMcps.length;
-  const mcpActual = expectedMcps.filter(s => actualMcpKeys.includes(s)).length;
-  if (mcpExpected > 0 && mcpActual / mcpExpected < floor) {
-    failures.push(`mcp-content.json: ${mcpActual} of ${mcpExpected} expected entries (< ${Math.round(floor * 100)}%)`);
+  const mcpActual = expectedMcps.filter(s => mcpSet.has(s)).length;
+  if (mcpExpected > 0 && mcpActual / mcpExpected < FLOOR) {
+    failures.push(`mcp-content.json: ${mcpActual} of ${mcpExpected} expected entries (< ${Math.round(FLOOR * 100)}%)`);
   }
+
   const skillExpected = expectedSkills.length;
-  const skillActual = expectedSkills.filter(s => actualSkillKeys.includes(`skill-${s}`)).length;
-  if (skillExpected > 0 && skillActual / skillExpected < floor) {
-    failures.push(`skill-content.json: ${skillActual} of ${skillExpected} expected entries (< ${Math.round(floor * 100)}%)`);
+  const skillActual = expectedSkills.filter(s => skillSet.has(s)).length;
+  if (skillExpected > 0 && skillActual / skillExpected < FLOOR) {
+    failures.push(`skill-content.json: ${skillActual} of ${skillExpected} expected entries (< ${Math.round(FLOOR * 100)}%)`);
   }
+
   return { ok: failures.length === 0, failures };
 }
 
@@ -37,14 +50,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const skillContent = JSON.parse(readFileSync(join(dataDir, 'skill-content.json'), 'utf-8'));
 
   const expectedMcps = mcps.servers.filter(s => s.status === 'released').map(s => s.slug);
-  const expectedSkills = skills.skills.map(s => s.slug.replace(/^skill-/, ''));
+  const expectedSkills = skills.skills.map(s => s.slug); // full slug, e.g. `skill-foo`
 
   const result = evaluateThresholds({
     expectedMcps,
     actualMcpKeys: Object.keys(mcpContent),
     expectedSkills,
     actualSkillKeys: Object.keys(skillContent),
-    floor: FLOOR,
   });
 
   if (!result.ok) {
