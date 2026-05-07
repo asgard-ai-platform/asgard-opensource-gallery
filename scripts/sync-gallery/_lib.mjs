@@ -9,6 +9,7 @@
  * interpolated repo / path / slug values cannot inject shell commands.
  */
 import { execFileSync } from 'node:child_process';
+import { readFileSync, writeFileSync, existsSync, appendFileSync } from 'node:fs';
 
 export function decodeBase64Content(b64) {
   return Buffer.from(b64.replace(/\s+/g, ''), 'base64').toString('utf-8');
@@ -51,5 +52,44 @@ export function ghJSON(apiPath, jq = null) {
     return JSON.parse(result);
   } catch {
     return null;
+  }
+}
+
+/**
+ * Append `lines` (plain bullet text, no leading `- `) under the H2 group
+ * `## ${groupName}` in the markdown file at `reportPath`.
+ *
+ * Behaviour:
+ *  - No-op if `lines` is empty.
+ *  - If the file does not exist or does not contain `## ${groupName}`,
+ *    appends a new H2 block (with leading blank line) to the file.
+ *  - If the group already exists, inserts the new bullets after the
+ *    existing bullets but before the next `## ` header (or end-of-file).
+ *
+ * **Format contract (must be honoured by every writer to the same file):**
+ * group blocks are written as `\n## <name>\n\n- bullet\n- bullet\n` —
+ * exactly one blank line between header and the bullet list. The update
+ * regex relies on this exact shape; a single `\n` between header and
+ * bullets would silently fall through to the append-new-group path and
+ * produce a duplicate H2 section.
+ */
+export function appendGroup(reportPath, groupName, lines) {
+  if (lines.length === 0) return;
+  const existing = existsSync(reportPath) ? readFileSync(reportPath, 'utf-8') : '';
+  const groupHeader = `## ${groupName}`;
+  const headerPresent =
+    existing.startsWith(`${groupHeader}\n`) ||
+    existing.includes(`\n${groupHeader}\n`);
+
+  if (headerPresent) {
+    const escaped = groupHeader.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const updated = existing.replace(
+      new RegExp(`(${escaped}\\n\\n[\\s\\S]*?)(?=\\n##\\s+|$)`),
+      (block) => block.trimEnd() + '\n' + lines.map(l => `- ${l}`).join('\n') + '\n',
+    );
+    writeFileSync(reportPath, updated, 'utf-8');
+  } else {
+    const block = `\n${groupHeader}\n\n${lines.map(l => `- ${l}`).join('\n')}\n`;
+    appendFileSync(reportPath, block, 'utf-8');
   }
 }

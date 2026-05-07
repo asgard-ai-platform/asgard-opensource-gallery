@@ -8,10 +8,10 @@
  * (for missing skill directories), since the YAML is the side that needs
  * fixing.
  */
-import { readFileSync, writeFileSync, existsSync, appendFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
-import { ghJSON } from './_lib.mjs';
+import { ghJSON, appendGroup } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -28,6 +28,11 @@ export async function findOrphans({ mcps, skills, repoExists, skillDirExists }) 
     }
   }
 
+  // Skills are checked regardless of YAML status: every entry in
+  // skills.yaml maps 1:1 to a directory in the skills repo, even
+  // for `coming-soon` / `planned` (the dir is the source of truth).
+  // The MCP loop above only checks `released` because `coming-soon`
+  // entries may not have a repo yet.
   for (const s of skills) {
     const dir = s.slug.replace(/^skill-/, '');
     if (!(await skillDirExists(dir))) {
@@ -36,22 +41,6 @@ export async function findOrphans({ mcps, skills, repoExists, skillDirExists }) 
   }
 
   return { 'asgard-opensource-gallery': galleryGroup, skills: skillGroup };
-}
-
-export function appendGroup(reportPath, groupName, lines) {
-  if (lines.length === 0) return;
-  const existing = existsSync(reportPath) ? readFileSync(reportPath, 'utf-8') : '';
-  const groupHeader = `## ${groupName}`;
-  if (existing.includes(`\n${groupHeader}\n`) || existing.startsWith(`${groupHeader}\n`)) {
-    const updated = existing.replace(
-      new RegExp(`(${groupHeader.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\n\\n[\\s\\S]*?)(?=\\n##\\s+|$)`),
-      (block) => block.trimEnd() + '\n' + lines.map(l => `- ${l}`).join('\n') + '\n',
-    );
-    writeFileSync(reportPath, updated, 'utf-8');
-  } else {
-    const block = `\n${groupHeader}\n\n${lines.map(l => `- ${l}`).join('\n')}\n`;
-    appendFileSync(reportPath, block, 'utf-8');
-  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
