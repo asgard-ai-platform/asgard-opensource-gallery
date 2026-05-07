@@ -57,7 +57,7 @@ test('checkPypiPublish: drift between local and pypi version flagged', () => {
     body: { info: { version: '0.1.0', description_content_type: 'text/markdown' } },
   });
   assert.equal(findings.length, 1);
-  assert.match(findings[0], /0\.2\.0 ahead of latest PyPI release 0\.1\.0/);
+  assert.match(findings[0], /0\.2\.0 does not match latest PyPI release 0\.1\.0/);
 });
 
 test('checkPypiPublish: non-markdown content type flagged', () => {

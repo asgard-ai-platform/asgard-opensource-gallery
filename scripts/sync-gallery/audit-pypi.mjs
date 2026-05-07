@@ -63,7 +63,7 @@ export function checkPypiPublish(name, localVersion, response) {
   }
   const info = response.body?.info || {};
   if (info.version && info.version !== localVersion) {
-    findings.push(`pyproject.toml version ${localVersion} ahead of latest PyPI release ${info.version}`);
+    findings.push(`pyproject.toml version ${localVersion} does not match latest PyPI release ${info.version}`);
   }
   if (info.description_content_type && info.description_content_type !== 'text/markdown') {
     findings.push(`PyPI description_content_type is '${info.description_content_type}' — README will not render correctly (expected 'text/markdown')`);
