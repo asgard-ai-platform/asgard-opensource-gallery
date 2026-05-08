@@ -1,8 +1,8 @@
 # Design — Gallery Content Sync & Audit via Scheduled GitHub Actions
 
-**Date:** 2026-05-07
+**Date:** 2026-05-07 (initial spec) / 2026-05-08 (last as-built sync)
 **Scope:** `asgard-opensource-gallery` (Yggdrasil) — `.github/workflows/`, `scripts/sync-gallery/`
-**Author:** Brainstorming session
+**Status:** Built and operational. Audit workflow ran end-to-end at 2026-05-08T01:48Z, opening tracking issues across 13+ `mcp-*` repos. Sync workflow not yet exercised live (cron next: Sunday 18:00 UTC).
 
 ## Background
 
@@ -63,9 +63,22 @@ findings in places maintainers already watch. The only existing workflow is
 
 ## Architecture
 
-Two independent scheduled workflows, plus one new helper script
-(`post-audit-issues.mjs`) that consumes the existing
-`generate-new-entries.mjs` markdown report.
+Two independent scheduled workflows, plus a thin shared library
+(`scripts/sync-gallery/_lib.mjs`) and five new helper scripts:
+
+- `check-sync-thresholds.mjs` — sync sanity floor (80% coverage)
+- `audit-pypi.mjs` — PyPI metadata + publish status
+- `audit-readme-format.mjs` — golden-sample README structure
+- `audit-orphans.mjs` — YAML pointing at vanished upstream
+- `post-audit-issues.mjs` — markdown report → per-repo tracking issues
+
+`_lib.mjs` exports `ghFetchFile`, `ghJSON`, `ghRepoLookup` (tagged union for
+distinguishing 404 from transient errors), `decodeBase64Content`,
+`appendGroup`, and `classifyGhError`. **All shell-out is via `execFileSync`
+with argv arrays** — no `execSync` shell-string interpolation in any new
+script. The same hardening is applied to the existing
+`sync-mcp-content.mjs`, `sync-skill-content.mjs`, and
+`generate-new-entries.mjs` (Codex review HIGH findings).
 
 | Workflow | Cron (UTC) | Local (TW) | Output |
 |---|---|---|---|
@@ -83,24 +96,38 @@ Both workflows also expose `workflow_dispatch` for manual runs.
 
 ### Auth
 
-Both workflows authenticate with `secrets.GH_TOKEN` (assumed pre-existing in
-this repo's settings). Required scopes:
+Two distinct tokens are in play:
 
-- Org `asgard-ai-platform`: `Contents: Read` on every `mcp-*` repo and on
-  `skills`.
-- Org `asgard-ai-platform`: `Issues: Write` on every `mcp-*` repo and on
-  `skills` (for audit).
-- This repo: `Contents: Write` and `Pull requests: Write` (for sync PR).
+- **`secrets.GH_TOKEN`** — a fine-grained PAT the repo admin must provision.
+  Used by every `gh api` call from the helper scripts. Required scopes (on
+  resource owner `asgard-ai-platform`, all repositories):
+  - `Metadata: Read` (auto-granted)
+  - `Contents: Read`
+  - `Issues: Write` (audit only — covers create / edit / list issues + label
+    create)
+- **`${{ github.token }}`** — the auto-injected `GITHUB_TOKEN`. Used by
+  `peter-evans/create-pull-request` to push the rolling branch and open
+  the PR on this repo. The sync workflow's `permissions:` block grants it
+  `contents: write` + `pull-requests: write`.
 
-If the existing token lacks any of these, the relevant workflow's first run
-will 401/403 and the missing scope will be visible in the failed step's log.
+Each workflow has an explicit `Verify token` step that errors with a clear
+`::error::` annotation if `secrets.GH_TOKEN` is empty (distinguishes "secret
+not configured" from "token expired"). After that, `gh api user` confirms
+the token is live before any bulk fetching happens.
+
+`secrets.GH_TOKEN` was confirmed live on 2026-05-08 — the audit run
+successfully opened tracking issues across 13+ `mcp-*` repos.
 
 ### Runner
 
-Both workflows use `runs-on: action-runner-scale-set` (the same self-hosted
-runner used by `deploy.yml`). `gh` CLI availability on this runner is an
-**open assumption**: if it is not preinstalled, add `cli/cli` setup or fall
-back to `ubuntu-latest`.
+Both workflows use `runs-on: ubuntu-latest`. The repo briefly used a
+self-hosted `action-runner-scale-set` for `deploy.yml` (commit `d6e9b61`)
+but reverted to `ubuntu-latest` in `13e4f1c`; the original spec draft was
+written against the self-hosted version and missed the revert. The label
+mismatch left the first scheduled audit queued without pickup until
+discovered on 2026-05-08 and corrected in `4b52a55`.
+
+`gh` CLI is preinstalled on `ubuntu-latest` runner images.
 
 ## Sync Workflow
 
@@ -112,12 +139,21 @@ back to `ubuntu-latest`.
 name: Sync gallery content
 on:
   schedule:
-    - cron: '0 18 * * 0'
+    - cron: '0 18 * * 0'    # Sunday 18:00 UTC = Mon 02:00 TW
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# Serialise scheduled and manual runs so a workflow_dispatch never overlaps
+# the cron run. Both write to the same rolling branch.
+concurrency:
+  group: sync-gallery-content
+  cancel-in-progress: false
 
 jobs:
   sync:
-    runs-on: action-runner-scale-set
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
@@ -131,29 +167,33 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      # Fail loud if the token is dead before any bulk fetching happens.
       - name: Verify token
-        run: gh api user > /dev/null
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::secrets.GH_TOKEN is empty. ..."
+            exit 1
+          fi
+          gh api user > /dev/null
       - run: node scripts/sync-gallery/sync-mcp-content.mjs
       - run: node scripts/sync-gallery/sync-skill-content.mjs
-      # Guard against silent gh-api failure mid-run (see Risks).
       - name: Sanity-check sync output
         run: node scripts/sync-gallery/check-sync-thresholds.mjs
       - run: npm run validate
       - run: npm run build
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
           branch: chore/sync-gallery-content
           title: 'chore: sync MCP & skill content from upstream'
           body: |
             Auto-generated by `sync-content.yml`.
-
-            See workflow run for processed counts.
           commit-message: 'chore: sync MCP & skill content'
           delete-branch: false
           add-paths: |
             data/**
 ```
+
+> The verbatim live YAML lives in `.github/workflows/sync-content.yml`. The
+> snippet above elides the full `::error::` message body for readability.
 
 `add-paths: data/**` ensures only the data files get staged. If a future
 change makes `generate-new-entries.mjs` run earlier (or anything else writes
@@ -338,17 +378,31 @@ set is calibrated to the golden sample).
 
 ### New script: `scripts/sync-gallery/audit-orphans.mjs`
 
-Detects YAML entries whose upstream is gone:
+Detects YAML entries whose upstream is gone, with explicit defence against
+turning transient GitHub failures into mass false orphan findings (P1
+review concern).
 
-- For each entry in `data/mcp-servers.yaml` with `status: released`: confirm
-  the repo exists on GitHub (`gh api repos/asgard-ai-platform/<slug>` returns
-  200 and `private: false`). Else: append finding to the **gallery** repo's
-  group in `repo-audit-report.md` (since the gallery YAML is what's wrong).
-- For each entry in `data/skills.yaml`: confirm the directory still exists in
-  the `skills` repo's `main` tree. Else: append finding under `skills` group.
+- For each `status: released` entry in `data/mcp-servers.yaml`, calls
+  `ghRepoLookup(org, slug)` from `_lib.mjs`. The helper uses `execFileSync`
+  + `gh api repos/<org>/<slug>` and parses `gh`'s stderr to return one of:
+  - `{ status: 'exists', repo }` — 2xx body
+  - `{ status: 'missing' }` — definitive HTTP 404
+  - `{ status: 'error', message }` — anything else (5xx / auth / network /
+    timeout)
+- An orphan finding is appended **only** for `missing` or for `exists +
+  private: true`. `error` results are logged and the repo is skipped.
+- If more than 20% of MCP lookups return `error`, the script throws —
+  failing the audit job rather than letting `post-audit-issues` flood the
+  org with false positives.
+- For skills: the CLI fetches the skills repo tree once. If the fetch
+  returns `null` (transient failure), `skillDirs` is set to `null` and the
+  entire skill orphan loop is skipped with a warning. Otherwise each
+  `data/skills.yaml` entry's stripped directory name is checked against
+  the Set.
 
-Findings target the gallery / skills repo because the YAML is the side that
-needs fixing, not the (vanished) upstream.
+Findings target `asgard-opensource-gallery` (for missing MCPs) or `skills`
+(for missing skill dirs) because the YAML is the side that needs fixing,
+not the vanished upstream.
 
 ### New script: `scripts/sync-gallery/post-audit-issues.mjs`
 
@@ -357,21 +411,31 @@ audit scripts have appended to it. The report groups findings by repo using
 H2 headings (e.g. `## mcp-shopline`, `## skills`,
 `## asgard-opensource-gallery`); each group lists bullets that are findings.
 
-For each target repo that appears in the parsed report (i.e., has at least one
-finding):
+For each target repo that appears in the parsed report (i.e., has at least
+one finding):
 
-1. Search the target repo for the existing tracking issue:
-   `gh issue list --repo asgard-ai-platform/<repo> --state open --label yggdrasil-audit --limit 1`
-   (fallback: search by marker comment `<!-- yggdrasil-audit:auto-managed -->`
-   if label lookup fails).
-2. **Hit** → `gh issue edit` to update body with new timestamp + finding list.
-3. **Miss** → `gh issue create` with title
-   `[yggdrasil-audit] Gallery sync report`, label `yggdrasil-audit`, marker
-   comment in body.
+1. **Find every existing tracking issue** via `findExistingIssues(repo)`.
+   Both the label search (`--label yggdrasil-audit --limit 50`) and the
+   marker-comment search run unconditionally and the results are deduped by
+   issue number. This catches:
+   - duplicate labelled issues (would otherwise silently go stale),
+   - issues created without the label (e.g. when `gh label create` was
+     unavailable on a previous run — keyed by the marker comment in body).
+2. **Hit** (one or more) → `gh issue edit` runs against every match so no
+   duplicate goes stale.
+3. **Miss** → `ensureLabelExists(repo)` tries `gh label create --force` and
+   returns a boolean. `gh issue create` then includes `--label
+   yggdrasil-audit` only if creation succeeded; if the token lacks label
+   scope on that repo, the issue is created without a label and the marker
+   comment in the body is its sole cross-run identifier. The action label
+   is logged as `created (unlabelled — token missing label scope)`.
 
-If the `yggdrasil-audit` label does not yet exist on a repo, attempt to create
-it (`gh label create yggdrasil-audit`); on failure, fall back to creating the
-issue without a label and rely on the marker-comment identifier.
+The issue body is rendered to a temp file under `os.tmpdir()`, with the
+parsed repo name run through `safeRepoForFilename()` (replaces anything
+outside `[A-Za-z0-9._-]` with `_`, falls back to `unknown` for empty /
+all-unsafe input). This guards against a future audit script writing an H2
+heading with `/` or other path-separators that would otherwise expand into
+a missing-directory `writeFileSync`.
 
 **Stale issues (open issue exists but the repo no longer appears in the
 report)**: not auto-closed. Maintainer closes manually once they verify.
@@ -403,12 +467,21 @@ When all findings are resolved, close this issue manually.
 name: Audit gallery content
 on:
   schedule:
-    - cron: '0 19 * * 0'
+    - cron: '0 19 * * *'    # Daily 19:00 UTC = 03:00 TW
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# Serialise scheduled and manual runs so two parallel jobs cannot both miss
+# the dedup check and create duplicate tracking issues.
+concurrency:
+  group: audit-gallery-content
+  cancel-in-progress: false
 
 jobs:
   audit:
-    runs-on: action-runner-scale-set
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     env:
@@ -420,18 +493,25 @@ jobs:
           node-version: 22
       - run: npm ci
       - name: Verify token
-        run: gh api user > /dev/null
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::secrets.GH_TOKEN is empty. ..."
+            exit 1
+          fi
+          gh api user > /dev/null
       - run: node scripts/sync-gallery/generate-new-entries.mjs
       - run: node scripts/sync-gallery/audit-pypi.mjs
       - run: node scripts/sync-gallery/audit-readme-format.mjs
       - run: node scripts/sync-gallery/audit-orphans.mjs
       - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: repo-audit-report
           path: scripts/sync-gallery/_generated/repo-audit-report.md
 ```
+
+> The verbatim live YAML lives in `.github/workflows/audit-content.yml`.
 
 `permissions.contents` is `read` because the audit workflow does not push to
 this repo. Cross-repo issue write is granted by `secrets.GH_TOKEN`, not by
@@ -542,6 +622,14 @@ Required for the cron flow to work without false-positive findings:
 | `_generated/` YAML drafts accidentally committed | Audit workflow uploads only the markdown report; sync workflow uses `add-paths: data/**` so `_generated/` cannot leak into the PR. |
 | `repo-audit-report.md` format changes in a future `generate-new-entries.mjs` revision | `post-audit-issues.mjs` parser is the only consumer; bump together. Pin a fixture-based test if drift becomes a concern. |
 | pypi.org outage causes false-positive "not published" findings | `audit-pypi.mjs` treats network errors / 5xx as warning logs, not findings. Only 404 turns into a finding. |
+| Transient gh-api error (5xx / network / 401) treated as missing repo → mass false orphan reports | `audit-orphans.mjs` uses `ghRepoLookup` (tagged union) — only HTTP 404 becomes a finding. Other errors are skipped per repo; if >20% error out, the audit job throws to avoid spamming. |
+| Skill-tree fetch failure → every skill flagged as orphan | CLI sets `skillDirs = null` (not `new Set([])`) when the tree call returns null; `findOrphans` skips the skill loop entirely with a warning. |
+| Multiple labelled tracking issues silently go stale (older duplicates not updated) | `findExistingIssues` returns *all* matches via both label and marker-comment search (deduped by issue number), and `postOrUpdate` updates every match. |
+| Unlabelled marker-only issue missed when label search returns zero results | Marker-comment search runs unconditionally on every repo, not only on label-search throw. |
+| Token lacks label-create scope on a target repo | `ensureLabelExists` returns a boolean; if false, `gh issue create` runs without `--label` and the marker comment in the body is the cross-run key. Action label is `created (unlabelled — token missing label scope)`. |
+| Cron run overlaps a manual `workflow_dispatch` → duplicate state mutations | Both workflows declare `concurrency:` (`sync-gallery-content` and `audit-gallery-content`) with `cancel-in-progress: false`. |
+| Parsed H2 heading containing path separators expands into a missing-directory write | `post-audit-issues.mjs` runs the repo name through `safeRepoForFilename` before joining with `os.tmpdir()`. |
+| `secrets.GH_TOKEN` unset (different from "expired") | Workflow's `Verify token` step explicitly checks `[ -z "$GH_TOKEN" ]` and emits an `::error::` annotation naming the required PAT scopes before exiting 1. |
 
 ### Risks rooted in existing scripts (carried over, partially mitigated)
 
@@ -556,31 +644,35 @@ Required for the cron flow to work without false-positive findings:
 | Heuristic checks in `generate-new-entries.mjs` (missing `metadata.tags`, missing H1, etc.) are surfaced as upstream defects | Intentional — these are gallery-side expectations of upstream contributors. Maintainers may push back; in that case adjust `generate-new-entries.mjs` to drop the check. Documented as policy here, not a bug. |
 | Renamed / deleted upstream skill leaves orphan YAML entry with no rich content | Now caught by `audit-orphans.mjs` and reported on the gallery repo's tracking issue. |
 
-## Implementation Outline
+## As-built status
 
-This is a sketch only. Detailed steps and tests belong in the implementation
-plan produced by the writing-plans skill.
+Implementation history (PR #12, merged 2026-05-07) plus a runner-label
+hotfix on 2026-05-08.
 
-1. Add `scripts/sync-gallery/check-sync-thresholds.mjs`. Test against
-   current `data/` to confirm the 80 % threshold passes on a healthy run.
-2. Add `scripts/sync-gallery/audit-pypi.mjs`. Calibrate against
-   `mcp-shopline` (must pass) and a known-incomplete repo (must produce
-   findings).
-3. Add `scripts/sync-gallery/audit-readme-format.mjs`. Calibrate against
-   `mcp-shopline` (must pass cleanly — if it doesn't, the rule is wrong).
-4. Add `scripts/sync-gallery/audit-orphans.mjs`. Test by temporarily
-   inserting a fake YAML entry pointing at a non-existent repo.
-5. Add `scripts/sync-gallery/post-audit-issues.mjs`. Test against a sample
-   `repo-audit-report.md` fixture and a sandbox repo before pointing at
-   production.
-6. Add `.github/workflows/sync-content.yml`. First run via
-   `workflow_dispatch`; verify rolling PR opens correctly and only `data/`
-   files are staged.
-7. Add `.github/workflows/audit-content.yml`. First run via
-   `workflow_dispatch`; verify per-repo issues are created with correct
-   title + label + marker, and `_generated/` YAML drafts are not in the
-   artifact.
-8. Once both manual runs are clean, the cron triggers take over.
+| Area | Built | Live-verified |
+|---|---|---|
+| `_lib.mjs` (shared helpers + `ghRepoLookup` + `appendGroup` + `classifyGhError`) | ✅ | indirectly via 49 unit tests + audit live run |
+| `check-sync-thresholds.mjs` | ✅ | not yet (sync workflow not exercised live; cron next Sun 18:00 UTC) |
+| `audit-pypi.mjs` | ✅ | ✅ 6 findings on 2026-05-08 run |
+| `audit-readme-format.mjs` | ✅ | ✅ 75 findings on 2026-05-08 run |
+| `audit-orphans.mjs` (with transient-failure defence + threshold abort) | ✅ | ✅ 0 findings on 2026-05-08 run |
+| `post-audit-issues.mjs` (multi-issue lookup + label fallback + sanitized tmp path) | ✅ | ✅ created tracking issues across 13+ repos |
+| `.github/workflows/sync-content.yml` | ✅ | not yet exercised live |
+| `.github/workflows/audit-content.yml` | ✅ | ✅ 56s on `workflow_dispatch` |
+| 49 unit tests (`npm run test:scripts`) | ✅ | green locally |
+
+### Action versions in use (as of 2026-05-08)
+
+| Action | Pin | Latest major |
+|---|---|---|
+| `actions/checkout` | `@v6` | v6 ✓ |
+| `actions/setup-node` | `@v6` | v6 ✓ |
+| `actions/upload-artifact` | `@v7` | v7 ✓ |
+| `peter-evans/create-pull-request` | `@v8` | v8 ✓ |
+| `cloudflare/wrangler-action` (deploy.yml only) | `@v3.15.0` | v3.15.0 ✓ |
+
+Floating-major pin is the convention for first-party `actions/*`. Cloudflare
+is patch-pinned because its third-party + we want explicit upgrades.
 
 ## Optional Follow-ups (out of scope here)
 
@@ -601,16 +693,19 @@ plan produced by the writing-plans skill.
 
 ## Open Assumptions Tracker
 
-Resolve before / during implementation:
-
-- [ ] Confirm `secrets.GH_TOKEN` exists in this repo's Actions settings.
-- [ ] Confirm token scopes match the Auth section.
-- [ ] Confirm `gh` CLI is on `action-runner-scale-set`.
-- [ ] Confirm `peter-evans/create-pull-request@v7` runs on the self-hosted
-      runner (or fall back to `ubuntu-latest` for the sync workflow).
+- [x] `secrets.GH_TOKEN` configured with the right scopes — confirmed by
+      successful 2026-05-08 audit run.
+- [x] `gh` CLI is available on the runner — confirmed (using
+      `ubuntu-latest`, gh preinstalled).
+- [x] `peter-evans/create-pull-request` runs on the runner — N/A; we use
+      `ubuntu-latest`. Bumped to `@v8` (latest major) on 2026-05-08.
 - [ ] Confirm with maintainers that the README format rules in
       `audit-readme-format.mjs` (calibrated to `mcp-shopline`) are the
-      target — every released MCP repo should match, or the rule is wrong.
+      target — the 2026-05-08 run produced 75 findings across MCP repos;
+      maintainer review will tell us if any rule is wrong. If they push
+      back, relax the rule rather than the fixture.
 - [ ] Confirm PyPI publishing is the target for every released MCP repo
       (vs. some repos intentionally not on PyPI). If selective, add an
       opt-out flag in `data/mcp-servers.yaml`.
+- [ ] Sync workflow has not yet been exercised live. Either trigger via
+      `workflow_dispatch` or wait for the first cron (Sun 18:00 UTC).

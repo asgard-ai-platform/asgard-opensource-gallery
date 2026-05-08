@@ -38,7 +38,7 @@ jobs:
       - run: node scripts/sync-gallery/audit-readme-format.mjs
       - run: node scripts/sync-gallery/audit-orphans.mjs
       - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: repo-audit-report
