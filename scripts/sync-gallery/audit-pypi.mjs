@@ -2,9 +2,19 @@
 /**
  * audit-pypi.mjs
  *
- * For each released MCP repo, fetch pyproject.toml + LICENSE and verify
- * required packaging metadata, then ping pypi.org to verify publish status.
- * Findings are appended under each `mcp-*` group in the audit report.
+ * Two passes over `data/mcp-servers.yaml`:
+ *
+ * 1. For each `released` MCP — fetch `pyproject.toml` + `LICENSE` and verify
+ *    required packaging metadata, then ping pypi.org to verify publish status.
+ *    Findings appended under each `mcp-*` group in the audit report.
+ *
+ * 2. For each `coming-soon` MCP — query pypi.org by slug. If the package is
+ *    now published, emit a "candidate for promotion" line under the
+ *    `asgard-opensource-gallery` group so a human can flip the status to
+ *    `released` via PR. (PyPI publish is the release gate; README
+ *    conformance is tracked by the per-mcp-repo issues but does NOT gate.)
+ *
+ * Other statuses (`planned`, etc.) are skipped.
  */
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -85,11 +95,36 @@ async function fetchPypi(name) {
   }
 }
 
+/**
+ * For each `coming-soon` MCP entry, check whether a PyPI package matching the
+ * gallery slug now exists. If so, emit a one-line "candidate for promotion"
+ * suggestion. Only HTTP 200 from pypi.org counts as a candidate — 404 (not
+ * yet published) and 5xx (transient) both stay quiet.
+ *
+ * @param {object} params
+ * @param {Array<{slug:string, status:string}>} params.mcps
+ * @param {(name:string) => Promise<{status:number, body?:any}>} params.fetchPypiFn
+ */
+export async function findPromotionCandidates({ mcps, fetchPypiFn }) {
+  const candidates = [];
+  for (const mcp of mcps) {
+    if (mcp.status !== 'coming-soon') continue;
+    const r = await fetchPypiFn(mcp.slug);
+    if (r.status !== 200) continue;
+    const version = r.body?.info?.version || 'unknown';
+    candidates.push(
+      `Candidate for promotion: \`${mcp.slug}\` is published on PyPI (latest: ${version}) — flip \`status\` from \`coming-soon\` to \`released\``,
+    );
+  }
+  return candidates;
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const dataDir = join(ROOT, 'data');
   const mcps = yaml.load(readFileSync(join(dataDir, 'mcp-servers.yaml'), 'utf-8')).servers;
   let totalFindings = 0;
 
+  // Pass 1: released MCPs — full metadata + PyPI drift audit.
   for (const mcp of mcps) {
     if (mcp.status !== 'released') continue;
     const slug = mcp.slug;
@@ -119,5 +154,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     totalFindings += findings.length;
   }
 
-  console.log(`audit-pypi: ${totalFindings} finding(s) appended to ${REPORT_PATH}`);
+  // Pass 2: coming-soon MCPs — emit promotion candidates if now on PyPI.
+  const candidates = await findPromotionCandidates({ mcps, fetchPypiFn: fetchPypi });
+  if (candidates.length > 0) {
+    appendGroup(REPORT_PATH, 'asgard-opensource-gallery', candidates);
+  }
+
+  console.log(
+    `audit-pypi: ${totalFindings} finding(s) and ${candidates.length} promotion candidate(s) appended to ${REPORT_PATH}`,
+  );
 }

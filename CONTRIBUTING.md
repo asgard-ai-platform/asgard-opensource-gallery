@@ -93,6 +93,51 @@ Add your entry to `data/skills.yaml` under the `skills:` list:
     maintainer: your-github-handle       # Optional. GitHub username
 ```
 
+## Status Lifecycle for MCP Servers
+
+The `status` field on each MCP entry has three values, used like this:
+
+| Status | When | What appears on the site |
+|---|---|---|
+| `planned` | Idea exists, no repo yet (or repo is private) | Card with "planned" badge, no detail content |
+| `coming-soon` | Repo exists; not yet on PyPI; README may be incomplete | Card with "coming-soon" badge, no detail content |
+| `released` | Published on PyPI under the slug name | Full detail page with content synced from `README.md` |
+
+### How an entry moves through the lifecycle
+
+1. **planned → coming-soon** — open a PR adding the YAML entry with
+   `status: coming-soon` once you start implementing. You can list a
+   private repo URL.
+2. **coming-soon → released** — once `pip install <your-mcp-slug>`
+   actually works on PyPI, open a PR flipping the status to `released`.
+   The daily audit detects published packages and posts a "Candidate for
+   promotion" line on this repo's tracking issue as a reminder.
+
+### What `released` requires
+
+The single hard requirement is:
+
+- The package is published on PyPI under the slug name (e.g.,
+  `mcp-shopline` ↔ `pip install mcp-shopline`).
+
+The daily audit additionally checks `pyproject.toml` metadata, README
+structure (against the `mcp-shopline` golden sample), and a few other
+quality signals. **Findings on these checks are advisory — they do NOT
+block `released` status.** The audit opens a tracking issue on each MCP
+repo with whatever it found; maintainers fix and close at their own pace.
+
+The rationale: blocking the gallery from showing a working, installable
+MCP because of a missing badge or section would be net-negative for users.
+
+### Where to look for the audit findings
+
+- **Per MCP repo:** `[yggdrasil-audit] Gallery sync report` issue (label
+  `yggdrasil-audit`). One rolling issue per repo, edited on each daily
+  audit run. Close manually once findings are resolved.
+- **Gallery repo (this one):** A single rolling issue collecting orphan
+  YAML entries (upstream gone) and promotion candidates (PyPI now
+  available).
+
 ## Categories
 
 | Value | Description |

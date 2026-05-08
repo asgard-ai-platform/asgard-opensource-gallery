@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { checkPyproject, checkPypiPublish } from './audit-pypi.mjs';
+import { checkPyproject, checkPypiPublish, findPromotionCandidates } from './audit-pypi.mjs';
 
 const FIXTURES = resolve(new URL('.', import.meta.url).pathname, '_fixtures');
 
@@ -72,4 +72,56 @@ test('checkPypiPublish: non-markdown content type flagged', () => {
 test('checkPypiPublish: 5xx is silent (no finding, no false positive on outage)', () => {
   const findings = checkPypiPublish('mcp-x', '0.1.0', { status: 503 });
   assert.deepEqual(findings, []);
+});
+
+test('findPromotionCandidates: coming-soon MCP on PyPI is a candidate', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '0.1.0' } } }),
+  });
+  assert.equal(cands.length, 1);
+  assert.match(cands[0], /Candidate for promotion/);
+  assert.match(cands[0], /mcp-foo/);
+  assert.match(cands[0], /0\.1\.0/);
+});
+
+test('findPromotionCandidates: coming-soon MCP not on PyPI is NOT a candidate', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({ status: 404 }),
+  });
+  assert.deepEqual(cands, []);
+});
+
+test('findPromotionCandidates: released MCP is skipped (already promoted)', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'released' }],
+    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '1.0.0' } } }),
+  });
+  assert.deepEqual(cands, []);
+});
+
+test('findPromotionCandidates: planned MCP is skipped', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'planned' }],
+    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '1.0.0' } } }),
+  });
+  assert.deepEqual(cands, []);
+});
+
+test('findPromotionCandidates: PyPI 5xx is silent (no false-positive candidate on outage)', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({ status: 503 }),
+  });
+  assert.deepEqual(cands, []);
+});
+
+test('findPromotionCandidates: missing version field falls back to "unknown"', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({ status: 200, body: { info: {} } }),
+  });
+  assert.equal(cands.length, 1);
+  assert.match(cands[0], /unknown/);
 });
