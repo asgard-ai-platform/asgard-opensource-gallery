@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   sync:
-    runs-on: action-runner-scale-set
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
