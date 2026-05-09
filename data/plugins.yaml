@@ -45,11 +45,11 @@ plugins:
       en: "Data Insight"
       zh: "數據洞察"
     description:
-      en: "Comprehensive data analytics bundle combining web analytics, advertising platforms, and e-commerce data for unified business intelligence and marketing optimization."
-      zh: "全方位數據分析組合包，結合網站分析、廣告平台與電商數據，實現統一商業情報與行銷優化。"
+      en: "Comprehensive data analytics bundle combining web analytics and advertising platforms for unified business intelligence and marketing optimization."
+      zh: "全方位數據分析組合包，結合網站分析與廣告平台，實現統一商業情報與行銷優化。"
     scenario:
-      en: "Built for data-driven teams leveraging Google Analytics 4, Meta Ads, Google Ads, and WooCommerce data to optimize marketing spend and conversion funnels."
-      zh: "為數據驅動團隊打造，運用 Google Analytics 4、Meta Ads、Google Ads 和 WooCommerce 資料優化行銷花費與轉換漏斗。"
+      en: "Built for data-driven teams leveraging Google Analytics 4 and Meta Ads data to optimize marketing spend and conversion funnels."
+      zh: "為數據驅動團隊打造，運用 Google Analytics 4 與 Meta Ads 資料優化行銷花費與轉換漏斗。"
     upgrade_to: Mimir
     mcp_servers: [mcp-ga4, mcp-meta-ads]
     skills: [skill-data-cohort-analysis, skill-mkt-ad-optimization, skill-ecom-analytics, skill-mkt-ab-testing]
@@ -59,11 +59,11 @@ plugins:
       en: "Taiwan Startup Kit"
       zh: "台灣新創工具包"
     description:
-      en: "Essential toolkit for Taiwan startups combining project management, CRM, and talent acquisition platforms for lean team operations."
-      zh: "台灣新創必備工具包，結合專案管理、CRM 與人才招募平台，實現精實團隊運營。"
+      en: "Essential toolkit for Taiwan startups combining CRM and talent acquisition platforms for lean team operations."
+      zh: "台灣新創必備工具包，結合 CRM 與人才招募平台，實現精實團隊運營。"
     scenario:
-      en: "Tailored for early-stage Taiwan startups using Airtable for operations, HubSpot for sales, and 104/CakeResume for talent recruitment."
-      zh: "專為早期台灣新創設計，使用 Airtable 進行營運、HubSpot 進行銷售、104/CakeResume 進行人才招募。"
+      en: "Tailored for early-stage Taiwan startups using HubSpot for sales and 104/CakeResume for talent recruitment."
+      zh: "專為早期台灣新創設計，使用 HubSpot 進行銷售、104/CakeResume 進行人才招募。"
     upgrade_to: Asgard
     mcp_servers: [mcp-hubspot, mcp-104, mcp-cakeresume]
     skills: [skill-ops-business-model-canvas, skill-ops-okr-planning, skill-biz-customer-journey, skill-soc-user-research]
@@ -117,8 +117,8 @@ plugins:
       en: "Unified customer service bundle integrating global helpdesk platforms with Taiwan-specific LINE customer engagement for comprehensive support operations."
       zh: "統一客服組合包，整合全球客服平台與台灣 LINE 客戶互動，實現全面的客戶支援營運。"
     scenario:
-      en: "Perfect for customer service teams using Zendesk, Freshdesk, or Crisp alongside Crescendo Lab for LINE-based customer support in Taiwan."
-      zh: "適合使用 Zendesk、Freshdesk 或 Crisp 搭配漸強實驗室在台灣提供 LINE 客服的客服團隊。"
+      en: "Perfect for customer service teams using Freshdesk or Crisp alongside Crescendo Lab for LINE-based customer support in Taiwan."
+      zh: "適合使用 Freshdesk 或 Crisp 搭配漸強實驗室在台灣提供 LINE 客服的客服團隊。"
     upgrade_to: Sindri
     mcp_servers: [mcp-freshdesk, mcp-crisp, mcp-crescendo-lab]
     skills: [skill-cs-sop, skill-cs-chatbot-design, skill-cs-analytics]
