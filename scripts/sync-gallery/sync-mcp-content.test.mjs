@@ -84,7 +84,9 @@ test('sectionKey: unknown ASCII heading slugifies to lowercase_underscore', () =
 test('sectionKey: punctuation in unknown heading is stripped', () => {
   assert.equal(sectionKey('Foo & Bar!'), 'foo_bar');
 });
-test('sectionKey: empty / whitespace-only heading returns empty string', () => {
+test('sectionKey: empty string → empty string', () => {
   assert.equal(sectionKey(''), '');
+});
+test('sectionKey: whitespace-only heading → empty string', () => {
   assert.equal(sectionKey('   '), '');
 });
