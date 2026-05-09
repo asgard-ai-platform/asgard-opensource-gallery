@@ -32,7 +32,7 @@ function ghFetchFile(repo, path) {
   }
 }
 
-function extractSections(readme) {
+export function extractSections(readme) {
   if (!readme) return new Map();
   const sections = new Map();
   const lines = readme.split('\n');
@@ -60,7 +60,7 @@ function extractSections(readme) {
 /**
  * Extract intro text between H1 and first H2.
  */
-function extractIntro(readme) {
+export function extractIntro(readme) {
   if (!readme) return '';
   const lines = readme.split('\n');
   const introLines = [];
@@ -78,7 +78,7 @@ function extractIntro(readme) {
   return introLines.join('\n').trim();
 }
 
-function sectionKey(title) {
+export function sectionKey(title) {
   const t = title.toLowerCase().replace(/[^\w\s]/g, '').trim();
   if (t.includes('what this does') || t.includes('功能特色') || t === 'features') return 'features';
   if (t.includes('quick start') || t.includes('快速開始') || t.includes('getting started')) return 'quick_start';
@@ -94,77 +94,79 @@ function sectionKey(title) {
 
 // ── Main ─────────────────────────────────────────────────────────
 
-console.log('═══════════════════════════════════════════════════');
-console.log(' Sync MCP Content → data/mcp-content.json');
-console.log('═══════════════════════════════════════════════════\n');
+if (import.meta.url === `file://${process.argv[1]}`) {
+  console.log('═══════════════════════════════════════════════════');
+  console.log(' Sync MCP Content → data/mcp-content.json');
+  console.log('═══════════════════════════════════════════════════\n');
 
-// Load YAML
-console.log('[1/3] Loading mcp-servers.yaml ...');
-const yamlData = yaml.load(readFileSync(MCP_YAML, 'utf-8'));
-const servers = yamlData.servers;
+  // Load YAML
+  console.log('[1/3] Loading mcp-servers.yaml ...');
+  const yamlData = yaml.load(readFileSync(MCP_YAML, 'utf-8'));
+  const servers = yamlData.servers;
 
-// Fetch READMEs
-console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...\n`);
-const mcpContent = {};
-let processed = 0;
-let skipped = 0;
-let zhCount = 0;
+  // Fetch READMEs
+  console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...\n`);
+  const mcpContent = {};
+  let processed = 0;
+  let skipped = 0;
+  let zhCount = 0;
 
-for (const server of servers) {
-  const repo = server.slug;
-  process.stdout.write(`  ${repo} ... `);
+  for (const server of servers) {
+    const repo = server.slug;
+    process.stdout.write(`  ${repo} ... `);
 
-  // Only fetch for released repos (they have public READMEs)
-  if (server.status !== 'released') {
-    console.log('⏭  (not released)');
-    skipped++;
-    continue;
-  }
-
-  const readmeEn = ghFetchFile(repo, 'README.md');
-  if (!readmeEn) {
-    console.log('⚠  no README');
-    skipped++;
-    continue;
-  }
-
-  const readmeZh = ghFetchFile(repo, 'README.zh-TW.md');
-
-  const content = {
-    intro: { en: extractIntro(readmeEn) },
-    sections: { en: {}, zh: {} },
-  };
-
-  // English sections
-  const enSections = extractSections(readmeEn);
-  for (const [title, md] of enSections) {
-    const key = sectionKey(title);
-    content.sections.en[key] = md;
-  }
-
-  // Chinese sections
-  if (readmeZh) {
-    content.intro.zh = extractIntro(readmeZh);
-    const zhSections = extractSections(readmeZh);
-    for (const [title, md] of zhSections) {
-      const key = sectionKey(title);
-      content.sections.zh[key] = md;
+    // Only fetch for released repos (they have public READMEs)
+    if (server.status !== 'released') {
+      console.log('⏭  (not released)');
+      skipped++;
+      continue;
     }
-    zhCount++;
-    console.log('✅ (en + zh)');
-  } else {
-    console.log('✅ (en only)');
+
+    const readmeEn = ghFetchFile(repo, 'README.md');
+    if (!readmeEn) {
+      console.log('⚠  no README');
+      skipped++;
+      continue;
+    }
+
+    const readmeZh = ghFetchFile(repo, 'README.zh-TW.md');
+
+    const content = {
+      intro: { en: extractIntro(readmeEn) },
+      sections: { en: {}, zh: {} },
+    };
+
+    // English sections
+    const enSections = extractSections(readmeEn);
+    for (const [title, md] of enSections) {
+      const key = sectionKey(title);
+      content.sections.en[key] = md;
+    }
+
+    // Chinese sections
+    if (readmeZh) {
+      content.intro.zh = extractIntro(readmeZh);
+      const zhSections = extractSections(readmeZh);
+      for (const [title, md] of zhSections) {
+        const key = sectionKey(title);
+        content.sections.zh[key] = md;
+      }
+      zhCount++;
+      console.log('✅ (en + zh)');
+    } else {
+      console.log('✅ (en only)');
+    }
+
+    mcpContent[server.slug] = content;
+    processed++;
   }
 
-  mcpContent[server.slug] = content;
-  processed++;
+  // Write output
+  console.log(`\n[3/3] Writing mcp-content.json ...`);
+  writeFileSync(OUTPUT_JSON, JSON.stringify(mcpContent, null, 2), 'utf-8');
+  console.log(`  ✅ ${processed} MCPs processed (${zhCount} with zh), ${skipped} skipped`);
+
+  console.log('\n═══════════════════════════════════════════════════');
+  console.log(' Done');
+  console.log('═══════════════════════════════════════════════════');
 }
-
-// Write output
-console.log(`\n[3/3] Writing mcp-content.json ...`);
-writeFileSync(OUTPUT_JSON, JSON.stringify(mcpContent, null, 2), 'utf-8');
-console.log(`  ✅ ${processed} MCPs processed (${zhCount} with zh), ${skipped} skipped`);
-
-console.log('\n═══════════════════════════════════════════════════');
-console.log(' Done');
-console.log('═══════════════════════════════════════════════════');
