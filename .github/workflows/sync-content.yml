@@ -36,6 +36,10 @@ jobs:
             exit 1
           fi
           gh api user > /dev/null
+      # Flip `coming-soon` → `released` for any MCP whose slug-named package
+      # is now on PyPI. Runs BEFORE sync-mcp-content so the newly-promoted
+      # entries get their READMEs fetched in the same PR.
+      - run: node scripts/sync-gallery/promote-candidates.mjs
       - run: node scripts/sync-gallery/sync-mcp-content.mjs
       - run: node scripts/sync-gallery/sync-skill-content.mjs
       - name: Sanity-check sync output

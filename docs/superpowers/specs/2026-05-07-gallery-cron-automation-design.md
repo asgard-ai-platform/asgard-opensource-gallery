@@ -67,7 +67,10 @@ Two independent scheduled workflows, plus a thin shared library
 (`scripts/sync-gallery/_lib.mjs`) and five new helper scripts:
 
 - `check-sync-thresholds.mjs` — sync sanity floor (80% coverage)
-- `audit-pypi.mjs` — PyPI metadata + publish status
+- `promote-candidates.mjs` — flip `coming-soon` → `released` when slug
+  is published on PyPI (sync only)
+- `audit-pypi.mjs` — PyPI metadata + publish status (released MCPs);
+  also lists promotion candidates for visibility (audit only)
 - `audit-readme-format.mjs` — golden-sample README structure
 - `audit-orphans.mjs` — YAML pointing at vanished upstream
 - `post-audit-issues.mjs` — markdown report → per-repo tracking issues
@@ -174,6 +177,7 @@ jobs:
             exit 1
           fi
           gh api user > /dev/null
+      - run: node scripts/sync-gallery/promote-candidates.mjs
       - run: node scripts/sync-gallery/sync-mcp-content.mjs
       - run: node scripts/sync-gallery/sync-skill-content.mjs
       - name: Sanity-check sync output
@@ -242,9 +246,32 @@ The 80 % threshold tolerates a handful of legitimate per-repo failures (a
 single repo whose README was just deleted) but stops a token-expiry-style
 mass failure from landing.
 
+### New helper: `scripts/sync-gallery/promote-candidates.mjs`
+
+Runs as the first sync step. For each `status: coming-soon` MCP, queries
+`https://pypi.org/pypi/<slug>/json`. If 200, surgically rewrites
+`data/mcp-servers.yaml` to flip that entry's status to `released` (line-
+edit pattern, preserves comments and indentation; does not round-trip
+through `yaml.dump`).
+
+Subsequent steps (`sync-mcp-content.mjs`) then see the freshly-promoted
+entries as `released` and fetch their READMEs in the same run, so the
+resulting PR contains both the YAML status flip AND the first-time
+content for those MCPs.
+
+PyPI 5xx / network failure is silent (no false-positive promote during
+PyPI outages). 404 means the package is not yet published — entry stays
+`coming-soon` until next sync run.
+
+The audit workflow has its own promotion-candidate detection
+(`audit-pypi.mjs` Pass 2) which is intentionally kept as a daily
+visibility signal on this repo's tracking issue. Sync acts (weekly);
+audit notifies (daily).
+
 ### Script changes
 
-None to existing sync scripts. New helper `check-sync-thresholds.mjs` added.
+None to existing sync scripts. New helpers `check-sync-thresholds.mjs`
+and `promote-candidates.mjs` added.
 
 ## Audit Workflow
 
@@ -652,8 +679,9 @@ hotfix on 2026-05-08.
 | Area | Built | Live-verified |
 |---|---|---|
 | `_lib.mjs` (shared helpers + `ghRepoLookup` + `appendGroup` + `classifyGhError`) | ✅ | indirectly via 49 unit tests + audit live run |
-| `check-sync-thresholds.mjs` | ✅ | not yet (sync workflow not exercised live; cron next Sun 18:00 UTC) |
-| `audit-pypi.mjs` | ✅ | ✅ 6 findings on 2026-05-08 run |
+| `check-sync-thresholds.mjs` | ✅ | ✅ ran clean on 2026-05-09 sync (14 MCPs, 301 skills) |
+| `promote-candidates.mjs` (sync-side promote) | ✅ | not yet — added 2026-05-09 after first sync run |
+| `audit-pypi.mjs` | ✅ | ✅ 6 findings + 6 promote candidates on 2026-05-08 |
 | `audit-readme-format.mjs` | ✅ | ✅ 75 findings on 2026-05-08 run |
 | `audit-orphans.mjs` (with transient-failure defence + threshold abort) | ✅ | ✅ 0 findings on 2026-05-08 run |
 | `post-audit-issues.mjs` (multi-issue lookup + label fallback + sanitized tmp path) | ✅ | ✅ created tracking issues across 13+ repos |

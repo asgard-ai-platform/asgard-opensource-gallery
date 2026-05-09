@@ -109,9 +109,16 @@ The `status` field on each MCP entry has three values, used like this:
    `status: coming-soon` once you start implementing. You can list a
    private repo URL.
 2. **coming-soon → released** — once `pip install <your-mcp-slug>`
-   actually works on PyPI, open a PR flipping the status to `released`.
-   The daily audit detects published packages and posts a "Candidate for
-   promotion" line on this repo's tracking issue as a reminder.
+   actually works on PyPI, this is **automated**:
+   - The weekly **sync workflow** (Sunday 18:00 UTC) detects published
+     packages, flips `status: coming-soon` → `status: released` in
+     `data/mcp-servers.yaml`, fetches the README content, and opens the
+     rolling sync PR (`chore/sync-gallery-content`).
+   - The daily **audit workflow** also detects candidates and posts a
+     "Candidate for promotion" line on this repo's tracking issue — a
+     visibility signal so you know what's coming before the next sync.
+   - You can still flip status manually in a PR if you don't want to
+     wait until Sunday.
 
 ### What `released` requires
 
