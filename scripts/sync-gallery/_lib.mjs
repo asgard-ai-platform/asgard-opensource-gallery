@@ -95,6 +95,36 @@ export function ghRepoLookup(org, slug) {
 }
 
 /**
+ * Decide whether a PyPI metadata object (`body.info` from
+ * `pypi.org/pypi/<name>/json`) describes a package owned by the Asgard
+ * org. Looks at `info.home_page` and every value of `info.project_urls`
+ * for any URL containing `github.com/asgard-ai-platform/<slug>`
+ * (case-insensitive).
+ *
+ * Defends against name collision / squatting: PyPI is a global namespace
+ * and anyone can register a name like `mcp-google-ads` first. Without
+ * this check, a third-party package matching one of our gallery slugs
+ * would be mis-detected as ours, leading to false promotion candidates
+ * and incorrect auto-promotes.
+ *
+ * @param {object|null} info  the `body.info` object from pypi.org JSON
+ * @param {string} slug       the gallery YAML slug (e.g. `mcp-shopline`)
+ * @returns {boolean}
+ */
+export function isOurPackage(info, slug) {
+  if (!info || !slug) return false;
+  const expected = `github.com/asgard-ai-platform/${slug}`.toLowerCase();
+  const urls = [];
+  if (typeof info.home_page === 'string') urls.push(info.home_page);
+  if (info.project_urls && typeof info.project_urls === 'object') {
+    for (const v of Object.values(info.project_urls)) {
+      if (typeof v === 'string') urls.push(v);
+    }
+  }
+  return urls.some(u => u.toLowerCase().includes(expected));
+}
+
+/**
  * Append `lines` (plain bullet text, no leading `- `) under the H2 group
  * `## ${groupName}` in the markdown file at `reportPath`.
  *

@@ -20,7 +20,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
 import { parse as parseToml } from 'smol-toml';
-import { ghFetchFile, appendGroup } from './_lib.mjs';
+import { ghFetchFile, appendGroup, isOurPackage } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -111,6 +111,9 @@ export async function findPromotionCandidates({ mcps, fetchPypiFn }) {
     if (mcp.status !== 'coming-soon') continue;
     const r = await fetchPypiFn(mcp.slug);
     if (r.status !== 200) continue;
+    // Reject third-party packages that happen to share our slug. Only count
+    // PyPI metadata that points back at github.com/asgard-ai-platform/<slug>.
+    if (!isOurPackage(r.body?.info, mcp.slug)) continue;
     const version = r.body?.info?.version || 'unknown';
     candidates.push(
       `Candidate for promotion: \`${mcp.slug}\` is published on PyPI (latest: ${version}) — flip \`status\` from \`coming-soon\` to \`released\``,

@@ -77,7 +77,7 @@ test('checkPypiPublish: 5xx is silent (no finding, no false positive on outage)'
 test('findPromotionCandidates: coming-soon MCP on PyPI is a candidate', async () => {
   const cands = await findPromotionCandidates({
     mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
-    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '0.1.0' } } }),
+    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '0.1.0', project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-foo' } } } }),
   });
   assert.equal(cands.length, 1);
   assert.match(cands[0], /Candidate for promotion/);
@@ -120,8 +120,30 @@ test('findPromotionCandidates: PyPI 5xx is silent (no false-positive candidate o
 test('findPromotionCandidates: missing version field falls back to "unknown"', async () => {
   const cands = await findPromotionCandidates({
     mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
-    fetchPypiFn: async () => ({ status: 200, body: { info: {} } }),
+    fetchPypiFn: async () => ({
+      status: 200,
+      body: { info: {
+        project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-foo' },
+      } },
+    }),
   });
   assert.equal(cands.length, 1);
   assert.match(cands[0], /unknown/);
+});
+
+test('findPromotionCandidates: third-party squatter (URLs do not point at our org) is NOT a candidate', async () => {
+  // Real-world case: someone unrelated published `mcp-google-ads` on PyPI
+  // before us. Without this guard we would auto-flag for promotion.
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-google-ads', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({
+      status: 200,
+      body: { info: {
+        version: '1.5.0',
+        home_page: 'https://example.com/random-author',
+        project_urls: { Homepage: 'https://example.com/random-author' },
+      } },
+    }),
+  });
+  assert.deepEqual(cands, []);
 });

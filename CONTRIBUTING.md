@@ -126,6 +126,12 @@ The single hard requirement is:
 
 - The package is published on PyPI under the slug name (e.g.,
   `mcp-shopline` ↔ `pip install mcp-shopline`).
+- The PyPI package's metadata references `github.com/asgard-ai-platform/<slug>`
+  via `[project.urls].Homepage` / `Repository` / `Source` (or the legacy
+  `home_page` field). This is the gallery's defence against PyPI name
+  collisions — a third party publishing under our slug name will not
+  trigger auto-promotion because their metadata does not reference our
+  org. Make sure your `pyproject.toml` sets at least one of those URLs.
 
 The daily audit additionally checks `pyproject.toml` metadata, README
 structure (against the `mcp-shopline` golden sample), and a few other

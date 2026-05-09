@@ -23,6 +23,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
+import { isOurPackage } from './_lib.mjs';
 
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
 const MCP_YAML = join(ROOT, 'data/mcp-servers.yaml');
@@ -54,6 +55,10 @@ export async function findPromotions({ mcps, fetchPypiFn }) {
     if (mcp.status !== 'coming-soon') continue;
     const r = await fetchPypiFn(mcp.slug);
     if (r.status !== 200) continue;
+    // Reject third-party packages that happen to share our slug name. Only
+    // count PyPI entries whose metadata URL points back at our org/repo.
+    // Without this guard we would auto-promote name-squatted packages.
+    if (!isOurPackage(r.body?.info, mcp.slug)) continue;
     promotions.push({
       slug: mcp.slug,
       version: r.body?.info?.version || 'unknown',

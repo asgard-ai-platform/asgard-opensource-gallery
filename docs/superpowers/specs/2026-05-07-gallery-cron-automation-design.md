@@ -263,6 +263,20 @@ PyPI 5xx / network failure is silent (no false-positive promote during
 PyPI outages). 404 means the package is not yet published — entry stays
 `coming-soon` until next sync run.
 
+**Name-collision defence.** PyPI is a global namespace; anyone can register
+a package matching one of our gallery slugs. Both the sync-side
+`findPromotions` and the audit-side `findPromotionCandidates` reject any
+PyPI 200 whose `info.home_page` and `info.project_urls.*` do not contain
+`github.com/asgard-ai-platform/<slug>`. Without this guard a third-party
+package squatting on `mcp-google-ads` would be auto-promoted and its
+README synced into the gallery. The check is implemented as a pure
+helper `isOurPackage(info, slug)` in `_lib.mjs`.
+
+When you publish your own MCP, make sure `pyproject.toml` sets at least
+one of: `[project.urls].Homepage`, `[project.urls].Repository`,
+`[project.urls].Source`, or `home_page` (legacy) to your repo URL —
+otherwise sync will not promote your entry even after publish succeeds.
+
 The audit workflow has its own promotion-candidate detection
 (`audit-pypi.mjs` Pass 2) which is intentionally kept as a daily
 visibility signal on this repo's tracking issue. Sync acts (weekly);

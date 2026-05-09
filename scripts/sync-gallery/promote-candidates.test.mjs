@@ -2,7 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { findPromotions, applyPromotions } from './promote-candidates.mjs';
 
-const exists = (version = '0.1.0') => async () => ({ status: 200, body: { info: { version } } });
+// Default stub: PyPI 200 with a project_urls entry pointing back at our org
+// (so isOurPackage passes). Tests that need a different shape build their own.
+const exists = (version = '0.1.0', slug = 'mcp-foo') => async () => ({
+  status: 200,
+  body: { info: {
+    version,
+    project_urls: { Repository: `https://github.com/asgard-ai-platform/${slug}` },
+  } },
+});
 const missing = async () => ({ status: 404 });
 const flaky = async () => ({ status: 503 });
 
@@ -51,10 +59,32 @@ test('findPromotions: PyPI 5xx is silent (no false positive on outage)', async (
 test('findPromotions: missing version field → "unknown"', async () => {
   const r = await findPromotions({
     mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
-    fetchPypiFn: async () => ({ status: 200, body: { info: {} } }),
+    fetchPypiFn: async () => ({
+      status: 200,
+      body: { info: {
+        project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-foo' },
+      } },
+    }),
   });
   assert.equal(r.length, 1);
   assert.equal(r[0].version, 'unknown');
+});
+
+test('findPromotions: third-party squatter on PyPI is NOT promoted', async () => {
+  // Same-name PyPI package whose project URLs do not reference our org —
+  // not ours, so we must not auto-flip its YAML status.
+  const r = await findPromotions({
+    mcps: [{ slug: 'mcp-google-ads', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({
+      status: 200,
+      body: { info: {
+        version: '1.5.0',
+        home_page: 'https://example.com/some-other-author',
+        project_urls: { Homepage: 'https://example.com/some-other-author' },
+      } },
+    }),
+  });
+  assert.deepEqual(r, []);
 });
 
 // ── applyPromotions ──────────────────────────────────────────────

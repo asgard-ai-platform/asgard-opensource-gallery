@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError } from './_lib.mjs';
+import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage } from './_lib.mjs';
 
 test('decodeBase64Content decodes base64 to utf-8', () => {
   assert.equal(decodeBase64Content('aGVsbG8='), 'hello');
@@ -41,6 +41,53 @@ test('classifyGhError: network error with no HTTP code -> ambiguous error', () =
 
 test('classifyGhError: empty stderr (e.g. timeout) -> ambiguous error with empty message', () => {
   assert.deepEqual(classifyGhError(''), { status: 'error', message: '' });
+});
+
+test('isOurPackage: project_urls.Repository pointing to our org -> true', () => {
+  const info = { project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-shopline' } };
+  assert.equal(isOurPackage(info, 'mcp-shopline'), true);
+});
+
+test('isOurPackage: home_page pointing to our org -> true', () => {
+  const info = { home_page: 'https://github.com/asgard-ai-platform/mcp-shopline' };
+  assert.equal(isOurPackage(info, 'mcp-shopline'), true);
+});
+
+test('isOurPackage: any project_urls key works (Source, Homepage, Documentation, ...)', () => {
+  const info = {
+    project_urls: {
+      Documentation: 'https://docs.example.com',
+      Source: 'https://github.com/asgard-ai-platform/mcp-shopline/tree/main',
+    },
+  };
+  assert.equal(isOurPackage(info, 'mcp-shopline'), true);
+});
+
+test('isOurPackage: case-insensitive match', () => {
+  const info = { project_urls: { Source: 'https://GitHub.com/asgard-AI-PLATFORM/Mcp-Shopline' } };
+  assert.equal(isOurPackage(info, 'mcp-shopline'), true);
+});
+
+test('isOurPackage: third-party squatter (URLs do NOT reference our org) -> false', () => {
+  const info = {
+    home_page: 'https://example.com/squatter',
+    project_urls: { Repository: 'https://github.com/some-other-org/mcp-google-ads' },
+  };
+  assert.equal(isOurPackage(info, 'mcp-google-ads'), false);
+});
+
+test('isOurPackage: empty info -> false', () => {
+  assert.equal(isOurPackage({}, 'mcp-shopline'), false);
+});
+
+test('isOurPackage: null info -> false', () => {
+  assert.equal(isOurPackage(null, 'mcp-shopline'), false);
+});
+
+test('isOurPackage: URL points to a DIFFERENT slug under our org -> false', () => {
+  // mcp-foo's PyPI metadata references mcp-bar — that is NOT mcp-foo.
+  const info = { project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-bar' } };
+  assert.equal(isOurPackage(info, 'mcp-foo'), false);
 });
 
 function withTmp(fn) {
