@@ -485,38 +485,6 @@ servers:
     plugins: [data-insight, brand-media-pr]
     maintainer: asgard-ai-platform
 
-  - slug: mcp-google-ads
-    name:
-      en: "Google Ads"
-      zh: "Google 廣告平台"
-    description:
-      en: "MCP Server for Google Ads, providing campaign management, keyword analysis, and performance reporting for AI agents."
-      zh: "Google Ads 廣告平台 MCP Server，為 AI 代理提供廣告活動管理、關鍵字分析與成效報告。"
-    status: coming-soon
-    category: analytics
-    region: global
-    github: https://github.com/asgard-ai-platform/mcp-google-ads
-    tags: [advertising, google, sem]
-    upgrade_to: Mimir
-    plugins: [data-insight]
-    maintainer: asgard-ai-platform
-
-  - slug: mcp-woocommerce
-    name:
-      en: "WooCommerce"
-      zh: "WooCommerce 電商"
-    description:
-      en: "MCP Server for WooCommerce, enabling store management, order processing, and sales analytics through AI agents."
-      zh: "WooCommerce 電商平台 MCP Server，支援透過 AI 代理進行商店管理、訂單處理與銷售分析。"
-    status: coming-soon
-    category: analytics
-    region: global
-    github: https://github.com/asgard-ai-platform/mcp-woocommerce
-    tags: [ecommerce, wordpress, analytics]
-    upgrade_to: Mimir
-    plugins: [data-insight]
-    maintainer: asgard-ai-platform
-
   # ============================================================
   # M-08 Global Communication (5) → Sindri
   # ============================================================
@@ -568,36 +536,6 @@ servers:
     plugins: [agent-communication]
     maintainer: asgard-ai-platform
 
-  - slug: mcp-telegram
-    name:
-      en: "Telegram"
-      zh: "Telegram 機器人"
-    description:
-      en: "MCP Server for Telegram Bot API, providing messaging, channel management, and bot interaction capabilities for AI agents."
-      zh: "Telegram Bot API MCP Server，為 AI 代理提供訊息傳送、頻道管理與機器人互動功能。"
-    status: coming-soon
-    category: communication
-    region: global
-    github: https://github.com/asgard-ai-platform/mcp-telegram
-    tags: [messaging, telegram, bot]
-    upgrade_to: Sindri
-    maintainer: asgard-ai-platform
-
-  - slug: mcp-discord
-    name:
-      en: "Discord"
-      zh: "Discord 社群"
-    description:
-      en: "MCP Server for Discord Bot API, enabling server management, messaging, and community interaction through AI agents."
-      zh: "Discord Bot API MCP Server，支援透過 AI 代理進行伺服器管理、訊息傳送與社群互動。"
-    status: coming-soon
-    category: communication
-    region: global
-    github: https://github.com/asgard-ai-platform/mcp-discord
-    tags: [messaging, discord, community]
-    upgrade_to: Sindri
-    maintainer: asgard-ai-platform
-
   # ============================================================
   # M-09 Global E-commerce (3)
   # ============================================================
@@ -646,22 +584,6 @@ servers:
   # ============================================================
   # M-10 Customer Service (4) → Sindri
   # ============================================================
-  - slug: mcp-zendesk
-    name:
-      en: "Zendesk"
-      zh: "Zendesk 客服平台"
-    description:
-      en: "MCP Server for Zendesk customer service platform, enabling ticket management, customer support, and helpdesk analytics through AI agents."
-      zh: "Zendesk 客服平台 MCP Server，支援透過 AI 代理進行工單管理、客戶支援與服務台分析。"
-    status: coming-soon
-    category: customer-service
-    region: global
-    github: https://github.com/asgard-ai-platform/mcp-zendesk
-    tags: [customer-service, helpdesk, ticketing]
-    upgrade_to: Sindri
-    plugins: [customer-service-hub]
-    maintainer: asgard-ai-platform
-
   - slug: mcp-freshdesk
     name:
       en: "Freshdesk"
@@ -713,22 +635,6 @@ servers:
   # ============================================================
   # M-11 Global SaaS (6) → Odin
   # ============================================================
-  - slug: mcp-airtable
-    name:
-      en: "Airtable"
-      zh: "Airtable 資料庫"
-    description:
-      en: "MCP Server for Airtable, enabling database management, record operations, and workflow automation through AI agents."
-      zh: "Airtable MCP Server，支援透過 AI 代理進行資料庫管理、記錄操作與工作流程自動化。"
-    status: coming-soon
-    category: data
-    region: global
-    github: https://github.com/asgard-ai-platform/mcp-airtable
-    tags: [database, no-code, productivity]
-    upgrade_to: Odin
-    plugins: [tw-startup-kit]
-    maintainer: asgard-ai-platform
-
   - slug: mcp-monday
     name:
       en: "Monday.com"

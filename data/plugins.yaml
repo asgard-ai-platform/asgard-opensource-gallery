@@ -51,7 +51,7 @@ plugins:
       en: "Built for data-driven teams leveraging Google Analytics 4, Meta Ads, Google Ads, and WooCommerce data to optimize marketing spend and conversion funnels."
       zh: "為數據驅動團隊打造，運用 Google Analytics 4、Meta Ads、Google Ads 和 WooCommerce 資料優化行銷花費與轉換漏斗。"
     upgrade_to: Mimir
-    mcp_servers: [mcp-ga4, mcp-meta-ads, mcp-google-ads, mcp-woocommerce]
+    mcp_servers: [mcp-ga4, mcp-meta-ads]
     skills: [skill-data-cohort-analysis, skill-mkt-ad-optimization, skill-ecom-analytics, skill-mkt-ab-testing]
 
   - slug: tw-startup-kit
@@ -65,7 +65,7 @@ plugins:
       en: "Tailored for early-stage Taiwan startups using Airtable for operations, HubSpot for sales, and 104/CakeResume for talent recruitment."
       zh: "專為早期台灣新創設計，使用 Airtable 進行營運、HubSpot 進行銷售、104/CakeResume 進行人才招募。"
     upgrade_to: Asgard
-    mcp_servers: [mcp-airtable, mcp-hubspot, mcp-104, mcp-cakeresume]
+    mcp_servers: [mcp-hubspot, mcp-104, mcp-cakeresume]
     skills: [skill-ops-business-model-canvas, skill-ops-okr-planning, skill-biz-customer-journey, skill-soc-user-research]
 
   - slug: agent-communication
@@ -120,7 +120,7 @@ plugins:
       en: "Perfect for customer service teams using Zendesk, Freshdesk, or Crisp alongside Crescendo Lab for LINE-based customer support in Taiwan."
       zh: "適合使用 Zendesk、Freshdesk 或 Crisp 搭配漸強實驗室在台灣提供 LINE 客服的客服團隊。"
     upgrade_to: Sindri
-    mcp_servers: [mcp-zendesk, mcp-freshdesk, mcp-crisp, mcp-crescendo-lab]
+    mcp_servers: [mcp-freshdesk, mcp-crisp, mcp-crescendo-lab]
     skills: [skill-cs-sop, skill-cs-chatbot-design, skill-cs-analytics]
 
   - slug: hospitality-ops
