@@ -175,3 +175,22 @@ test('sectionKey: "Example Usage" / "使用範例" → usage_examples', () => {
   assert.equal(sectionKey('Example Usage'), 'usage_examples');
   assert.equal(sectionKey('使用範例'), 'usage_examples');
 });
+
+// ── Task 4.5b: additional translation pairs ──
+test('sectionKey: "Prerequisites" / "先決條件" → prerequisites', () => {
+  assert.equal(sectionKey('Prerequisites'), 'prerequisites');
+  assert.equal(sectionKey('先決條件'), 'prerequisites');
+});
+test('sectionKey: "Error Codes Reference" / "錯誤代碼參考" → error_codes_reference', () => {
+  assert.equal(sectionKey('Error Codes Reference'), 'error_codes_reference');
+  assert.equal(sectionKey('錯誤代碼參考'), 'error_codes_reference');
+});
+test('sectionKey: "Item Code Reference" / "品項代碼參考" → itemcode_reference', () => {
+  assert.equal(sectionKey('Item Code Reference'), 'itemcode_reference');
+  assert.equal(sectionKey('ItemCode Reference'), 'itemcode_reference');
+  assert.equal(sectionKey('品項代碼參考'), 'itemcode_reference');
+});
+test('sectionKey: "Publishing to PyPI" / "發布至 PyPI" → publishing_to_pypi', () => {
+  assert.equal(sectionKey('Publishing to PyPI'), 'publishing_to_pypi');
+  assert.equal(sectionKey('發布至 PyPI'), 'publishing_to_pypi');
+});
