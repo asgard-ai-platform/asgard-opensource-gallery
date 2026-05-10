@@ -112,10 +112,13 @@ export function sectionKey(title) {
   if (t === 'architecture' || t === '架構') return 'architecture';
   if (t.includes('data source') || t.includes('data sources') || t.includes('資料來源')) return 'data_source';
   if (t.includes('part of the asgard ecosystem') || t.includes('asgard 生態系') || t.includes('asgard生態系')) return 'part_of_the_asgard_ecosystem';
-  if (t.includes('prerequisites') || t.includes('前置條件') || t.includes('前置需求')) return 'prerequisites';
+  if (t.includes('prerequisites') || t.includes('前置條件') || t.includes('前置需求') || t.includes('先決條件')) return 'prerequisites';
   if (t.includes('requirements') || t.includes('環境需求')) return 'requirements';
   if (t === 'overview' || t === '概述') return 'overview';
   if (t.includes('categories') || t.includes('資料分類')) return 'categories';
+  if (t.includes('error codes reference') || t.includes('錯誤代碼參考')) return 'error_codes_reference';
+  if (t.includes('item code reference') || t.includes('itemcode reference') || t.includes('品項代碼參考')) return 'itemcode_reference';
+  if (t.includes('publishing to pypi') || t.includes('發布至 pypi') || t.includes('發布至pypi')) return 'publishing_to_pypi';
 
   // Slugify fallback (preserves CJK as legal key)
   return t.replace(/\s+/g, '_').replace(/^_|_$/g, '');
