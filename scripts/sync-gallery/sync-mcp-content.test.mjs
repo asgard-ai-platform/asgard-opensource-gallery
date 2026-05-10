@@ -90,3 +90,88 @@ test('sectionKey: empty string → empty string', () => {
 test('sectionKey: whitespace-only heading → empty string', () => {
   assert.equal(sectionKey('   '), '');
 });
+
+// ── Task 4.5: extended alias coverage ──
+
+// Tools variants
+test('sectionKey: "Tools (27 Total)" → available_tools', () => {
+  assert.equal(sectionKey('Tools (27 Total)'), 'available_tools');
+});
+test('sectionKey: "Available Tools (143)" → available_tools', () => {
+  assert.equal(sectionKey('Available Tools (143)'), 'available_tools');
+});
+test('sectionKey: "Tool Reference" / "工具參考" → available_tools', () => {
+  assert.equal(sectionKey('Tool Reference'), 'available_tools');
+  assert.equal(sectionKey('工具參考'), 'available_tools');
+});
+test('sectionKey: "Tools Reference" / "工具一覽" → available_tools', () => {
+  assert.equal(sectionKey('Tools Reference'), 'available_tools');
+  assert.equal(sectionKey('工具一覽'), 'available_tools');
+});
+test('sectionKey: "工具清單" / "工具列表" → available_tools', () => {
+  assert.equal(sectionKey('工具清單'), 'available_tools');
+  assert.equal(sectionKey('工具列表'), 'available_tools');
+});
+test('sectionKey: "工具清單 (143 個)" / "工具列表 (27 個)" → available_tools', () => {
+  assert.equal(sectionKey('工具清單 (143 個)'), 'available_tools');
+  assert.equal(sectionKey('工具列表 (27 個)'), 'available_tools');
+});
+test('sectionKey: "可用工具 (143)" → available_tools', () => {
+  assert.equal(sectionKey('可用工具 (143)'), 'available_tools');
+});
+test('sectionKey: "Tool 列表共 4 個" (mixed-language) → available_tools', () => {
+  assert.equal(sectionKey('Tool 列表共 4 個'), 'available_tools');
+});
+test('sectionKey: "Toolkit" does NOT match available_tools (boundary check)', () => {
+  assert.notEqual(sectionKey('Toolkit'), 'available_tools');
+});
+
+// Short-form zh aliases
+test('sectionKey: "特色" → features', () => {
+  assert.equal(sectionKey('特色'), 'features');
+});
+test('sectionKey: "Usage" / "使用方式" → usage', () => {
+  assert.equal(sectionKey('Usage'), 'usage');
+  assert.equal(sectionKey('使用方式'), 'usage');
+});
+test('sectionKey: "Testing" / "測試" → testing', () => {
+  assert.equal(sectionKey('Testing'), 'testing');
+  assert.equal(sectionKey('測試'), 'testing');
+});
+test('sectionKey: "Architecture" / "架構" → architecture', () => {
+  assert.equal(sectionKey('Architecture'), 'architecture');
+  assert.equal(sectionKey('架構'), 'architecture');
+});
+test('sectionKey: "Data Source" / "資料來源" → data_source', () => {
+  assert.equal(sectionKey('Data Source'), 'data_source');
+  assert.equal(sectionKey('Data Sources'), 'data_source');
+  assert.equal(sectionKey('資料來源'), 'data_source');
+});
+test('sectionKey: "Part of the Asgard Ecosystem" / "Asgard 生態系" → part_of_the_asgard_ecosystem', () => {
+  assert.equal(sectionKey('Part of the Asgard Ecosystem'), 'part_of_the_asgard_ecosystem');
+  assert.equal(sectionKey('Asgard 生態系'), 'part_of_the_asgard_ecosystem');
+});
+test('sectionKey: "Prerequisites" / "前置條件" / "前置需求" → prerequisites', () => {
+  assert.equal(sectionKey('Prerequisites'), 'prerequisites');
+  assert.equal(sectionKey('前置條件'), 'prerequisites');
+  assert.equal(sectionKey('前置需求'), 'prerequisites');
+});
+test('sectionKey: "Requirements" / "環境需求" → requirements', () => {
+  assert.equal(sectionKey('Requirements'), 'requirements');
+  assert.equal(sectionKey('環境需求'), 'requirements');
+});
+test('sectionKey: "Overview" / "概述" → overview', () => {
+  assert.equal(sectionKey('Overview'), 'overview');
+  assert.equal(sectionKey('概述'), 'overview');
+});
+test('sectionKey: "Categories" / "資料分類" → categories', () => {
+  assert.equal(sectionKey('Categories'), 'categories');
+  assert.equal(sectionKey('資料分類'), 'categories');
+});
+test('sectionKey: "Roadmap" / "開發計畫" → roadmap', () => {
+  assert.equal(sectionKey('開發計畫'), 'roadmap');
+});
+test('sectionKey: "Example Usage" / "使用範例" → usage_examples', () => {
+  assert.equal(sectionKey('Example Usage'), 'usage_examples');
+  assert.equal(sectionKey('使用範例'), 'usage_examples');
+});
