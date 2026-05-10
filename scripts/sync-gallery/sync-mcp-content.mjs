@@ -82,32 +82,40 @@ export function sectionKey(title) {
   const raw = title.trim().toLowerCase();
   if (!raw) return '';
 
-  // Pre-strip regex matches (preserve parens for "Tools (N)" / "工具 (N)")
-  if (/^tools\s*(\(\s*\d+\s*\))?$/.test(raw)) return 'available_tools';
-  if (/^工具\s*(\(\s*\d+\s*\))?$/.test(raw)) return 'available_tools';
+  // Tools — many en/zh variants with optional counts. Catch all → available_tools.
+  // \b after `tools?` ensures "toolkit" / "tooling" don't match.
+  if (/^(?:available\s+)?tools?\b/.test(raw)) return 'available_tools';
+  if (/^(?:可用)?工具/.test(raw)) return 'available_tools';
+  // Mixed-language: "Tool 列表共 4 個" — already covered by the en regex above.
 
   // Normalised form: keep Unicode letters/numbers + whitespace, strip the rest.
-  // \p{L} keeps CJK; \p{N} keeps digits.
   const t = raw.replace(/[^\p{L}\p{N}\s]/gu, '').trim();
 
   // ── en whitelist + zh aliases (both canonicalise to the same en key) ──
-  if (t.includes('what this does') || t === 'features' || t.includes('功能特色') || t === '功能') return 'features';
+  if (t.includes('what this does') || t === 'features' || t.includes('功能特色') || t === '功能' || t === '特色') return 'features';
   if (t.includes('quick start') || t.includes('getting started') || t.includes('快速開始') || t === '入門') return 'quick_start';
   if (t.includes('api reference') || t.includes('api 參考')) return 'api_reference';
-  if (t === 'available tools' || t === '可用工具') return 'available_tools';
   if (t.includes('important write tools') || t.includes('重要寫入工具')) return 'important_write_tools';
   if (t.includes('install') || t.includes('安裝')) return 'install';
   if (t.includes('configuration') || t.includes('config') || t.includes('設定') || t.includes('配置')) return 'configuration';
   if (t === 'development' || t === '開發') return 'development';
   if (t.includes('contributing') || t.includes('貢獻')) return 'contributing';
   if (t.includes('license') || t.includes('授權')) return 'license';
-  if (t.includes('usage examples') || t.includes('使用範例') || t === '範例' || t === 'example') return 'usage_examples';
+  if (t.includes('usage examples') || t.includes('example usage') || t.includes('使用範例') || t === '範例' || t === 'example') return 'usage_examples';
+  if (t === 'usage' || t === '使用方式' || t.includes('use with')) return 'usage';
   if (t.includes('project structure') || t.includes('專案結構')) return 'project_structure';
   if (t.includes('api constraints') || t.includes('api 限制')) return 'api_constraints';
   if (t.includes('api endpoint coverage') || t.includes('api 端點覆蓋')) return 'api_endpoint_coverage';
   if (t.includes('known test gaps') || t.includes('已知測試缺口')) return 'known_test_gaps';
-  if (t.includes('roadmap') || t.includes('路線圖')) return 'roadmap';
-  if (t.includes('use with')) return 'usage';
+  if (t.includes('roadmap') || t.includes('路線圖') || t.includes('開發計畫')) return 'roadmap';
+  if (t === 'testing' || t === '測試') return 'testing';
+  if (t === 'architecture' || t === '架構') return 'architecture';
+  if (t.includes('data source') || t.includes('data sources') || t.includes('資料來源')) return 'data_source';
+  if (t.includes('part of the asgard ecosystem') || t.includes('asgard 生態系') || t.includes('asgard生態系')) return 'part_of_the_asgard_ecosystem';
+  if (t.includes('prerequisites') || t.includes('前置條件') || t.includes('前置需求')) return 'prerequisites';
+  if (t.includes('requirements') || t.includes('環境需求')) return 'requirements';
+  if (t === 'overview' || t === '概述') return 'overview';
+  if (t.includes('categories') || t.includes('資料分類')) return 'categories';
 
   // Slugify fallback (preserves CJK as legal key)
   return t.replace(/\s+/g, '_').replace(/^_|_$/g, '');
