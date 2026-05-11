@@ -112,17 +112,19 @@ export function buildMcpStubs({ existingSlugs, repoSlugs, fetchRepoFn, fetchRead
     const readme = fetchReadmeFn(slug);
     const readmeZh = fetchReadmeZhFn(slug);
 
+    const toolsCount = extractToolsCount(readme);
+
     if (!isPrivate) {
       if (!readme) errors.push({ repo: slug, issue: 'README.md missing or unreachable' });
       if (!repoInfo?.description) errors.push({ repo: slug, issue: 'GitHub repo description is empty' });
       if (readme && !readmeZh) errors.push({ repo: slug, issue: 'README.zh-TW.md missing — no Chinese content for detail page' });
+      if (readme && toolsCount === null) errors.push({ repo: slug, issue: 'tools_count not parseable from README' });
     }
 
     const region = inferRegion(slug);
     const category = inferCategory(slug, repoInfo, readme);
     const slugTokens = slug.replace(/^mcp-/, '').split('-').filter(t => t.length > 1);
     const tags = [...new Set([category, region, ...slugTokens])].slice(0, 6);
-    const toolsCount = extractToolsCount(readme);
     const intro = extractIntro(readme || '');
 
     const nameEn = extractH1(readme || '') || slugToTitle(slug);

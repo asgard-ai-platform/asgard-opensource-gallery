@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos } from './_lib.mjs';
+import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos, ghIsRepoPrivate } from './_lib.mjs';
 
 test('decodeBase64Content decodes base64 to utf-8', () => {
   assert.equal(decodeBase64Content('aGVsbG8='), 'hello');
@@ -221,4 +221,20 @@ test('ghListOrgRepos: non-array response throws', () => {
     () => ghListOrgRepos('org', { fetchPageFn: () => ({ unexpected: 'shape' }) }),
     /non-array/,
   );
+});
+
+// ── ghIsRepoPrivate ──────────────────────────────────────────────
+
+test('ghIsRepoPrivate: gh returns true → private', () => {
+  assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => true }), true);
+});
+
+test('ghIsRepoPrivate: gh returns false → public', () => {
+  assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => false }), false);
+});
+
+test('ghIsRepoPrivate: gh failure (null) → fail closed, treat as private', () => {
+  // Network blip, auth issue, or 404 must NOT make a coming-soon entry
+  // look promotable. Conservative default protects the visibility gate.
+  assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => null }), true);
 });

@@ -127,15 +127,21 @@ export function ghListOrgRepos(org, { fetchPageFn } = {}) {
 /**
  * Live check: is the given org repo currently private?
  *
- * Returns `false` on any failure (missing repo, network error, auth issue) —
- * the safe default is "treat as public", because:
- *   - missing repos are handled separately by audit-orphans.mjs
- *   - network errors should NOT cause us to silently skip a real release-gating
- *     check; downstream callers want false negatives (don't skip), not false
- *     positives (skip when we shouldn't).
+ * Fails CLOSED: on any lookup failure (network, auth, transient gh outage,
+ * or genuinely missing repo) returns `true` — treat the repo as private.
+ * The visibility gate in promote-candidates/audit-pypi exists to *prevent*
+ * promotion of private repos; if we can't verify visibility we must not
+ * promote either. Missing-repo cases (typo, deletion) are surfaced
+ * separately by audit-orphans.mjs.
+ *
+ * @param {string} org
+ * @param {string} slug
+ * @param {{ fetchFn?: () => any }} [opts]  DI hook for tests
  */
-export function ghIsRepoPrivate(org, slug) {
-  const v = ghJSON(`repos/${org}/${slug}`, '.private');
+export function ghIsRepoPrivate(org, slug, { fetchFn } = {}) {
+  const fetch = fetchFn || (() => ghJSON(`repos/${org}/${slug}`, '.private'));
+  const v = fetch();
+  if (v === null) return true; // gh failure → fail closed
   return v === true;
 }
 

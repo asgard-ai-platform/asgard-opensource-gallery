@@ -57,6 +57,32 @@ test('buildMcpStubs: public repo with missing README emits an error', () => {
   assert.ok(errors.some(e => /README\.md missing/.test(e.issue)));
 });
 
+test('buildMcpStubs: public repo with README but no parseable tools count emits an error', () => {
+  // README exists but has no "N AI-callable tools" / "N MCP tools" pattern.
+  // Original generate-new-entries.mjs flagged this; the port lost the check.
+  const { errors } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-no-toolcount'],
+    fetchRepoFn: () => ({ description: 'd' }),
+    fetchReadmeFn: () => '# Title\n\nReadme with no tool count phrasing.',
+    fetchReadmeZhFn: () => '# Title',
+    isPrivateFn: () => false,
+  });
+  assert.ok(errors.some(e => /tools_count not parseable/.test(e.issue)));
+});
+
+test('buildMcpStubs: private repo with unparseable tools count does NOT emit error', () => {
+  const { errors } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-secret-no-count'],
+    fetchRepoFn: () => null,
+    fetchReadmeFn: () => '# Title\n\nNo count.',
+    fetchReadmeZhFn: () => null,
+    isPrivateFn: () => true,
+  });
+  assert.deepEqual(errors, []);
+});
+
 test('buildMcpStubs: applies region/category heuristics from slug', () => {
   const { entries } = buildMcpStubs({
     existingSlugs: new Set(),
