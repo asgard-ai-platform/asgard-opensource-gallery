@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage } from './_lib.mjs';
+import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos, ghIsRepoPrivate, ghRepoVisibility } from './_lib.mjs';
 
 test('decodeBase64Content decodes base64 to utf-8', () => {
   assert.equal(decodeBase64Content('aGVsbG8='), 'hello');
@@ -164,4 +164,91 @@ test('appendGroup: preserves a pre-existing preamble written by another tool', (
     assert.match(text, /^# Open-source repo audit report\n\nGenerated: t\n/);
     assert.match(text, /\n## mcp-x\n\n- orphan finding\n$/);
   });
+});
+
+// ── ghListOrgRepos ───────────────────────────────────────────────
+
+const repo = (name, isPrivate = false) => ({ name, private: isPrivate });
+
+test('ghListOrgRepos: single short page returns all items', () => {
+  const r = ghListOrgRepos('org', { fetchPageFn: (p) => p === 1 ? [repo('a'), repo('b', true)] : [] });
+  assert.deepEqual(r, [{ name: 'a', isPrivate: false }, { name: 'b', isPrivate: true }]);
+});
+
+test('ghListOrgRepos: stops when page returns fewer than 100', () => {
+  let calls = 0;
+  const r = ghListOrgRepos('org', {
+    fetchPageFn: (p) => { calls++; return p === 1 ? Array.from({ length: 50 }, (_, i) => repo(`r${i}`)) : []; },
+  });
+  assert.equal(r.length, 50);
+  assert.equal(calls, 1);
+});
+
+test('ghListOrgRepos: paginates across multiple full pages until short page', () => {
+  const fetchPageFn = (p) => {
+    if (p === 1) return Array.from({ length: 100 }, (_, i) => repo(`p1-${i}`));
+    if (p === 2) return Array.from({ length: 100 }, (_, i) => repo(`p2-${i}`));
+    if (p === 3) return Array.from({ length: 7 }, (_, i) => repo(`p3-${i}`));
+    return [];
+  };
+  const r = ghListOrgRepos('org', { fetchPageFn });
+  assert.equal(r.length, 207);
+  assert.equal(r[0].name, 'p1-0');
+  assert.equal(r[206].name, 'p3-6');
+});
+
+test('ghListOrgRepos: stops on first empty page (boundary at exact multiple of 100)', () => {
+  let calls = 0;
+  const fetchPageFn = (p) => {
+    calls++;
+    if (p === 1) return Array.from({ length: 100 }, (_, i) => repo(`r${i}`));
+    return [];
+  };
+  const r = ghListOrgRepos('org', { fetchPageFn });
+  assert.equal(r.length, 100);
+  assert.equal(calls, 2);
+});
+
+test('ghListOrgRepos: null mid-page throws (no silent truncation)', () => {
+  assert.throws(
+    () => ghListOrgRepos('org', { fetchPageFn: (p) => p === 1 ? Array.from({ length: 100 }, (_, i) => repo(`r${i}`)) : null }),
+    /page 2 failed/,
+  );
+});
+
+test('ghListOrgRepos: non-array response throws', () => {
+  assert.throws(
+    () => ghListOrgRepos('org', { fetchPageFn: () => ({ unexpected: 'shape' }) }),
+    /non-array/,
+  );
+});
+
+// ── ghRepoVisibility / ghIsRepoPrivate ───────────────────────────
+
+test('ghRepoVisibility: true → private', () => {
+  assert.equal(ghRepoVisibility('org', 'mcp-x', { fetchFn: () => true }), 'private');
+});
+
+test('ghRepoVisibility: false → public', () => {
+  assert.equal(ghRepoVisibility('org', 'mcp-x', { fetchFn: () => false }), 'public');
+});
+
+test('ghRepoVisibility: null (gh failure) → unknown', () => {
+  // Callers that want fail-open behaviour (e.g. audit-pypi Pass 1)
+  // branch on === 'private' so unknown leaves the audit running.
+  assert.equal(ghRepoVisibility('org', 'mcp-x', { fetchFn: () => null }), 'unknown');
+});
+
+test('ghIsRepoPrivate: gh returns true → private', () => {
+  assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => true }), true);
+});
+
+test('ghIsRepoPrivate: gh returns false → public', () => {
+  assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => false }), false);
+});
+
+test('ghIsRepoPrivate: gh failure (null) → fail CLOSED, treat as private', () => {
+  // For the *gate* question ("should this be eligible for promotion?"),
+  // a lookup blip must not let a private repo slip through.
+  assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => null }), true);
 });

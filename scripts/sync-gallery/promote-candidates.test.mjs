@@ -87,6 +87,26 @@ test('findPromotions: third-party squatter on PyPI is NOT promoted', async () =>
   assert.deepEqual(r, []);
 });
 
+test('findPromotions: private repo on PyPI is NOT promoted', async () => {
+  // Even if the PyPI package metadata points back at our org, a still-private
+  // repo must stay coming-soon — release gate requires the repo to be public.
+  const r = await findPromotions({
+    mcps: [{ slug: 'mcp-secret', status: 'coming-soon' }],
+    fetchPypiFn: exists('1.0.0', 'mcp-secret'),
+    isPrivateFn: () => true,
+  });
+  assert.deepEqual(r, []);
+});
+
+test('findPromotions: public repo (default isPrivateFn) is promoted', async () => {
+  const r = await findPromotions({
+    mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchPypiFn: exists('1.0.0', 'mcp-foo'),
+    isPrivateFn: () => false,
+  });
+  assert.deepEqual(r, [{ slug: 'mcp-foo', version: '1.0.0' }]);
+});
+
 // ── applyPromotions ──────────────────────────────────────────────
 
 test('applyPromotions: empty list → input returned unchanged', () => {
