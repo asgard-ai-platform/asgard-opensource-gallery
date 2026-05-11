@@ -11,10 +11,11 @@
  *
  * All shell-out uses execFileSync with argv arrays (no shell parsing).
  */
-import { readFileSync, writeFileSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, unlinkSync, realpathSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join as pathJoin } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const ORG = 'asgard-ai-platform';
 const LABEL = 'yggdrasil-audit';
@@ -193,7 +194,7 @@ function postOrUpdate(repo, findings) {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   const reportPath = process.argv[2];
   if (!reportPath) {
     console.error('usage: post-audit-issues.mjs <path-to-report.md>');

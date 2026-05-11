@@ -20,8 +20,9 @@
  * during PyPI outages). 404 means the package is not yet published —
  * stays in coming-soon until next run.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 import { isOurPackage } from './_lib.mjs';
 
@@ -98,7 +99,7 @@ export function applyPromotions(yamlText, promotions) {
   return lines.join('\n');
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   const yamlText = readFileSync(MCP_YAML, 'utf-8');
   const data = yaml.load(yamlText);
   const promotions = await findPromotions({

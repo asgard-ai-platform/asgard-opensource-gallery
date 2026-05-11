@@ -6,9 +6,10 @@
  *
  * Usage: node scripts/sync-gallery/sync-mcp-content.mjs
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 
 const ORG = 'asgard-ai-platform';
@@ -32,7 +33,7 @@ function ghFetchFile(repo, path) {
   }
 }
 
-function extractSections(readme) {
+export function extractSections(readme) {
   if (!readme) return new Map();
   const sections = new Map();
   const lines = readme.split('\n');
@@ -60,7 +61,7 @@ function extractSections(readme) {
 /**
  * Extract intro text between H1 and first H2.
  */
-function extractIntro(readme) {
+export function extractIntro(readme) {
   if (!readme) return '';
   const lines = readme.split('\n');
   const introLines = [];
@@ -78,93 +79,134 @@ function extractIntro(readme) {
   return introLines.join('\n').trim();
 }
 
-function sectionKey(title) {
-  const t = title.toLowerCase().replace(/[^\w\s]/g, '').trim();
-  if (t.includes('what this does') || t.includes('功能特色') || t === 'features') return 'features';
-  if (t.includes('quick start') || t.includes('快速開始') || t.includes('getting started')) return 'quick_start';
-  if (t.includes('available tools') || t.includes('可用工具') || t === 'tools') return 'available_tools';
-  if (t.includes('api reference') || t.includes('api 參考') || t.includes('api reference')) return 'api_reference';
+export function sectionKey(title) {
+  const raw = title.trim().toLowerCase();
+  if (!raw) return '';
+
+  // Normalised form: replace non-letter/number/whitespace with space (preserves
+  // word boundaries that punctuation would otherwise cross), then collapse spaces.
+  // \p{L} keeps CJK; \p{N} keeps digits.
+  const t = raw
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!t) return '';
+
+  // Tools — many en/zh variants with optional counts. Match on normalised t so
+  // decorative leading chars (emoji, etc.) don't block the alias.
+  // \b after `tools?` ensures "toolkit" / "tooling" don't match.
+  if (/^(?:available\s+)?tools?\b/.test(t)) return 'available_tools';
+  if (/^(?:可用)?工具/.test(t)) return 'available_tools';
+
+  // ── en whitelist + zh aliases (both canonicalise to the same en key) ──
+  if (t.includes('what this does') || t === 'features' || t.includes('功能特色') || t === '功能' || t === '特色') return 'features';
+  if (t.includes('quick start') || t.includes('getting started') || t.includes('快速開始') || t === '入門') return 'quick_start';
+  if (t.includes('api reference') || t.includes('api 參考')) return 'api_reference';
+  if (t.includes('important write tools') || t.includes('重要寫入工具') || t.includes('重要 寫入工具')) return 'important_write_tools';
   if (t.includes('install') || t.includes('安裝')) return 'install';
-  if (t.includes('configuration') || t.includes('設定') || t.includes('config')) return 'configuration';
-  if (t.includes('license') || t.includes('授權')) return 'license';
+  if (t.includes('configuration') || t.includes('config') || t.includes('設定') || t.includes('配置')) return 'configuration';
+  if (t === 'development' || t === '開發') return 'development';
   if (t.includes('contributing') || t.includes('貢獻')) return 'contributing';
-  if (t.includes('use with')) return 'usage';
-  return t.replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+  if (t.includes('license') || t.includes('授權')) return 'license';
+  if (t.includes('usage examples') || t.includes('example usage') || t.includes('使用範例') || t === '範例' || t === 'example') return 'usage_examples';
+  if (t === 'usage' || t === '使用方式' || t.includes('use with')) return 'usage';
+  if (t.includes('project structure') || t.includes('專案結構')) return 'project_structure';
+  if (t.includes('api constraints') || t.includes('api 限制')) return 'api_constraints';
+  if (t.includes('api endpoint coverage') || t.includes('api 端點覆蓋')) return 'api_endpoint_coverage';
+  if (t.includes('known test gaps') || t.includes('已知測試缺口')) return 'known_test_gaps';
+  if (t.includes('roadmap') || t.includes('路線圖') || t.includes('開發計畫')) return 'roadmap';
+  if (t === 'testing' || t === '測試') return 'testing';
+  if (t === 'architecture' || t === '架構') return 'architecture';
+  if (t.includes('data source') || t.includes('資料來源')) return 'data_source';
+  if (t.includes('part of the asgard ecosystem') || t.includes('asgard 生態系') || t.includes('asgard生態系')) return 'part_of_the_asgard_ecosystem';
+  if (t.includes('prerequisites') || t.includes('前置條件') || t.includes('前置需求') || t.includes('先決條件')) return 'prerequisites';
+  if (t.includes('requirements') || t.includes('環境需求')) return 'requirements';
+  if (t === 'overview' || t === '概述') return 'overview';
+  if (t.includes('categories') || t.includes('資料分類')) return 'categories';
+  if (t.includes('error codes reference') || t.includes('錯誤代碼參考')) return 'error_codes_reference';
+  if (t.includes('item code reference') || t.includes('itemcode reference') || t.includes('品項代碼參考')) return 'itemcode_reference';
+  if (t.includes('publishing to pypi') || t.includes('發布至 pypi') || t.includes('發布至pypi')) return 'publishing_to_pypi';
+
+  // Slugify fallback (preserves CJK as legal key)
+  return t.replace(/\s+/g, '_').replace(/^_|_$/g, '');
 }
 
 // ── Main ─────────────────────────────────────────────────────────
 
-console.log('═══════════════════════════════════════════════════');
-console.log(' Sync MCP Content → data/mcp-content.json');
-console.log('═══════════════════════════════════════════════════\n');
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
+  console.log('═══════════════════════════════════════════════════');
+  console.log(' Sync MCP Content → data/mcp-content.json');
+  console.log('═══════════════════════════════════════════════════\n');
 
-// Load YAML
-console.log('[1/3] Loading mcp-servers.yaml ...');
-const yamlData = yaml.load(readFileSync(MCP_YAML, 'utf-8'));
-const servers = yamlData.servers;
+  // Load YAML
+  console.log('[1/3] Loading mcp-servers.yaml ...');
+  const yamlData = yaml.load(readFileSync(MCP_YAML, 'utf-8'));
+  const servers = yamlData.servers;
 
-// Fetch READMEs
-console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...\n`);
-const mcpContent = {};
-let processed = 0;
-let skipped = 0;
-let zhCount = 0;
+  // Fetch READMEs
+  console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...\n`);
+  const mcpContent = {};
+  let processed = 0;
+  let skipped = 0;
+  let zhCount = 0;
 
-for (const server of servers) {
-  const repo = server.slug;
-  process.stdout.write(`  ${repo} ... `);
+  for (const server of servers) {
+    const repo = server.slug;
+    process.stdout.write(`  ${repo} ... `);
 
-  // Only fetch for released repos (they have public READMEs)
-  if (server.status !== 'released') {
-    console.log('⏭  (not released)');
-    skipped++;
-    continue;
-  }
-
-  const readmeEn = ghFetchFile(repo, 'README.md');
-  if (!readmeEn) {
-    console.log('⚠  no README');
-    skipped++;
-    continue;
-  }
-
-  const readmeZh = ghFetchFile(repo, 'README.zh-TW.md');
-
-  const content = {
-    intro: { en: extractIntro(readmeEn) },
-    sections: { en: {}, zh: {} },
-  };
-
-  // English sections
-  const enSections = extractSections(readmeEn);
-  for (const [title, md] of enSections) {
-    const key = sectionKey(title);
-    content.sections.en[key] = md;
-  }
-
-  // Chinese sections
-  if (readmeZh) {
-    content.intro.zh = extractIntro(readmeZh);
-    const zhSections = extractSections(readmeZh);
-    for (const [title, md] of zhSections) {
-      const key = sectionKey(title);
-      content.sections.zh[key] = md;
+    // Only fetch for released repos (they have public READMEs)
+    if (server.status !== 'released') {
+      console.log('⏭  (not released)');
+      skipped++;
+      continue;
     }
-    zhCount++;
-    console.log('✅ (en + zh)');
-  } else {
-    console.log('✅ (en only)');
+
+    const readmeEn = ghFetchFile(repo, 'README.md');
+    if (!readmeEn) {
+      console.log('⚠  no README');
+      skipped++;
+      continue;
+    }
+
+    const readmeZh = ghFetchFile(repo, 'README.zh-TW.md');
+
+    const content = {
+      intro: { en: extractIntro(readmeEn) },
+      sections: { en: {}, zh: {} },
+    };
+
+    // English sections
+    const enSections = extractSections(readmeEn);
+    for (const [title, md] of enSections) {
+      const key = sectionKey(title);
+      content.sections.en[key] = md;
+    }
+
+    // Chinese sections
+    if (readmeZh) {
+      content.intro.zh = extractIntro(readmeZh);
+      const zhSections = extractSections(readmeZh);
+      for (const [title, md] of zhSections) {
+        const key = sectionKey(title);
+        content.sections.zh[key] = md;
+      }
+      zhCount++;
+      console.log('✅ (en + zh)');
+    } else {
+      console.log('✅ (en only)');
+    }
+
+    mcpContent[server.slug] = content;
+    processed++;
   }
 
-  mcpContent[server.slug] = content;
-  processed++;
+  // Write output
+  console.log(`\n[3/3] Writing mcp-content.json ...`);
+  writeFileSync(OUTPUT_JSON, JSON.stringify(mcpContent, null, 2), 'utf-8');
+  console.log(`  ✅ ${processed} MCPs processed (${zhCount} with zh), ${skipped} skipped`);
+
+  console.log('\n═══════════════════════════════════════════════════');
+  console.log(' Done');
+  console.log('═══════════════════════════════════════════════════');
 }
-
-// Write output
-console.log(`\n[3/3] Writing mcp-content.json ...`);
-writeFileSync(OUTPUT_JSON, JSON.stringify(mcpContent, null, 2), 'utf-8');
-console.log(`  ✅ ${processed} MCPs processed (${zhCount} with zh), ${skipped} skipped`);
-
-console.log('\n═══════════════════════════════════════════════════');
-console.log(' Done');
-console.log('═══════════════════════════════════════════════════');
