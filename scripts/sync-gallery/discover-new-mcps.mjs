@@ -13,18 +13,6 @@
  * audit report). Private repos silently produce minimal stubs — their
  * README is expected to be unavailable to outside readers.
  */
-import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
-import yaml from 'js-yaml';
-import { ghFetchFile, ghJSON, ghIsRepoPrivate, appendGroup } from './_lib.mjs';
-
-const ORG = 'asgard-ai-platform';
-const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
-const MCP_YAML = join(ROOT, 'data/mcp-servers.yaml');
-const REPORT_PATH = join(ROOT, 'scripts/sync-gallery/_generated/repo-audit-report.md');
-
 // ── Heuristic helpers (ported from generate-new-entries.mjs) ──────
 
 function inferRegion(slug) {
