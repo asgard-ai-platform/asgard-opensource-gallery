@@ -34,6 +34,10 @@ jobs:
           fi
           gh api user > /dev/null
       - run: node scripts/sync-gallery/discover-new-skills.mjs
+      # discover-new-mcps in report-only mode: appends MCP discovery findings
+      # (missing README, empty description, etc.) to the audit report without
+      # touching data/mcp-servers.yaml (that's the sync workflow's job).
+      - run: DISCOVER_REPORT_ONLY=1 node scripts/sync-gallery/discover-new-mcps.mjs
       - run: node scripts/sync-gallery/audit-pypi.mjs
       - run: node scripts/sync-gallery/audit-readme-format.mjs
       - run: node scripts/sync-gallery/audit-orphans.mjs

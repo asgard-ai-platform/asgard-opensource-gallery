@@ -136,6 +136,20 @@ const skillYamlData = yaml.load(readFileSync(join(DATA_DIR, 'skills.yaml'), 'utf
 const existingMcpSlugs = new Set(mcpYamlData.servers.map(s => s.slug));
 const existingSkillDirs = new Set(skillYamlData.skills.map(s => s.slug.replace(/^skill-/, '')));
 
+// Augment with org repo list so a skill referencing a brand-new mcp-* repo
+// (one discover-new-mcps will append in the next sync run, but not yet in
+// YAML) doesn't get its related_mcps stripped as "unknown slug".
+try {
+  const orgRepos = JSON.parse(gh(['repo', 'list', ORG, '--limit', '300', '--json', 'name']));
+  for (const r of orgRepos) {
+    if (r.name.startsWith('mcp-') && r.name !== 'mcp-template') existingMcpSlugs.add(r.name);
+  }
+} catch {
+  // gh failure here is non-fatal — we still proceed with YAML-only slugs.
+  // The downside is the regression Codex flagged (unknown-slug false positives),
+  // but that's no worse than the pre-augment behavior.
+}
+
 console.error('[1/3] Discovering missing skill directories ...');
 const allSkills = ghListSkillDirs();
 const newSkills = allSkills.filter(d => !existingSkillDirs.has(d));

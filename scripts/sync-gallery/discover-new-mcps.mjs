@@ -216,8 +216,16 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
     isPrivateFn: (slug) => visibility.get(slug) === true,
   });
 
+  // REPORT_ONLY skips the YAML write — used by the audit workflow so it can
+  // feed MCP discovery findings into post-audit-issues.mjs without competing
+  // with the sync workflow over data/mcp-servers.yaml.
+  const reportOnly = process.env.DISCOVER_REPORT_ONLY === '1';
+
   if (entries.length === 0) {
     console.log('discover-new-mcps: no new mcp-* repos to append');
+  } else if (reportOnly) {
+    console.log(`discover-new-mcps: ${entries.length} new mcp-* repo(s) detected (report-only, YAML not modified):`);
+    for (const e of entries) console.log(`  - ${e.slug} (${e.region}/${e.category})`);
   } else {
     const rendered = renderMcpStubs(entries);
     const today = new Date().toISOString().slice(0, 10);
