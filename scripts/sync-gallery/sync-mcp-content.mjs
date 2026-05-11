@@ -82,14 +82,21 @@ export function sectionKey(title) {
   const raw = title.trim().toLowerCase();
   if (!raw) return '';
 
-  // Tools — many en/zh variants with optional counts. Catch all → available_tools.
-  // \b after `tools?` ensures "toolkit" / "tooling" don't match.
-  if (/^(?:available\s+)?tools?\b/.test(raw)) return 'available_tools';
-  if (/^(?:可用)?工具/.test(raw)) return 'available_tools';
-  // Mixed-language: "Tool 列表共 4 個" — already covered by the en regex above.
+  // Normalised form: replace non-letter/number/whitespace with space (preserves
+  // word boundaries that punctuation would otherwise cross), then collapse spaces.
+  // \p{L} keeps CJK; \p{N} keeps digits.
+  const t = raw
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 
-  // Normalised form: keep Unicode letters/numbers + whitespace, strip the rest.
-  const t = raw.replace(/[^\p{L}\p{N}\s]/gu, '').trim();
+  if (!t) return '';
+
+  // Tools — many en/zh variants with optional counts. Match on normalised t so
+  // decorative leading chars (emoji, etc.) don't block the alias.
+  // \b after `tools?` ensures "toolkit" / "tooling" don't match.
+  if (/^(?:available\s+)?tools?\b/.test(t)) return 'available_tools';
+  if (/^(?:可用)?工具/.test(t)) return 'available_tools';
 
   // ── en whitelist + zh aliases (both canonicalise to the same en key) ──
   if (t.includes('what this does') || t === 'features' || t.includes('功能特色') || t === '功能' || t === '特色') return 'features';
@@ -110,7 +117,7 @@ export function sectionKey(title) {
   if (t.includes('roadmap') || t.includes('路線圖') || t.includes('開發計畫')) return 'roadmap';
   if (t === 'testing' || t === '測試') return 'testing';
   if (t === 'architecture' || t === '架構') return 'architecture';
-  if (t.includes('data source') || t.includes('data sources') || t.includes('資料來源')) return 'data_source';
+  if (t.includes('data source') || t.includes('資料來源')) return 'data_source';
   if (t.includes('part of the asgard ecosystem') || t.includes('asgard 生態系') || t.includes('asgard生態系')) return 'part_of_the_asgard_ecosystem';
   if (t.includes('prerequisites') || t.includes('前置條件') || t.includes('前置需求') || t.includes('先決條件')) return 'prerequisites';
   if (t.includes('requirements') || t.includes('環境需求')) return 'requirements';
