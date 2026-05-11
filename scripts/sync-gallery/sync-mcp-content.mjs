@@ -102,7 +102,7 @@ export function sectionKey(title) {
   if (t.includes('what this does') || t === 'features' || t.includes('功能特色') || t === '功能' || t === '特色') return 'features';
   if (t.includes('quick start') || t.includes('getting started') || t.includes('快速開始') || t === '入門') return 'quick_start';
   if (t.includes('api reference') || t.includes('api 參考')) return 'api_reference';
-  if (t.includes('important write tools') || t.includes('重要寫入工具')) return 'important_write_tools';
+  if (t.includes('important write tools') || t.includes('重要寫入工具') || t.includes('重要 寫入工具')) return 'important_write_tools';
   if (t.includes('install') || t.includes('安裝')) return 'install';
   if (t.includes('configuration') || t.includes('config') || t.includes('設定') || t.includes('配置')) return 'configuration';
   if (t === 'development' || t === '開發') return 'development';
