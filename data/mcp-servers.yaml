@@ -1090,3 +1090,237 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-tw-judgment
     tags: [legal, taiwan, gov, judiciary]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Auto-added by discover-new-mcps.mjs on 2026-05-11 — REVIEW
+  # ============================================================
+  - slug: mcp-buy123-vendor
+    name:
+      en: "mcp-buy123-vendor"
+      zh: "mcp-buy123-vendor"
+    description:
+      en: "Model Context Protocol server for read-only buy123 vendor portal queries"
+      zh: "mcp-buy123-vendor MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-buy123-vendor
+    tags: ["data", "global", "buy123", "vendor"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-google-trends-tw
+    name:
+      en: "MCP Google Trends Taiwan"
+      zh: "MCP Google Trends Taiwan"
+    description:
+      en: "MCP server exposing Taiwan-oriented Google Trends tools via pytrends"
+      zh: "MCP Google Trends Taiwan MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-google-trends-tw
+    tags: ["data", "global", "google", "trends", "tw"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-hct-logistics
+    name:
+      en: "MCP HCT Logistics"
+      zh: "MCP HCT Logistics"
+    description:
+      en: "An MCP server for **Hsinchu Logistics (HCT)**, exposing `QueryEDELNO_Json` SOAP lookups over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
+      zh: "MCP HCT Logistics MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-hct-logistics
+    tags: ["data", "global", "hct", "logistics"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-kerry-tj
+    name:
+      en: "MCP Kerry TJ"
+      zh: "MCP Kerry TJ"
+    description:
+      en: "An MCP server for **Kerry TJ** logistics, exposing BLN tracing and EDI shipment submission over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
+      zh: "MCP Kerry TJ MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-kerry-tj
+    tags: ["data", "global", "kerry", "tj"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-ocard
+    name:
+      en: "mcp-ocard"
+      zh: "mcp-ocard"
+    description:
+      en: "OCard CRM MCP Server — AI-callable tools for OCard membership, transactions, promotions, and online ordering APIs."
+      zh: "mcp-ocard MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-ocard
+    tags: ["communication", "global", "ocard"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-sf-express
+    name:
+      en: "MCP SF Express"
+      zh: "MCP SF Express"
+    description:
+      en: "An MCP server for **SF Express Open Platform**, exposing OAuth2 token and `std/service` business gateway calls over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
+      zh: "MCP SF Express MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-sf-express
+    tags: ["data", "global", "sf", "express"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx
+    name:
+      en: "mcp-tdx"
+      zh: "mcp-tdx"
+    description:
+      en: "MCP Server for **TDX (Transport Data eXchange) — 運輸資料流通服務平臺**"
+      zh: "mcp-tdx MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx
+    tags: ["data", "global", "tdx"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-aitport
+    name:
+      en: "mcp-tdx-airport"
+      zh: "mcp-tdx-airport"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Air & Maritime Transport**."
+      zh: "mcp-tdx-airport MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-aitport
+    tools_count: 26
+    tags: ["data", "global", "tdx", "aitport"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-bus
+    name:
+      en: "mcp-tdx-bus"
+      zh: "mcp-tdx-bus"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Bus & InterCity Coach**."
+      zh: "mcp-tdx-bus MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-bus
+    tools_count: 53
+    tags: ["data", "global", "tdx", "bus"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-meta
+    name:
+      en: "mcp-tdx-meta"
+      zh: "mcp-tdx-meta"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Meta Services (GIS / MaaS / Geocoding / Common Data / Stats / Weather / Changelog)**."
+      zh: "mcp-tdx-meta MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-meta
+    tools_count: 32
+    tags: ["data", "global", "tdx", "meta"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-mobility
+    name:
+      en: "mcp-tdx-mobility"
+      zh: "mcp-tdx-mobility"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Last-Mile Mobility (Parking / Shared Bike / EV Charging)**."
+      zh: "mcp-tdx-mobility MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-mobility
+    tools_count: 32
+    tags: ["data", "global", "tdx", "mobility"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-rail
+    name:
+      en: "mcp-tdx-rail"
+      zh: "mcp-tdx-rail"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Rail (TRA / THSR / Metro / Light Rail)**."
+      zh: "mcp-tdx-rail MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-rail
+    tools_count: 77
+    tags: ["data", "global", "tdx", "rail"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-tourism
+    name:
+      en: "mcp-tdx-tourism"
+      zh: "mcp-tdx-tourism"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Tourism (POI / Restaurants / Hotels / Events)**."
+      zh: "mcp-tdx-tourism MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-tourism
+    tools_count: 25
+    tags: ["data", "global", "tdx", "tourism"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tdx-traffic
+    name:
+      en: "mcp-tdx-traffic"
+      zh: "mcp-tdx-traffic"
+    description:
+      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Traffic & Road Network**."
+      zh: "mcp-tdx-traffic MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-tdx-traffic
+    tools_count: 30
+    tags: ["data", "global", "tdx", "traffic"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-tw-nhi-ihqe
+    name:
+      en: "MCP Taiwan NHI IHQE"
+      zh: "MCP Taiwan NHI IHQE"
+    description:
+      en: "MCP server for Taiwan NHI IHQE healthcare quality indicators"
+      zh: "MCP Taiwan NHI IHQE MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: gov
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/mcp-tw-nhi-ihqe
+    tags: ["gov", "taiwan", "tw", "nhi", "ihqe"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-youtube-analytics
+    name:
+      en: "mcp-youtube-analytics"
+      zh: "mcp-youtube-analytics"
+    description:
+      en: "A Model Context Protocol (MCP) server for querying and analyzing YouTube channel performance data."
+      zh: "mcp-youtube-analytics MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-youtube-analytics
+    tags: ["data", "global", "youtube", "analytics"]
+    maintainer: asgard-ai-platform
