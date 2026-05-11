@@ -16,8 +16,9 @@
  *
  * Other statuses (`planned`, etc.) are skipped.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 import { parse as parseToml } from 'smol-toml';
 import { ghFetchFile, appendGroup, isOurPackage } from './_lib.mjs';
@@ -122,7 +123,7 @@ export async function findPromotionCandidates({ mcps, fetchPypiFn }) {
   return candidates;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   const dataDir = join(ROOT, 'data');
   const mcps = yaml.load(readFileSync(join(dataDir, 'mcp-servers.yaml'), 'utf-8')).servers;
   let totalFindings = 0;

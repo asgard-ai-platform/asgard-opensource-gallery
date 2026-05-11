@@ -9,8 +9,9 @@
  * Calibration: mcp-shopline must pass with zero findings. If a rule
  * triggers on shopline, the rule is wrong, not shopline.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 import { ghFetchFile, appendGroup } from './_lib.mjs';
 
@@ -101,7 +102,7 @@ export function checkReadme(text, expectedToolsCount) {
   return findings;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   const dataDir = join(ROOT, 'data');
   const mcps = yaml.load(readFileSync(join(dataDir, 'mcp-servers.yaml'), 'utf-8')).servers;
   let totalFindings = 0;

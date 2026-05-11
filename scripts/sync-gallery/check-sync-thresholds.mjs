@@ -7,8 +7,9 @@
  * that should have been synced. Catches silent gh-api failures (token
  * expiry mid-run) before a content-deleting PR is created.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -42,7 +43,7 @@ export function evaluateThresholds({ expectedMcps, actualMcpKeys, expectedSkills
   return { ok: failures.length === 0, failures };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   const dataDir = join(ROOT, 'data');
   const mcps = yaml.load(readFileSync(join(dataDir, 'mcp-servers.yaml'), 'utf-8'));
   const skills = yaml.load(readFileSync(join(dataDir, 'skills.yaml'), 'utf-8'));
