@@ -194,3 +194,20 @@ test('sectionKey: "Publishing to PyPI" / "發布至 PyPI" → publishing_to_pypi
   assert.equal(sectionKey('Publishing to PyPI'), 'publishing_to_pypi');
   assert.equal(sectionKey('發布至 PyPI'), 'publishing_to_pypi');
 });
+
+// ── Code review fix: normalize before Tools regex (handles decorative prefixes) ──
+test('sectionKey: "🛠️ Tools" → available_tools (emoji prefix tolerated)', () => {
+  assert.equal(sectionKey('🛠️ Tools'), 'available_tools');
+});
+test('sectionKey: "🛠️ Tools (143)" → available_tools', () => {
+  assert.equal(sectionKey('🛠️ Tools (143)'), 'available_tools');
+});
+test('sectionKey: "🛠️ 工具" → available_tools (emoji + zh)', () => {
+  assert.equal(sectionKey('🛠️ 工具'), 'available_tools');
+});
+test('sectionKey: "✨ Features" → features (emoji + en alias)', () => {
+  assert.equal(sectionKey('✨ Features'), 'features');
+});
+test('sectionKey: "📚 API Reference" → api_reference', () => {
+  assert.equal(sectionKey('📚 API Reference'), 'api_reference');
+});
