@@ -24,10 +24,11 @@ import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { isOurPackage } from './_lib.mjs';
+import { isOurPackage, ghIsRepoPrivate } from './_lib.mjs';
 
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
 const MCP_YAML = join(ROOT, 'data/mcp-servers.yaml');
+const ORG = 'asgard-ai-platform';
 
 async function fetchPypi(name) {
   try {
@@ -50,10 +51,14 @@ async function fetchPypi(name) {
  * @param {(name:string) => Promise<{status:number, body?:any}>} params.fetchPypiFn
  * @returns {Promise<Array<{slug:string, version:string}>>}
  */
-export async function findPromotions({ mcps, fetchPypiFn }) {
+export async function findPromotions({ mcps, fetchPypiFn, isPrivateFn = () => false }) {
   const promotions = [];
   for (const mcp of mcps) {
     if (mcp.status !== 'coming-soon') continue;
+    // Visibility gate: a still-private repo must stay coming-soon even when a
+    // same-named PyPI package is published. PyPI is global; the repo being
+    // public is the actual release signal.
+    if (isPrivateFn(mcp.slug)) continue;
     const r = await fetchPypiFn(mcp.slug);
     if (r.status !== 200) continue;
     // Reject third-party packages that happen to share our slug name. Only
@@ -105,6 +110,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   const promotions = await findPromotions({
     mcps: data.servers,
     fetchPypiFn: fetchPypi,
+    isPrivateFn: (slug) => ghIsRepoPrivate(ORG, slug),
   });
 
   if (promotions.length === 0) {
