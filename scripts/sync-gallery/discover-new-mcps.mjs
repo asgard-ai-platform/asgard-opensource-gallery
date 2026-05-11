@@ -13,12 +13,11 @@
  * audit report). Private repos silently produce minimal stubs — their
  * README is expected to be unavailable to outside readers.
  */
-import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, realpathSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { ghFetchFile, ghJSON, appendGroup } from './_lib.mjs';
+import { ghFetchFile, ghJSON, ghListOrgRepos, appendGroup } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -187,25 +186,16 @@ export function appendStubsToYaml(yamlText, renderedStubs, dateString) {
 
 // ── CLI entrypoint ───────────────────────────────────────────────
 
-function gh(args) {
-  return execFileSync('gh', args, { encoding: 'utf-8', timeout: 20000, stdio: ['pipe', 'pipe', 'pipe'] }).trim();
-}
-
-function ghListAllMcpRepos() {
-  const json = gh(['repo', 'list', ORG, '--limit', '300', '--json', 'name,isPrivate']);
-  return JSON.parse(json)
-    .filter(r => r.name.startsWith('mcp-') && r.name !== 'mcp-template')
-    .sort((a, b) => a.name.localeCompare(b.name));
-}
-
 if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   const yamlText = readFileSync(MCP_YAML, 'utf-8');
   const data = yaml.load(yamlText);
   const existingSlugs = new Set(data.servers.map(s => s.slug));
 
-  // `gh repo list` already returns isPrivate per repo — reuse it instead of
-  // re-querying via ghIsRepoPrivate for every new slug.
-  const repos = ghListAllMcpRepos();
+  // ghListOrgRepos paginates the full org — no fixed cap. Each item carries
+  // isPrivate so we don't need a separate ghIsRepoPrivate call per slug.
+  const repos = ghListOrgRepos(ORG)
+    .filter(r => r.name.startsWith('mcp-') && r.name !== 'mcp-template')
+    .sort((a, b) => a.name.localeCompare(b.name));
   const visibility = new Map(repos.map(r => [r.name, r.isPrivate]));
   const { entries, errors } = buildMcpStubs({
     existingSlugs,

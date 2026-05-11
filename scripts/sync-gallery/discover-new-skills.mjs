@@ -15,6 +15,7 @@ import { execFileSync } from 'node:child_process';
 import { writeFileSync, readFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import yaml from 'js-yaml';
+import { ghListOrgRepos } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -140,8 +141,7 @@ const existingSkillDirs = new Set(skillYamlData.skills.map(s => s.slug.replace(/
 // (one discover-new-mcps will append in the next sync run, but not yet in
 // YAML) doesn't get its related_mcps stripped as "unknown slug".
 try {
-  const orgRepos = JSON.parse(gh(['repo', 'list', ORG, '--limit', '300', '--json', 'name']));
-  for (const r of orgRepos) {
+  for (const r of ghListOrgRepos(ORG)) {
     if (r.name.startsWith('mcp-') && r.name !== 'mcp-template') existingMcpSlugs.add(r.name);
   }
 } catch {

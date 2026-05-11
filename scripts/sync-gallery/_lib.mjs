@@ -1,10 +1,10 @@
 /**
  * _lib.mjs — Shared helpers for sync-gallery cron scripts.
  *
- * The legacy scripts (sync-mcp-content.mjs, sync-skill-content.mjs,
- * discover-new-skills.mjs) intentionally do not import this — they
- * predate this lib or were ported verbatim. This lib is for the
- * newer cron-only scripts.
+ * The legacy scripts (sync-mcp-content.mjs, sync-skill-content.mjs)
+ * intentionally do not import this — they predate this lib. The newer
+ * cron-only scripts (audit-pypi.mjs, audit-orphans.mjs, promote-candidates.mjs,
+ * discover-new-mcps.mjs, discover-new-skills.mjs) use it.
  *
  * Uses execFileSync (argv array) rather than execSync (shell string) so
  * interpolated repo / path / slug values cannot inject shell commands.
@@ -93,6 +93,35 @@ export function ghRepoLookup(org, slug) {
     const stderr = err && err.stderr ? err.stderr.toString() : '';
     return classifyGhError(stderr || (err && err.message) || '');
   }
+}
+
+/**
+ * List every repo under an org, paginated. Each item is `{name, isPrivate}`.
+ *
+ * Loops `GET /orgs/<org>/repos?per_page=100&page=N` until a page returns
+ * fewer than 100 items, walking the entire org without a fixed cap. A null
+ * (gh failure) at any page throws — silent truncation would let real repos
+ * slip past discovery in a partial-outage scenario.
+ *
+ * @param {object} [opts]
+ * @param {(page:number) => any[]|null} [opts.fetchPageFn]
+ *   Page fetcher for tests. Defaults to live `gh api`.
+ * @returns {Array<{name:string, isPrivate:boolean}>}
+ */
+export function ghListOrgRepos(org, { fetchPageFn } = {}) {
+  const fetch = fetchPageFn || ((page) => ghJSON(`orgs/${org}/repos?per_page=100&page=${page}`));
+  const results = [];
+  let page = 1;
+  while (true) {
+    const json = fetch(page);
+    if (json === null) throw new Error(`ghListOrgRepos: page ${page} failed (gh api returned null)`);
+    if (!Array.isArray(json)) throw new Error(`ghListOrgRepos: page ${page} returned non-array (${typeof json})`);
+    if (json.length === 0) break;
+    for (const r of json) results.push({ name: r.name, isPrivate: r.private });
+    if (json.length < 100) break;
+    page++;
+  }
+  return results;
 }
 
 /**
