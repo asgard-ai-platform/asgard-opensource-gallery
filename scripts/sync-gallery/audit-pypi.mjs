@@ -21,7 +21,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 import { parse as parseToml } from 'smol-toml';
-import { ghFetchFile, appendGroup, isOurPackage } from './_lib.mjs';
+import { ghFetchFile, appendGroup, isOurPackage, ghIsRepoPrivate } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -106,10 +106,11 @@ async function fetchPypi(name) {
  * @param {Array<{slug:string, status:string}>} params.mcps
  * @param {(name:string) => Promise<{status:number, body?:any}>} params.fetchPypiFn
  */
-export async function findPromotionCandidates({ mcps, fetchPypiFn }) {
+export async function findPromotionCandidates({ mcps, fetchPypiFn, isPrivateFn = () => false }) {
   const candidates = [];
   for (const mcp of mcps) {
     if (mcp.status !== 'coming-soon') continue;
+    if (isPrivateFn(mcp.slug)) continue;
     const r = await fetchPypiFn(mcp.slug);
     if (r.status !== 200) continue;
     // Reject third-party packages that happen to share our slug. Only count
@@ -131,6 +132,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   // Pass 1: released MCPs — full metadata + PyPI drift audit.
   for (const mcp of mcps) {
     if (mcp.status !== 'released') continue;
+    // A private repo with status=released is anomalous (release gate normally
+    // requires public + PyPI). Skip the metadata audit here — audit-orphans.mjs
+    // is the right place to flag the visibility inconsistency.
+    if (ghIsRepoPrivate(ORG, mcp.slug)) continue;
     const slug = mcp.slug;
     const findings = [];
 
@@ -159,7 +164,11 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   }
 
   // Pass 2: coming-soon MCPs — emit promotion candidates if now on PyPI.
-  const candidates = await findPromotionCandidates({ mcps, fetchPypiFn: fetchPypi });
+  const candidates = await findPromotionCandidates({
+    mcps,
+    fetchPypiFn: fetchPypi,
+    isPrivateFn: (slug) => ghIsRepoPrivate(ORG, slug),
+  });
   if (candidates.length > 0) {
     appendGroup(REPORT_PATH, 'asgard-opensource-gallery', candidates);
   }

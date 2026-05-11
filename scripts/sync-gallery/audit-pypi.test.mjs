@@ -147,3 +147,22 @@ test('findPromotionCandidates: third-party squatter (URLs do not point at our or
   });
   assert.deepEqual(cands, []);
 });
+
+test('findPromotionCandidates: private repo on PyPI is NOT a candidate', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-secret', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '1.0.0', project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-secret' } } } }),
+    isPrivateFn: () => true,
+  });
+  assert.deepEqual(cands, []);
+});
+
+test('findPromotionCandidates: public repo (explicit isPrivateFn=false) is a candidate', async () => {
+  const cands = await findPromotionCandidates({
+    mcps: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchPypiFn: async () => ({ status: 200, body: { info: { version: '0.1.0', project_urls: { Repository: 'https://github.com/asgard-ai-platform/mcp-foo' } } } }),
+    isPrivateFn: () => false,
+  });
+  assert.equal(cands.length, 1);
+  assert.match(cands[0], /mcp-foo/);
+});
