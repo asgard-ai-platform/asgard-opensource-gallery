@@ -95,6 +95,21 @@ export function ghRepoLookup(org, slug) {
 }
 
 /**
+ * Live check: is the given org repo currently private?
+ *
+ * Returns `false` on any failure (missing repo, network error, auth issue) —
+ * the safe default is "treat as public", because:
+ *   - missing repos are handled separately by audit-orphans.mjs
+ *   - network errors should NOT cause us to silently skip a real release-gating
+ *     check; downstream callers want false negatives (don't skip), not false
+ *     positives (skip when we shouldn't).
+ */
+export function ghIsRepoPrivate(org, slug) {
+  const v = ghJSON(`repos/${org}/${slug}`, '.private');
+  return v === true;
+}
+
+/**
  * Decide whether a PyPI metadata object (`body.info` from
  * `pypi.org/pypi/<name>/json`) describes a package owned by the Asgard
  * org. Looks at `info.home_page` and every value of `info.project_urls`
