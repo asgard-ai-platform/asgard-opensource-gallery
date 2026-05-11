@@ -14,7 +14,7 @@
  * README is expected to be unavailable to outside readers.
  */
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
+import { readFileSync, writeFileSync, realpathSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
@@ -225,10 +225,16 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   }
 
   // Feed repo issues into the same audit report consumed by the audit workflow.
+  // `_generated/` is git-ignored, so the parent dir may not exist on a fresh
+  // checkout (the sync workflow runs this script without the audit-side
+  // mkdir). Create it before appendGroup tries to write.
   const byRepo = new Map();
   for (const e of errors) {
     if (!byRepo.has(e.repo)) byRepo.set(e.repo, []);
     byRepo.get(e.repo).push(e.issue);
   }
-  for (const [repo, issues] of byRepo) appendGroup(REPORT_PATH, repo, issues);
+  if (byRepo.size > 0) {
+    mkdirSync(join(ROOT, 'scripts/sync-gallery/_generated'), { recursive: true });
+    for (const [repo, issues] of byRepo) appendGroup(REPORT_PATH, repo, issues);
+  }
 }
