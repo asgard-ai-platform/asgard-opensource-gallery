@@ -6,9 +6,10 @@
  *
  * Usage: node scripts/sync-gallery/sync-mcp-content.mjs
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 
 const ORG = 'asgard-ai-platform';
@@ -133,7 +134,7 @@ export function sectionKey(title) {
 
 // ── Main ─────────────────────────────────────────────────────────
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   console.log('═══════════════════════════════════════════════════');
   console.log(' Sync MCP Content → data/mcp-content.json');
   console.log('═══════════════════════════════════════════════════\n');
