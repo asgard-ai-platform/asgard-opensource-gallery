@@ -162,7 +162,9 @@ export function renderMcpStubs(entries) {
       `    github: https://github.com/asgard-ai-platform/${e.slug}`,
     ];
     if (e.toolsCount) lines.push(`    tools_count: ${e.toolsCount}`);
-    lines.push(`    tags: [${e.tags.join(', ')}]`);
+    // Quote every tag so numeric-looking tokens (e.g. slug `mcp-591` → tag
+    // `591`) round-trip as strings — the schema requires tags.items: string.
+    lines.push(`    tags: [${e.tags.map(t => `"${escapeStr(String(t))}"`).join(', ')}]`);
     lines.push(`    maintainer: asgard-ai-platform`);
     return lines.join('\n');
   }).join('\n\n');

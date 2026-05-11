@@ -122,7 +122,8 @@ function renderSkill(e) {
   if (e.requiresMcp.length) lines.push(`    requires_mcp: [${e.requiresMcp.join(', ')}]`);
   if (e.tags.length) {
     lines.push(`    tags:`);
-    for (const t of e.tags) lines.push(`    - ${t}`);
+    // Quote each tag so numeric tokens stay strings (schema: tags.items: string).
+    for (const t of e.tags) lines.push(`    - "${escapeStr(String(t))}"`);
   }
   lines.push(`    maintainer: asgard-ai-platform`);
   return lines.join('\n');

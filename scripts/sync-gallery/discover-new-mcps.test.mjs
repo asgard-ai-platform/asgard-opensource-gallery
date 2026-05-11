@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import yaml from 'js-yaml';
 import { buildMcpStubs, renderMcpStubs, appendStubsToYaml } from './discover-new-mcps.mjs';
 
 // ── buildMcpStubs ────────────────────────────────────────────────
@@ -121,7 +122,19 @@ test('renderMcpStubs: single entry produces a parseable YAML block', () => {
   assert.match(out, /- slug: mcp-foo/);
   assert.match(out, /status: coming-soon/);
   assert.match(out, /github: https:\/\/github\.com\/asgard-ai-platform\/mcp-foo/);
-  assert.match(out, /tags: \[data, global, foo\]/);
+  assert.match(out, /tags: \["data", "global", "foo"\]/);
+});
+
+test('renderMcpStubs: numeric tags round-trip as strings (schema requires tags.items: string)', () => {
+  const out = renderMcpStubs([{
+    slug: 'mcp-591', nameEn: 'Foo', nameZh: 'Foo',
+    descEn: 'd', descZh: 'd', status: 'coming-soon',
+    category: 'data', region: 'taiwan', toolsCount: null,
+    tags: ['data', 'taiwan', '591'],
+  }]);
+  const parsed = yaml.load(`servers:\n${out}`);
+  assert.deepEqual(parsed.servers[0].tags, ['data', 'taiwan', '591']);
+  assert.equal(typeof parsed.servers[0].tags[2], 'string');
 });
 
 test('renderMcpStubs: omits tools_count when null', () => {
