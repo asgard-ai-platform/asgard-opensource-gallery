@@ -125,24 +125,30 @@ export function ghListOrgRepos(org, { fetchPageFn } = {}) {
 }
 
 /**
- * Live check: is the given org repo currently private?
- *
- * Fails CLOSED: on any lookup failure (network, auth, transient gh outage,
- * or genuinely missing repo) returns `true` — treat the repo as private.
- * The visibility gate in promote-candidates/audit-pypi exists to *prevent*
- * promotion of private repos; if we can't verify visibility we must not
- * promote either. Missing-repo cases (typo, deletion) are surfaced
- * separately by audit-orphans.mjs.
- *
- * @param {string} org
- * @param {string} slug
- * @param {{ fetchFn?: () => any }} [opts]  DI hook for tests
+ * Tri-state visibility lookup. Returns `'private' | 'public' | 'unknown'`.
+ * `'unknown'` covers any gh failure (network, auth, transient outage,
+ * missing repo). Callers pick their own fail direction.
  */
-export function ghIsRepoPrivate(org, slug, { fetchFn } = {}) {
+export function ghRepoVisibility(org, slug, { fetchFn } = {}) {
   const fetch = fetchFn || (() => ghJSON(`repos/${org}/${slug}`, '.private'));
   const v = fetch();
-  if (v === null) return true; // gh failure → fail closed
-  return v === true;
+  if (v === true) return 'private';
+  if (v === false) return 'public';
+  return 'unknown';
+}
+
+/**
+ * Boolean form of ghRepoVisibility that **fails CLOSED**: unknown is
+ * treated as private. Use for *gate* questions ("should this entry
+ * be eligible for promotion?") where a lookup blip must not let a
+ * private repo slip through.
+ *
+ * Callers that need fail-OPEN semantics ("audit unless definitely
+ * private") should use `ghRepoVisibility` directly and branch on
+ * `=== 'private'`.
+ */
+export function ghIsRepoPrivate(org, slug, { fetchFn } = {}) {
+  return ghRepoVisibility(org, slug, { fetchFn }) !== 'public';
 }
 
 /**

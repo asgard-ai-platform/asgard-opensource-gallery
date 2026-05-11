@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos, ghIsRepoPrivate } from './_lib.mjs';
+import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos, ghIsRepoPrivate, ghRepoVisibility } from './_lib.mjs';
 
 test('decodeBase64Content decodes base64 to utf-8', () => {
   assert.equal(decodeBase64Content('aGVsbG8='), 'hello');
@@ -223,7 +223,21 @@ test('ghListOrgRepos: non-array response throws', () => {
   );
 });
 
-// ── ghIsRepoPrivate ──────────────────────────────────────────────
+// ── ghRepoVisibility / ghIsRepoPrivate ───────────────────────────
+
+test('ghRepoVisibility: true → private', () => {
+  assert.equal(ghRepoVisibility('org', 'mcp-x', { fetchFn: () => true }), 'private');
+});
+
+test('ghRepoVisibility: false → public', () => {
+  assert.equal(ghRepoVisibility('org', 'mcp-x', { fetchFn: () => false }), 'public');
+});
+
+test('ghRepoVisibility: null (gh failure) → unknown', () => {
+  // Callers that want fail-open behaviour (e.g. audit-pypi Pass 1)
+  // branch on === 'private' so unknown leaves the audit running.
+  assert.equal(ghRepoVisibility('org', 'mcp-x', { fetchFn: () => null }), 'unknown');
+});
 
 test('ghIsRepoPrivate: gh returns true → private', () => {
   assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => true }), true);
@@ -233,8 +247,8 @@ test('ghIsRepoPrivate: gh returns false → public', () => {
   assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => false }), false);
 });
 
-test('ghIsRepoPrivate: gh failure (null) → fail closed, treat as private', () => {
-  // Network blip, auth issue, or 404 must NOT make a coming-soon entry
-  // look promotable. Conservative default protects the visibility gate.
+test('ghIsRepoPrivate: gh failure (null) → fail CLOSED, treat as private', () => {
+  // For the *gate* question ("should this be eligible for promotion?"),
+  // a lookup blip must not let a private repo slip through.
   assert.equal(ghIsRepoPrivate('org', 'mcp-x', { fetchFn: () => null }), true);
 });

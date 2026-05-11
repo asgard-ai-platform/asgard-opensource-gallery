@@ -21,7 +21,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 import { parse as parseToml } from 'smol-toml';
-import { ghFetchFile, appendGroup, isOurPackage, ghIsRepoPrivate } from './_lib.mjs';
+import { ghFetchFile, appendGroup, isOurPackage, ghIsRepoPrivate, ghRepoVisibility } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -132,10 +132,11 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   // Pass 1: released MCPs — full metadata + PyPI drift audit.
   for (const mcp of mcps) {
     if (mcp.status !== 'released') continue;
-    // A private repo with status=released is anomalous (release gate normally
-    // requires public + PyPI). Skip the metadata audit here — audit-orphans.mjs
-    // is the right place to flag the visibility inconsistency.
-    if (ghIsRepoPrivate(ORG, mcp.slug)) continue;
+    // Skip only on a DEFINITIVE private result — a transient gh failure
+    // (returns 'unknown') must NOT silently suppress packaging/PyPI
+    // findings. A genuinely private released entry is anomalous and
+    // audit-orphans.mjs flags the inconsistency separately.
+    if (ghRepoVisibility(ORG, mcp.slug) === 'private') continue;
     const slug = mcp.slug;
     const findings = [];
 
