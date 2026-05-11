@@ -13,6 +13,18 @@
  * audit report). Private repos silently produce minimal stubs — their
  * README is expected to be unavailable to outside readers.
  */
+import { execFileSync } from 'node:child_process';
+import { readFileSync, writeFileSync, realpathSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import yaml from 'js-yaml';
+import { ghFetchFile, ghJSON, ghIsRepoPrivate, appendGroup } from './_lib.mjs';
+
+const ORG = 'asgard-ai-platform';
+const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
+const MCP_YAML = join(ROOT, 'data/mcp-servers.yaml');
+const REPORT_PATH = join(ROOT, 'scripts/sync-gallery/_generated/repo-audit-report.md');
+
 // ── Heuristic helpers (ported from generate-new-entries.mjs) ──────
 
 function inferRegion(slug) {
@@ -173,4 +185,50 @@ export function appendStubsToYaml(yamlText, renderedStubs, dateString) {
   return trimmed + header + renderedStubs + '\n';
 }
 
-// ── CLI entrypoint added in Task 5 ───────────────────────────────
+// ── CLI entrypoint ───────────────────────────────────────────────
+
+function gh(args) {
+  return execFileSync('gh', args, { encoding: 'utf-8', timeout: 20000, stdio: ['pipe', 'pipe', 'pipe'] }).trim();
+}
+
+function ghListAllMcpRepos() {
+  const json = gh(['repo', 'list', ORG, '--limit', '300', '--json', 'name,isPrivate']);
+  return JSON.parse(json)
+    .filter(r => r.name.startsWith('mcp-') && r.name !== 'mcp-template')
+    .map(r => r.name)
+    .sort();
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
+  const yamlText = readFileSync(MCP_YAML, 'utf-8');
+  const data = yaml.load(yamlText);
+  const existingSlugs = new Set(data.servers.map(s => s.slug));
+
+  const repoSlugs = ghListAllMcpRepos();
+  const { entries, errors } = buildMcpStubs({
+    existingSlugs,
+    repoSlugs,
+    fetchRepoFn: (slug) => ghJSON(`repos/${ORG}/${slug}`),
+    fetchReadmeFn: (slug) => ghFetchFile(ORG, slug, 'README.md'),
+    fetchReadmeZhFn: (slug) => ghFetchFile(ORG, slug, 'README.zh-TW.md'),
+    isPrivateFn: (slug) => ghIsRepoPrivate(ORG, slug),
+  });
+
+  if (entries.length === 0) {
+    console.log('discover-new-mcps: no new mcp-* repos to append');
+  } else {
+    const rendered = renderMcpStubs(entries);
+    const today = new Date().toISOString().slice(0, 10);
+    writeFileSync(MCP_YAML, appendStubsToYaml(yamlText, rendered, today), 'utf-8');
+    console.log(`discover-new-mcps: appended ${entries.length} coming-soon stub(s):`);
+    for (const e of entries) console.log(`  - ${e.slug} (${e.region}/${e.category})`);
+  }
+
+  // Feed repo issues into the same audit report consumed by the audit workflow.
+  const byRepo = new Map();
+  for (const e of errors) {
+    if (!byRepo.has(e.repo)) byRepo.set(e.repo, []);
+    byRepo.get(e.repo).push(e.issue);
+  }
+  for (const [repo, issues] of byRepo) appendGroup(REPORT_PATH, repo, issues);
+}
