@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync, realpathSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { ghFetchFile, ghJSON, ghIsRepoPrivate, appendGroup } from './_lib.mjs';
+import { ghFetchFile, ghJSON, appendGroup } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -195,8 +195,7 @@ function ghListAllMcpRepos() {
   const json = gh(['repo', 'list', ORG, '--limit', '300', '--json', 'name,isPrivate']);
   return JSON.parse(json)
     .filter(r => r.name.startsWith('mcp-') && r.name !== 'mcp-template')
-    .map(r => r.name)
-    .sort();
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
@@ -204,14 +203,17 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   const data = yaml.load(yamlText);
   const existingSlugs = new Set(data.servers.map(s => s.slug));
 
-  const repoSlugs = ghListAllMcpRepos();
+  // `gh repo list` already returns isPrivate per repo — reuse it instead of
+  // re-querying via ghIsRepoPrivate for every new slug.
+  const repos = ghListAllMcpRepos();
+  const visibility = new Map(repos.map(r => [r.name, r.isPrivate]));
   const { entries, errors } = buildMcpStubs({
     existingSlugs,
-    repoSlugs,
+    repoSlugs: repos.map(r => r.name),
     fetchRepoFn: (slug) => ghJSON(`repos/${ORG}/${slug}`),
     fetchReadmeFn: (slug) => ghFetchFile(ORG, slug, 'README.md'),
     fetchReadmeZhFn: (slug) => ghFetchFile(ORG, slug, 'README.zh-TW.md'),
-    isPrivateFn: (slug) => ghIsRepoPrivate(ORG, slug),
+    isPrivateFn: (slug) => visibility.get(slug) === true,
   });
 
   if (entries.length === 0) {

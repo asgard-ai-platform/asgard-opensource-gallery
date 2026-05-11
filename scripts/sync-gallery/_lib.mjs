@@ -1,9 +1,10 @@
 /**
  * _lib.mjs — Shared helpers for sync-gallery cron scripts.
  *
- * Existing scripts (sync-mcp-content.mjs, sync-skill-content.mjs,
+ * The legacy scripts (sync-mcp-content.mjs, sync-skill-content.mjs,
  * discover-new-skills.mjs) intentionally do not import this — they
- * stay as-is per the spec. This lib is for the new cron-only scripts.
+ * predate this lib or were ported verbatim. This lib is for the
+ * newer cron-only scripts.
  *
  * Uses execFileSync (argv array) rather than execSync (shell string) so
  * interpolated repo / path / slug values cannot inject shell commands.
