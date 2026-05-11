@@ -33,7 +33,7 @@ jobs:
             exit 1
           fi
           gh api user > /dev/null
-      - run: node scripts/sync-gallery/generate-new-entries.mjs
+      - run: node scripts/sync-gallery/discover-new-skills.mjs
       - run: node scripts/sync-gallery/audit-pypi.mjs
       - run: node scripts/sync-gallery/audit-readme-format.mjs
       - run: node scripts/sync-gallery/audit-orphans.mjs

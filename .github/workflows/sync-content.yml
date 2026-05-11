@@ -36,9 +36,12 @@ jobs:
             exit 1
           fi
           gh api user > /dev/null
-      # Flip `coming-soon` → `released` for any MCP whose slug-named package
-      # is now on PyPI. Runs BEFORE sync-mcp-content so the newly-promoted
-      # entries get their READMEs fetched in the same PR.
+      # 1) Discover new mcp-* repos (public + private) and append as
+      #    coming-soon stubs. Runs FIRST so the same PR contains both the
+      #    new stubs and the README/promote outputs below.
+      - run: node scripts/sync-gallery/discover-new-mcps.mjs
+      # 2) Flip `coming-soon` → `released` for any MCP whose slug-named
+      #    package is on PyPI (visibility-gated: private stays coming-soon).
       - run: node scripts/sync-gallery/promote-candidates.mjs
       - run: node scripts/sync-gallery/sync-mcp-content.mjs
       - run: node scripts/sync-gallery/sync-skill-content.mjs
