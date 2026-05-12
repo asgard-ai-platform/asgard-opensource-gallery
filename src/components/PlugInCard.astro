@@ -8,35 +8,27 @@ interface Props {
 const { plugin } = Astro.props;
 ---
 
-<a href={`/plugins/${plugin.slug}/`} class="card-hover group block bg-card border border-border rounded-xl overflow-hidden">
-  <!-- Icon/gradient header area -->
-  <div class="relative h-40 bg-gradient-to-br from-blue-600 to-cyan-900 flex items-center justify-center overflow-hidden">
+<a href={`/plugins/${plugin.slug}/`} class="card-link group border-border">
+  <div class="card-header from-blue-600 to-cyan-900">
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
     <div class="relative z-10">
-      <div class="h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10">
-        {plugin.name.en.charAt(0)}
-      </div>
+      <div class="card-icon-letter">{plugin.name.en.charAt(0)}</div>
     </div>
   </div>
 
-  <!-- Card body -->
   <div class="relative p-5">
     <h3 class="font-semibold text-foreground text-lg group-hover:text-primary transition-colors name-bilingual">
       <span class="name-en">{plugin.name.en}</span>
       <span class="name-zh">{plugin.name.zh}</span>
     </h3>
-    <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-en">
-      {plugin.scenario.en}
-    </p>
-    <p class="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2 lang-zh">
-      {plugin.scenario.zh}
-    </p>
+    <p class="card-desc lang-en">{plugin.scenario.en}</p>
+    <p class="card-desc lang-zh">{plugin.scenario.zh}</p>
 
     <div class="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
-      <span class="px-2 py-0.5 bg-accent rounded">
+      <span class="card-badge">
         {plugin.mcp_servers.length} <span class="lang-en">MCPs</span><span class="lang-zh">個 MCP</span>
       </span>
-      <span class="px-2 py-0.5 bg-accent rounded">
+      <span class="card-badge">
         {plugin.skills.length} <span class="lang-en">SKILLs</span><span class="lang-zh">個技能</span>
       </span>
     </div>

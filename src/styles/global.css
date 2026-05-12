@@ -32,6 +32,16 @@
     box-shadow: 0 25px 50px -12px rgba(74, 222, 128, 0.1);
   }
 
+  /* List-page card markup — bundled to keep per-card class strings short.
+     `group` is omitted because Tailwind needs it on the literal element to
+     resolve `group-hover:` modifiers. */
+  .card-link { @apply card-hover block bg-card border rounded-xl overflow-hidden; }
+  .card-desc { @apply mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2; }
+  .card-header { @apply relative h-40 bg-gradient-to-br flex items-center justify-center overflow-hidden; }
+  .card-icon-letter { @apply h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10; }
+  .card-tag { @apply px-2 py-0.5 text-xs rounded-full border border-border/40 text-muted-foreground; }
+  .card-badge { @apply px-2 py-0.5 bg-accent rounded text-muted-foreground; }
+
   /* Gradient text */
   .text-gradient {
     background: linear-gradient(to right, #4ade80, #34d399, #22d3ee);
