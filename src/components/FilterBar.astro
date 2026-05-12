@@ -199,14 +199,7 @@ const skillTypeLabelsZh: Record<string, string> = {
         const matchCategory = categories.has(card.dataset.category || '');
         const matchSkillType = !card.dataset.skilltype || skillTypes.has(card.dataset.skilltype || '');
 
-        let matchSearch = true;
-        if (query) {
-          const name = card.dataset.name || '';
-          const slug = card.dataset.slug || '';
-          const desc = card.dataset.description || '';
-          const tags = card.dataset.tags || '';
-          matchSearch = name.includes(query) || slug.includes(query) || desc.includes(query) || tags.includes(query);
-        }
+        const matchSearch = !query || (card.dataset.search || '').includes(query);
 
         if (matchStatus && matchCategory && matchSkillType && matchSearch) {
           matched.push(card);

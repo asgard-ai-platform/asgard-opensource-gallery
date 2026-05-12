@@ -11,7 +11,10 @@ const descEn = skill.description.en;
 const descZh = skill.description.zh || skill.description.en;
 const truncatedEn = descEn.length > 100 ? descEn.slice(0, 100) + '...' : descEn;
 const truncatedZh = descZh.length > 100 ? descZh.slice(0, 100) + '...' : descZh;
-const searchDesc = (descEn + ' ' + descZh).toLowerCase();
+const searchText = [
+  skill.name.en, skill.name.zh, skill.slug,
+  descEn, descZh, skill.tags?.join(' ') || '',
+].join(' ').toLowerCase();
 
 const typeColors: Record<string, string> = {
   industry: 'text-primary',
@@ -34,17 +37,10 @@ const isReleased = skill.status === 'released';
   href={`/skills/${skill.slug}/`}
   class={`card-hover group block bg-card border rounded-xl overflow-hidden ${isReleased ? 'border-border' : 'border-border/50 opacity-60 hover:opacity-100 transition-opacity'}`}
   data-category={skill.category}
-  data-region={skill.region || 'global'}
   data-status={skill.status}
   data-skilltype={skill.skill_type}
-  data-name={`${skill.name.en} ${skill.name.zh}`.toLowerCase()}
-  data-slug={skill.slug}
-  data-tags={skill.tags?.join(',') || ''}
-  data-description={searchDesc}
+  data-search={searchText}
 >
-  <!-- Gradient overlay on hover -->
-  <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl pointer-events-none z-10"></div>
-
   <!-- Icon/gradient header area -->
   <div class={`relative h-40 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
@@ -104,12 +100,6 @@ const isReleased = skill.status === 'released';
         <span class="lang-en">requires:</span><span class="lang-zh">需要：</span> {skill.requires_mcp.join(', ')}
       </div>
     )}
-
-    <div class="mt-4">
-      <span class="btn-gradient inline-block w-full text-center px-4 py-2 rounded-lg text-sm">
-        <span class="lang-en">View Details</span><span class="lang-zh">查看詳情</span>
-      </span>
-    </div>
   </div>
 
   {skill.upgrade_to && (

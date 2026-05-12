@@ -11,7 +11,10 @@ const descEn = server.description.en;
 const descZh = server.description.zh || server.description.en;
 const truncatedEn = descEn.length > 100 ? descEn.slice(0, 100) + '...' : descEn;
 const truncatedZh = descZh.length > 100 ? descZh.slice(0, 100) + '...' : descZh;
-const searchDesc = (descEn + ' ' + descZh).toLowerCase();
+const searchText = [
+  server.name.en, server.name.zh, server.slug,
+  descEn, descZh, server.tags?.join(' ') || '',
+].join(' ').toLowerCase();
 
 const gradientColors: Record<string, string> = {
   ecommerce: 'from-green-600 to-emerald-900',
@@ -33,16 +36,9 @@ const isReleased = server.status === 'released';
   href={`/mcp/${server.slug}/`}
   class={`card-hover group block bg-card border rounded-xl overflow-hidden ${isReleased ? 'border-border' : 'border-border/50 opacity-60 hover:opacity-100 transition-opacity'}`}
   data-category={server.category}
-  data-region={server.region}
   data-status={server.status}
-  data-name={`${server.name.en} ${server.name.zh}`.toLowerCase()}
-  data-slug={server.slug}
-  data-tags={server.tags?.join(',') || ''}
-  data-description={searchDesc}
+  data-search={searchText}
 >
-  <!-- Gradient overlay on hover -->
-  <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl pointer-events-none z-10"></div>
-
   <!-- Icon/gradient header area -->
   <div class={`relative h-40 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
     <!-- Gradient-to-transparent overlay from bottom -->
@@ -98,13 +94,6 @@ const isReleased = server.status === 'released';
       {server.maintainer && (
         <span class="ml-auto text-muted-foreground/70">by @{server.maintainer}</span>
       )}
-    </div>
-
-    <!-- CTA button -->
-    <div class="mt-4">
-      <span class="btn-gradient inline-block w-full text-center px-4 py-2 rounded-lg text-sm">
-        <span class="lang-en">View Details</span><span class="lang-zh">查看詳情</span>
-      </span>
     </div>
   </div>
 

@@ -9,9 +9,6 @@ const { plugin } = Astro.props;
 ---
 
 <a href={`/plugins/${plugin.slug}/`} class="card-hover group block bg-card border border-border rounded-xl overflow-hidden">
-  <!-- Gradient overlay on hover -->
-  <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl pointer-events-none z-10"></div>
-
   <!-- Icon/gradient header area -->
   <div class="relative h-40 bg-gradient-to-br from-blue-600 to-cyan-900 flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
@@ -41,12 +38,6 @@ const { plugin } = Astro.props;
       </span>
       <span class="px-2 py-0.5 bg-accent rounded">
         {plugin.skills.length} <span class="lang-en">SKILLs</span><span class="lang-zh">個技能</span>
-      </span>
-    </div>
-
-    <div class="mt-4">
-      <span class="btn-gradient inline-block w-full text-center px-4 py-2 rounded-lg text-sm">
-        <span class="lang-en">View PlugIn</span><span class="lang-zh">查看方案</span>
       </span>
     </div>
   </div>
