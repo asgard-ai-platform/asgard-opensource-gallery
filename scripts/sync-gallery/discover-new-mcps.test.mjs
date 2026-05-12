@@ -84,6 +84,47 @@ test('buildMcpStubs: private repo with unparseable tools count does NOT emit err
   assert.deepEqual(errors, []);
 });
 
+test('buildMcpStubs: H1 that equals the slug is treated as placeholder', () => {
+  // Real-world case: README's H1 is literally `# mcp-foo-bar`. Without the
+  // guard the gallery title renders the slug; with it we fall back to a
+  // title-cased name.
+  const { entries } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-foo-bar'],
+    fetchRepoFn: () => ({ description: 'd' }),
+    fetchReadmeFn: () => '# mcp-foo-bar\n\nIntro.',
+    fetchReadmeZhFn: () => '# mcp-foo-bar',
+    isPrivateFn: () => false,
+  });
+  assert.equal(entries[0].nameEn, 'Foo Bar');
+  assert.equal(entries[0].nameZh, 'Foo Bar');
+});
+
+test('buildMcpStubs: Chinese H1 is read from README.zh-TW.md', () => {
+  const { entries } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-foo'],
+    fetchRepoFn: () => ({ description: 'd' }),
+    fetchReadmeFn: () => '# Foo English\n\nIntro.',
+    fetchReadmeZhFn: () => '# 中文標題\n\n中文簡介。',
+    isPrivateFn: () => false,
+  });
+  assert.equal(entries[0].nameEn, 'Foo English');
+  assert.equal(entries[0].nameZh, '中文標題');
+});
+
+test('buildMcpStubs: missing Chinese H1 falls back to English name', () => {
+  const { entries } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-foo'],
+    fetchRepoFn: () => ({ description: 'd' }),
+    fetchReadmeFn: () => '# Foo English\n\nIntro.',
+    fetchReadmeZhFn: () => null,
+    isPrivateFn: () => false,
+  });
+  assert.equal(entries[0].nameZh, 'Foo English');
+});
+
 test('buildMcpStubs: applies region/category heuristics from slug', () => {
   const { entries } = buildMcpStubs({
     existingSlugs: new Set(),

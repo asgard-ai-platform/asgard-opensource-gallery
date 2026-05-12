@@ -49,6 +49,15 @@ function extractH1(body) {
   return m ? m[1].trim() : '';
 }
 
+// Treat an H1 as a placeholder when it's literally the slug (with or without
+// the `mcp-` prefix). Repos sometimes ship `# mcp-foo-bar` as their H1, which
+// then surfaces as the gallery title — caller should fall back to slugToTitle.
+function isPlaceholderH1(h1, slug) {
+  if (!h1) return true;
+  const norm = h1.toLowerCase().trim();
+  return norm === slug.toLowerCase() || norm === slug.replace(/^mcp-/, '').toLowerCase();
+}
+
 function extractIntro(readme) {
   if (!readme) return '';
   const lines = readme.split('\n');
@@ -127,14 +136,17 @@ export function buildMcpStubs({ existingSlugs, repoSlugs, fetchRepoFn, fetchRead
     const tags = [...new Set([category, region, ...slugTokens])].slice(0, 6);
     const intro = extractIntro(readme || '');
 
-    const nameEn = extractH1(readme || '') || slugToTitle(slug);
+    const rawH1En = extractH1(readme || '');
+    const nameEn = isPlaceholderH1(rawH1En, slug) ? slugToTitle(slug) : rawH1En;
+    const rawH1Zh = extractH1(readmeZh || '');
+    const nameZh = isPlaceholderH1(rawH1Zh, slug) ? nameEn : rawH1Zh;
     let descEn = repoInfo?.description || (intro ? intro.split('\n\n')[0].replace(/\n/g, ' ').trim() : '');
     if (!descEn) descEn = `MCP Server for ${nameEn}.`;
     if (descEn.length > 250) descEn = descEn.slice(0, 247) + '...';
-    const descZh = `${nameEn} MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。`;
+    const descZh = `${nameZh} MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。`;
 
     entries.push({
-      slug, nameEn, nameZh: nameEn, descEn, descZh,
+      slug, nameEn, nameZh, descEn, descZh,
       status: 'coming-soon', category, region, toolsCount, tags,
     });
   }
