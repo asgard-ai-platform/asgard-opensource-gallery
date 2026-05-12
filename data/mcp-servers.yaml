@@ -1192,7 +1192,7 @@ servers:
     tags: ["data", "global", "tdx"]
     maintainer: asgard-ai-platform
 
-  - slug: mcp-tdx-aitport
+  - slug: mcp-tdx-airport
     name:
       en: "mcp-tdx-airport"
       zh: "mcp-tdx-airport"
@@ -1202,9 +1202,9 @@ servers:
     status: coming-soon
     category: data
     region: global
-    github: https://github.com/asgard-ai-platform/mcp-tdx-aitport
+    github: https://github.com/asgard-ai-platform/mcp-tdx-airport
     tools_count: 26
-    tags: ["data", "global", "tdx", "aitport"]
+    tags: ["data", "global", "tdx", "airport"]
     maintainer: asgard-ai-platform
 
   - slug: mcp-tdx-bus
