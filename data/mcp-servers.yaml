@@ -1101,7 +1101,7 @@ servers:
     description:
       en: "Model Context Protocol server for read-only buy123 vendor portal queries"
       zh: "mcp-buy123-vendor MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
-    status: coming-soon
+    status: released
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-buy123-vendor
