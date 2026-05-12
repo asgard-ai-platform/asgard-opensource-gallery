@@ -36,6 +36,15 @@
      `group` is omitted because Tailwind needs it on the literal element to
      resolve `group-hover:` modifiers. */
   .card-link { @apply card-hover block bg-card border rounded-xl overflow-hidden; }
+
+  /* Initial paint: hide cards past the first page so the browser never
+     lays out the ~230 hidden cards on a fresh load. FilterBar JS adds
+     `cards-hydrated` to <body> once it owns pagination, after which
+     explicit inline display rules drive visibility. Keep PAGE_SIZE here
+     in sync with the constant in FilterBar.astro. */
+  body:not(.cards-hydrated) .card-grid-wrap > a:nth-child(n+31) {
+    display: none;
+  }
   .card-desc { @apply mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2; }
   .card-header { @apply relative h-40 bg-gradient-to-br flex items-center justify-center overflow-hidden; }
   .card-icon-letter { @apply h-20 w-20 rounded-2xl bg-background/30 backdrop-blur-sm text-foreground flex items-center justify-center font-bold text-4xl border border-white/10; }

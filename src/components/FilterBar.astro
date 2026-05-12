@@ -177,6 +177,8 @@ const skillTypeLabelsZh: Record<string, string> = {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 
     function applyFilters(resetPage = true) {
+      // Hand pagination over to JS — disables the SSR nth-child(n+31) rule.
+      document.body.classList.add('cards-hydrated');
       if (resetPage) currentPage = 1;
 
       const query = searchInput?.value.toLowerCase().trim() || '';
