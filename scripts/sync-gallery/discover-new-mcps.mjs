@@ -139,6 +139,9 @@ export function buildMcpStubs({ existingSlugs, repoSlugs, fetchRepoFn, fetchRead
     const rawH1En = extractH1(readme || '');
     const nameEn = isPlaceholderH1(rawH1En, slug) ? slugToTitle(slug) : rawH1En;
     const rawH1Zh = extractH1(readmeZh || '');
+    // Asymmetric fallback: zh defaults to nameEn (not slugToTitle) so that a
+    // valid English H1 surfaces in the zh slot rather than an ugly Title-Cased
+    // slug. Preserves the prior "nameZh: nameEn" behavior when both H1s fail.
     const nameZh = isPlaceholderH1(rawH1Zh, slug) ? nameEn : rawH1Zh;
     let descEn = repoInfo?.description || (intro ? intro.split('\n\n')[0].replace(/\n/g, ' ').trim() : '');
     if (!descEn) descEn = `MCP Server for ${nameEn}.`;
