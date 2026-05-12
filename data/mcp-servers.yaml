@@ -1096,8 +1096,8 @@ servers:
   # ============================================================
   - slug: mcp-buy123-vendor
     name:
-      en: "mcp-buy123-vendor"
-      zh: "mcp-buy123-vendor"
+      en: "buy123 Vendor Portal"
+      zh: "buy123 供應商平台"
     description:
       en: "Model Context Protocol server for read-only buy123 vendor portal queries"
       zh: "mcp-buy123-vendor MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1152,8 +1152,8 @@ servers:
 
   - slug: mcp-ocard
     name:
-      en: "mcp-ocard"
-      zh: "mcp-ocard"
+      en: "OCard CRM"
+      zh: "OCard 會員管理"
     description:
       en: "OCard CRM MCP Server — AI-callable tools for OCard membership, transactions, promotions, and online ordering APIs."
       zh: "mcp-ocard MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1180,8 +1180,8 @@ servers:
 
   - slug: mcp-tdx
     name:
-      en: "mcp-tdx"
-      zh: "mcp-tdx"
+      en: "TDX Transport Data eXchange"
+      zh: "TDX 運輸資料流通服務平臺"
     description:
       en: "MCP Server for **TDX (Transport Data eXchange) — 運輸資料流通服務平臺**"
       zh: "mcp-tdx MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1194,8 +1194,8 @@ servers:
 
   - slug: mcp-tdx-airport
     name:
-      en: "mcp-tdx-airport"
-      zh: "mcp-tdx-airport"
+      en: "TDX Air & Maritime Transport"
+      zh: "TDX 航空與海運"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Air & Maritime Transport**."
       zh: "mcp-tdx-airport MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1209,8 +1209,8 @@ servers:
 
   - slug: mcp-tdx-bus
     name:
-      en: "mcp-tdx-bus"
-      zh: "mcp-tdx-bus"
+      en: "TDX Bus & InterCity Coach"
+      zh: "TDX 公車與客運"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Bus & InterCity Coach**."
       zh: "mcp-tdx-bus MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1224,8 +1224,8 @@ servers:
 
   - slug: mcp-tdx-meta
     name:
-      en: "mcp-tdx-meta"
-      zh: "mcp-tdx-meta"
+      en: "TDX Meta Services"
+      zh: "TDX 共通服務"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Meta Services (GIS / MaaS / Geocoding / Common Data / Stats / Weather / Changelog)**."
       zh: "mcp-tdx-meta MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1239,8 +1239,8 @@ servers:
 
   - slug: mcp-tdx-mobility
     name:
-      en: "mcp-tdx-mobility"
-      zh: "mcp-tdx-mobility"
+      en: "TDX Last-Mile Mobility"
+      zh: "TDX 最後一哩交通"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Last-Mile Mobility (Parking / Shared Bike / EV Charging)**."
       zh: "mcp-tdx-mobility MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1254,8 +1254,8 @@ servers:
 
   - slug: mcp-tdx-rail
     name:
-      en: "mcp-tdx-rail"
-      zh: "mcp-tdx-rail"
+      en: "TDX Rail Transit"
+      zh: "TDX 軌道運輸"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Rail (TRA / THSR / Metro / Light Rail)**."
       zh: "mcp-tdx-rail MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1269,8 +1269,8 @@ servers:
 
   - slug: mcp-tdx-tourism
     name:
-      en: "mcp-tdx-tourism"
-      zh: "mcp-tdx-tourism"
+      en: "TDX Tourism"
+      zh: "TDX 觀光旅遊"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Tourism (POI / Restaurants / Hotels / Events)**."
       zh: "mcp-tdx-tourism MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1284,8 +1284,8 @@ servers:
 
   - slug: mcp-tdx-traffic
     name:
-      en: "mcp-tdx-traffic"
-      zh: "mcp-tdx-traffic"
+      en: "TDX Traffic & Road Network"
+      zh: "TDX 路況與路網"
     description:
       en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Traffic & Road Network**."
       zh: "mcp-tdx-traffic MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1313,8 +1313,8 @@ servers:
 
   - slug: mcp-youtube-analytics
     name:
-      en: "mcp-youtube-analytics"
-      zh: "mcp-youtube-analytics"
+      en: "YouTube Analytics"
+      zh: "YouTube 頻道分析"
     description:
       en: "A Model Context Protocol (MCP) server for querying and analyzing YouTube channel performance data."
       zh: "mcp-youtube-analytics MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
