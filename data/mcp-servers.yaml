@@ -1324,3 +1324,20 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-youtube-analytics
     tags: ["data", "global", "youtube", "analytics"]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Auto-added by discover-new-mcps.mjs on 2026-05-17 — REVIEW
+  # ============================================================
+  - slug: mcp-threads
+    name:
+      en: "Threads"
+      zh: "Threads"
+    description:
+      en: "A Model Context Protocol (MCP) server for managing persistent conversation threads."
+      zh: "Threads MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-threads
+    tags: ["data", "global", "threads"]
+    maintainer: asgard-ai-platform
