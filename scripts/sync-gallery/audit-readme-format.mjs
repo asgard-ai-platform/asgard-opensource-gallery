@@ -13,7 +13,7 @@ import { readFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { ghFetchFile, appendGroup } from './_lib.mjs';
+import { ghFetchFile, appendGroup, ghRepoVisibility } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -108,7 +108,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   let totalFindings = 0;
 
   for (const mcp of mcps) {
-    if (mcp.status !== 'released') continue;
+    // Every PUBLIC mcp repo is format-checked regardless of status.
+    // 'private' / 'unknown' (missing repo or transient gh failure) skip —
+    // avoids false "README missing" findings during a GitHub outage.
+    if (ghRepoVisibility(ORG, mcp.slug) !== 'public') continue;
     const readme = ghFetchFile(ORG, mcp.slug, 'README.md');
     if (!readme) {
       appendGroup(REPORT_PATH, mcp.slug, ['README.md missing or unreachable']);

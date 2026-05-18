@@ -129,14 +129,14 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   const mcps = yaml.load(readFileSync(join(dataDir, 'mcp-servers.yaml'), 'utf-8')).servers;
   let totalFindings = 0;
 
-  // Pass 1: released MCPs — full metadata + PyPI drift audit.
+  // Pass 1: every PUBLIC mcp repo (any status) — pyproject/LICENSE
+  // conformance. The PyPI publish-drift sub-check is released-only.
   for (const mcp of mcps) {
-    if (mcp.status !== 'released') continue;
-    // Skip only on a DEFINITIVE private result — a transient gh failure
-    // (returns 'unknown') must NOT silently suppress packaging/PyPI
-    // findings. A genuinely private released entry is anomalous and
-    // audit-orphans.mjs flags the inconsistency separately.
-    if (ghRepoVisibility(ORG, mcp.slug) === 'private') continue;
+    // Process only repos we can confirm are public. 'private' is skipped
+    // by design; 'unknown' (missing repo / transient gh failure) is also
+    // skipped so an outage can't mass-emit false "missing file" findings —
+    // the next scheduled run picks it back up.
+    if (ghRepoVisibility(ORG, mcp.slug) !== 'public') continue;
     const slug = mcp.slug;
     const findings = [];
 
@@ -147,16 +147,20 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
       const license = ghFetchFile(ORG, slug, 'LICENSE');
       findings.push(...checkPyproject(tomlText, license !== null));
 
-      try {
-        const parsed = parseToml(tomlText);
-        const name = parsed.project?.name;
-        const version = parsed.project?.version;
-        if (name && version) {
-          const pypi = await fetchPypi(name);
-          findings.push(...checkPypiPublish(name, version, pypi));
+      // PyPI publish-drift only applies to released MCPs — a coming-soon
+      // repo legitimately has no PyPI release yet, so skip to avoid noise.
+      if (mcp.status === 'released') {
+        try {
+          const parsed = parseToml(tomlText);
+          const name = parsed.project?.name;
+          const version = parsed.project?.version;
+          if (name && version) {
+            const pypi = await fetchPypi(name);
+            findings.push(...checkPypiPublish(name, version, pypi));
+          }
+        } catch {
+          // Already reported as invalid TOML.
         }
-      } catch {
-        // Already reported as invalid TOML.
       }
     }
 
