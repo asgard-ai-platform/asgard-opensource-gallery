@@ -1341,3 +1341,64 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-threads
     tags: ["data", "global", "threads"]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Auto-added by discover-new-mcps.mjs on 2026-05-31 — REVIEW
+  # ============================================================
+  - slug: mcp-cpbl-statistics
+    name:
+      en: "MCP CPBL Statistics"
+      zh: "MCP 中華職棒統計"
+    description:
+      en: "An MCP (Model Context Protocol) server that provides comprehensive statistics and data for the Chinese Professional Baseball League (CPBL)."
+      zh: "MCP 中華職棒統計 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-cpbl-statistics
+    tools_count: 10
+    tags: ["data", "global", "cpbl", "statistics"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-heimdall
+    name:
+      en: "MCP Server Template"
+      zh: "MCP Server 範本"
+    description:
+      en: "A reusable template for building [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers that expose AI-callable tools. Part of the [Asgard AI Platform](https://github.com/asgard-ai-platform) open-source ecosystem."
+      zh: "MCP Server 範本 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-heimdall
+    tags: ["data", "global", "heimdall"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-plurk
+    name:
+      en: "Plurk"
+      zh: "Plurk"
+    description:
+      en: "A minimal Plurk MCP server for reading your timeline and posting while you work."
+      zh: "Plurk MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: communication
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-plurk
+    tools_count: 15
+    tags: ["communication", "global", "plurk"]
+    maintainer: asgard-ai-platform
+
+  - slug: mcp-uofx
+    name:
+      en: "UOF X × AI Agent 整合示範"
+      zh: "UOF X × AI Agent 整合示範"
+    description:
+      en: "UOF X 是一套企業 ERP，提供 99 個 API。這個專案展示：把這些 API 接上 AI Agent，員工能用自然語言完成哪些工作？"
+      zh: "UOF X × AI Agent 整合示範 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-uofx
+    tags: ["data", "global", "uofx"]
+    maintainer: asgard-ai-platform
