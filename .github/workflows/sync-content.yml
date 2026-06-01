@@ -26,7 +26,7 @@ jobs:
       # every repo the App is installed on (cross-org Contents:Read for the
       # sync helpers) and, unlike GITHUB_TOKEN, pushes made with it DO trigger
       # deploy.yml.
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           app-id: ${{ secrets.SYNC_APP_ID }}

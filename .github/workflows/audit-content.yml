@@ -24,7 +24,7 @@ jobs:
       # Issues:Write (post-audit-issues creates tracking issues on each
       # mcp-* repo) — the default GITHUB_TOKEN cannot write issues on other
       # repos in the org.
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           app-id: ${{ secrets.SYNC_APP_ID }}
