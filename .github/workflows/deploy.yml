@@ -2,6 +2,18 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main, develop]
+    # Only deploy when something that affects the built site changes. Pushes
+    # touching only CI, sync/audit scripts, tests, schemas, or docs are skipped.
+    paths:
+      - 'data/**'
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'tailwind.config.mjs'
+      - 'tsconfig.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy.yml'
 
 # Force Node 24 runtime for any third-party JS actions still pinned to node20
 # (e.g. cloudflare/wrangler-action@v3 — no v4 yet that ships with node24).
