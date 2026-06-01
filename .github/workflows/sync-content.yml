@@ -4,9 +4,6 @@ on:
     - cron: '0 18 * * 0'    # Sunday 18:00 UTC = Mon 02:00 TW
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 # Serialise scheduled and manual runs so a workflow_dispatch never overlaps
 # the cron run. Both push directly to main.
 concurrency:

@@ -4,9 +4,6 @@ on:
     - cron: '0 19 * * *'    # Daily 19:00 UTC = 03:00 TW
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 # Serialise scheduled and manual runs so two parallel jobs cannot both miss
 # the dedup check and create duplicate tracking issues.
 concurrency:
