@@ -18,21 +18,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
+      # Mint a short-lived (1h) org installation token from the sync GitHub
+      # App. The App must grant cross-org Contents:Read (sync helpers) AND
+      # Issues:Write (post-audit-issues creates tracking issues on each
+      # mcp-* repo) — the default GITHUB_TOKEN cannot write issues on other
+      # repos in the org.
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNC_APP_ID }}
+          private-key: ${{ secrets.SYNC_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 22
       - run: npm ci
+      # Expose the App token to every gh-CLI-backed audit step below.
+      - run: echo "GH_TOKEN=${{ steps.app-token.outputs.token }}" >> "$GITHUB_ENV"
       - name: Verify token
-        run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "::error::secrets.GH_TOKEN is empty. This workflow needs a fine-grained PAT with: cross-repo Contents:Read AND Issues:Write on asgard-ai-platform/* — the default GITHUB_TOKEN cannot create issues on other repos in the org."
-            exit 1
-          fi
-          gh api user > /dev/null
+        env:
+          OWNER: ${{ github.repository_owner }}
+        run: gh api "orgs/$OWNER/repos?per_page=1" > /dev/null
       - run: node scripts/sync-gallery/discover-new-skills.mjs
       # discover-new-mcps in report-only mode: appends MCP discovery findings
       # (missing README, empty description, etc.) to the audit report without
