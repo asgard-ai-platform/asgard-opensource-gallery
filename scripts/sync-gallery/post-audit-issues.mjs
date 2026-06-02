@@ -54,7 +54,17 @@ export function formatIssueBody({ repo, findings, runId, timestamp }) {
       ? 'Open a PR on this repo (`asgard-opensource-gallery`) to update the YAML.'
       : repo === 'skills'
       ? 'Either fix the SKILL.md in this repo or open a PR on `asgard-ai-platform/asgard-opensource-gallery` to update the YAML.'
-      : 'Either fix the source (this repo) or open a PR on `asgard-ai-platform/asgard-opensource-gallery` to update the YAML.';
+      // Every other (mcp-*) finding is checked against the live repo content,
+      // so editing the gallery YAML would not clear it — fix the repo.
+      : 'Fix the source in this repo to satisfy the findings above.';
+
+  // The tools_count mismatch is the one mcp-* finding that the gallery YAML
+  // can legitimately resolve (README count vs YAML `tools_count`), so the
+  // "update the YAML instead" path is only offered when it is present.
+  const hasToolsCountMismatch = isMcpRepo && findings.some(f => /YAML tools_count is \d+/.test(f));
+  const yamlNote = hasToolsCountMismatch
+    ? 'For the `## Tools (N)` count mismatch, you can alternatively open a PR on `asgard-ai-platform/asgard-opensource-gallery` to update `tools_count` in the YAML.'
+    : null;
 
   // For an mcp-* repo, every README/pyproject rule is calibrated against the
   // golden sample, so the fastest fix is to copy its structure verbatim.
@@ -74,6 +84,7 @@ export function formatIssueBody({ repo, findings, runId, timestamp }) {
     '## What to do',
     '',
     fixHint,
+    ...(yamlNote ? ['', yamlNote] : []),
     ...(reference ? ['', reference] : []),
     'When all findings are resolved, close this issue manually.',
     '',

@@ -49,6 +49,25 @@ test('formatIssueBody mentions correct fix location for gallery findings', () =>
   assert.match(body, /asgard-opensource-gallery/);
 });
 
+test('formatIssueBody: mcp repo without tools_count mismatch does not offer the YAML path', () => {
+  const body = formatIssueBody({
+    repo: 'mcp-foo',
+    findings: ['LICENSE file missing at repo root — add a `LICENSE` file (MIT) at the repo root'],
+    runId: 1, timestamp: 't',
+  });
+  assert.match(body, /Fix the source in this repo/);
+  assert.doesNotMatch(body, /update `tools_count` in the YAML/);
+});
+
+test('formatIssueBody: mcp repo with tools_count mismatch offers the YAML path', () => {
+  const body = formatIssueBody({
+    repo: 'mcp-foo',
+    findings: ['## Tools (12) declares 12 but YAML tools_count is 19 — make the two match'],
+    runId: 1, timestamp: 't',
+  });
+  assert.match(body, /update `tools_count` in the YAML/);
+});
+
 test('parseReport accumulates findings when an H2 group repeats', () => {
   // M6 fix: a repeated `## mcp-foo` must not reset the existing array.
   const md = [
