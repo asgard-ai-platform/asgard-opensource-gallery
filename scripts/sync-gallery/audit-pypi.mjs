@@ -32,6 +32,19 @@ const REQUIRED_PROJECT_FIELDS = [
   'requires-python', 'license', 'authors', 'classifiers',
 ];
 
+// Concrete example value per required field, appended to the finding so a
+// maintainer sees exactly what line to add under [project].
+const FIELD_EXAMPLE = {
+  name: 'name = "mcp-<service>"',
+  version: 'version = "0.1.0"',
+  description: 'description = "<one-line summary>"',
+  readme: 'readme = "README.md"',
+  'requires-python': 'requires-python = ">=3.10"',
+  license: 'license = "MIT"',
+  authors: 'authors = [{ name = "Asgard AI Platform" }]',
+  classifiers: 'classifiers = ["Programming Language :: Python :: 3"]',
+};
+
 export function checkPyproject(text, hasLicenseFile) {
   const findings = [];
   let parsed;
@@ -46,17 +59,17 @@ export function checkPyproject(text, hasLicenseFile) {
   for (const field of REQUIRED_PROJECT_FIELDS) {
     const v = project[field];
     if (v === undefined || v === null || v === '') {
-      findings.push(`pyproject.toml [project] missing required field '${field}'`);
+      findings.push(`pyproject.toml [project] missing required field '${field}' — add e.g. \`${FIELD_EXAMPLE[field]}\``);
     }
   }
 
   const buildSystem = parsed['build-system'] || {};
   if (!buildSystem['build-backend']) {
-    findings.push('pyproject.toml [build-system] missing build-backend');
+    findings.push('pyproject.toml [build-system] missing build-backend — add e.g. `build-backend = "hatchling.build"`');
   }
 
   if (!hasLicenseFile) {
-    findings.push('LICENSE file missing at repo root');
+    findings.push('LICENSE file missing at repo root — add a `LICENSE` file (MIT) at the repo root');
   }
 
   return findings;

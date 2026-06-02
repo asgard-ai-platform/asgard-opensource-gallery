@@ -48,12 +48,19 @@ export function parseReport(md) {
 }
 
 export function formatIssueBody({ repo, findings, runId, timestamp }) {
+  const isMcpRepo = repo !== 'asgard-opensource-gallery' && repo !== 'skills';
   const fixHint =
     repo === 'asgard-opensource-gallery'
       ? 'Open a PR on this repo (`asgard-opensource-gallery`) to update the YAML.'
       : repo === 'skills'
       ? 'Either fix the SKILL.md in this repo or open a PR on `asgard-ai-platform/asgard-opensource-gallery` to update the YAML.'
       : 'Either fix the source (this repo) or open a PR on `asgard-ai-platform/asgard-opensource-gallery` to update the YAML.';
+
+  // For an mcp-* repo, every README/pyproject rule is calibrated against the
+  // golden sample, so the fastest fix is to copy its structure verbatim.
+  const reference = isMcpRepo
+    ? 'Reference: this repo should match the golden sample https://github.com/asgard-ai-platform/mcp-shopline — copy its `README.md` structure (badges, `## What This Does` / `## Quick Start` / `## Tools (N)` / `## License` sections, and the `### Install` / `### Use with Claude Code` / `### Use with Claude Desktop` subsections) and its `pyproject.toml` metadata, then adapt the names.'
+    : null;
 
   const findingLines = findings.map(f => `- ⚠️ ${f}`).join('\n');
 
@@ -67,6 +74,7 @@ export function formatIssueBody({ repo, findings, runId, timestamp }) {
     '## What to do',
     '',
     fixHint,
+    ...(reference ? ['', reference] : []),
     'When all findings are resolved, close this issue manually.',
     '',
     MARKER_COMMENT,

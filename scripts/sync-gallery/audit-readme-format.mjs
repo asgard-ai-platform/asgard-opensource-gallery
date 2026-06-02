@@ -20,13 +20,13 @@ const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
 const REPORT_PATH = join(ROOT, 'scripts/sync-gallery/_generated/repo-audit-report.md');
 
 const REQUIRED_BADGES = [
-  { name: 'PyPI version',       pattern: /img\.shields\.io\/pypi\/v\// },
-  { name: 'Python versions',    pattern: /img\.shields\.io\/pypi\/pyversions\// },
-  { name: 'License',            pattern: /img\.shields\.io\/badge\/License-MIT/ },
-  { name: 'GitHub stars',       pattern: /img\.shields\.io\/github\/stars\// },
-  { name: 'GitHub issues',      pattern: /img\.shields\.io\/github\/issues\// },
-  { name: 'GitHub last commit', pattern: /img\.shields\.io\/github\/last-commit\// },
-  { name: 'MCP compatible',     pattern: /MCP-compatible/ },
+  { name: 'PyPI version',       pattern: /img\.shields\.io\/pypi\/v\//,            example: '![PyPI version](https://img.shields.io/pypi/v/<pkg>.svg)' },
+  { name: 'Python versions',    pattern: /img\.shields\.io\/pypi\/pyversions\//,   example: '![Python versions](https://img.shields.io/pypi/pyversions/<pkg>.svg)' },
+  { name: 'License',            pattern: /img\.shields\.io\/badge\/License-MIT/,   example: '![License](https://img.shields.io/badge/License-MIT-green.svg)' },
+  { name: 'GitHub stars',       pattern: /img\.shields\.io\/github\/stars\//,      example: '![GitHub stars](https://img.shields.io/github/stars/asgard-ai-platform/<repo>.svg)' },
+  { name: 'GitHub issues',      pattern: /img\.shields\.io\/github\/issues\//,     example: '![GitHub issues](https://img.shields.io/github/issues/asgard-ai-platform/<repo>.svg)' },
+  { name: 'GitHub last commit', pattern: /img\.shields\.io\/github\/last-commit\//, example: '![GitHub last commit](https://img.shields.io/github/last-commit/asgard-ai-platform/<repo>.svg)' },
+  { name: 'MCP compatible',     pattern: /MCP-compatible/,                          example: '![MCP compatible](https://img.shields.io/badge/MCP-compatible-blue.svg)' },
 ];
 
 const REQUIRED_H2 = ['What This Does', 'Quick Start', 'License'];
@@ -43,9 +43,9 @@ export function checkReadme(text, expectedToolsCount) {
   // 1. H1
   const h1Line = lines.find(l => /^#\s+/.test(l));
   if (!h1Line) {
-    findings.push('H1 heading missing');
+    findings.push('H1 heading missing — add a top-level `# MCP <ServiceName>` heading');
   } else if (!/^#\s+MCP\s+\S+/.test(h1Line)) {
-    findings.push(`H1 does not match "# MCP <ServiceName>": "${h1Line.trim()}"`);
+    findings.push(`H1 does not match "# MCP <ServiceName>": "${h1Line.trim()}" — rename it to that format`);
   }
 
   // 2. Pre-H2 region: badges + intro + 繁體中文 link
@@ -54,11 +54,11 @@ export function checkReadme(text, expectedToolsCount) {
 
   for (const badge of REQUIRED_BADGES) {
     if (!badge.pattern.test(preface)) {
-      findings.push(`Badge missing: ${badge.name}`);
+      findings.push(`Badge missing: ${badge.name} — add e.g. \`${badge.example}\` to the badge row below the H1`);
     }
   }
   if (!/\[繁體中文\]\(README\.zh-TW\.md\)/.test(preface)) {
-    findings.push('Missing [繁體中文](README.zh-TW.md) link');
+    findings.push('Missing [繁體中文](README.zh-TW.md) link — add it in the header area, linking to `README.zh-TW.md`');
   }
 
   // 3. Required H2 sections
@@ -68,18 +68,18 @@ export function checkReadme(text, expectedToolsCount) {
 
   for (const required of REQUIRED_H2) {
     if (!h2Titles.includes(required)) {
-      findings.push(`Required section missing: ## ${required}`);
+      findings.push(`Required section missing: ## ${required} — add this H2 section (see mcp-shopline's README)`);
     }
   }
 
   // 4. ## Tools (N)
   const toolsTitle = h2Titles.find(t => /^Tools \(\d+\)$/.test(t));
   if (!toolsTitle) {
-    findings.push('Required section missing: ## Tools (N)');
+    findings.push('Required section missing: ## Tools (N) — add a `## Tools (N)` section, N = number of tools listed');
   } else if (expectedToolsCount > 0) {
     const declaredN = parseInt(toolsTitle.match(/\((\d+)\)/)[1]);
     if (declaredN !== expectedToolsCount) {
-      findings.push(`## ${toolsTitle} declares ${declaredN} but YAML tools_count is ${expectedToolsCount}`);
+      findings.push(`## ${toolsTitle} declares ${declaredN} but YAML tools_count is ${expectedToolsCount} — make the two match`);
     }
   }
 
@@ -91,11 +91,11 @@ export function checkReadme(text, expectedToolsCount) {
     for (const h3 of REQUIRED_QUICKSTART_H3) {
       const re = new RegExp(`^###\\s+${escapeRegex(h3)}\\b`, 'm');
       if (!re.test(block)) {
-        findings.push(`## Quick Start: missing ### ${h3}`);
+        findings.push(`## Quick Start: missing ### ${h3} — add a \`### ${h3}\` subsection under ## Quick Start (see mcp-shopline)`);
       }
     }
     if (!/```bash\s*\n[\s\S]*?pip install\s+\S+/.test(block)) {
-      findings.push('## Quick Start ### Install: missing fenced `pip install` code block');
+      findings.push('## Quick Start ### Install: missing fenced `pip install` code block — add a fenced `bash` code block containing `pip install <pkg>`');
     }
   }
 
