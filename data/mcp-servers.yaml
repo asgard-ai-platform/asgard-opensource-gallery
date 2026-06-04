@@ -1352,7 +1352,7 @@ servers:
     description:
       en: "An MCP (Model Context Protocol) server that provides comprehensive statistics and data for the Chinese Professional Baseball League (CPBL)."
       zh: "MCP 中華職棒統計 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
-    status: coming-soon
+    status: released
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-cpbl-statistics
@@ -1396,7 +1396,7 @@ servers:
     description:
       en: "UOF X 是一套企業 ERP，提供 99 個 API。這個專案展示：把這些 API 接上 AI Agent，員工能用自然語言完成哪些工作？"
       zh: "UOF X × AI Agent 整合示範 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
-    status: coming-soon
+    status: released
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-uofx
