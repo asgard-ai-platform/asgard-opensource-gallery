@@ -473,5 +473,19 @@
         "license": "請參閱 [LICENSE](LICENSE)。"
       }
     }
+  },
+  "mcp-threads": {
+    "intro": {
+      "en": "An open-source [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server that wraps the [Threads API](https://developers.facebook.com/docs/threads) into 6 AI-callable tools for social media content management.\n\nBuilt for [Claude Code](https://claude.ai/code), Claude Desktop, and any MCP-compatible AI client. Enables AI agents to read profiles, list posts/replies/mentions, check publishing limits, and publish text posts through natural language.\n\n> **Disclaimer**: This project requires a valid Threads account token. It is intended for personal use and internal tooling only."
+    },
+    "sections": {
+      "en": {
+        "features": "- **6 ready-to-use tools** covering profile, posts, replies, mentions, publishing limits, and text posting\n- **MCP server** (stdio JSON-RPC 2.0) — plug into Claude Code and start interacting with Threads immediately\n- **Minimal dependencies** — built on `mcp` SDK with no external API client libraries\n- **Local stdio server** — works with Claude Desktop, Claude Code, and any MCP-compatible host",
+        "quick_start": "### Install\n\n```bash\npip install mcp-threads\n```\n\nOr use uvx (no install needed):\n\n```bash\nuvx mcp-threads serve\n```\n\nSet your token:\n\n```bash\nexport THREADS_TOKEN=\"<your-token>\"\n```\n\n### Use with Claude Code\n\nAdd the server via the Claude CLI:\n\n```bash\nclaude mcp add --transport stdio threads -- mcp-threads serve\n```\n\nOr with the environment variable inline:\n\n```bash\nclaude mcp add --transport stdio threads -e THREADS_TOKEN=your_token_here -- mcp-threads serve\n```\n\nIf you clone the repo locally, the `.mcp.json` config will be auto-detected by Claude Code and all 6 tools become available immediately.\n\n### Use with Claude Desktop\n\nAdd to your `claude_desktop_config.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"threads\": {\n      \"command\": \"mcp-threads\",\n      \"args\": [\"serve\"],\n      \"env\": {\n        \"THREADS_TOKEN\": \"your_token_here\"\n      }\n    }\n  }\n}\n```\n\nOr with uvx:\n\n```json\n{\n  \"mcpServers\": {\n    \"threads\": {\n      \"command\": \"uvx\",\n      \"args\": [\"mcp-threads\", \"serve\"],\n      \"env\": {\n        \"THREADS_TOKEN\": \"your_token_here\"\n      }\n    }\n  }\n}\n```",
+        "available_tools": "| Tool | Description |\n|------|-------------|\n| `threads_profile_me` | Read the authenticated Threads user profile |\n| `threads_posts_list` | List posts created by the authenticated user |\n| `threads_publishing_limit` | Read publishing quota usage and config |\n| `threads_mentions_list` | List public Threads posts that mention the authenticated user |\n| `threads_replies_list` | List replies created by the authenticated user |\n| `threads_post_text` | Create and publish a text post or reply |",
+        "license": "MIT"
+      },
+      "zh": {}
+    }
   }
 }
