@@ -47,6 +47,9 @@ export function getPlugInBySlug(slug: string): PlugIn | undefined {
   return getPlugIns().find((p) => p.slug === slug);
 }
 
+/** GitHub org whose repos count as first-party ("core") packs. */
+const CORE_PUBLISHER = 'asgard-ai-platform';
+
 /**
  * Derive publisher trust tier from the repo owner in a github URL.
  * Owner github.com/asgard-ai-platform → "core"; any other owner → "community".
@@ -56,7 +59,7 @@ export function getPublisherTier(github?: string): 'core' | 'community' | null {
   if (!github) return null;
   const m = github.match(/github\.com\/([^/]+)/i);
   if (!m) return null;
-  return m[1].toLowerCase() === 'asgard-ai-platform' ? 'core' : 'community';
+  return m[1].toLowerCase() === CORE_PUBLISHER ? 'core' : 'community';
 }
 
 export interface SkillContent {

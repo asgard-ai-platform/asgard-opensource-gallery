@@ -7,9 +7,9 @@ interface Props {
 }
 
 const { plugin } = Astro.props;
-// data-loader.getPlugIns() already normalises kind; this ?? is a belt-and-suspenders
-// default for any direct/un-normalised caller.
-const kind = plugin.kind ?? 'collection';
+// kind is normalised to 'collection' | 'pack' by data-loader.getPlugIns(), the single
+// source of the default; every PlugInCard input flows through it.
+const kind = plugin.kind;
 const isPack = kind === 'pack';
 const publisher = isPack ? getPublisherTier(plugin.github) : null;
 const mcpCount = plugin.mcp_servers.length;
