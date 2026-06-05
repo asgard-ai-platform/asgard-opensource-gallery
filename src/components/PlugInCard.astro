@@ -1,16 +1,42 @@
 ---
 import type { PlugIn } from '../types';
+import { getPublisherTier } from '../utils/data-loader';
 
 interface Props {
   plugin: PlugIn;
 }
 
 const { plugin } = Astro.props;
+// data-loader.getPlugIns() already normalises kind; this ?? is a belt-and-suspenders
+// default for any direct/un-normalised caller.
+const kind = plugin.kind ?? 'collection';
+const isPack = kind === 'pack';
+const publisher = isPack ? getPublisherTier(plugin.github) : null;
+const mcpCount = plugin.mcp_servers.length;
+const skillCount = plugin.skills.length;
+const skillsOnly = mcpCount === 0;
 ---
 
-<a href={`/plugins/${plugin.slug}/`} class="card-link group border-border">
+<a href={`/plugins/${plugin.slug}/`} class="card-link group border-border" data-kind={kind}>
   <div class="card-header from-blue-600 to-cyan-900">
     <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
+    {isPack && (
+      <div class="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+        <span class="rounded-full bg-primary/15 text-primary text-[10px] font-semibold px-2 py-0.5 border border-primary/30">PACK</span>
+        {publisher && (
+          <span
+            class={`rounded-full text-[10px] font-semibold px-2 py-0.5 border ${
+              publisher === 'core'
+                ? 'bg-primary/15 text-primary border-primary/30'
+                : 'bg-accent text-muted-foreground border-border'
+            }`}
+            data-publisher={publisher}
+          >
+            <span class="lang-en">{publisher === 'core' ? 'Core' : 'Community'}</span><span class="lang-zh">{publisher === 'core' ? '官方' : '社群'}</span>
+          </span>
+        )}
+      </div>
+    )}
     <div class="relative z-10">
       <div class="card-icon-letter">{plugin.name.en.charAt(0)}</div>
     </div>
@@ -25,11 +51,15 @@ const { plugin } = Astro.props;
     <p class="card-desc lang-zh">{plugin.scenario.zh}</p>
 
     <div class="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
+      {skillsOnly ? (
+        <span class="card-badge"><span class="lang-en">Skills only</span><span class="lang-zh">純技能</span></span>
+      ) : (
+        <span class="card-badge">
+          {mcpCount} <span class="lang-en">MCPs</span><span class="lang-zh">個 MCP</span>
+        </span>
+      )}
       <span class="card-badge">
-        {plugin.mcp_servers.length} <span class="lang-en">MCPs</span><span class="lang-zh">個 MCP</span>
-      </span>
-      <span class="card-badge">
-        {plugin.skills.length} <span class="lang-en">SKILLs</span><span class="lang-zh">個技能</span>
+        {skillCount} <span class="lang-en">SKILLs</span><span class="lang-zh">個技能</span>
       </span>
     </div>
   </div>
