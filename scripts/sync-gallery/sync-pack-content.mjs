@@ -345,3 +345,95 @@ export function assemblePackContent(s) {
     source: buildSourceBlock(s.pluginManifest, s.marketplace, s.repo),
   };
 }
+
+// ── I/O shell ────────────────────────────────────────────────────
+
+/** Normalize CRLF → LF so the line-based parsers work on Windows-committed files. */
+const normalizeText = (s) => (s == null ? s : s.replace(/\r\n?/g, '\n'));
+
+/** Fetch + JSON-parse a file from a repo; null on any fetch/parse failure. */
+function ghJSONFile(repo, filePath) {
+  const raw = ghFetchFile(repo.owner, repo.repo, filePath);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
+  console.log('═══════════════════════════════════════════════════');
+  console.log(' Sync Pack Content → data/pack-content.json');
+  console.log('═══════════════════════════════════════════════════\n');
+
+  const pluginsYaml = yaml.load(readFileSync(PLUGINS_YAML, 'utf-8'));
+  const packs = (pluginsYaml.plugins || []).filter((p) => p.kind === 'pack');
+  console.log(`[1/2] ${packs.length} pack(s) marked kind: pack in plugins.yaml\n`);
+
+  // Prior committed entries, consulted per-pack for keep-last-good on a fetch
+  // failure. `out` is rebuilt fresh (only currently-declared packs) so a pack
+  // removed from plugins.yaml does not leave an orphaned entry behind.
+  const prior = existsSync(OUTPUT_JSON) ? JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8')) : {};
+  const out = {};
+  let extracted = 0;
+  let kept = 0;
+  let skipped = 0;
+
+  for (const pack of packs) {
+    process.stdout.write(`  ${pack.slug} ... `);
+    const repo = parseRepo(pack.github);
+    if (!repo) {
+      console.log('⏭  no github URL');
+      skipped++;
+      continue;
+    }
+    const pluginRaw = ghJSONFile(repo, '.claude-plugin/plugin.json');
+    if (!pluginRaw) {
+      if (prior[pack.slug]) {
+        out[pack.slug] = prior[pack.slug];
+        console.log('⚠  plugin.json unreachable — keeping last-good entry');
+        kept++;
+      } else {
+        console.log('⚠  plugin.json unreachable — skipped (no prior entry)');
+        skipped++;
+      }
+      continue;
+    }
+    const marketplaceRaw =
+      ghJSONFile(repo, '.claude-plugin/marketplace.json') || ghJSONFile(repo, 'marketplace.json');
+    const readme = normalizeText(ghFetchFile(repo.owner, repo.repo, 'README.md'));
+    const envExample = normalizeText(ghFetchFile(repo.owner, repo.repo, '.env.example'));
+    const useCases = normalizeText(ghFetchFile(repo.owner, repo.repo, 'docs/USE-CASES.md'));
+
+    out[pack.slug] = assemblePackContent({
+      repo,
+      pluginManifest: parsePluginManifest(pluginRaw),
+      marketplace: parseMarketplace(marketplaceRaw),
+      readme,
+      envExample,
+      useCases,
+      mcpCount: Array.isArray(pack.mcp_servers) ? pack.mcp_servers.length : 0,
+    });
+    const c = out[pack.slug];
+    console.log(
+      `✅ ${c.install.length} install tab(s), setup=${c.setup.status}, ${c.use_cases.length} use case(s)`,
+    );
+    extracted++;
+  }
+
+  // Total wipeout guard: fail BEFORE writing so a transient total outage cannot
+  // overwrite a good committed file with {} (mirrors check-sync-thresholds' intent).
+  if (packs.length > 0 && Object.keys(out).length === 0) {
+    console.error('::error::pack-content.json is empty despite packs being declared');
+    process.exit(1);
+  }
+
+  console.log(`\n[2/2] Writing pack-content.json ...`);
+  writeFileSync(OUTPUT_JSON, JSON.stringify(out, null, 2) + '\n', 'utf-8');
+  console.log(`  ✅ ${extracted} extracted, ${kept} kept-last-good, ${skipped} skipped\n`);
+
+  console.log('═══════════════════════════════════════════════════');
+  console.log(' Done');
+  console.log('═══════════════════════════════════════════════════');
+}

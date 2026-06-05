@@ -1,0 +1,850 @@
+{
+  "tw-ecommerce-majordomo": {
+    "install": [
+      {
+        "harness": "claude-code",
+        "label": "Claude Code",
+        "command": "# 註冊本 plugin 的 marketplace\n/plugin marketplace add asgard-ai-platform/tw-ecommerce-majordomo\n\n# 安裝\n/plugin install tw-ecommerce-majordomo@tw-ecommerce-majordomo",
+        "source": "README.md#安裝"
+      },
+      {
+        "harness": "codex",
+        "label": "Codex CLI / App",
+        "command": "# CLI\n/plugins\n# 搜尋 \"tw-ecommerce-majordomo\" → Install",
+        "source": "README.md#安裝",
+        "notes": "或在 Codex App 的 Plugins 頁面搜尋安裝。"
+      },
+      {
+        "harness": "cursor",
+        "label": "Cursor",
+        "command": "# 加入 Cursor plugin marketplace\ncursor plugin add asgard-ai-platform/tw-ecommerce-majordomo",
+        "source": "README.md#安裝",
+        "notes": "Cursor plugin 目前不會自動註冊 MCP servers — 把 [`mcp.json`](mcp.json) 的 `mcpServers` 區塊複製進 `~/.cursor/mcp.json`，或在 Cursor Settings → MCP 中加入。"
+      },
+      {
+        "harness": "antigravity",
+        "label": "Antigravity CLI (agy)",
+        "command": "git clone https://github.com/asgard-ai-platform/tw-ecommerce-majordomo \\\n  .agents/plugins/tw-ecommerce-majordomo",
+        "source": "README.md#安裝"
+      },
+      {
+        "harness": "opencode",
+        "label": "OpenCode",
+        "command": "{\n  \"plugin\": [\"tw-ecommerce-majordomo@git+https://github.com/asgard-ai-platform/tw-ecommerce-majordomo.git\"]\n}",
+        "source": "README.md#安裝",
+        "notes": "在 `opencode.json`（global 或 project）加入： 詳見 [`.opencode/INSTALL.md`](.opencode/INSTALL.md)。"
+      },
+      {
+        "harness": "factory-droid",
+        "label": "Factory Droid",
+        "command": "droid plugin marketplace add https://github.com/asgard-ai-platform/tw-ecommerce-majordomo\ndroid plugin install tw-ecommerce-majordomo@tw-ecommerce-majordomo",
+        "source": "README.md#安裝"
+      }
+    ],
+    "setup": {
+      "status": "sandbox-ready",
+      "summary": "12 MCP servers; sandbox/test defaults work out of the box — add provider keys only for the services you actually use.",
+      "env_groups": [
+        {
+          "service": "ECPay 綠界",
+          "vars": [
+            {
+              "name": "ECPAY_ENV",
+              "source": ".env.example",
+              "default": "stage",
+              "description": "stage | prod"
+            },
+            {
+              "name": "ECPAY_MERCHANT_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "ECPAY_HASH_KEY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "ECPAY_HASH_IV",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "ECPAY_PLATFORM_ID",
+              "source": ".env.example",
+              "description": "only for ecpay (special-merchant flow)",
+              "required_when": "always"
+            }
+          ],
+          "default_mode": "stage"
+        },
+        {
+          "service": "NewebPay 藍新",
+          "vars": [
+            {
+              "name": "NEWEBPAY_ENV",
+              "source": ".env.example",
+              "default": "test",
+              "description": "test | production"
+            },
+            {
+              "name": "NEWEBPAY_NDNF_MERCHANT_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "NEWEBPAY_NDNF_HASH_KEY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "NEWEBPAY_NDNF_HASH_IV",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "NEWEBPAY_NDNP_MERCHANT_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "NEWEBPAY_NDNP_HASH_KEY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "NEWEBPAY_NDNP_HASH_IV",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "newebpay",
+          "default_mode": "test"
+        },
+        {
+          "service": "Kerry TJ 嘉里大榮",
+          "vars": [
+            {
+              "name": "KERRY_TJ_USERNAME",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "KERRY_TJ_PASSWORD",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "kerry-tj"
+        },
+        {
+          "service": "HCT 新竹貨運",
+          "vars": [
+            {
+              "name": "HCT_COMPANY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "HCT_PASSWORD",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "hct-logistics"
+        },
+        {
+          "service": "SF Express 順豐",
+          "vars": [
+            {
+              "name": "SF_ENV",
+              "source": ".env.example",
+              "default": "sandbox",
+              "description": "sandbox | prod"
+            },
+            {
+              "name": "SF_PARTNER_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "SF_SECRET",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "sf-express",
+          "default_mode": "sandbox"
+        },
+        {
+          "service": "Shopline",
+          "vars": [
+            {
+              "name": "SHOPLINE_API_TOKEN",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "shopline"
+        },
+        {
+          "service": "91APP",
+          "vars": [
+            {
+              "name": "APP_91APP_API_KEY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "APP_91APP_BASE_URL",
+              "source": ".env.example",
+              "default": "https://api.91app.com"
+            },
+            {
+              "name": "APP_91APP_SHOP_ID",
+              "source": ".env.example",
+              "default": "0"
+            },
+            {
+              "name": "APP_91APP_N1_API_KEY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "APP_91APP_IMS_BASE_URL",
+              "source": ".env.example",
+              "default": "https://ims-api.91app.com"
+            },
+            {
+              "name": "APP_91APP_HMAC_SECRET",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "APP_91APP_PAYMENTS_BASE_URL",
+              "source": ".env.example",
+              "default": "https://payments-api.91app.com"
+            },
+            {
+              "name": "APP_91APP_NY_API_TOKEN",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "APP_91APP_MEMBER_BASE_URL",
+              "source": ".env.example",
+              "default": "https://member-api.91app.com"
+            }
+          ],
+          "mcp_slug": "91app",
+          "private": true
+        },
+        {
+          "service": "Cyberbiz",
+          "vars": [
+            {
+              "name": "CYBERBIZ_USERNAME",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "CYBERBIZ_SECRET",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "cyberbiz",
+          "private": true
+        },
+        {
+          "service": "buy123 vendor portal",
+          "vars": [
+            {
+              "name": "BUY123_VENDOR_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "BUY123_VENDOR_EMAIL",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "BUY123_VENDOR_PASSWORD",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "buy123-vendor"
+        },
+        {
+          "service": "ezPay 簡單付",
+          "vars": [
+            {
+              "name": "EZPAY_MERCHANT_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "EZPAY_HASH_KEY",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "EZPAY_HASH_IV",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "EZPAY_IS_PRODUCTION",
+              "source": ".env.example",
+              "default": "false",
+              "description": "true → production endpoint"
+            }
+          ],
+          "mcp_slug": "ezpay-einvoice"
+        },
+        {
+          "service": "Universal EC 汎宇電商",
+          "vars": [
+            {
+              "name": "EINVOICE_BASE_URL",
+              "source": ".env.example",
+              "default": "https://epostw.einvoice.com.tw/GetInvoice.ashx"
+            },
+            {
+              "name": "EINVOICE_SELLER_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "EINVOICE_POS_ID",
+              "source": ".env.example",
+              "required_when": "always"
+            },
+            {
+              "name": "EINVOICE_POS_SN",
+              "source": ".env.example",
+              "required_when": "always"
+            }
+          ],
+          "mcp_slug": "universalec-einvoice"
+        }
+      ]
+    },
+    "use_cases": [
+      {
+        "title": "在 Shopline 開新店，全套金物流發票串接",
+        "skills": [
+          "tw-ecom-dtc-shopline",
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-logistics-cvs",
+          "tw-ecom-logistics-home",
+          "tw-ecom-invoice-ezpay",
+          "tw-ecom-invoice-carrier"
+        ],
+        "mcp_servers": [
+          "shopline",
+          "ecpay",
+          "ecpay-logistics",
+          "ezpay-einvoice"
+        ],
+        "scenario": "客戶要在 Shopline 開新店，需要同步把信用卡 / ATM / 超商代碼 / 超商取貨付款 / 電子發票串好。",
+        "prompt": "我要在 Shopline 開新店，幫我規劃金流（含信用卡 + ATM + 超商代碼 + 超商取貨付款）、\n物流（黑貓 + 7-11 賣貨便）、電子發票（B2C 雲端發票 + 載具），給我串接順序與每段\n要驗證的 callback。",
+        "caveats": "超商取貨付款（COD）= ECPay 金流 + ECPay 物流綁定，必須走 combined 流程，`ecpay` 與 `ecpay-logistics` 是分開的 MCP。發票要在出貨/取貨後 48 小時內開立，不是訂單成立就開。"
+      },
+      {
+        "title": "從 Marketplace 起步：Shopee + momo 同時上架",
+        "skills": [
+          "tw-ecom-channel-strategy",
+          "tw-ecom-marketplace-shopee",
+          "tw-ecom-marketplace-momo",
+          "tw-ecom-operations-pricing",
+          "tw-ecom-operations-promotion"
+        ],
+        "mcp_servers": [
+          "buy123-vendor"
+        ],
+        "scenario": "新品牌沒有 DTC 站，先用 Shopee + momo 雙 marketplace 起步，需要規劃 listing、價格策略、出貨流程。",
+        "prompt": "我是新品牌，先不開 DTC，想在蝦皮和 momo 同時上架。幫我比較兩邊的上架審核、\n價格機制、配合檔期、出貨 SLA，給我選品上架順序。",
+        "caveats": "momo 有 best-price 強制比價條款，跨平台同售價時要算清 listing fee + 平台抽成；蝦皮的 SIP 跨境計畫會自動把商品同步到他國 Shopee，要評估是否要 opt-in。"
+      },
+      {
+        "title": "Hybrid：DTC + Marketplace 同步策略",
+        "skills": [
+          "tw-ecom-channel-strategy",
+          "tw-ecom-dtc-shopline",
+          "tw-ecom-marketplace-shopee",
+          "tw-ecom-marketplace-momo",
+          "tw-ecom-operations-pricing"
+        ],
+        "mcp_servers": [
+          "shopline",
+          "buy123-vendor"
+        ],
+        "scenario": "已經有 Shopline / 91APP DTC 站，現在要再開 Shopee + momo 副通路，但不想自己人工同步庫存與商品。",
+        "prompt": "我有 Shopline DTC，現在要加 Shopee 跟 momo。給我建議：哪些 SKU 走 DTC 獨家、\n哪些走 marketplace、價格要怎麼設才不違反 momo 比價條款，庫存要怎麼分？",
+        "caveats": "Plugin 本身不提供跨通路庫存同步引擎；這個情境 plugin 能做的是「規劃 + 監看單通路狀態」，跨通路庫存對齊要自己寫 sync 邏輯。"
+      },
+      {
+        "title": "跨境品牌進台灣",
+        "skills": [
+          "tw-ecom-compliance-cross-border",
+          "tw-ecom-channel-strategy",
+          "tw-ecom-dtc-shopify-localization",
+          "tw-ecom-logistics-cross-border",
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-logistics-cvs",
+          "tw-ecom-invoice-ezpay"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "ezpay-einvoice"
+        ],
+        "scenario": "海外品牌想進台灣，需要選通路、處理境外電商營業稅、繁中在地化、台灣金物流。",
+        "prompt": "我們是新加坡品牌，要進台灣。幫我規劃：要不要設台灣公司、境外電商營業稅怎麼處理、\n通路要選 Shopify 還是 Shopline、金流物流發票要怎麼接。",
+        "caveats": "境外電商若年銷售額超過門檻必須在台辦理稅籍登記（境外電商銷售勞務）；發票必須開台灣電子發票，不是當地發票。Shopify 在台需要透過 ECPay / NewebPay app 接金流。境外出貨到台灣段（DHL / FedEx / UPS / 郵局國際）的承運商選擇、報關、DDP vs DDU 條款由 `tw-ecom-logistics-cross-border` 處理。"
+      },
+      {
+        "title": "商品上架前完整度檢查",
+        "skills": [
+          "tw-ecom-dtc-shopline",
+          "tw-ecom-dtc-91app",
+          "tw-ecom-operations-pricing"
+        ],
+        "mcp_servers": [
+          "shopline",
+          "91app"
+        ],
+        "scenario": "一批新品要上 Shopline / 91APP，需要在送上去之前先把 SKU 命名、圖片、描述、分類、稅率、價格全部檢查一遍。",
+        "prompt": "這是一批新品的商品資料（CSV），幫我檢查 SKU 命名規則、圖片是否齊全、商品描述\n是否有缺漏、含稅價格設定、分類選擇是否合理，給我修正建議跟可上架名單。",
+        "caveats": "Plugin 本身不會幫你算 SKU 命名規則 — 你要先告訴 agent 你家品牌的 SKU 規則，agent 才能按規則檢查。"
+      },
+      {
+        "title": "規範性商品（食品 / 化妝品 / 保健食品）上架前合規檢查",
+        "skills": [
+          "tw-ecom-compliance-product",
+          "tw-ecom-compliance-consumer"
+        ],
+        "mcp_servers": [],
+        "scenario": "食品、化妝品、保健食品、酒類在台灣有專屬法規（食安法、化妝品衛生安全管理法、菸酒管理法等），上架前要先確認文案沒踩雷。",
+        "prompt": "這是一款保健食品（魚油），幫我看商品文案有沒有違反食安法或健康食品管理法的\n描述（例如療效宣稱），以及上架前要不要備什麼證明文件。",
+        "caveats": "健康食品（小綠人）vs 保健食品（一般食品）法規範圍不同，前者需要衛福部認證才能宣稱保健功效。化妝品 2024 年起全面登錄制。"
+      },
+      {
+        "title": "7 天鑑賞期例外品上架",
+        "skills": [
+          "tw-ecom-compliance-consumer",
+          "tw-ecom-logistics-cold-chain"
+        ],
+        "mcp_servers": [],
+        "scenario": "生鮮、客製化、數位內容、開封藥品這幾類商品依消保法不適用 7 天鑑賞期，上架時要做正確揭露，否則「不適用聲明無效」。",
+        "prompt": "我們要上架一款客製化刻字商品 + 一款冷凍生鮮包，幫我確認消保法的 7 天鑑賞期\n例外條款怎麼應用，商品頁要怎麼揭露才不會被認定無效。",
+        "caveats": "消保法第 19 條的鑑賞期例外有「合理例外情事」清單；客製化 / 易腐 / 已拆封數位 / 報紙期刊 / 影音商品。沒揭露或揭露不充分時，鑑賞期照算。"
+      },
+      {
+        "title": "訂單異常 triage",
+        "skills": [
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-payment-newebpay",
+          "tw-ecom-dtc-shopline",
+          "tw-ecom-payment-dispute"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "newebpay",
+          "shopline"
+        ],
+        "scenario": "後台有一筆訂單卡在「付款失敗」、「重複付款」、「出貨逾期」、「庫存對不上」其中一種狀態，要快速判斷是金流 / 物流 / 平台同步哪一邊出問題。",
+        "prompt": "這筆 Shopline 訂單 ORD-12345 客人說付了錢但平台還是顯示未付款，幫我查 ECPay\n那邊的授權結果，比對 Shopline 訂單狀態，告訴我是哪邊掉了。",
+        "caveats": "「重複付款」常見原因是 callback 沒驗 `CheckMacValue`（ECPay）或 AES+SHA256（NewebPay），導致重複觸發。Plugin 的 payment skill 有處理流程，不要自己重寫簽章驗證。"
+      },
+      {
+        "title": "出貨延遲排查（物流商 vs 平台同步）",
+        "skills": [
+          "tw-ecom-logistics-home",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [
+          "kerry-tj",
+          "hct-logistics",
+          "sf-express",
+          "shopline"
+        ],
+        "scenario": "某筆訂單顯示「已出貨 3 天」但物流追蹤沒進度，要查是物流商實際沒動還是平台沒同步狀態。",
+        "prompt": "這幾筆訂單顯示已出貨但黑貓追蹤沒進度，幫我查物流商實際狀態 vs Shopline 上的\n狀態，列出哪些是真的延遲、哪些只是同步沒到位。",
+        "caveats": "Plugin 沒有黑貓 / 郵局的 MCP（市場上沒有公開 API），那兩家要用物流商提供的 EDI / 對帳檔；嘉里 / 新竹 / 順豐有 MCP。"
+      },
+      {
+        "title": "退貨 / 換貨流程（退款 vs 折讓 vs 取消）",
+        "skills": [
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-payment-newebpay",
+          "tw-ecom-invoice-void",
+          "tw-ecom-compliance-consumer",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "newebpay",
+          "ezpay-einvoice",
+          "universalec-einvoice",
+          "shopline"
+        ],
+        "scenario": "客人申請退貨，要判斷該走「取消訂單」、「退款」、還是「折讓」，並對應正確的發票處理（作廢 vs 折讓）。",
+        "prompt": "這筆訂單已出貨，客人收到後要退貨。發票已在出貨後開立。幫我規劃：金流要怎麼退、\n發票要作廢還是開折讓、Shopline 訂單狀態要怎麼更新，順序給我。",
+        "caveats": "發票作廢只能在「同期別」（兩個月為一期）內；跨期了必須改開折讓單。退款金額要扣掉超商取貨費才不會虧。"
+      },
+      {
+        "title": "超商取貨付款（COD）對帳",
+        "skills": [
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-logistics-cvs",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "ecpay-logistics",
+          "shopline"
+        ],
+        "scenario": "ECPay COD 訂單每月對帳，要把「ECPay 物流取件成功」、「ECPay 金流入帳」、「Shopline 訂單狀態」三邊對起來。",
+        "prompt": "給我這個月所有 ECPay 超商取貨付款訂單的對帳：物流取件成功的、金流入帳的、\nShopline 訂單狀態，三邊比一下，列出對不上的。",
+        "caveats": "COD 的金流入帳有 T+N 工作日（依 ECPay 結算週期）；對帳要把「未到帳但已取件」的訂單獨立列。"
+      },
+      {
+        "title": "冷鏈商品出貨規劃",
+        "skills": [
+          "tw-ecom-logistics-cold-chain",
+          "tw-ecom-logistics-cvs",
+          "tw-ecom-logistics-home"
+        ],
+        "mcp_servers": [],
+        "scenario": "生鮮 / 冷凍商品要規劃出貨流程，包含 CVS 取貨限制、保冷劑、保鮮期 SLA。",
+        "prompt": "我要賣冷凍水餃，幫我規劃：能不能走超商取貨（哪幾家有冷凍）、要不要走黑貓低溫、\n保冷劑跟乾冰怎麼用、保鮮期 SLA 該怎麼訂。",
+        "caveats": "7-11 賣貨便不收冷凍，全家有冷凍店配（量少時限制多）；黑貓低溫宅急便分冷藏 / 冷凍兩規格，溫層錯了會被拒收。"
+      },
+      {
+        "title": "金流選型：ECPay / NewebPay / TapPay / JKOPay 怎麼選",
+        "skills": [
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-payment-newebpay",
+          "tw-ecom-payment-tappay",
+          "tw-ecom-payment-jkopay",
+          "tw-ecom-channel-strategy"
+        ],
+        "mcp_servers": [],
+        "scenario": "新店要選金流商，需要根據商業模式（一次性、訂閱、app）、抽成、結算週期、技術整合難度做決定。",
+        "prompt": "我們要做訂閱制美容保養盒（每月扣款），月營收估 200 萬。幫我比較 ECPay、\nNewebPay、TapPay 哪一家適合做定期定額 + 信用卡分期，列抽成、結算週期、整合難度。",
+        "caveats": "NewebPay 把線上一次性（NDNF）跟定期定額（NDNP）拆兩個 merchant 帳號；TapPay 有 TCS tokenization 適合 SaaS 訂閱；JKOPay 適合 app 內掃碼 + JKO 幣回饋場景。"
+      },
+      {
+        "title": "Callback 簽章驗證除錯",
+        "skills": [
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-payment-newebpay"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "newebpay"
+        ],
+        "scenario": "ECPay / NewebPay callback 收到了但驗章失敗，或重複觸發。",
+        "prompt": "我們 ECPay callback 偶爾收到重複 callback 導致訂單狀態被覆蓋。幫我檢查\nCheckMacValue 的驗證邏輯，包含 URL encode、排序、SHA256，告訴我哪一步可能錯了。",
+        "caveats": "ECPay 的 `CheckMacValue` 演算法雖然標準，但 URL encode 規則跟 PHP `urlencode` 有差異（保留 `-`、`_`、`.`、`!`、`*`、`(`、`)` 不轉），這是最常見坑點。Skill 內有規範實作，不要自己重寫。"
+      },
+      {
+        "title": "信用卡退款 + 跨期折讓",
+        "skills": [
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-invoice-void",
+          "tw-ecom-compliance-consumer"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "ezpay-einvoice",
+          "universalec-einvoice",
+          "shopline"
+        ],
+        "scenario": "客人 7 天內申請退款，發票已開且跨了兩個月期別，要走折讓單而非作廢。",
+        "prompt": "這筆 5 月開的發票，客人 7 月要退款。幫我規劃信用卡退款（ECPay 信用卡退刷）+\n折讓單開立（不能用作廢因為跨期了）+ Shopline 訂單收款狀態調整，順序給我。",
+        "caveats": "ECPay 信用卡退刷有「同卡」限制（要退到原卡）；折讓單金額 = 退款金額（含稅），不是未稅。"
+      },
+      {
+        "title": "信用卡爭議（chargeback）證據包",
+        "skills": [
+          "tw-ecom-payment-dispute",
+          "tw-ecom-payment-ecpay",
+          "tw-ecom-payment-tappay"
+        ],
+        "mcp_servers": [
+          "ecpay",
+          "shopline"
+        ],
+        "scenario": "收到發卡行 chargeback 通知，需要在期限內備好證據包反駁。",
+        "prompt": "ECPay 通知我們有筆訂單 chargeback（理由：未授權交易）。幫我整理證據包：\n3DS 驗證紀錄、出貨追蹤、客人簽收、客服往來，並寫一份回覆範本。",
+        "caveats": "Chargeback 回覆有期限（通常 acquirer 給 7-14 天），錯過視同接受；證據要包含 IP、3DS 結果、出貨憑證、簽收照、客服紀錄。"
+      },
+      {
+        "title": "出貨後 48 小時內開立 B2C 雲端發票",
+        "skills": [
+          "tw-ecom-invoice-ezpay",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [
+          "ezpay-einvoice",
+          "shopline"
+        ],
+        "scenario": "系統要自動在訂單「出貨完成」事件後 48 小時內開立 B2C 雲端發票（不是訂單成立就開）。",
+        "prompt": "我們現在是訂單成立就開發票，常常退貨後要作廢。幫我改成「出貨完成才開」的\n流程，包含 Shopline webhook 觸發點、ezPay 開立 API 呼叫、開立失敗的 retry。",
+        "caveats": "出貨後 48 小時內開立是財政部規範；訂單成立就開等於把作廢 / 折讓的風險疊到自己身上。雲端發票要把「字軌號碼」交給財政部分發，不是商家自己生成。"
+      },
+      {
+        "title": "載具開立（手機條碼 / 自然人 / 會員 / 捐贈碼）",
+        "skills": [
+          "tw-ecom-invoice-carrier"
+        ],
+        "mcp_servers": [
+          "ezpay-einvoice"
+        ],
+        "scenario": "結帳頁要支援四種載具選項，每種驗證規則不同。",
+        "prompt": "幫我做結帳頁的載具選擇 UI + 驗證邏輯：手機條碼（/ 開頭共 8 碼）、自然人憑證\n（2 碼英文大寫 + 14 碼數字）、會員載具、捐贈碼（3-7 碼）。每種錯誤訊息給我寫好。",
+        "caveats": "手機條碼正則：`^/[A-Z0-9.+-]{7}$`；自然人憑證 16 碼是「英文 2 碼 + 數字 14 碼」；會員載具要去財政部備查的會員載具系統登記過。"
+      },
+      {
+        "title": "跨期作廢 → 折讓自動轉換",
+        "skills": [
+          "tw-ecom-invoice-void"
+        ],
+        "mcp_servers": [
+          "ezpay-einvoice",
+          "universalec-einvoice"
+        ],
+        "scenario": "系統要判斷退款發生時，發票是同期可作廢還是跨期須折讓，自動走對的流程。",
+        "prompt": "退款時的發票處理常常搞錯。幫我寫一段邏輯：判斷發票開立日 vs 退款日是否同期\n（兩個月為一期），同期作廢、跨期折讓，自動呼叫 ezPay 對應 API。",
+        "caveats": "期別 = 1-2月、3-4月、5-6月、7-8月、9-10月、11-12月。跨期作廢被財政部退件。"
+      },
+      {
+        "title": "B2B 三聯式 + 統編驗證",
+        "skills": [
+          "tw-ecom-invoice-ezpay",
+          "tw-ecom-invoice-universalec"
+        ],
+        "mcp_servers": [
+          "ezpay-einvoice",
+          "universalec-einvoice"
+        ],
+        "scenario": "B2B 客戶結帳時輸入統一編號，要驗證統編格式 + 即時查公司名稱填入抬頭。",
+        "prompt": "B2B 結帳要支援統編 + 公司抬頭。幫我加：統編 checksum 驗證、抬頭即時帶入\n（用財政部或 g0v 統編查詢）、三聯式發票字軌設定（要跟 B2C 二聯式分開）。",
+        "caveats": "統編 8 碼 checksum 演算法有 2 種版本（2023 起新版），新公司可能跑舊版會誤判；抬頭查詢可用 g0v 的「台灣公司資料」open data。"
+      },
+      {
+        "title": "單品建議售價（含稅、平台費、安全毛利）",
+        "skills": [
+          "tw-ecom-operations-pricing",
+          "tw-ecom-marketplace-shopee",
+          "tw-ecom-marketplace-momo",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [],
+        "scenario": "要上一個新 SKU，需要算出含稅售價、扣掉平台抽成 / 物流費 / 金流費後的實收，確認毛利不破底。",
+        "prompt": "這款商品成本 NT$ 380，在 Shopline / 蝦皮 / momo 三邊上架。幫我算各通路的\n建議含稅售價（毛利 30% 為目標）、扣完平台抽成跟物流費後的實收、最低安全價。",
+        "caveats": "台灣電商價格通常以 0/8/9 結尾（心理價）；momo 有強制最低價條款，DTC 價格不能低於 momo。"
+      },
+      {
+        "title": "雙 11 / 雙 12 檔期規劃 + ROI 預估",
+        "skills": [
+          "tw-ecom-operations-promotion",
+          "tw-ecom-operations-pricing",
+          "tw-ecom-operations-line-oa",
+          "tw-ecom-analytics-benchmarks",
+          "tw-ecom-analytics-ga4"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "檔期前一個月開始規劃選品、折扣、滿額門檻、預算分配。",
+        "prompt": "雙 11 還有一個月，幫我規劃檔期：哪些商品適合主推（高毛利 / 高庫存）、滿額\n門檻怎麼設、廣告預算怎麼分（Shopee 廣告 + LINE OA broadcast + GA4 追蹤）、\nROI 怎麼預估。",
+        "caveats": "雙 11 / 雙 12 / 年中慶 / 母親節 是台灣四大檔期；蝦皮的 11.11 跟 momo 的雙 11 規則不同，蝦皮要報名活動、momo 是強制比價。"
+      },
+      {
+        "title": "滯銷品折扣清庫存策略",
+        "skills": [
+          "tw-ecom-operations-promotion",
+          "tw-ecom-operations-pricing",
+          "tw-ecom-analytics-benchmarks"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "倉庫有一批滯銷 6 個月以上的商品，要用折扣 + 加購 + 組合包清掉。",
+        "prompt": "這批滯銷品在倉庫 6 個月以上，幫我規劃清庫存：折扣多少不會破毛利底線、要不\n要包成福袋 / 加購品、要不要在哪個檔期出、文案怎麼寫不傷品牌。",
+        "caveats": "福袋 / 組合包要重新開 SKU，不能用原 SKU 變相降價（被檢舉「先漲再折」會被消保處罰款）。"
+      },
+      {
+        "title": "跨通路 price parity 檢查",
+        "skills": [
+          "tw-ecom-operations-pricing",
+          "tw-ecom-marketplace-momo",
+          "tw-ecom-marketplace-shopee",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "DTC + 蝦皮 + momo 三邊上架同個 SKU，要定期檢查價格沒違反 momo 比價條款。",
+        "prompt": "我們在 DTC + 蝦皮 + momo 上同個 SKU。幫我每週對一次價，列出哪些 SKU 在\nmomo 比其他通路貴（會違反 momo 條款），給我調價建議。",
+        "caveats": "Marketplace 端的價格取得目前要靠 vendor portal 或人工巡（plugin 沒有直接 marketplace 商品價 MCP）；先建立週期任務、報表化。"
+      },
+      {
+        "title": "客服回覆草稿（含訂單 + 物流 + 政策 context）",
+        "skills": [
+          "tw-ecom-operations-customer-service",
+          "tw-ecom-dtc-shopline",
+          "tw-ecom-logistics-home"
+        ],
+        "mcp_servers": [
+          "shopline",
+          "kerry-tj",
+          "hct-logistics",
+          "sf-express"
+        ],
+        "scenario": "客人來信問「我的訂單為什麼還沒到」，客服要在回覆前先撈訂單狀態 + 物流追蹤 + 客服歷史 + 政策資料庫，產出草稿後人工確認。",
+        "prompt": "客人來信：「ORD-12345 我下單一週了還沒收到」。幫我撈訂單狀態、出貨單號、\n物流即時進度、過去客服紀錄，產一份回覆草稿（語氣親切、說明預計到貨時間、\n若延遲提供補償方案）。",
+        "caveats": "Plugin 提供原料（資料 + 政策 skill），不直接幫你寄信。回覆內容若涉及退款 / 補償，需走 4.x 退款流程而非單純客服回覆。"
+      },
+      {
+        "title": "LINE OA 標籤分群 + broadcast",
+        "skills": [
+          "tw-ecom-operations-line-oa",
+          "tw-ecom-analytics-ga4",
+          "tw-ecom-compliance-pdpa"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "要根據顧客行為（買過 vs 沒買過、A 類商品 vs B 類商品、回購頻率）打標籤，再發針對性 broadcast。",
+        "prompt": "我要做 LINE OA broadcast：對「過去 90 天買過保健類但 60 天沒回購」的客人\n推回購券。幫我規劃標籤策略、broadcast 文案、發送時間（避開週末晚上 9 點後）、\n追蹤 ROI 怎麼設。",
+        "caveats": "LINE OA broadcast 按推播數計費，分群越窄越省；發推播給未明確同意行銷的會員違反 PDPA，要先確認 consent。"
+      },
+      {
+        "title": "負評 / PTT / Dcard 監控應對",
+        "skills": [
+          "tw-ecom-operations-customer-service"
+        ],
+        "mcp_servers": [],
+        "scenario": "PTT / Dcard 出現負評，要決定該回應、私下聯絡、還是不回應。",
+        "prompt": "PTT 出現一篇我們品牌的負評文：客人說出貨延遲又難客服。幫我分析該怎麼處理：\n要不要公開回應、要不要私訊客人、回應的話文案要怎麼寫不失分。",
+        "caveats": "PTT 公開回應有「業配」標籤義務；Dcard 多數情況私訊比公開回應有效。Skill 內有 SOP。"
+      },
+      {
+        "title": "7 天鑑賞期 SOP",
+        "skills": [
+          "tw-ecom-compliance-consumer",
+          "tw-ecom-operations-customer-service",
+          "tw-ecom-invoice-void",
+          "tw-ecom-payment-ecpay"
+        ],
+        "mcp_servers": [],
+        "scenario": "客服常常被問鑑賞期，要有一套標準回覆 + 流程。",
+        "prompt": "幫我寫客服的「7 天鑑賞期」標準 SOP：哪些商品適用、哪些不適用、客人主張時\n怎麼處理、退貨後金流跟發票要怎麼跑。",
+        "caveats": "「猶豫期」7 天從「收貨日」起算，不是訂購日；客製、生鮮、開封數位內容、報紙、影音商品 是例外。"
+      },
+      {
+        "title": "PDPA：DSAR 處理流程",
+        "skills": [
+          "tw-ecom-compliance-pdpa"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "客人寄信來主張「個資存取請求」（DSAR），要在法定 30 天內回覆。",
+        "prompt": "收到一封客人 DSAR 信，要求查看我們保存的所有他的個資。幫我規劃處理流程：\n30 天時限怎麼算、要回什麼欄位、Shopline / LINE OA / 客服紀錄都要撈、\n回覆格式範本。",
+        "caveats": "PDPA 的 DSAR 期限是「30 天內回覆，必要時可延長 30 天但需通知當事人」；查詢工本費可收但有上限。"
+      },
+      {
+        "title": "個資跨境傳輸",
+        "skills": [
+          "tw-ecom-compliance-pdpa",
+          "tw-ecom-compliance-cross-border"
+        ],
+        "mcp_servers": [],
+        "scenario": "用海外雲服務（AWS Singapore、Vercel global）會涉及個資跨境，要評估合規。",
+        "prompt": "我們用 Vercel 跑前端、Supabase（新加坡）存資料庫。幫我評估 PDPA 跨境傳輸\n合規：要不要做跨境傳輸告知、會員條款要怎麼寫、有沒有風險產業限制。",
+        "caveats": "經濟部公告的「特定產業 + 特定國家」有跨境傳輸限制（例如金融業 → 中國大陸）；一般電商 → 新加坡 AWS / GCP 沒問題但要在隱私政策揭露。"
+      },
+      {
+        "title": "跨境境外電商營業稅登記評估",
+        "skills": [
+          "tw-ecom-compliance-cross-border"
+        ],
+        "mcp_servers": [],
+        "scenario": "海外品牌賣到台灣，年銷超過門檻必須在台辦稅籍登記。",
+        "prompt": "我們是日本品牌，去年賣到台灣約 NT$ 800 萬。幫我評估要不要在台灣辦境外電商\n營業稅登記、流程是什麼、發票要不要在台開、退稅怎麼處理。",
+        "caveats": "境外電商銷售勞務 / 商品給台灣個人，年銷售額超過 NT$ 480,000 必須辦稅籍登記並開立電子發票。"
+      },
+      {
+        "title": "GA4 Enhanced Ecommerce + BigQuery 對接",
+        "skills": [
+          "tw-ecom-analytics-ga4",
+          "tw-ecom-dtc-shopline"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "要把 Shopline / 91APP 的事件導進 GA4，啟用 BigQuery export 做後續報表。",
+        "prompt": "幫我規劃 Shopline 的 GA4 串接：Enhanced Ecommerce 事件（view_item、\nadd_to_cart、begin_checkout、purchase）的參數要怎麼填（含稅 vs 未稅\nrevenue、NT$ currency code、統編當 user property）、BigQuery export 開啟。",
+        "caveats": "GA4 的 `value` 預設是「含稅」還是「未稅」要在實作層明確（plugin 的 skill 預設含稅）；BigQuery export 有每日免費額度但跨境查詢會跨區收費。"
+      },
+      {
+        "title": "Vertical / 通路 benchmark 比對",
+        "skills": [
+          "tw-ecom-analytics-benchmarks",
+          "tw-ecom-analytics-ga4"
+        ],
+        "mcp_servers": [],
+        "scenario": "想知道自己品牌的 CVR / ROAS / LTV 在同業裡是高是低。",
+        "prompt": "我們做美妝 DTC，過去 90 天 CVR 1.8%、ROAS 3.2、平均 AOV NT$ 1,200、\n30 天 repeat rate 18%。幫我比一下台灣美妝 DTC 的 benchmark，哪些是好哪些\n是該補的，給我下一步建議。",
+        "caveats": "Benchmark 是參考值不是 KPI；不同 vertical（3C / 美妝 / 服飾 / 母嬰 / 生鮮）跟通路（DTC / 蝦皮 / momo）差異很大。"
+      },
+      {
+        "title": "LINE OA × 訂單回購歸因",
+        "skills": [
+          "tw-ecom-operations-line-oa",
+          "tw-ecom-analytics-ga4"
+        ],
+        "mcp_servers": [
+          "shopline"
+        ],
+        "scenario": "想知道 LINE OA broadcast 對回購率的影響。",
+        "prompt": "過去 3 個月發了 12 次 LINE OA broadcast，幫我算每次推播的：開封率、點擊率、\n推播後 7 天內回購的客人數、回購金額，給我哪幾類 broadcast 最有效。",
+        "caveats": "LINE OA 的點擊歸因要在 broadcast 連結帶 UTM；沒帶 UTM 的歷史 broadcast 沒辦法事後歸因。"
+      }
+    ],
+    "source": {
+      "version": "0.1.0",
+      "license": "MIT",
+      "repository": "https://github.com/asgard-ai-platform/tw-ecommerce-majordomo",
+      "homepage": "https://github.com/asgard-ai-platform/tw-ecommerce-majordomo",
+      "keywords": [
+        "taiwan",
+        "ecommerce",
+        "skills",
+        "mcp",
+        "ecpay",
+        "newebpay",
+        "shopline",
+        "91app",
+        "einvoice",
+        "logistics",
+        "payment"
+      ],
+      "manifest_urls": [
+        "https://github.com/asgard-ai-platform/tw-ecommerce-majordomo/blob/HEAD/.claude-plugin/plugin.json",
+        "https://github.com/asgard-ai-platform/tw-ecommerce-majordomo/blob/HEAD/.claude-plugin/marketplace.json"
+      ],
+      "marketplace": {
+        "name": "tw-ecommerce-majordomo",
+        "source": "./"
+      }
+    }
+  }
+}
