@@ -19,7 +19,9 @@ Two real, one-command-installable repos have appeared that don't fit the gallery
 
 The gallery's existing 10 `PlugIn` entries are **curated collections** — editorial recipes ("for Taiwan e-commerce ops, use these MCPs + skills"). They have no repo of their own, are not one-command installable, and several map to a commercial Asgard product via `upgrade_to`. The site's README/home defines PlugIn as "MCP+SKILL combos mapping to Asgard commercial products" — so dropping an installable, community, 0-MCP pack in as a "PlugIn" makes that definition false.
 
-`tw-ecommerce-majordomo` is **already** in `data/plugins.yaml` masquerading as a collection (it has a `github` field). `emba-famulus` is not yet added (its 13 skills are not in `data/skills.yaml` or the central `skills` repo).
+`tw-ecommerce-majordomo` is **already** in `data/plugins.yaml` masquerading as a collection (it has a `github` field) — a distinct entry from the existing `tw-ecommerce-ops` collection. `emba-famulus` is not yet added (its 13 skills are not in `data/skills.yaml` or the central `skills` repo).
+
+> **Branch note:** the `majordomo` entry and the `github` schema/type/detail-page support are the groundwork commit on this same branch (`9baa24d`), committed after this spec (`c891ddc`). Reviewing `c891ddc` in isolation will *not* show them — read the branch HEAD. This spec assumes that groundwork is present.
 
 ## 2. Core principle
 
@@ -35,10 +37,10 @@ Then it sends them back to their own terminal/agent. The site must never imply "
 
 ### 3.1 Architecture (locked — from prior design round)
 
-- **`kind` discriminator** on the plugin entity: `collection | pack`, default `collection`. Old 10 entries untouched; only `majordomo`/`emba` get `kind: pack`.
+- **`kind` discriminator** on the plugin entity: `collection | pack`, default `collection`. Old 10 entries untouched; only `majordomo`/`emba` get `kind: pack`. The default is **not** applied via JSON Schema (Ajv in `validate.mjs` does not write defaults, and adding `"default"` to the enum would not back-fill the 10 kind-less entries); instead `kind` is an **optional** schema field and the **data loader** coalesces it — `kind = p.kind ?? 'collection'` — so components and pages never receive `undefined`.
 - **One `/plugins` route, split into two in-page sections.** No new top-level `/packs` route yet. No fourth data entity.
 - **Publisher tier derived from GitHub owner** — `github.com/asgard-ai-platform/*` ⇒ Core, else Community. Zero schema field for trust.
-- **Dependency graph gated on `hasDepEdges`** (actual `requires_mcp ∩ pluginMcps` edges exist), not on `mcp_count > 0`.
+- **Dependency graph gated on `hasDepEdges`**, not on `mcp_count > 0`. Note `requires_mcp` is a **Skill** field, not a PlugIn field — so `hasDepEdges` means: there exists a skill in the pack whose `requires_mcp` contains at least one MCP that is also in the pack's `mcp_servers`. Formally `∃ s ∈ pack.skills, m ∈ pack.mcp_servers : m ∈ s.requires_mcp`. (This matches how `PlugInGraph.astro` already computes edges.)
 - **Phase 2** (`/packs` route + nav + homepage stat + contribute template) only at threshold: pack count ≥ 5–6, OR packs gain their own discovery dimensions (install method / author type / framework), OR analytics show users landing specifically to install.
 
 ### 3.2 Experience (this round)
@@ -139,11 +141,12 @@ The install panel's next-step shows a **copyable self-test prompt** so the hando
 
 The handoff microcopy appears at most twice: once in the install panel (where the copy happens) and once in the footer source/handoff line. Do not repeat it enough to feel scary.
 
-## 6. Install UX & build-time extraction
+## 6. Install UX & sync-time extraction
 
 - **Tabs per harness**: Claude Code first; Codex/agent if the install path actually supports it; generic/manual MCP-compatible; local clone only if docs support it. One copyable command per tab + a short "what this does".
 - Next-step link changes by setup state: No setup → "ask your agent"; Sandbox-ready → "try sandbox, then add keys"; Keys required → "fill required keys".
-- **Build-time extraction** (no hand-authoring of 29 env vars): a build script fetches from each pack repo and emits a sidecar JSON:
+- **Extraction runs at sync time, not deploy time.** Critically, `pack-content.json` is a **committed** sidecar refreshed by the existing sync workflow (`scripts/sync-gallery/` + `.github/workflows/sync-content.yml`), exactly like `skill-content.json` / `mcp-content.json` today. The Cloudflare Pages deploy build (`npm run build`) reads the committed JSON and makes **no external network calls** — so a GitHub outage or a moved repo can never block a deploy; it only makes a sync run fail, which is reviewable before merge. The extractor must degrade gracefully per repo (skip/keep-last-good on fetch failure, log which packs were skipped) rather than abort the whole sync.
+- A new extractor script (under `scripts/sync-gallery/`) fetches from each pack repo and emits the sidecar:
   - `.claude-plugin/plugin.json` → name/version/author/repository/license/keywords/skills/mcpServers
   - `.claude-plugin/marketplace.json` (or `marketplace.json`) → marketplace install name/source
   - `mcp.json` / `.mcp.json` → MCP config / env fallback
@@ -159,7 +162,7 @@ Reuse the existing sidecar pattern (`skill-content.json`, `mcp-content.json`):
 - existing: `slug, name, description, scenario, github, mcp_servers, skills`
 - publisher needs **no** field (derived from `github` owner)
 
-**`data/pack-content.json`** (build-extracted, machine-generated, keyed by slug) — the experience payload:
+**`data/pack-content.json`** (sync-extracted, machine-generated, **committed**, keyed by slug — read statically at deploy, see §6) — the experience payload:
 ```
 {
   "<slug>": {
@@ -198,12 +201,12 @@ That is the **only** new YAML/schema field. Everything else (install/setup/use_c
 - **emba's 13 skills must exist in `data/skills.yaml`** before emba can be added (else `validate.mjs` cross-ref fails). This requires deciding the canonical source for those skills:
   - **A.** Upstream them to the central `skills` repo, then existing `sync-gallery` tooling ingests them (consistent with current model; needs a PR there).
   - **B.** Add them self-contained with `github` → emba-famulus's own `SKILL.md` (faster; creates skills the current sync tooling won't track).
-- A build-time extractor for `pack-content.json` must be written (new script under `scripts/sync-gallery/`).
+- A sync-time extractor for `pack-content.json` must be written (new script under `scripts/sync-gallery/`, run by the sync workflow and committed — not at deploy; see §6).
 - `content_maturity` honesty: majordomo shows 3 full / 26 skeleton today (gallery synced central-repo skeletons); surface this rather than implying all 29 are ready.
 
 ## 11. Suggested implementation slices
 
-1. **Schema + types + list split + pack card** — `kind` field, `/plugins` two sections, pack vs collection card, `Skills only` rendering. (No sidecar yet; cards can use counts + derived publisher.)
+1. **Schema + types + list split + pack card** — `kind` field, loader default coalescing (§3.1), `/plugins` two sections, pack vs collection card, `Skills only` rendering. (No sidecar yet; cards can use counts + derived publisher.) Update `FilterBar.astro` so its existing filters operate within both sections and add a `kind` filter chip — the two-section split must not break the current search/status/region/category filtering.
 2. **pack-content.json extractor** — build script over the two repos' manifests.
 3. **Pack detail split-hero** — install tabs, setup accordions, use-cases-before-contents, `hasDepEdges` graph gate, handoff/self-test.
 4. **emba onboarding** — resolve the 13-skill canonical source (§10), add emba entry. Good first end-to-end validation because it is the simplest (no setup, 0 MCP).
