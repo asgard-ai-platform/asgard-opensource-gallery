@@ -4231,6 +4231,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-analytics-benchmarks/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4250,6 +4251,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-analytics-ga4/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4269,6 +4271,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-channel-strategy/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-shopline, mcp-91app]
     tags:
     - taiwan
@@ -4289,6 +4292,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-consumer/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - compliance
@@ -4307,6 +4311,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-cross-border/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - compliance
@@ -4326,6 +4331,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-pdpa/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - compliance
@@ -4345,6 +4351,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-compliance-product/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - compliance
@@ -4363,6 +4370,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-dtc-91app/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-91app]
     tags:
     - taiwan
@@ -4384,6 +4392,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-dtc-shopify-localization/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4403,6 +4412,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-dtc-shopline/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-shopline]
     tags:
     - taiwan
@@ -4424,6 +4434,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-carrier/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-invoice
@@ -4442,6 +4453,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-ezpay/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-ezpay-einvoice]
     tags:
     - taiwan
@@ -4462,6 +4474,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-universalec/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-universalec-e-invoice]
     tags:
     - taiwan
@@ -4482,6 +4495,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-invoice-void/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-invoice
@@ -4501,6 +4515,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-cold-chain/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - logistics
@@ -4519,6 +4534,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-cross-border/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - logistics
@@ -4537,6 +4553,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-cvs/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-ecpay-logistics]
     tags:
     - taiwan
@@ -4557,6 +4574,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-logistics-home/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - logistics
@@ -4575,6 +4593,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-marketplace-momo/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4594,6 +4613,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-marketplace-shopee/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4613,6 +4633,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-customer-service/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4631,6 +4652,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-line-oa/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4650,6 +4672,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-pricing/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4668,6 +4691,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-operations-promotion/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - e-commerce
@@ -4687,6 +4711,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-dispute/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - payment
@@ -4706,6 +4731,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-ecpay/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-ecpay]
     tags:
     - taiwan
@@ -4726,6 +4752,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-jkopay/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - payment
@@ -4745,6 +4772,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-newebpay/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     requires_mcp: [mcp-newebpay]
     tags:
     - taiwan
@@ -4765,6 +4793,7 @@ skills:
     skill_type: industry
     region: taiwan
     github: https://github.com/asgard-ai-platform/skills/blob/main/tw-ecom-payment-tappay/SKILL.md
+    plugins: [tw-ecommerce-majordomo]
     tags:
     - taiwan
     - payment

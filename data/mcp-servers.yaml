@@ -15,7 +15,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-shopline
     tools_count: 143
     tags: [ecommerce, shopline, taiwan]
-    plugins: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops, tw-ecommerce-majordomo]
     maintainer: asgard-ai-platform
 
   - slug: mcp-91app
@@ -30,7 +30,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-91app
     tags: [ecommerce, omnichannel, taiwan]
-    plugins: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops, tw-ecommerce-majordomo]
     maintainer: asgard-ai-platform
 
   - slug: mcp-cyberbiz
@@ -45,7 +45,7 @@ servers:
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-cyberbiz
     tags: [ecommerce, cyberbiz, taiwan]
-    plugins: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops, tw-ecommerce-majordomo]
     maintainer: asgard-ai-platform
 
   - slug: mcp-waca
@@ -123,7 +123,7 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-ecpay
     tags: [payment, gateway, taiwan]
     upgrade_to: Asgard
-    plugins: [tw-ecommerce-ops]
+    plugins: [tw-ecommerce-ops, tw-ecommerce-majordomo]
     maintainer: asgard-ai-platform
 
   - slug: mcp-newebpay
@@ -137,6 +137,7 @@ servers:
     category: payment
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-newebpay
+    plugins: [tw-ecommerce-majordomo]
     tools_count: 8
     tags: [payment, gateway, taiwan]
     upgrade_to: Asgard
@@ -185,6 +186,7 @@ servers:
     category: payment
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-ezpay-einvoice
+    plugins: [tw-ecommerce-majordomo]
     tools_count: 7
     tags: [invoice, e-invoice, taiwan]
     upgrade_to: Asgard
@@ -201,6 +203,7 @@ servers:
     category: payment
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-universalec-e-invoice
+    plugins: [tw-ecommerce-majordomo]
     tools_count: 27
     tags: [invoice, e-invoice, pos, taiwan]
     upgrade_to: Asgard
@@ -931,6 +934,7 @@ servers:
     category: ecommerce
     region: taiwan
     github: https://github.com/asgard-ai-platform/mcp-ecpay-logistics
+    plugins: [tw-ecommerce-majordomo]
     tools_count: 3
     tags: [logistics, ecpay, convenience-store, taiwan]
     maintainer: asgard-ai-platform
@@ -1105,6 +1109,7 @@ servers:
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-buy123-vendor
+    plugins: [tw-ecommerce-majordomo]
     tags: ["data", "global", "buy123", "vendor"]
     maintainer: asgard-ai-platform
 
@@ -1133,6 +1138,7 @@ servers:
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-hct-logistics
+    plugins: [tw-ecommerce-majordomo]
     tags: ["data", "global", "hct", "logistics"]
     maintainer: asgard-ai-platform
 
@@ -1147,6 +1153,7 @@ servers:
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-kerry-tj
+    plugins: [tw-ecommerce-majordomo]
     tags: ["data", "global", "kerry", "tj"]
     maintainer: asgard-ai-platform
 
@@ -1175,6 +1182,7 @@ servers:
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-sf-express
+    plugins: [tw-ecommerce-majordomo]
     tags: ["data", "global", "sf", "express"]
     maintainer: asgard-ai-platform
 

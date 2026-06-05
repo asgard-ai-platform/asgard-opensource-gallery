@@ -44,6 +44,7 @@
           },
           "mcp_servers": { "type": "array", "items": { "type": "string" } },
           "skills": { "type": "array", "items": { "type": "string" } },
+          "github": { "type": "string", "format": "uri" },
           "icon": { "type": "string" }
         },
         "additionalProperties": false

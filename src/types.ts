@@ -47,6 +47,7 @@ export interface PlugIn {
   upgrade_description?: BilingualText;
   mcp_servers: string[];
   skills: string[];
+  github?: string;
   icon?: string;
 }
 
