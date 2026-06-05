@@ -40,6 +40,7 @@ export interface Skill {
 
 export interface PlugIn {
   slug: string;
+  kind?: 'collection' | 'pack';
   name: BilingualText;
   description: BilingualText;
   scenario: BilingualText;
