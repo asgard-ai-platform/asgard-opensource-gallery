@@ -55,14 +55,16 @@ const collections = plugins.filter((p) => p.kind === 'collection');
       </section>
     )}
 
-    <section data-section="collections">
-      <h2 class="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-        <span class="lang-en">Curated Collections</span><span class="lang-zh">策展組合</span>
-        <span class="text-sm font-normal text-muted-foreground">({collections.length})</span>
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {collections.map((plugin) => <PlugInCard plugin={plugin} />)}
-      </div>
-    </section>
+    {collections.length > 0 && (
+      <section data-section="collections">
+        <h2 class="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <span class="lang-en">Curated Collections</span><span class="lang-zh">策展組合</span>
+          <span class="text-sm font-normal text-muted-foreground">({collections.length})</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {collections.map((plugin) => <PlugInCard plugin={plugin} />)}
+        </div>
+      </section>
+    )}
   </div>
 </BaseLayout>
