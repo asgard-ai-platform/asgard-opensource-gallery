@@ -40,7 +40,8 @@ export interface Skill {
 
 export interface PlugIn {
   slug: string;
-  kind?: 'collection' | 'pack';
+  /** Always set on values from data-loader.getPlugIns() (raw YAML may omit it → defaults to 'collection'). */
+  kind: 'collection' | 'pack';
   name: BilingualText;
   description: BilingualText;
   scenario: BilingualText;

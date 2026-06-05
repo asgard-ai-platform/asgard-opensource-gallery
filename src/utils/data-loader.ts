@@ -30,8 +30,12 @@ export function getSkills(): Skill[] {
   return sortByStatus(data.skills);
 }
 
+// Raw YAML plugin entries may omit `kind`; getPlugIns() fills the default so the
+// rest of the app always receives a concrete PlugIn.kind.
+type RawPlugIn = Omit<PlugIn, 'kind'> & { kind?: PlugIn['kind'] };
+
 export function getPlugIns(): PlugIn[] {
-  const data = loadYaml<{ plugins: PlugIn[] }>('plugins.yaml');
+  const data = loadYaml<{ plugins: RawPlugIn[] }>('plugins.yaml');
   return data.plugins.map((p) => ({ ...p, kind: p.kind ?? 'collection' }));
 }
 

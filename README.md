@@ -21,7 +21,7 @@ The site is fully bilingual (English / Traditional Chinese) with a client-side l
 
 **SKILLs** -- Reusable knowledge units encoding domain expertise: industry practices, methodologies, theories, and algorithms. Four types: Industry, Methodology, Theory, Algorithm.
 
-**PlugIns** -- Pre-packaged combinations of MCP Servers and SKILLs for specific business scenarios, each mapping to an Asgard commercial product.
+**PlugIns** -- Bundled MCP Servers and SKILLs for specific business scenarios, in two kinds: *installable packs* (one-command agent extensions that live in their own repo, e.g. Taiwan E-Commerce Majordomo) and *curated collections* (recommended recipes, several of which map to an Asgard commercial product).
 
 **Asgard AI Solution** -- A dedicated page showcasing the commercial product ecosystem: Mimir (AI Brain), Sindri (Agent Hub), Odin (Studio), and Heimdall (PR AI).
 
