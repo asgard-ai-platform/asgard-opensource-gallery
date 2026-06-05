@@ -23,6 +23,13 @@ const allSkills = getSkills();
 const pluginMcps = allMcp.filter((m) => plugin.mcp_servers.includes(m.slug));
 const pluginSkills = allSkills.filter((s) => plugin.skills.includes(s.slug));
 const upgradeLink = plugin.upgrade_to ? getUpgradeLink(plugin.upgrade_to) : null;
+
+// The bipartite dependency graph only stays legible for small plugins; large packs
+// (e.g. majordomo's 12 MCP x 29 skills) collapse into unreadable crossing lines and
+// an 1800px-tall SVG. Skip it past a node-count threshold — contents are still listed
+// in the MCP/SKILL sections above. (Slice 3 replaces it with a grouped "What's inside".)
+const GRAPH_NODE_LIMIT = 12;
+const showGraph = pluginMcps.length + pluginSkills.length <= GRAPH_NODE_LIMIT;
 ---
 
 <BaseLayout title={plugin.name.en} description={plugin.description.en}>
@@ -75,14 +82,16 @@ const upgradeLink = plugin.upgrade_to ? getUpgradeLink(plugin.upgrade_to) : null
       </CardGrid>
     </section>
 
-    <section class="mb-12">
-      <h2 class="text-xl font-bold mb-6 text-foreground">
-        <span class="lang-en">Dependency Graph</span><span class="lang-zh">依賴關係圖</span>
-      </h2>
-      <div class="glass-card rounded-xl p-6">
-        <PlugInGraph mcpServers={pluginMcps} skills={pluginSkills} />
-      </div>
-    </section>
+    {showGraph && (
+      <section class="mb-12">
+        <h2 class="text-xl font-bold mb-6 text-foreground">
+          <span class="lang-en">Dependency Graph</span><span class="lang-zh">依賴關係圖</span>
+        </h2>
+        <div class="glass-card rounded-xl p-6">
+          <PlugInGraph mcpServers={pluginMcps} skills={pluginSkills} />
+        </div>
+      </section>
+    )}
 
     {plugin.upgrade_to && (
       <section class="relative overflow-hidden bg-gradient-to-r from-green-500/10 via-cyan-500/10 to-green-500/10 border border-primary/20 rounded-xl p-8 text-center">
