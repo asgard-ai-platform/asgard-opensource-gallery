@@ -1,0 +1,40 @@
+{
+  "name": "tw-ecommerce-majordomo",
+  "description": "台灣電商總管：29 個 tw-ecom-* skills ＋ 12 個 asgard MCP servers。",
+  "version": "0.1.0",
+  "author": {
+    "name": "Asgard AI Platform",
+    "url": "https://github.com/asgard-ai-platform"
+  },
+  "homepage": "https://github.com/asgard-ai-platform/tw-ecommerce-majordomo",
+  "repository": "https://github.com/asgard-ai-platform/tw-ecommerce-majordomo",
+  "license": "MIT",
+  "keywords": ["taiwan", "ecommerce", "skills", "mcp", "ecpay", "newebpay"],
+  "skills": "./skills/",
+  "mcpServers": {
+    "ecpay": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/asgard-ai-platform/mcp-ecpay@main", "mcp-ecpay"],
+      "env": {
+        "ECPAY_ENV": "${ECPAY_ENV:-stage}",
+        "ECPAY_MERCHANT_ID": "${ECPAY_MERCHANT_ID}",
+        "ECPAY_HASH_KEY": "${ECPAY_HASH_KEY}"
+      }
+    },
+    "sf-express": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/asgard-ai-platform/mcp-sf-express@main", "mcp-sf-express"],
+      "env": {
+        "SF_ENV": "${SF_ENV:-sandbox}",
+        "SF_PARTNER_ID": "${SF_PARTNER_ID}"
+      }
+    },
+    "91app": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/asgard-ai-platform/mcp-91app@main", "mcp-91app"],
+      "env": {
+        "APP_91APP_API_KEY": "${APP_91APP_API_KEY}"
+      }
+    }
+  }
+}

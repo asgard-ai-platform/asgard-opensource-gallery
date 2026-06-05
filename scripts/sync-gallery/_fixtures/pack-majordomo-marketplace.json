@@ -1,0 +1,20 @@
+{
+  "name": "tw-ecommerce-majordomo",
+  "description": "Marketplace for the Taiwan e-commerce majordomo plugin: 29 tw-ecom-* skills + 12 asgard MCP servers.",
+  "owner": {
+    "name": "Asgard AI Platform",
+    "url": "https://github.com/asgard-ai-platform"
+  },
+  "plugins": [
+    {
+      "name": "tw-ecommerce-majordomo",
+      "description": "台灣電商總管：金流／物流／DTC／marketplace／電子發票／合規／營運／分析 — 29 skills + 12 MCPs.",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "Asgard AI Platform",
+        "url": "https://github.com/asgard-ai-platform"
+      }
+    }
+  ]
+}
