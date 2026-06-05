@@ -320,3 +320,28 @@ export function parseUseCases(md) {
   pushCur();
   return cases;
 }
+
+/**
+ * Assemble one pack's `PackContent` entry from already-fetched raw sources.
+ * Pure: the `main()` shell does the fetching, this does the shaping (so it is
+ * unit-testable end-to-end against fixtures). `content_maturity` is intentionally
+ * omitted in this slice (populated in Slice 3 — see the slice-2 plan §Scope).
+ *
+ * @param {object} s
+ * @param {{owner:string,repo:string}} s.repo
+ * @param {object|null} s.pluginManifest  parsed plugin.json
+ * @param {object|null} s.marketplace     parsed marketplace.json
+ * @param {string|null} s.readme          raw README.md text
+ * @param {string|null} s.envExample      raw .env.example text
+ * @param {string|null} s.useCases        raw docs/USE-CASES.md text
+ * @param {number} s.mcpCount             mcp_servers.length from plugins.yaml
+ */
+export function assemblePackContent(s) {
+  const envGroups = parseEnvExample(s.envExample);
+  return {
+    install: parseInstallSection(s.readme),
+    setup: buildSetup(envGroups, s.mcpCount),
+    use_cases: parseUseCases(s.useCases),
+    source: buildSourceBlock(s.pluginManifest, s.marketplace, s.repo),
+  };
+}

@@ -13,6 +13,7 @@ import {
   classifySetupStatus,
   buildSetup,
   parseUseCases,
+  assemblePackContent,
 } from './sync-pack-content.mjs';
 
 const FIX = new URL('./_fixtures/', import.meta.url).pathname;
@@ -220,4 +221,47 @@ test('parseUseCases: case 2 picks the single backticked MCP out of prose', () =>
 test('parseUseCases: empty/absent input → []', () => {
   assert.deepEqual(parseUseCases(''), []);
   assert.deepEqual(parseUseCases(undefined), []);
+});
+
+// ── assemblePackContent (end-to-end over all fixtures) ──
+test('assemblePackContent: full majordomo entry shape', () => {
+  const entry = assemblePackContent({
+    repo: { owner: 'asgard-ai-platform', repo: 'tw-ecommerce-majordomo' },
+    pluginManifest: parsePluginManifest(pluginJson),
+    marketplace: parseMarketplace(marketplaceJson),
+    readme: readmeMd,
+    envExample,
+    useCases: useCasesMd,
+    mcpCount: 12,
+  });
+  // install
+  assert.equal(entry.install.length, 6);
+  assert.equal(entry.install[0].harness, 'claude-code');
+  // setup
+  assert.equal(entry.setup.status, 'sandbox-ready');
+  assert.equal(entry.setup.env_groups.length, 3);
+  // use_cases
+  assert.equal(entry.use_cases.length, 2);
+  // source
+  assert.equal(entry.source.version, '0.1.0');
+  assert.equal(entry.source.marketplace.name, 'tw-ecommerce-majordomo');
+  // content_maturity deferred to Slice 3 — must be absent here
+  assert.equal('content_maturity' in entry, false);
+});
+test('assemblePackContent: degrades when optional sources are missing', () => {
+  const entry = assemblePackContent({
+    repo: { owner: 'x', repo: 'y' },
+    pluginManifest: null,
+    marketplace: null,
+    readme: null,
+    envExample: null,
+    useCases: null,
+    mcpCount: 0,
+  });
+  assert.deepEqual(entry.install, []);
+  assert.equal(entry.setup.status, 'none');
+  assert.deepEqual(entry.use_cases, []);
+  assert.deepEqual(entry.source.keywords, []);
+  // marketplace arg was null → buildSourceBlock omits the marketplace key
+  assert.equal('marketplace' in entry.source, false);
 });
