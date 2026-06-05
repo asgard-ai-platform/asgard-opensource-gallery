@@ -78,3 +78,84 @@ export function buildSourceBlock(plugin, marketplace, repo) {
   if (marketplace) block.marketplace = { name: marketplace.name, source: marketplace.source };
   return block;
 }
+
+/** Map a harness heading label to a stable slug for the install tab. */
+export function harnessSlug(label) {
+  const map = {
+    'claude code': 'claude-code',
+    'codex cli / app': 'codex',
+    cursor: 'cursor',
+    'antigravity cli (agy)': 'antigravity',
+    opencode: 'opencode',
+    'factory droid': 'factory-droid',
+  };
+  const key = label.trim().toLowerCase();
+  if (map[key]) return map[key];
+  return key.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function finalizeInstall(cur) {
+  const notes = cur.notes.join(' ').trim();
+  const entry = {
+    harness: harnessSlug(cur.label),
+    label: cur.label,
+    command: cur.code.join('\n').trim(),
+    source: 'README.md#安裝',
+  };
+  if (notes) entry.notes = notes;
+  return entry;
+}
+
+/**
+ * Parse the README "## 安裝" (or "## Install") section into one install tab per
+ * "### <harness>" subsection. The tab's `command` is the content of that
+ * subsection's FIRST fenced code block; any other prose (including `>` notes)
+ * becomes `notes`. Returns [] when there is no install section.
+ */
+export function parseInstallSection(readme) {
+  if (!readme) return [];
+  const lines = readme.split('\n');
+  let start = -1;
+  let end = lines.length;
+  for (let i = 0; i < lines.length; i++) {
+    if (start < 0 && /^##\s+(安裝|Install)(?:\s|$)/.test(lines[i])) {
+      start = i + 1;
+      continue;
+    }
+    if (start >= 0 && /^##\s+/.test(lines[i])) {
+      end = i;
+      break;
+    }
+  }
+  if (start < 0) return [];
+
+  const entries = [];
+  let cur = null;
+  let inCode = false;
+  let codeDone = false;
+  for (const line of lines.slice(start, end)) {
+    if (/^###\s+/.test(line) && !inCode) {
+      if (cur) entries.push(finalizeInstall(cur));
+      cur = { label: line.replace(/^###\s+/, '').trim(), code: [], notes: [] };
+      codeDone = false;
+      continue;
+    }
+    if (!cur) continue;
+    if (/^\s*```/.test(line)) {
+      if (!inCode) inCode = true;
+      else {
+        inCode = false;
+        codeDone = true; // only the first fenced block is the command
+      }
+      continue;
+    }
+    if (inCode) {
+      if (!codeDone) cur.code.push(line);
+      continue;
+    }
+    const txt = line.replace(/^>\s?/, '').trim();
+    if (txt) cur.notes.push(txt);
+  }
+  if (cur) entries.push(finalizeInstall(cur));
+  return entries;
+}

@@ -7,6 +7,8 @@ import {
   parsePluginManifest,
   parseMarketplace,
   buildSourceBlock,
+  harnessSlug,
+  parseInstallSection,
 } from './sync-pack-content.mjs';
 
 const FIX = new URL('./_fixtures/', import.meta.url).pathname;
@@ -72,4 +74,46 @@ test('buildSourceBlock: provenance from manifest + marketplace', () => {
   );
   assert.equal(block.marketplace.name, 'tw-ecommerce-majordomo');
   assert.equal(block.marketplace.source, './');
+});
+
+const readmeMd = readFix('pack-majordomo-README.md');
+
+// ── harnessSlug ──
+test('harnessSlug: known labels map to stable slugs', () => {
+  assert.equal(harnessSlug('Claude Code'), 'claude-code');
+  assert.equal(harnessSlug('Codex CLI / App'), 'codex');
+  assert.equal(harnessSlug('Antigravity CLI (agy)'), 'antigravity');
+  assert.equal(harnessSlug('Factory Droid'), 'factory-droid');
+});
+test('harnessSlug: unknown label slugifies', () => {
+  assert.equal(harnessSlug('Some New Harness!'), 'some-new-harness');
+});
+
+// ── parseInstallSection ──
+test('parseInstallSection: six harness tabs in README order, Claude Code first', () => {
+  const tabs = parseInstallSection(readmeMd);
+  assert.deepEqual(
+    tabs.map((t) => t.harness),
+    ['claude-code', 'codex', 'cursor', 'antigravity', 'opencode', 'factory-droid'],
+  );
+});
+test('parseInstallSection: Claude Code command holds both slash commands', () => {
+  const tabs = parseInstallSection(readmeMd);
+  const cc = tabs[0];
+  assert.equal(cc.source, 'README.md#安裝');
+  assert.match(cc.command, /\/plugin marketplace add asgard-ai-platform\/tw-ecommerce-majordomo/);
+  assert.match(cc.command, /\/plugin install tw-ecommerce-majordomo@tw-ecommerce-majordomo/);
+});
+test('parseInstallSection: Cursor tab captures the mcp.json note as notes', () => {
+  const cursor = parseInstallSection(readmeMd).find((t) => t.harness === 'cursor');
+  assert.match(cursor.command, /cursor plugin add asgard-ai-platform\/tw-ecommerce-majordomo/);
+  assert.match(cursor.notes, /mcp\.json/);
+});
+test('parseInstallSection: OpenCode command is the JSON plugin block', () => {
+  const oc = parseInstallSection(readmeMd).find((t) => t.harness === 'opencode');
+  assert.match(oc.command, /"plugin":/);
+  assert.match(oc.command, /git\+https:\/\/github\.com\/asgard-ai-platform\/tw-ecommerce-majordomo\.git/);
+});
+test('parseInstallSection: no install section → []', () => {
+  assert.deepEqual(parseInstallSection('# Title\n\n## Other\n\ntext'), []);
 });
