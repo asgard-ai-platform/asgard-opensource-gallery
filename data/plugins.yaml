@@ -13,6 +13,7 @@ plugins:
     skills: [skill-ecom-analytics, skill-ecom-rfm-analysis, skill-ecom-inventory-health, skill-ecom-promo-roi]
 
   - slug: tw-ecommerce-majordomo
+    kind: pack
     name:
       en: "Taiwan E-Commerce Majordomo"
       zh: "台灣電商總管"
