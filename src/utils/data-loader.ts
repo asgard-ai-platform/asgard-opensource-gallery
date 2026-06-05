@@ -113,3 +113,83 @@ export function getMcpContent(): Record<string, McpContent> {
 export function getMcpContentBySlug(slug: string): McpContent | undefined {
   return getMcpContent()[slug];
 }
+
+/** One harness's install tab, parsed from the pack README's install section. */
+export interface PackInstall {
+  harness: string;
+  label: string;
+  command: string;
+  source: string;
+  notes?: string;
+}
+
+/** A single credential the user may need to set, parsed from `.env.example`. */
+export interface PackEnvVar {
+  name: string;
+  required_when?: string;
+  default?: string;
+  description?: string;
+  source: string;
+}
+
+/** Credentials grouped by provider/MCP, from `.env.example` divider blocks. */
+export interface PackEnvGroup {
+  service: string;
+  mcp_slug?: string;
+  default_mode?: string;
+  docs_url?: string;
+  private?: boolean;
+  vars: PackEnvVar[];
+}
+
+export interface PackSetup {
+  status: 'none' | 'sandbox-ready' | 'keys-required';
+  summary: string;
+  env_groups: PackEnvGroup[];
+}
+
+/** One scenario from `docs/USE-CASES.md`. skills/mcp_servers are the pack-local
+ *  names exactly as written in the doc (not gallery slugs). */
+export interface PackUseCase {
+  title: string;
+  scenario?: string;
+  prompt?: string;
+  skills: string[];
+  mcp_servers: string[];
+  caveats?: string;
+  maturity?: string;
+}
+
+export interface PackSource {
+  version?: string;
+  license?: string;
+  repository?: string;
+  homepage?: string;
+  keywords: string[];
+  manifest_urls: string[];
+  marketplace?: { name?: string; source?: string };
+}
+
+/** The sync-extracted, committed sidecar entry for one pack (`data/pack-content.json`),
+ *  keyed by gallery plugin slug. content_maturity is populated in Slice 3 (see the slice-2 plan §Scope). */
+export interface PackContent {
+  install: PackInstall[];
+  setup: PackSetup;
+  use_cases: PackUseCase[];
+  content_maturity?: Record<string, 'full' | 'skeleton' | 'unknown'>;
+  source: PackSource;
+}
+
+let _packContentCache: Record<string, PackContent> | null = null;
+
+export function getPackContent(): Record<string, PackContent> {
+  if (_packContentCache) return _packContentCache;
+  const filePath = path.join(DATA_DIR, 'pack-content.json');
+  if (!fs.existsSync(filePath)) return {};
+  _packContentCache = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  return _packContentCache!;
+}
+
+export function getPackContentBySlug(slug: string): PackContent | undefined {
+  return getPackContent()[slug];
+}
