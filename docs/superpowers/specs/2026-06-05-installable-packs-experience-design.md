@@ -206,7 +206,7 @@ That is the **only** new YAML/schema field. Everything else (install/setup/use_c
 
 ## 11. Suggested implementation slices
 
-1. **Schema + types + list split + pack card** — `kind` field, loader default coalescing (§3.1), `/plugins` two sections, pack vs collection card, `Skills only` rendering. (No sidecar yet; cards can use counts + derived publisher.) Update `FilterBar.astro` so its existing filters operate within both sections and add a `kind` filter chip — the two-section split must not break the current search/status/region/category filtering.
+1. **Schema + types + list split + pack card (taxonomy-only)** — `kind` field, loader default coalescing (§3.1), `/plugins` two sections, pack vs collection card (taxonomy badges + counts only), `Skills only` rendering. No filtering: unlike `/mcp` and `/skills`, the `/plugins` page has no `FilterBar` and 12 entries in two labelled sections don't warrant one (revisit if the list grows). **This slice is groundwork and does not ship to production on its own** — it labels packs but cannot yet install them; it ships together with slices 2–3, which add the install/setup experience.
 2. **pack-content.json extractor** — build script over the two repos' manifests.
 3. **Pack detail split-hero** — install tabs, setup accordions, use-cases-before-contents, `hasDepEdges` graph gate, handoff/self-test.
 4. **emba onboarding** — resolve the 13-skill canonical source (§10), add emba entry. Good first end-to-end validation because it is the simplest (no setup, 0 MCP).

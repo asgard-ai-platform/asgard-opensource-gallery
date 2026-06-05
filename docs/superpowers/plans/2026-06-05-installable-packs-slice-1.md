@@ -2,9 +2,11 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Make the `/plugins` page distinguish installable **packs** from curated **collections** — add a `kind` discriminator, split the list into two labelled sections, and give pack cards a `PACK` + `Core/Community` badge and `Skills only` rendering.
+**Goal:** Make the `/plugins` page distinguish installable **packs** from curated **collections** — add a `kind` discriminator, split the list into two labelled sections, and give pack cards a `PACK` + `Core/Community` badge and `Skills only` rendering. **This is taxonomy-only groundwork.**
 
-**Architecture:** Add one optional `kind` field to the plugin schema/type. The data loader normalises `kind` (absent → `collection`) so components never see `undefined`, and exposes a pure `getPublisherTier()` helper that derives Core/Community from the GitHub owner (no new YAML field). `PlugInCard.astro` branches on `kind`; `plugins/index.astro` partitions into two sections. No `pack-content.json` sidecar yet (that is Slice 2) and no detail-page changes (Slice 3).
+**⚠ Ships with slices 2–3, not alone.** Slice 1 *labels* packs but deliberately gives no install action or setup-readiness signal — those require the `pack-content.json` sidecar (Slice 2) and the pack detail page (Slice 3). Shipping slice 1 to production by itself would advertise "installable" with no way to install. Treat slices 1–3 as one production-facing release; slice 1 is an internal, independently-reviewable increment. The pack card here therefore has **no Install button** (correct — it can't fulfil one yet); it only carries the `PACK`/publisher taxonomy badges and links to the (still recipe-style) detail page.
+
+**Architecture:** Add one optional `kind` field to the plugin schema/type. The data loader normalises `kind` (absent → `collection`) so components never see `undefined`, and exposes a pure `getPublisherTier(github?)` helper that derives Core/Community from the GitHub owner string (no new YAML field). `PlugInCard.astro` branches on `kind`; `plugins/index.astro` partitions into two sections. No `pack-content.json` sidecar yet (Slice 2) and no detail-page changes (Slice 3).
 
 **Tech Stack:** Astro 5 (static), TypeScript, Tailwind CSS 3, Ajv schema validation (`scripts/validate.mjs`), Playwright e2e (`e2e/`).
 
@@ -12,7 +14,7 @@
 
 **Testing reality (read before starting):** This repo has **no unit-test runner for `src/`** (only `node --test` for `scripts/sync-gallery/*.test.mjs` and Playwright for `e2e/`). So per-task gates are `npm run validate` and `npm run build`; the integration check is a Playwright spec (Task 6) run against the preview server. Pure helpers are verified through the rendered output, matching repo convention.
 
-**Scope note / correction to spec §11:** The spec's slice-1 line mentions updating `FilterBar.astro`. The `/plugins` page does **not** use `FilterBar` (only `mcp/index.astro` and `skills/index.astro` do) — it renders a flat grid. With 12 plugins in two labelled sections, adding a filter is YAGNI. **FilterBar is intentionally out of scope for this slice.**
+**Scope note (reconciled with spec §11):** The `/plugins` page does **not** use `FilterBar` (only `mcp/index.astro` and `skills/index.astro` do) — it renders a flat grid, so there is no existing filtering to preserve. With 12 plugins in two labelled sections, adding a filter is YAGNI. The spec §11 slice-1 line has been amended to match — **no FilterBar in this slice**; revisit if the plugin list grows.
 
 **Slice-1 visual caveat:** The only pack right now is `tw-ecommerce-majordomo` (12 MCP). `emba-famulus` (0 MCP) is **not** added until Slice 4, so the `Skills only` branch has no live pack to render in this slice. We still implement and unit-cover the logic; the e2e assertion for `Skills only` is marked `test.fixme` with a pointer to Slice 4.
 
@@ -129,16 +131,16 @@ export function getPlugIns(): PlugIn[] {
 
 - [ ] **Step 2: Add the publisher-tier helper**
 
-Append to `src/utils/data-loader.ts` (after `getPlugInBySlug`, before the `SkillContent` interface):
+Append to `src/utils/data-loader.ts` (after `getPlugInBySlug`, before the `SkillContent` interface). Takes the `github` string (not the whole `PlugIn`) so it's a focused, side-effect-free string→tier function that is trivial to test in isolation:
 ```ts
 /**
- * Derive publisher trust tier from the repo owner in the github URL.
- * Packs under github.com/asgard-ai-platform are "core"; any other owner is
- * "community". Returns null when there is no github field (e.g. collections).
+ * Derive publisher trust tier from the repo owner in a github URL.
+ * Owner github.com/asgard-ai-platform → "core"; any other owner → "community".
+ * Returns null when there is no github URL (e.g. collections).
  */
-export function getPublisherTier(plugin: PlugIn): 'core' | 'community' | null {
-  if (!plugin.github) return null;
-  const m = plugin.github.match(/github\.com\/([^/]+)/i);
+export function getPublisherTier(github?: string): 'core' | 'community' | null {
+  if (!github) return null;
+  const m = github.match(/github\.com\/([^/]+)/i);
   if (!m) return null;
   return m[1].toLowerCase() === 'asgard-ai-platform' ? 'core' : 'community';
 }
@@ -214,9 +216,11 @@ interface Props {
 }
 
 const { plugin } = Astro.props;
+// data-loader.getPlugIns() already normalises kind; this ?? is a belt-and-suspenders
+// default for any direct/un-normalised caller.
 const kind = plugin.kind ?? 'collection';
 const isPack = kind === 'pack';
-const publisher = isPack ? getPublisherTier(plugin) : null;
+const publisher = isPack ? getPublisherTier(plugin.github) : null;
 const mcpCount = plugin.mcp_servers.length;
 const skillCount = plugin.skills.length;
 const skillsOnly = mcpCount === 0;
@@ -371,6 +375,8 @@ const collections = plugins.filter((p) => p.kind === 'collection');
 </BaseLayout>
 ```
 
+**SEO note (deliberate):** this rewrite changes the `BaseLayout` `description` prop (the page `<meta name="description">`) from "Pre-packaged MCP + SKILL combos for specific business scenarios" to "Installable agent packs and curated MCP + SKILL collections", to match the new page content. This is an intentional SEO copy change, not an accident — call it out in the commit message. The `<title>` stays "PlugIns".
+
 - [ ] **Step 2: Verify build + page count unchanged**
 
 Run: `npm run build`
@@ -439,11 +445,15 @@ test.describe('PlugIns — packs vs collections', () => {
   });
 
   // Skills-only rendering has no live pack until emba-famulus lands in Slice 4.
-  test.fixme('skills-only pack shows "Skills only" instead of "0 MCPs"', async ({ page }) => {
+  // Assert the positive marker + absence of an MCP count badge (not "no '0'",
+  // which would false-match any count containing 0).
+  test.fixme('skills-only pack shows "Skills only" and no MCP count', async ({ page }) => {
     await page.goto(`${BASE}/plugins/`);
     const emba = page.locator('a[href="/plugins/emba-famulus/"]');
     await expect(emba.getByText('Skills only')).toBeVisible();
-    await expect(emba.getByText('0', { exact: false })).toHaveCount(0);
+    await expect(emba.getByText('MCP')).toHaveCount(0);
+    // also assert the community publisher path here (codex finding 4):
+    await expect(emba.locator('[data-publisher="community"]')).toBeVisible();
   });
 });
 ```
@@ -482,5 +492,7 @@ git commit -m "test(packs): e2e for /plugins packs/collections split and pack ba
 
 ## Out of scope (later slices)
 - `data/pack-content.json` extractor + install/setup/use-cases data → Slice 2.
+- **`PackContent` TypeScript interface** (spec §8) → **deferred to Slice 2**, intentionally. It types the `pack-content.json` sidecar; defining it now with no sidecar and no consumer is YAGNI and risks drifting from the machine-generated shape. It lands in the same slice as the extractor that produces it.
+- **Card install/setup-readiness signals** (setup state, use-case teaser, Install/source CTA — the spec's dominant card axes) → require the sidecar, so **Slice 2 (data) + Slice 3 (detail handoff)**. Slice 1's card intentionally carries taxonomy badges only and has no Install button (see header note).
 - Pack **detail** page (split-hero, install tabs, setup accordions, use-cases, `hasDepEdges` graph gate) → Slice 3.
-- `emba-famulus` onboarding (needs the 13 skills' canonical source decided, spec §10) → Slice 4. This is what activates the `Skills only` path and the `Community` badge live.
+- `emba-famulus` onboarding (needs the 13 skills' canonical source decided, spec §10) → Slice 4. This activates the `Skills only` path and the **`community` publisher branch** live; Slice 4 must un-`fixme` the skills-only e2e test (which now also asserts the `data-publisher="community"` badge — covering `getPublisherTier`'s community path, codex finding 4).
