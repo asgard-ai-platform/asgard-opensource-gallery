@@ -159,3 +159,100 @@ export function parseInstallSection(readme) {
   if (cur) entries.push(finalizeInstall(cur));
   return entries;
 }
+
+/** Parse one `KEY=value   # comment` line into an env var record. */
+function parseVarLine(name, rest) {
+  const hash = rest.indexOf('#');
+  const rawVal = (hash >= 0 ? rest.slice(0, hash) : rest).trim();
+  const comment = hash >= 0 ? rest.slice(hash + 1).trim() : '';
+  const v = { name, source: '.env.example' };
+  if (rawVal) v.default = rawVal;
+  if (comment) v.description = comment;
+  if (!rawVal) v.required_when = 'always'; // no shipped default ⇒ user must fill it
+  return v;
+}
+
+/** Turn a block of `# ...` header comment lines into a group skeleton, or null
+ *  if the block is not a provider group (it must carry a `#   MCP:`/`MCPs:` line). */
+function headerToGroup(headerLines) {
+  const stripped = headerLines.map((l) => l.replace(/^#\s?/, '').trimEnd());
+  const mcpLine = stripped.find((l) => /^MCPs?:/.test(l.trim()));
+  if (!mcpLine) return null;
+  const serviceLine = stripped.find((l) => l.includes('—'));
+  const service = serviceLine ? serviceLine.split('—')[0].trim() : stripped[0].trim();
+  const mcpsRaw = mcpLine.trim().replace(/^MCPs?:/, '').trim();
+  const isPrivate = /PRIVATE/i.test(mcpsRaw);
+  const mcpSlugs = mcpsRaw
+    .replace(/\(.*?\)/g, '') // drop "(PRIVATE …)" note before splitting
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const group = { service, vars: [] };
+  if (mcpSlugs.length === 1) group.mcp_slug = mcpSlugs[0];
+  if (isPrivate) group.private = true;
+  return group;
+}
+
+/**
+ * Parse a pack `.env.example` into provider-grouped credentials. Groups are
+ * delimited by `# ----` divider lines wrapping a comment header; the header's
+ * `#   MCP(s):` line is the signal that a block is a real provider group (so the
+ * file's top `# ====` banner is ignored). `default_mode` is taken from any
+ * `*_ENV` var that ships a default.
+ */
+export function parseEnvExample(text) {
+  if (!text) return [];
+  const lines = text.split('\n');
+  const groups = [];
+  let header = [];
+  let current = null;
+  const isDivider = (l) => /^#\s*-{5,}\s*$/.test(l);
+  for (const line of lines) {
+    if (isDivider(line)) {
+      if (header.length) {
+        const g = headerToGroup(header);
+        if (g) {
+          groups.push(g);
+          current = g;
+        } else {
+          current = null;
+        }
+        header = [];
+      }
+      continue;
+    }
+    if (/^\s*#/.test(line)) {
+      header.push(line);
+      continue;
+    }
+    const m = line.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+    if (m && current) current.vars.push(parseVarLine(m[1], m[2]));
+  }
+  for (const g of groups) {
+    const envVar = g.vars.find((v) => /_ENV$/.test(v.name) && v.default);
+    if (envVar) g.default_mode = envVar.default;
+  }
+  return groups;
+}
+
+/** Classify the pack's setup burden into the 3 spec states (none/sandbox-ready/keys-required). */
+export function classifySetupStatus(envGroups, mcpCount) {
+  const vars = envGroups.flatMap((g) => g.vars);
+  if (vars.length === 0) return 'none';
+  const hasSandbox =
+    envGroups.some((g) => g.default_mode) ||
+    vars.some((v) => v.default && /^(stage|test|sandbox|dev|development|false)$/i.test(v.default));
+  return hasSandbox ? 'sandbox-ready' : 'keys-required';
+}
+
+/** Build the `setup` block: status + a machine-generated summary + the groups. */
+export function buildSetup(envGroups, mcpCount) {
+  const status = classifySetupStatus(envGroups, mcpCount);
+  const summary =
+    status === 'none'
+      ? 'No credentials required — install and use.'
+      : status === 'sandbox-ready'
+        ? `${mcpCount} MCP servers; sandbox/test defaults work out of the box — add provider keys only for the services you actually use.`
+        : `${mcpCount} MCP servers; each needs real provider credentials before use.`;
+  return { status, summary, env_groups: envGroups };
+}

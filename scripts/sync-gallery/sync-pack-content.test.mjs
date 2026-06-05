@@ -9,6 +9,9 @@ import {
   buildSourceBlock,
   harnessSlug,
   parseInstallSection,
+  parseEnvExample,
+  classifySetupStatus,
+  buildSetup,
 } from './sync-pack-content.mjs';
 
 const FIX = new URL('./_fixtures/', import.meta.url).pathname;
@@ -116,4 +119,72 @@ test('parseInstallSection: OpenCode command is the JSON plugin block', () => {
 });
 test('parseInstallSection: no install section → []', () => {
   assert.deepEqual(parseInstallSection('# Title\n\n## Other\n\ntext'), []);
+});
+
+const envExample = readFix('pack-majordomo.env.example');
+
+// ── parseEnvExample ──
+test('parseEnvExample: 3 provider groups (banner ignored)', () => {
+  const groups = parseEnvExample(envExample);
+  assert.deepEqual(groups.map((g) => g.service), ['ECPay 綠界', 'SF Express 順豐', '91APP']);
+});
+test('parseEnvExample: ECPay group — 2 MCPs ⇒ no single mcp_slug, default_mode=stage', () => {
+  const ecpay = parseEnvExample(envExample)[0];
+  assert.equal(ecpay.mcp_slug, undefined);
+  assert.equal(ecpay.default_mode, 'stage');
+  assert.deepEqual(ecpay.vars[0], {
+    name: 'ECPAY_ENV',
+    source: '.env.example',
+    default: 'stage',
+    description: 'stage | prod',
+  });
+  assert.deepEqual(ecpay.vars[1], {
+    name: 'ECPAY_MERCHANT_ID',
+    source: '.env.example',
+    required_when: 'always',
+  });
+});
+test('parseEnvExample: SF group — single mcp_slug + sandbox default_mode', () => {
+  const sf = parseEnvExample(envExample)[1];
+  assert.equal(sf.mcp_slug, 'sf-express');
+  assert.equal(sf.default_mode, 'sandbox');
+});
+test('parseEnvExample: 91APP group flagged private; URL default kept', () => {
+  const app = parseEnvExample(envExample)[2];
+  assert.equal(app.mcp_slug, '91app');
+  assert.equal(app.private, true);
+  const baseUrl = app.vars.find((v) => v.name === 'APP_91APP_BASE_URL');
+  assert.equal(baseUrl.default, 'https://api.91app.com');
+  assert.equal(baseUrl.required_when, undefined);
+});
+test('parseEnvExample: empty/absent input → []', () => {
+  assert.deepEqual(parseEnvExample(''), []);
+  assert.deepEqual(parseEnvExample(undefined), []);
+});
+
+// ── classifySetupStatus ──
+test('classifySetupStatus: majordomo → sandbox-ready', () => {
+  assert.equal(classifySetupStatus(parseEnvExample(envExample), 12), 'sandbox-ready');
+});
+test('classifySetupStatus: no env vars → none (emba shape)', () => {
+  assert.equal(classifySetupStatus([], 0), 'none');
+});
+test('classifySetupStatus: only hard secrets, no sandbox path → keys-required', () => {
+  const groups = [
+    { service: 'X', vars: [{ name: 'X_TOKEN', source: '.env.example', required_when: 'always' }] },
+  ];
+  assert.equal(classifySetupStatus(groups, 1), 'keys-required');
+});
+
+// ── buildSetup ──
+test('buildSetup: sandbox-ready summary mentions the MCP count', () => {
+  const setup = buildSetup(parseEnvExample(envExample), 12);
+  assert.equal(setup.status, 'sandbox-ready');
+  assert.match(setup.summary, /12 MCP servers/);
+  assert.equal(setup.env_groups.length, 3);
+});
+test('buildSetup: none status for a 0-MCP pack', () => {
+  const setup = buildSetup([], 0);
+  assert.equal(setup.status, 'none');
+  assert.match(setup.summary, /No credentials required/);
 });
