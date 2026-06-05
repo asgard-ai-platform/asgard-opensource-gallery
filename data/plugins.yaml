@@ -12,6 +12,21 @@ plugins:
     mcp_servers: [mcp-shopline, mcp-91app, mcp-cyberbiz, mcp-ecpay, mcp-tw-einvoice]
     skills: [skill-ecom-analytics, skill-ecom-rfm-analysis, skill-ecom-inventory-health, skill-ecom-promo-roi]
 
+  - slug: tw-ecommerce-majordomo
+    kind: pack
+    name:
+      en: "Taiwan E-Commerce Majordomo"
+      zh: "台灣電商總管"
+    description:
+      en: "The complete Taiwan e-commerce bundle for coding agents: 29 tw-ecom skills (payment, logistics, DTC, marketplace, e-invoice, compliance, operations, analytics) plus 12 Asgard MCP servers covering ECPay, NewebPay, Shopline, 91APP, Cyberbiz, ezPay/Universal EC e-invoicing, and Kerry TJ/HCT/SF logistics."
+      zh: "給 AI coding agent 的完整台灣電商總管包：29 個 tw-ecom skills（金流／物流／DTC／marketplace／電子發票／合規／營運／分析）＋ 12 個 Asgard MCP servers，涵蓋 ECPay、NewebPay、Shopline、91APP、Cyberbiz、ezPay／Universal EC 電子發票、Kerry TJ／HCT／SF 物流。"
+    scenario:
+      en: "For Taiwan e-commerce operators who want one coding-agent extension spanning the full operational stack — payments, logistics, e-invoicing, marketplace ops on Shopee/momo, and DTC on Shopline/91APP."
+      zh: "適合想用單一 AI coding agent 擴充包涵蓋完整營運鏈的台灣電商業者——金流、物流、電子發票、Shopee／momo 通路營運，以及 Shopline／91APP DTC。"
+    github: https://github.com/asgard-ai-platform/tw-ecommerce-majordomo
+    mcp_servers: [mcp-ecpay, mcp-ecpay-logistics, mcp-newebpay, mcp-kerry-tj, mcp-hct-logistics, mcp-sf-express, mcp-shopline, mcp-91app, mcp-cyberbiz, mcp-buy123-vendor, mcp-ezpay-einvoice, mcp-universalec-e-invoice]
+    skills: [skill-tw-ecom-analytics-benchmarks, skill-tw-ecom-analytics-ga4, skill-tw-ecom-channel-strategy, skill-tw-ecom-compliance-consumer, skill-tw-ecom-compliance-cross-border, skill-tw-ecom-compliance-pdpa, skill-tw-ecom-compliance-product, skill-tw-ecom-dtc-91app, skill-tw-ecom-dtc-shopify-localization, skill-tw-ecom-dtc-shopline, skill-tw-ecom-invoice-carrier, skill-tw-ecom-invoice-ezpay, skill-tw-ecom-invoice-universalec, skill-tw-ecom-invoice-void, skill-tw-ecom-logistics-cold-chain, skill-tw-ecom-logistics-cross-border, skill-tw-ecom-logistics-cvs, skill-tw-ecom-logistics-home, skill-tw-ecom-marketplace-momo, skill-tw-ecom-marketplace-shopee, skill-tw-ecom-operations-customer-service, skill-tw-ecom-operations-line-oa, skill-tw-ecom-operations-pricing, skill-tw-ecom-operations-promotion, skill-tw-ecom-payment-dispute, skill-tw-ecom-payment-ecpay, skill-tw-ecom-payment-jkopay, skill-tw-ecom-payment-newebpay, skill-tw-ecom-payment-tappay]
+
   - slug: brand-media-pr
     name:
       en: "Brand Media & PR"

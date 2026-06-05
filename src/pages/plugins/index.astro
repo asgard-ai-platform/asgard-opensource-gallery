@@ -4,9 +4,11 @@ import PlugInCard from '../../components/PlugInCard.astro';
 import { getPlugIns } from '../../utils/data-loader';
 
 const plugins = getPlugIns();
+const packs = plugins.filter((p) => p.kind === 'pack');
+const collections = plugins.filter((p) => p.kind === 'collection');
 ---
 
-<BaseLayout title="PlugIns" description="Pre-packaged MCP + SKILL combos for specific business scenarios">
+<BaseLayout title="PlugIns" description="Installable agent packs and curated MCP + SKILL collections">
   <!-- Hero area -->
   <section class="relative overflow-hidden border-b border-border">
     <div class="absolute inset-0 pointer-events-none">
@@ -25,22 +27,44 @@ const plugins = getPlugIns();
             <span class="lang-en">PlugIns</span><span class="lang-zh">解決方案套件</span>
           </h1>
           <p class="text-sm text-muted-foreground">
-            {plugins.length} <span class="lang-en">plugins available</span><span class="lang-zh">個方案可用</span>
+            {packs.length} <span class="lang-en">installable packs</span><span class="lang-zh">個可安裝套件包</span>
+            · {collections.length} <span class="lang-en">curated collections</span><span class="lang-zh">個策展組合</span>
           </p>
         </div>
       </div>
       <p class="text-muted-foreground max-w-2xl lang-en">
-        Pre-packaged combinations of MCP Servers and SKILLs for specific business scenarios.
+        One-command installable agent packs, plus curated combinations of MCP Servers and SKILLs for specific business scenarios.
       </p>
       <p class="text-muted-foreground max-w-2xl lang-zh">
-        為特定商業場景預打包的 MCP 伺服器與技能組合。
+        可一行安裝的 agent 套件包，以及為特定商業場景策展的 MCP 伺服器與技能組合。
       </p>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {plugins.map((plugin) => <PlugInCard plugin={plugin} />)}
-    </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
+    {packs.length > 0 && (
+      <section data-section="packs">
+        <h2 class="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <span aria-hidden="true">⚡</span>
+          <span class="lang-en">Installable Packs</span><span class="lang-zh">可一鍵安裝的套件包</span>
+          <span class="text-sm font-normal text-muted-foreground">({packs.length})</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {packs.map((plugin) => <PlugInCard plugin={plugin} />)}
+        </div>
+      </section>
+    )}
+
+    {collections.length > 0 && (
+      <section data-section="collections">
+        <h2 class="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <span class="lang-en">Curated Collections</span><span class="lang-zh">策展組合</span>
+          <span class="text-sm font-normal text-muted-foreground">({collections.length})</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {collections.map((plugin) => <PlugInCard plugin={plugin} />)}
+        </div>
+      </section>
+    )}
   </div>
 </BaseLayout>

@@ -30,9 +30,13 @@ export function getSkills(): Skill[] {
   return sortByStatus(data.skills);
 }
 
+// Raw YAML plugin entries may omit `kind`; getPlugIns() fills the default so the
+// rest of the app always receives a concrete PlugIn.kind.
+type RawPlugIn = Omit<PlugIn, 'kind'> & { kind?: PlugIn['kind'] };
+
 export function getPlugIns(): PlugIn[] {
-  const data = loadYaml<{ plugins: PlugIn[] }>('plugins.yaml');
-  return data.plugins;
+  const data = loadYaml<{ plugins: RawPlugIn[] }>('plugins.yaml');
+  return data.plugins.map((p) => ({ ...p, kind: p.kind ?? 'collection' }));
 }
 
 export function getMcpBySlug(slug: string): McpServer | undefined {
@@ -45,6 +49,21 @@ export function getSkillBySlug(slug: string): Skill | undefined {
 
 export function getPlugInBySlug(slug: string): PlugIn | undefined {
   return getPlugIns().find((p) => p.slug === slug);
+}
+
+/** GitHub org whose repos count as first-party ("core") packs. */
+const CORE_PUBLISHER = 'asgard-ai-platform';
+
+/**
+ * Derive publisher trust tier from the repo owner in a github URL.
+ * Owner github.com/asgard-ai-platform → "core"; any other owner → "community".
+ * Returns null when there is no github URL (e.g. collections).
+ */
+export function getPublisherTier(github?: string): 'core' | 'community' | null {
+  if (!github) return null;
+  const m = github.match(/github\.com\/([^/]+)/i);
+  if (!m) return null;
+  return m[1].toLowerCase() === CORE_PUBLISHER ? 'core' : 'community';
 }
 
 export interface SkillContent {

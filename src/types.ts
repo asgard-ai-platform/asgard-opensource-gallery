@@ -40,6 +40,8 @@ export interface Skill {
 
 export interface PlugIn {
   slug: string;
+  /** Always set on values from data-loader.getPlugIns() (raw YAML may omit it → defaults to 'collection'). */
+  kind: 'collection' | 'pack';
   name: BilingualText;
   description: BilingualText;
   scenario: BilingualText;
@@ -47,6 +49,7 @@ export interface PlugIn {
   upgrade_description?: BilingualText;
   mcp_servers: string[];
   skills: string[];
+  github?: string;
   icon?: string;
 }
 
