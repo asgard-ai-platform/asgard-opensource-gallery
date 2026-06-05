@@ -32,7 +32,7 @@ export function getSkills(): Skill[] {
 
 export function getPlugIns(): PlugIn[] {
   const data = loadYaml<{ plugins: PlugIn[] }>('plugins.yaml');
-  return data.plugins;
+  return data.plugins.map((p) => ({ ...p, kind: p.kind ?? 'collection' }));
 }
 
 export function getMcpBySlug(slug: string): McpServer | undefined {
@@ -45,6 +45,18 @@ export function getSkillBySlug(slug: string): Skill | undefined {
 
 export function getPlugInBySlug(slug: string): PlugIn | undefined {
   return getPlugIns().find((p) => p.slug === slug);
+}
+
+/**
+ * Derive publisher trust tier from the repo owner in a github URL.
+ * Owner github.com/asgard-ai-platform → "core"; any other owner → "community".
+ * Returns null when there is no github URL (e.g. collections).
+ */
+export function getPublisherTier(github?: string): 'core' | 'community' | null {
+  if (!github) return null;
+  const m = github.match(/github\.com\/([^/]+)/i);
+  if (!m) return null;
+  return m[1].toLowerCase() === 'asgard-ai-platform' ? 'core' : 'community';
 }
 
 export interface SkillContent {
