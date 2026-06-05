@@ -256,3 +256,67 @@ export function buildSetup(envGroups, mcpCount) {
         : `${mcpCount} MCP servers; each needs real provider credentials before use.`;
   return { status, summary, env_groups: envGroups };
 }
+
+/** Pull the bare tokens out of every `backtick` span on a line. */
+function backtickTokens(line) {
+  return (line.match(/`([^`]+)`/g) || []).map((s) => s.replace(/`/g, ''));
+}
+
+/**
+ * Parse `docs/USE-CASES.md` into scenarios. Each `### N.M <title>` heading is one
+ * use case; its body carries `**情境：**`, a `**Prompt 範例：**` fenced block,
+ * `**會用到的 skills：**` / `**會用到的 MCPs：**` backtick lists, and `**注意：**`.
+ * skills/mcp_servers are kept as the pack-local names exactly as written.
+ */
+export function parseUseCases(md) {
+  if (!md) return [];
+  const lines = md.split('\n');
+  const cases = [];
+  let cur = null;
+  let inFence = false;
+  let promptLines = null; // non-null while collecting the prompt fence body
+
+  const pushCur = () => {
+    if (cur) cases.push(cur);
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const h3 = line.match(/^###\s+\d+\.\d+\s+(.+)$/);
+    if (h3 && !inFence) {
+      pushCur();
+      cur = { title: h3[1].trim(), skills: [], mcp_servers: [] };
+      promptLines = null;
+      continue;
+    }
+    if (!cur) continue;
+
+    if (/^\s*```/.test(line)) {
+      if (!inFence && promptLines) {
+        inFence = true; // opening the prompt fence
+      } else if (inFence) {
+        inFence = false;
+        cur.prompt = promptLines.join('\n').trim();
+        promptLines = null;
+      }
+      continue;
+    }
+    if (inFence) {
+      promptLines.push(line);
+      continue;
+    }
+
+    const field = line.match(/^\*\*(.+?)[:：]\*\*\s*(.*)$/);
+    if (field) {
+      const label = field[1].trim();
+      const value = field[2].trim();
+      if (/情境/.test(label)) cur.scenario = value;
+      else if (/Prompt/i.test(label)) promptLines = []; // next fence is the prompt
+      else if (/skills/i.test(label)) cur.skills = backtickTokens(line);
+      else if (/MCP/i.test(label)) cur.mcp_servers = backtickTokens(line);
+      else if (/注意/.test(label)) cur.caveats = value;
+    }
+  }
+  pushCur();
+  return cases;
+}

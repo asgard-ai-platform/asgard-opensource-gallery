@@ -12,6 +12,7 @@ import {
   parseEnvExample,
   classifySetupStatus,
   buildSetup,
+  parseUseCases,
 } from './sync-pack-content.mjs';
 
 const FIX = new URL('./_fixtures/', import.meta.url).pathname;
@@ -187,4 +188,36 @@ test('buildSetup: none status for a 0-MCP pack', () => {
   const setup = buildSetup([], 0);
   assert.equal(setup.status, 'none');
   assert.match(setup.summary, /No credentials required/);
+});
+
+const useCasesMd = readFix('pack-majordomo-USE-CASES.md');
+
+// ── parseUseCases ──
+test('parseUseCases: two scenarios parsed (preamble + section headers ignored)', () => {
+  const cases = parseUseCases(useCasesMd);
+  assert.equal(cases.length, 2);
+  assert.equal(cases[0].title, '在 Shopline 開新店，全套金物流發票串接');
+  assert.equal(cases[1].title, '從 Marketplace 起步：Shopee + momo 同時上架');
+});
+test('parseUseCases: case 1 fields', () => {
+  const c = parseUseCases(useCasesMd)[0];
+  assert.match(c.scenario, /客戶要在 Shopline 開新店/);
+  assert.match(c.prompt, /我要在 Shopline 開新店/);
+  assert.deepEqual(c.skills, [
+    'tw-ecom-dtc-shopline',
+    'tw-ecom-payment-ecpay',
+    'tw-ecom-logistics-cvs',
+    'tw-ecom-invoice-ezpay',
+  ]);
+  assert.deepEqual(c.mcp_servers, ['shopline', 'ecpay', 'ecpay-logistics', 'ezpay-einvoice']);
+  assert.match(c.caveats, /48 小時內開立/);
+});
+test('parseUseCases: case 2 picks the single backticked MCP out of prose', () => {
+  const c = parseUseCases(useCasesMd)[1];
+  assert.deepEqual(c.mcp_servers, ['buy123-vendor']);
+  assert.match(c.prompt, /蝦皮和 momo 同時上架/);
+});
+test('parseUseCases: empty/absent input → []', () => {
+  assert.deepEqual(parseUseCases(''), []);
+  assert.deepEqual(parseUseCases(undefined), []);
 });
