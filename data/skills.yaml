@@ -4800,3 +4800,201 @@ skills:
     - tappay
     - fintech
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # EMBA Skills (13) — from the emba-famulus pack
+  # ============================================================
+  - slug: skill-biz-corporate-governance
+    name:
+      en: "Corporate Governance"
+      zh: "公司治理"
+    description:
+      en: "Board composition, three lines of defense, audit/compensation/nomination committee operations, independent-director governance, IPO governance upgrade, and family-business professionalization for Taiwan listed-company practice."
+      zh: "EMBA 技能：公司治理框架與實務應用（董事會組成、三道防線、委員會運作、IPO 治理補強、家族企業法人化）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-corporate-governance/SKILL.md
+    tags: [corporate-governance, board, independent-director, ipo, family-business, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-biz-crm-strategy
+    name:
+      en: "CRM Strategy"
+      zh: "顧客關係管理策略"
+    description:
+      en: "Integrated CRM strategy across six pillars: customer segmentation (RFM/CLV), journey orchestration, CDP stack, loyalty design, B2B key-account management, and CRM governance."
+      zh: "EMBA 技能：顧客關係管理策略框架與實務應用（客戶分級、旅程編排、CDP、忠誠方案、大客戶經營）。"
+    status: released
+    category: crm
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-crm-strategy/SKILL.md
+    tags: [crm, customer-strategy, clv, rfm, cdp, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-biz-erm
+    name:
+      en: "Enterprise Risk Management"
+      zh: "企業風險管理"
+    description:
+      en: "ERM framework integrating COSO ERM 2017, ISO 31000, the three-lines model, risk appetite, risk heatmaps, and key risk indicators into a governance playbook."
+      zh: "EMBA 技能：企業風險管理框架與實務應用（COSO ERM、ISO 31000、三道防線、風險胃納、KRI）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-erm/SKILL.md
+    tags: [erm, risk-management, coso, iso-31000, governance, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-biz-innovation-management
+    name:
+      en: "Innovation Management"
+      zh: "創新管理"
+    description:
+      en: "Corporate innovation governance integrating Stage-Gate, 3 Horizons, innovation portfolios, open innovation, corporate venture capital, innovation KPIs, and intrapreneurship."
+      zh: "EMBA 技能：創新管理框架與實務應用（Stage-Gate、3 Horizons、開放式創新、CVC、內部創業）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-innovation-management/SKILL.md
+    tags: [innovation-management, stage-gate, 3-horizons, open-innovation, cvc, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-biz-management-accounting
+    name:
+      en: "Management Accounting"
+      zh: "管理會計"
+    description:
+      en: "Management accounting toolkit for internal decision support: ABC costing, variance analysis, transfer pricing, and responsibility accounting."
+      zh: "EMBA 技能：管理會計框架與實務應用（ABC 作業成本、差異分析、內部轉撥計價、責任中心）。"
+    status: released
+    category: finance
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-management-accounting/SKILL.md
+    tags: [management-accounting, abc-costing, variance-analysis, transfer-pricing, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-biz-net-zero-transition
+    name:
+      en: "Net-Zero Transition"
+      zh: "淨零轉型"
+    description:
+      en: "Net-zero transition playbook: GHG inventory (ISO 14064-1, GHG Protocol), SBTi targets, TCFD/ISSB disclosure, Taiwan carbon fee, decarbonization roadmap, and supply-chain carbon."
+      zh: "EMBA 技能：淨零轉型框架與實務應用（碳盤查、SBTi、TCFD/ISSB、碳費、減碳路徑、供應鏈碳）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-net-zero-transition/SKILL.md
+    tags: [net-zero, carbon, ghg-protocol, sbti, tcfd, taiwan, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-biz-sme-management
+    name:
+      en: "SME & Family Business Management"
+      zh: "中小企業與家族企業管理"
+    description:
+      en: "SME and family-business management for Taiwan: resource-constrained decision-making, family governance (three circles), four-layer succession, and professionalization."
+      zh: "EMBA 技能：中小企業與家族企業管理框架與實務應用（資源有限決策、家族治理、傳承規劃、專業化）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/biz-sme-management/SKILL.md
+    tags: [sme, family-business, succession, family-governance, taiwan, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-fin-m-and-a
+    name:
+      en: "M&A Integration"
+      zh: "併購整合"
+    description:
+      en: "M&A playbook across eight modules: strategic rationale, target screening, due diligence, valuation bridge, synergy analysis, deal structuring, SPA clauses, and post-merger integration."
+      zh: "EMBA 技能：併購整合框架與實務應用（策略動機、盡職調查、估值橋、綜效、交易結構、SPA、PMI）。"
+    status: released
+    category: finance
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/fin-m-and-a/SKILL.md
+    tags: [m-and-a, due-diligence, valuation-bridge, synergy, pmi, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-grad-habitual-domain
+    name:
+      en: "Habitual Domain Theory"
+      zh: "習慣領域理論"
+    description:
+      en: "Habitual Domain (HD) theory by P.L. Yu (游伯龍): four domains, eight hypotheses, the seven-layer decision structure, and nine HD-expansion tools for decision blind spots and cognitive inertia."
+      zh: "EMBA 技能：習慣領域理論（游伯龍）框架與應用（四領域、八大通性、七層決策、九大擴展工具）。"
+    status: released
+    category: theory
+    skill_type: theory
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/grad-habitual-domain/SKILL.md
+    tags: [habitual-domain, pl-yu, decision-theory, innovation-thinking, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ops-digital-transformation
+    name:
+      en: "Digital Transformation"
+      zh: "數位轉型"
+    description:
+      en: "Digital-transformation execution playbook: maturity assessment, transformation roadmap, operating-model redesign, PMO governance, data/AI platforms, and change management."
+      zh: "EMBA 技能：數位轉型框架與實務應用（成熟度評估、轉型路徑、營運模式、PMO 治理、資料/AI 平台、變革管理）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-digital-transformation/SKILL.md
+    tags: [digital-transformation, dx, operating-model, pmo, change-management, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ops-leadership-styles
+    name:
+      en: "Leadership Styles"
+      zh: "領導風格"
+    description:
+      en: "Leadership-style decision framework combining transformational, transactional, servant, situational, and authentic leadership into a situation-based decision tree."
+      zh: "EMBA 技能：領導風格框架與實務應用（轉型、交易、僕人、情境、真誠領導的情境決策樹）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-leadership-styles/SKILL.md
+    tags: [leadership, transformational, servant-leadership, situational-leadership, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ops-org-behavior
+    name:
+      en: "Organizational Behavior"
+      zh: "組織行為"
+    description:
+      en: "Organizational-behavior diagnostic toolkit across three layers: individual motivation (Maslow/Herzberg/SDT), team dynamics (Tuckman), and organizational culture (Schein, Hofstede)."
+      zh: "EMBA 技能：組織行為框架與實務應用（個人動機、團隊動力、組織文化、跨文化管理）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-org-behavior/SKILL.md
+    tags: [org-behavior, motivation, tuckman, schein, hofstede, emba]
+    maintainer: asgard-ai-platform
+
+  - slug: skill-ops-talent-strategy
+    name:
+      en: "Talent Strategy"
+      zh: "人才策略"
+    description:
+      en: "Strategic talent-management toolkit integrating the 9-box grid (performance x potential), succession planning, competency models, and talent review into one operational flow."
+      zh: "EMBA 技能：人才策略框架與實務應用（9-box、繼任規劃、職能模型、人才盤點）。"
+    status: released
+    category: methodology
+    skill_type: methodology
+    region: taiwan
+    github: https://github.com/asgard-ai-platform/skills/blob/main/ops-talent-strategy/SKILL.md
+    tags: [talent, succession, 9-box, competency, hr-strategy, emba]
+    maintainer: asgard-ai-platform
