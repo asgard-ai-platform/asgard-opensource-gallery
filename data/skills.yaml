@@ -4809,7 +4809,7 @@ skills:
       en: "Corporate Governance"
       zh: "公司治理"
     description:
-      en: "Board composition, three lines of defense, audit/compensation/nomination committee operations, independent-director governance, IPO governance upgrade, and family-business professionalization for Taiwan listed-company practice."
+      en: "Corporate-governance practice playbook: board composition, three lines of defense, audit/compensation/nomination committee operations, independent-director governance, stakeholder communication, IPO governance upgrade, and family-business professionalization. Use for board-structure design, independent-director selection, three-lines implementation, IPO governance preparation, major governance incidents (fraud, scandal, insider trading), or family-business corporatization. Triggers: 『董事會組成』『獨董沒發揮功能』『三道防線』『上櫃治理補強』『家族法人化』『委員會分工』『ESG 治理』『審計委員會』『薪酬委員會』『提名委員會』. For Taiwan EMBA corporate-governance/finance/law/ESG cases. Focuses on listed-company and IPO practice; governance theory: use Asgard `grad-governance`; 9-box/繼任規劃/接班人才盤點: use `ops-talent-strategy`; COSO ERM/風險地圖/風險委員會運作: use `biz-erm`."
       zh: "EMBA 技能：公司治理框架與實務應用（董事會組成、三道防線、委員會運作、IPO 治理補強、家族企業法人化）。"
     status: released
     category: methodology
@@ -4824,7 +4824,7 @@ skills:
       en: "CRM Strategy"
       zh: "顧客關係管理策略"
     description:
-      en: "Integrated CRM strategy across six pillars: customer segmentation (RFM/CLV), journey orchestration, CDP stack, loyalty design, B2B key-account management, and CRM governance."
+      en: "Customer relationship management strategy — integrated framework with six pillars: customer segmentation (RFM/CLV), journey orchestration (cross-channel), CDP technology stack, loyalty-program design, B2B key-account management (KAM), and CRM organization/governance. Use for VIP program design, membership-system decision, retail/ecommerce/B2B customer strategy, CDP buy-vs-build, marketing-automation adoption, or key-customer churn. Triggers: 『CRM 系統』『會員經營』『客戶分級』『大客戶策略』『CDP』『行銷自動化』『客戶生命週期』『VIP 方案』『顧客忠誠』『RFM』『CLV』『KAM』『Journey Orchestration』. For 師大 EMBA CRM, 政大 ecommerce, 中山 marketing cases. Complements Asgard `biz-cac-ltv` (tactics) and `biz-customer-journey` (single method) with the strategic integration layer."
       zh: "EMBA 技能：顧客關係管理策略框架與實務應用（客戶分級、旅程編排、CDP、忠誠方案、大客戶經營）。"
     status: released
     category: crm
@@ -4839,7 +4839,7 @@ skills:
       en: "Enterprise Risk Management"
       zh: "企業風險管理"
     description:
-      en: "ERM framework integrating COSO ERM 2017, ISO 31000, the three-lines model, risk appetite, risk heatmaps, and key risk indicators into a governance playbook."
+      en: "Enterprise risk management (ERM) framework layer — integrates COSO ERM 2017 (five components, 20 principles), ISO 31000, three-lines model, risk appetite, risk heatmap, and key risk indicators (KRI) into a complete governance playbook covering structure through culture. Use for ERM implementation, risk-system build, risk mapping, risk-appetite statement drafting, three-lines setup, CRO role design, or Taiwan FSC corporate-governance evaluation response. Triggers: 『ERM 導入』『風險管理框架』『COSO』『風險地圖』『風險胃納』『KRI』『CRO 職責』『三道防線』『風險委員會』『ISO 31000』『風險熱圖』『風險治理』. For 師大／政大／陽交 EMBA risk-management/governance/audit cases. Complements Asgard `algo-risk-*` (Altman Z, Benford, credit, VaR) with the framework/governance layer. 獨董挑選/董事會組成/IPO 治理: use `biz-corporate-governance`."
       zh: "EMBA 技能：企業風險管理框架與實務應用（COSO ERM、ISO 31000、三道防線、風險胃納、KRI）。"
     status: released
     category: methodology
@@ -4854,7 +4854,7 @@ skills:
       en: "Innovation Management"
       zh: "創新管理"
     description:
-      en: "Corporate innovation governance integrating Stage-Gate, 3 Horizons, innovation portfolios, open innovation, corporate venture capital, innovation KPIs, and intrapreneurship."
+      en: "Corporate innovation-governance toolkit integrating Stage-Gate process, 3 Horizons model, innovation portfolio management, open innovation, corporate venture capital (CVC), innovation KPIs, and intrapreneurship. Use for innovation-portfolio design, second-curve planning, innovation-project review gating, open-innovation evaluation, CVC setup, innovation-KPI design, or managing tension between core and new businesses. Triggers: 『第二曲線』『創新專案怎麼管』『新事業孵化』『收購投資新創』『Stage-Gate』『研發投資組合』『內部創業』『開放式創新』『CVC』『3 Horizons』『創新 KPI』. For Taiwan EMBA innovation-management/strategy/technology-management cases (台大／中山). Startup basics: use Asgard `ux-lean-startup`; innovation theory: use Asgard `grad-disruptive-innovation`, `grad-ambidexterity`; 家族二代接班治理: use `biz-corporate-governance` 或 `ops-talent-strategy`; ESG/淨零策略結合: use `biz-net-zero-transition`."
       zh: "EMBA 技能：創新管理框架與實務應用（Stage-Gate、3 Horizons、開放式創新、CVC、內部創業）。"
     status: released
     category: methodology
@@ -4869,7 +4869,7 @@ skills:
       en: "Management Accounting"
       zh: "管理會計"
     description:
-      en: "Management accounting toolkit for internal decision support: ABC costing, variance analysis, transfer pricing, and responsibility accounting."
+      en: "Management accounting toolkit for internal decision support: ABC costing, variance analysis, transfer pricing, and responsibility accounting. Use for product profitability disputes, budget variance diagnosis, inter-division pricing design, and business-unit manager performance evaluation. Triggers: 『這個產品真的賺錢嗎』『成本分攤』『事業部之間怎麼算錢』『本月成本超支』『評核廠長績效』『內部轉撥』『ABC 作業成本』『差異分析』『責任中心』『管理會計』. For Taiwan EMBA cases, term reports, and management-decision simulations (台大／陽交／成大 財管必修)."
       zh: "EMBA 技能：管理會計框架與實務應用（ABC 作業成本、差異分析、內部轉撥計價、責任中心）。"
     status: released
     category: finance
@@ -4884,7 +4884,7 @@ skills:
       en: "Net-Zero Transition"
       zh: "淨零轉型"
     description:
-      en: "Net-zero transition playbook: GHG inventory (ISO 14064-1, GHG Protocol), SBTi targets, TCFD/ISSB disclosure, Taiwan carbon fee, decarbonization roadmap, and supply-chain carbon."
+      en: "Net-zero transition playbook: GHG inventory (ISO 14064-1, GHG Protocol Scope 1/2/3), science-based targets (SBTi), TCFD and ISSB S1/S2 climate disclosure, Taiwan carbon fee, decarbonization roadmap, internal carbon pricing, supply-chain carbon, product carbon footprint, green electricity and T-REC. Use for corporate decarbonization roadmap, carbon inventory, carbon-fee response, TCFD/ISSB reporting, supply-chain decarbonization, or responding to international customers (Apple, RE100). Triggers: 『碳盤查』『SBTi』『碳費』『TCFD』『淨零路徑』『範疇 3』『綠電』『CBAM』『ISO 14064』『ISSB』『T-REC』. For Taiwan EMBA ESG/sustainability/operations/strategy/finance cases. Focuses on Taiwan listed-company and supply-chain practice; sustainability strategy theory: use Asgard `grad-sustainability`; ERM 框架整合氣候風險: use `biz-erm`; 董事會 ESG 委員會結構設計: use `biz-corporate-governance`; 併購 ESG 盡職調查: use `fin-m-and-a`."
       zh: "EMBA 技能：淨零轉型框架與實務應用（碳盤查、SBTi、TCFD/ISSB、碳費、減碳路徑、供應鏈碳）。"
     status: released
     category: methodology
@@ -4899,7 +4899,7 @@ skills:
       en: "SME & Family Business Management"
       zh: "中小企業與家族企業管理"
     description:
-      en: "SME and family-business management for Taiwan: resource-constrained decision-making, family governance (three circles), four-layer succession, and professionalization."
+      en: "SME and family-business management for Taiwan's industrial structure (98% SME, 70%+ family-controlled listed). Integrates four pillars: resource-constrained decision-making, family governance (Tagiuri-Davis three circles), four-layer succession, and professionalization. Use for sub-200-employee strategy, capital-constrained prioritization, family-vs-professional-manager conflict, founder handover, family-constitution design, or SME financing limits. Triggers: 『二代接班』『家族企業』『中小企業』『家族憲章』『家族辦公室』『傳承規劃』『小公司策略』『資源有限』『家族跟專業經理人』『三圓模型』『隱形冠軍』. For 成大 EMBA SME strategy, 政大 EMBA family-business succession, 逢甲 EMBA SME management cases. Fills Asgard gaps in resource-constrained strategy and Chinese-family governance."
       zh: "EMBA 技能：中小企業與家族企業管理框架與實務應用（資源有限決策、家族治理、傳承規劃、專業化）。"
     status: released
     category: methodology
@@ -4914,7 +4914,7 @@ skills:
       en: "M&A Integration"
       zh: "併購整合"
     description:
-      en: "M&A playbook across eight modules: strategic rationale, target screening, due diligence, valuation bridge, synergy analysis, deal structuring, SPA clauses, and post-merger integration."
+      en: "M&A integration playbook covering eight modules: strategic rationale, target screening, due diligence (financial/legal/commercial), valuation with valuation bridge, synergy analysis, deal structuring (stock vs. asset, cash vs. equity, earn-out), SPA key clauses, and post-merger integration (PMI). Use for deal evaluation, valuation disputes, structure design, earn-out design, synergy breakdown, integration risk, or hostile takeover defense. Triggers: 『併購』『收購』『M&A』『盡職調查』『DD』『估值橋』『綜效』『earn-out』『換股比例』『PMI』『買殼』『借殼上市』『敵意併購』『交易結構』. For Taiwan EMBA 財管組 case studies and term reports (台大／政大／陽交). Complements Asgard `biz-dcf` and `fin-modeling` (valuation tools) plus `biz-corporate-governance` (governance layer) by providing the transaction-layer framework."
       zh: "EMBA 技能：併購整合框架與實務應用（策略動機、盡職調查、估值橋、綜效、交易結構、SPA、PMI）。"
     status: released
     category: finance
@@ -4929,7 +4929,7 @@ skills:
       en: "Habitual Domain Theory"
       zh: "習慣領域理論"
     description:
-      en: "Habitual Domain (HD) theory by P.L. Yu (游伯龍): four domains, eight hypotheses, the seven-layer decision structure, and nine HD-expansion tools for decision blind spots and cognitive inertia."
+      en: "Habitual Domain (HD) theory by Taiwanese scholar P.L. Yu (游伯龍, 1977) — integrates four domains (potential/actual/reachable/activated), eight general hypotheses, seven-layer decision structure, and nine HD-expansion tools to analyze decision blind spots, break cognitive inertia, and support cross-domain integration. Use for diagnosing why alternatives are invisible, decision paralysis, breaking cognitive frames, or explaining perception gaps between people. Triggers: 『思維框架』『打破盲點』『創新思考』『決策盲區』『跨域整合』『游伯龍』『習慣領域』『HD 理論』『七層決策』『四領域』『八大通性』『P.L. Yu』. Especially for NYCU EMBA HD course, 政大科管所, 中山企管系 decision-analysis/innovation/leadership courses. Taiwan-origin theory cited in J. Optimization Theory, Theory & Decision, Human Systems Management."
       zh: "EMBA 技能：習慣領域理論（游伯龍）框架與應用（四領域、八大通性、七層決策、九大擴展工具）。"
     status: released
     category: theory
@@ -4944,7 +4944,7 @@ skills:
       en: "Digital Transformation"
       zh: "數位轉型"
     description:
-      en: "Digital-transformation execution playbook: maturity assessment, transformation roadmap, operating-model redesign, PMO governance, data/AI platforms, and change management."
+      en: "Digital-transformation execution playbook: maturity assessment, transformation roadmap, Operating Model redesign, PMO and transformation governance, data/AI platform deployment, process digitization, organizational agility, digital talent, and change management. Use for DX roadmap design, transformation governance (CDO/PMO/Steering Committee), data/AI/cloud platform planning, ERP or core-system upgrade, traditional-industry digitization, or DX organizational resistance. Triggers: 『DX 從哪開始』『數位長』『資料平台』『AI 落地』『傳產數位化』『ERP 要不要換』『轉型辦公室』『員工不配合數位化』『Operating Model』『敏捷轉型』『PMO』. For Taiwan EMBA info-management/DX/strategy/operations/change courses. Focuses on execution; theory layer: use Asgard `grad-digital-transformation`, `grad-sociotechnical`, `grad-tam-utaut`."
       zh: "EMBA 技能：數位轉型框架與實務應用（成熟度評估、轉型路徑、營運模式、PMO 治理、資料/AI 平台、變革管理）。"
     status: released
     category: methodology
@@ -4959,7 +4959,7 @@ skills:
       en: "Leadership Styles"
       zh: "領導風格"
     description:
-      en: "Leadership-style decision framework combining transformational, transactional, servant, situational, and authentic leadership into a situation-based decision tree."
+      en: "Leadership-style decision framework combining transformational, transactional, servant, situational, and authentic leadership into a situation-based decision tree. Use for diagnosing leadership challenges, succession planning, change management, crisis response, taking over a new team, or generational-gap issues. Triggers: 『該用什麼領導風格』『怎麼帶這個團隊』『接班交棒』『危機領導』『年輕員工不吃這一套』『威權還是授權』『轉型領導』『僕人領導』『情境領導』『真誠領導』. For Taiwan EMBA leadership courses (台大／政大／師大), executive self-diagnosis, and succession-leadership style. 9-box/人才盤點/繼任規劃工具: use `ops-talent-strategy`."
       zh: "EMBA 技能：領導風格框架與實務應用（轉型、交易、僕人、情境、真誠領導的情境決策樹）。"
     status: released
     category: methodology
@@ -4974,7 +4974,7 @@ skills:
       en: "Organizational Behavior"
       zh: "組織行為"
     description:
-      en: "Organizational-behavior diagnostic toolkit across three layers: individual motivation (Maslow/Herzberg/SDT), team dynamics (Tuckman), and organizational culture (Schein, Hofstede)."
+      en: "Integrated organizational-behavior diagnostic toolkit across three layers: individual motivation (Maslow/Herzberg/McGregor/McClelland/SDT), team dynamics (Tuckman), and organizational culture (Schein three levels, Hofstede). Use for diagnosing a new team, case-study OB problems, culture change, motivation failure, team stagnation, or cross-cultural management. Triggers: 『團隊士氣低』『怎麼激勵』『文化怎麼改』『新團隊怎麼帶』『加薪沒效果』『公司的文化』『跨國團隊管不動』『Maslow』『Herzberg』『Tuckman』『Schein』『Hofstede』. For Taiwan EMBA OB/HR/cross-cultural courses (陽交／清大／師大). Single-theory deep dives: use Asgard `grad-sdt`, `grad-social-identity`, `grad-sensemaking`."
       zh: "EMBA 技能：組織行為框架與實務應用（個人動機、團隊動力、組織文化、跨文化管理）。"
     status: released
     category: methodology
@@ -4989,7 +4989,7 @@ skills:
       en: "Talent Strategy"
       zh: "人才策略"
     description:
-      en: "Strategic talent-management toolkit integrating the 9-box grid (performance x potential), succession planning, competency models, and talent review into one operational flow."
+      en: "Strategic talent-management toolkit integrating 9-box grid (performance × potential), succession planning, competency models, and talent review into one operational flow. Use for key-position-risk diagnosis, succession pipeline design, family-business second-generation grooming, annual talent review, competency/promotion systems, or post-M&A talent retention. Triggers: 『誰來接班』『關鍵職缺斷鏈』『高潛人才』『績效考核跟晉升脫節』『家族二代怎麼養』『留才方案』『9-box』『繼任規劃』『職能模型』『人才盤點』. For Taiwan EMBA strategic-HR/OB/family-business courses (政大／成大). Algorithmic HR tools: use Asgard `algo-hr-compensation`, `algo-hr-matching`, `algo-hr-turnover`."
       zh: "EMBA 技能：人才策略框架與實務應用（9-box、繼任規劃、職能模型、人才盤點）。"
     status: released
     category: methodology
