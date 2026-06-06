@@ -165,6 +165,10 @@ export function parseInstallSection(readme) {
   return entries;
 }
 
+/** A var comment that signals the var is only needed in some cases, not always
+ *  (e.g. "only for ecpay …", "optional", zh "可選 / 選填 / 視需要"). */
+const CONDITIONAL_HINT = /\bonly\b|\boptional\b|可選|選填|僅(?:限|用|在)|視需要|非必填|如需/i;
+
 /** Parse one `KEY=value   # comment` line into an env var record. */
 function parseVarLine(name, rest) {
   const hash = rest.indexOf('#');
@@ -173,7 +177,9 @@ function parseVarLine(name, rest) {
   const v = { name, source: '.env.example' };
   if (rawVal) v.default = rawVal;
   if (comment) v.description = comment;
-  if (!rawVal) v.required_when = 'always'; // no shipped default ⇒ user must fill it
+  // No shipped default ⇒ the user must supply it; but a conditional comment
+  // ("only for …", "optional") means it is required only in some cases.
+  if (!rawVal) v.required_when = CONDITIONAL_HINT.test(comment) ? 'conditional' : 'always';
   return v;
 }
 
@@ -320,6 +326,9 @@ export function parseUseCases(md) {
       else if (/skills/i.test(label)) cur.skills = backtickTokens(line);
       else if (/MCP/i.test(label)) cur.mcp_servers = backtickTokens(line);
       else if (/注意/.test(label)) cur.caveats = value;
+      // Any field other than Prompt ends the prompt-capture window, so a later
+      // unrelated code fence is not mistaken for this case's prompt.
+      if (!/Prompt/i.test(label)) promptLines = null;
     }
   }
   pushCur();

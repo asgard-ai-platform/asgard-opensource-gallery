@@ -173,6 +173,12 @@ test('parseEnvExample: ECPay group — 2 MCPs ⇒ no single mcp_slug, default_mo
     required_when: 'always',
   });
 });
+test('parseEnvExample: empty var with an "only for …" comment is conditional, not always', () => {
+  const ecpay = parseEnvExample(envExample)[0];
+  const platform = ecpay.vars.find((v) => v.name === 'ECPAY_PLATFORM_ID');
+  assert.equal(platform.required_when, 'conditional');
+  assert.equal(platform.description, 'only for ecpay (special-merchant flow)');
+});
 test('parseEnvExample: SF group — single mcp_slug + sandbox default_mode', () => {
   const sf = parseEnvExample(envExample)[1];
   assert.equal(sf.mcp_slug, 'sf-express');
@@ -248,6 +254,44 @@ test('parseUseCases: case 2 picks the single backticked MCP out of prose', () =>
 test('parseUseCases: empty/absent input → []', () => {
   assert.deepEqual(parseUseCases(''), []);
   assert.deepEqual(parseUseCases(undefined), []);
+});
+test('parseUseCases: a stray later fence is not captured as the prompt; fields survive', () => {
+  // Prompt label with NO fence right after, then other fields, then an
+  // unrelated fenced block. The prompt window must close at the first
+  // non-Prompt field so the stray fence is ignored and fields stay intact.
+  const md = [
+    '### 1.1 Title',
+    '**情境：** scenario text',
+    '**Prompt 範例：**',
+    '**會用到的 skills：** `a`、`b`',
+    '**會用到的 MCPs：** `m`',
+    '**注意：** caveat text',
+    '```',
+    'unrelated example block',
+    '```',
+  ].join('\n');
+  const c = parseUseCases(md)[0];
+  assert.equal(c.prompt, undefined);
+  assert.deepEqual(c.skills, ['a', 'b']);
+  assert.deepEqual(c.mcp_servers, ['m']);
+  assert.equal(c.caveats, 'caveat text');
+});
+test('parseUseCases: a real prompt fence still captures, and a trailing fence does not override it', () => {
+  const md = [
+    '### 2.1 Title',
+    '**Prompt 範例：**',
+    '```',
+    'the real prompt',
+    '```',
+    '**會用到的 skills：** `a`',
+    '**注意：** c',
+    '```',
+    'extra',
+    '```',
+  ].join('\n');
+  const c = parseUseCases(md)[0];
+  assert.equal(c.prompt, 'the real prompt');
+  assert.deepEqual(c.skills, ['a']);
 });
 
 // ── assemblePackContent (end-to-end over all fixtures) ──

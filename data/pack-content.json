@@ -73,7 +73,7 @@
               "name": "ECPAY_PLATFORM_ID",
               "source": ".env.example",
               "description": "only for ecpay (special-merchant flow)",
-              "required_when": "always"
+              "required_when": "conditional"
             }
           ],
           "default_mode": "stage"
