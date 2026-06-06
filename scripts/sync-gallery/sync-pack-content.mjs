@@ -162,7 +162,9 @@ export function parseInstallSection(readme) {
     if (txt) cur.notes.push(txt);
   }
   if (cur) entries.push(finalizeInstall(cur));
-  return entries;
+  // Drop harness sections with no fenced command — a tab with an empty command
+  // is not actionable.
+  return entries.filter((e) => e.command);
 }
 
 /** A var comment that signals the var is only needed in some cases, not always
@@ -247,7 +249,7 @@ export function parseEnvExample(text) {
 }
 
 /** Classify the pack's setup burden into the 3 spec states (none/sandbox-ready/keys-required). */
-export function classifySetupStatus(envGroups, mcpCount) {
+export function classifySetupStatus(envGroups) {
   const vars = envGroups.flatMap((g) => g.vars);
   if (vars.length === 0) return 'none';
   const hasSandbox =
@@ -258,7 +260,7 @@ export function classifySetupStatus(envGroups, mcpCount) {
 
 /** Build the `setup` block: status + a machine-generated summary + the groups. */
 export function buildSetup(envGroups, mcpCount) {
-  const status = classifySetupStatus(envGroups, mcpCount);
+  const status = classifySetupStatus(envGroups);
   const summary =
     status === 'none'
       ? 'No credentials required — install and use.'

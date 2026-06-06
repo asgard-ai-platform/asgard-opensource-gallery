@@ -149,6 +149,13 @@ test('parseInstallSection: OpenCode command is the JSON plugin block', () => {
 test('parseInstallSection: no install section → []', () => {
   assert.deepEqual(parseInstallSection('# Title\n\n## Other\n\ntext'), []);
 });
+test('parseInstallSection: a harness section with no fenced command is dropped', () => {
+  const md = '## 安裝\n\n### Foo\n\njust prose, no code block\n\n### Bar\n\n```\nbar install\n```\n';
+  assert.deepEqual(
+    parseInstallSection(md).map((t) => t.harness),
+    ['bar'],
+  );
+});
 
 const envExample = readFix('pack-majordomo.env.example');
 
@@ -199,16 +206,16 @@ test('parseEnvExample: empty/absent input → []', () => {
 
 // ── classifySetupStatus ──
 test('classifySetupStatus: majordomo → sandbox-ready', () => {
-  assert.equal(classifySetupStatus(parseEnvExample(envExample), 12), 'sandbox-ready');
+  assert.equal(classifySetupStatus(parseEnvExample(envExample)), 'sandbox-ready');
 });
 test('classifySetupStatus: no env vars → none (emba shape)', () => {
-  assert.equal(classifySetupStatus([], 0), 'none');
+  assert.equal(classifySetupStatus([]), 'none');
 });
 test('classifySetupStatus: only hard secrets, no sandbox path → keys-required', () => {
   const groups = [
     { service: 'X', vars: [{ name: 'X_TOKEN', source: '.env.example', required_when: 'always' }] },
   ];
-  assert.equal(classifySetupStatus(groups, 1), 'keys-required');
+  assert.equal(classifySetupStatus(groups), 'keys-required');
 });
 
 // ── buildSetup ──
