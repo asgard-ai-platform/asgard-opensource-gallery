@@ -15,11 +15,6 @@ on:
       - 'package-lock.json'
       - '.github/workflows/deploy.yml'
 
-# Force Node 24 runtime for any third-party JS actions still pinned to node20
-# (e.g. cloudflare/wrangler-action@v3 — no v4 yet that ships with node24).
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -33,7 +28,7 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npm run build
-      - uses: cloudflare/wrangler-action@v3.15.0
+      - uses: cloudflare/wrangler-action@v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
