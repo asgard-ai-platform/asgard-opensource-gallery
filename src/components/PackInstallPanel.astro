@@ -1,0 +1,175 @@
+---
+import type { PackInstall } from '../utils/data-loader';
+
+interface Props {
+  install: PackInstall[];
+  status: 'none' | 'sandbox-ready' | 'keys-required';
+}
+
+const { install, status } = Astro.props;
+
+// Next-step microcopy keyed by setup state (spec §6).
+const nextStepEn: Record<Props['status'], string> = {
+  none: 'No setup needed — just ask your agent.',
+  'sandbox-ready': 'Works in sandbox/default mode now; add provider keys for live services.',
+  'keys-required': 'Fill the required keys below, then ask your agent.',
+};
+const nextStepZh: Record<Props['status'], string> = {
+  none: '無需設定 — 直接問你的 agent。',
+  'sandbox-ready': '現在就能用 sandbox／預設模式；要串真實服務再填 provider 金鑰。',
+  'keys-required': '先填下方必填金鑰，再問你的 agent。',
+};
+
+// Generic self-test prompt — works for any pack, no per-pack data needed (§5.4).
+const selfTestEn = 'List what this pack lets you do now, with one example task.';
+const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個範例任務。';
+---
+
+<div class="pack-install glass-card rounded-xl p-5">
+  <p class="text-sm font-semibold text-foreground mb-3">
+    <span class="lang-en">Install</span><span class="lang-zh">安裝</span>
+  </p>
+
+  {install.length === 0 ? (
+    <p class="text-sm text-muted-foreground">
+      <span class="lang-en">No install command published yet — see the repository.</span>
+      <span class="lang-zh">尚未提供安裝指令 — 請見原始碼倉庫。</span>
+    </p>
+  ) : (
+    <>
+      <div class="flex flex-wrap gap-1.5 mb-3" role="tablist" aria-label="Install commands by harness">
+        {install.map((tab, i) => (
+          <button
+            type="button"
+            id={`install-tab-${tab.harness}`}
+            class={`install-tab text-xs px-2.5 py-1 rounded-md border transition-colors ${i === 0 ? 'active bg-primary/15 text-primary border-primary/30' : 'bg-accent text-muted-foreground border-border'}`}
+            data-harness={tab.harness}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`install-panel-${tab.harness}`}
+            tabindex={i === 0 ? '0' : '-1'}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {install.map((tab, i) => (
+        <div
+          id={`install-panel-${tab.harness}`}
+          class={`install-panel ${i === 0 ? '' : 'hidden'}`}
+          data-harness={tab.harness}
+          role="tabpanel"
+          aria-labelledby={`install-tab-${tab.harness}`}
+          tabindex="0"
+        >
+          <div class="relative">
+            <pre class="text-xs bg-background/60 border border-border rounded-lg p-3 pr-12 overflow-x-auto"><code>{tab.command}</code></pre>
+            <button
+              type="button"
+              class="copy-btn absolute top-2 right-2 text-[10px] px-2 py-1 rounded bg-accent text-muted-foreground border border-border hover:text-primary hover:border-primary/40 transition-colors"
+              data-copy={tab.command}
+            >
+              <span class="copy-label lang-en">Copy</span><span class="copy-label lang-zh">複製</span>
+            </button>
+          </div>
+          {tab.notes && (
+            <p class="mt-2 text-xs text-muted-foreground">{tab.notes}</p>
+          )}
+        </div>
+      ))}
+
+      <p class="mt-3 text-xs text-amber-400/90 flex items-start gap-1.5">
+        <span aria-hidden="true">⚠</span>
+        <span>
+          <span class="lang-en">Run this in your own terminal/agent — the gallery can't run it here.</span>
+          <span class="lang-zh">在你自己的終端／agent 執行 — 此處無法代為執行。</span>
+        </span>
+      </p>
+
+      <p class="mt-2 text-xs text-muted-foreground">
+        <span class="lang-en">{nextStepEn[status]}</span><span class="lang-zh">{nextStepZh[status]}</span>
+      </p>
+
+      <div class="mt-3 border-t border-border pt-3">
+        <p class="text-[11px] uppercase tracking-wide text-muted-foreground mb-1.5">
+          <span class="lang-en">Self-test prompt</span><span class="lang-zh">自我測試提示</span>
+        </p>
+        <div class="relative">
+          <pre class="text-xs bg-background/60 border border-border rounded-lg p-3 pr-12 whitespace-pre-wrap"><code class="lang-en">{selfTestEn}</code><code class="lang-zh">{selfTestZh}</code></pre>
+          <button
+            type="button"
+            class="copy-btn absolute top-2 right-2 text-[10px] px-2 py-1 rounded bg-accent text-muted-foreground border border-border hover:text-primary hover:border-primary/40 transition-colors"
+            data-copy-self="1"
+          >
+            <span class="copy-label lang-en">Copy</span><span class="copy-label lang-zh">複製</span>
+          </button>
+        </div>
+      </div>
+    </>
+  )}
+</div>
+
+<script>
+  function initPackInstall() {
+    document.querySelectorAll('.pack-install').forEach((root) => {
+      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('.install-tab'));
+      const panels = Array.from(root.querySelectorAll<HTMLElement>('.install-panel'));
+
+      const select = (harness: string | undefined, focus = false) => {
+        tabs.forEach((t) => {
+          const on = t.dataset.harness === harness;
+          t.classList.toggle('active', on);
+          t.classList.toggle('bg-primary/15', on);
+          t.classList.toggle('text-primary', on);
+          t.classList.toggle('border-primary/30', on);
+          t.classList.toggle('bg-accent', !on);
+          t.classList.toggle('text-muted-foreground', !on);
+          t.classList.toggle('border-border', !on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          if (on && focus) t.focus();
+        });
+        panels.forEach((p) => p.classList.toggle('hidden', p.dataset.harness !== harness));
+      };
+
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab.dataset.harness));
+        tab.addEventListener('keydown', (e) => {
+          let idx = -1;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') idx = (i + 1) % tabs.length;
+          else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') idx = (i - 1 + tabs.length) % tabs.length;
+          else if (e.key === 'Home') idx = 0;
+          else if (e.key === 'End') idx = tabs.length - 1;
+          else return;
+          e.preventDefault();
+          select(tabs[idx].dataset.harness, true);
+        });
+      });
+
+      root.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          let text = btn.dataset.copy;
+          if (btn.dataset.copySelf) {
+            // copy the prompt for the currently-active language
+            const lang = document.documentElement.getAttribute('data-lang') || 'en';
+            const code = btn.parentElement?.querySelector<HTMLElement>(`code.lang-${lang}`);
+            text = code?.textContent || '';
+          }
+          if (!text) return;
+          try {
+            await navigator.clipboard.writeText(text);
+            const labels = btn.querySelectorAll<HTMLElement>('.copy-label');
+            labels.forEach((l) => { l.textContent = l.classList.contains('lang-zh') ? '已複製' : 'Copied'; });
+            // idempotent restore — safe under rapid double-clicks (no per-element state)
+            setTimeout(() => labels.forEach((l) => { l.textContent = l.classList.contains('lang-zh') ? '複製' : 'Copy'; }), 1500);
+          } catch {
+            /* clipboard blocked (e.g. insecure context) — no-op */
+          }
+        });
+      });
+    });
+  }
+  initPackInstall();
+  document.addEventListener('astro:after-swap', initPackInstall);
+</script>

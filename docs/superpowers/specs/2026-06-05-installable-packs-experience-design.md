@@ -40,7 +40,7 @@ Then it sends them back to their own terminal/agent. The site must never imply "
 - **`kind` discriminator** on the plugin entity: `collection | pack`, default `collection`. Old 10 entries untouched; only `majordomo`/`emba` get `kind: pack`. The default is **not** applied via JSON Schema (Ajv in `validate.mjs` does not write defaults, and adding `"default"` to the enum would not back-fill the 10 kind-less entries); instead `kind` is an **optional** schema field and the **data loader** coalesces it — `kind = p.kind ?? 'collection'` — so components and pages never receive `undefined`.
 - **One `/plugins` route, split into two in-page sections.** No new top-level `/packs` route yet. No fourth data entity.
 - **Publisher tier derived from GitHub owner** — `github.com/asgard-ai-platform/*` ⇒ Core, else Community. Zero schema field for trust.
-- **Dependency graph gated on `hasDepEdges`**, not on `mcp_count > 0`. Note `requires_mcp` is a **Skill** field, not a PlugIn field — so `hasDepEdges` means: there exists a skill in the pack whose `requires_mcp` contains at least one MCP that is also in the pack's `mcp_servers`. Formally `∃ s ∈ pack.skills, m ∈ pack.mcp_servers : m ∈ s.requires_mcp`. (This matches how `PlugInGraph.astro` already computes edges.)
+- **Dependency graph gated on `hasDepEdges` AND a node-count limit.** `hasDepEdges` (not `mcp_count > 0`): `requires_mcp` is a **Skill** field, so it means `∃ s ∈ pack.skills, m ∈ pack.mcp_servers : m ∈ s.requires_mcp` (matches how `PlugInGraph.astro` computes edges). But edges alone aren't enough: the current bipartite SVG is sized `height = max(mcp,skill) × 60 + 80` in a fixed 600-wide viewBox, so a large pack (majordomo = 12 MCP × 29 skills) becomes an ~1800px-tall mess of crossing lines with clipped labels. So **also gate on size**: only render the graph when `mcp_count + skill_count ≤ GRAPH_NODE_LIMIT` (currently 12 — comfortably covers every existing collection, excludes majordomo). Above the limit, omit the graph; the grouped "What's inside" (§5.2 ④) carries the contents. (Quick size gate shipped in slice 1's `plugins/[slug].astro`; the grouped-list replacement is slice 3.)
 - **Phase 2** (`/packs` route + nav + homepage stat + contribute template) only at threshold: pack count ≥ 5–6, OR packs gain their own discovery dimensions (install method / author type / framework), OR analytics show users landing specifically to install.
 
 ### 3.2 Experience (this round)
@@ -113,7 +113,7 @@ Collection card: keeps recipe framing, no install affordance, CTA `Explore recip
 │      scenario → sample prompt → skills/MCP used → caveats           │
 ├── ④ WHAT'S INSIDE — 29 skills · 12 MCP (maturity: 3 full/26 skel.) │
 │      [expand skills ▾][expand MCP ▾]  ← secondary, collapsed        │
-├── ⑤ DEPENDENCY GRAPH — only if hasDepEdges                          │
+├── ⑤ DEPENDENCY GRAPH — only if hasDepEdges AND ≤ GRAPH_NODE_LIMIT   │
 ├── ⑥ SOURCE — GitHub, version, license, author, raw manifests       │
 └── HANDOFF note (footer): copy → runs in your agent, not here        │
 ```
