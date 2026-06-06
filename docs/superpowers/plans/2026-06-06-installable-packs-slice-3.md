@@ -226,9 +226,9 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
 ---
 
 <div class="pack-install glass-card rounded-xl p-5">
-  <h3 class="text-sm font-semibold text-foreground mb-3">
+  <p class="text-sm font-semibold text-foreground mb-3">
     <span class="lang-en">Install</span><span class="lang-zh">安裝</span>
-  </h3>
+  </p>
 
   {install.length === 0 ? (
     <p class="text-sm text-muted-foreground">
@@ -243,6 +243,8 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
             type="button"
             class={`install-tab text-xs px-2.5 py-1 rounded-md border transition-colors ${i === 0 ? 'active bg-primary/15 text-primary border-primary/30' : 'bg-accent text-muted-foreground border-border'}`}
             data-harness={tab.harness}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
           >
             {tab.label}
           </button>
@@ -250,7 +252,7 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
       </div>
 
       {install.map((tab, i) => (
-        <div class={`install-panel ${i === 0 ? '' : 'hidden'}`} data-harness={tab.harness}>
+        <div class={`install-panel ${i === 0 ? '' : 'hidden'}`} data-harness={tab.harness} role="tabpanel">
           <div class="relative">
             <pre class="text-xs bg-background/60 border border-border rounded-lg p-3 pr-12 overflow-x-auto"><code>{tab.command}</code></pre>
             <button
@@ -315,6 +317,7 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
             t.classList.toggle('bg-accent', !on);
             t.classList.toggle('text-muted-foreground', !on);
             t.classList.toggle('border-border', !on);
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
           });
           panels.forEach((p) => p.classList.toggle('hidden', p.dataset.harness !== h));
         });
@@ -333,11 +336,9 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
           try {
             await navigator.clipboard.writeText(text);
             const labels = btn.querySelectorAll<HTMLElement>('.copy-label');
-            labels.forEach((l) => {
-              l.dataset.orig = l.textContent || '';
-              l.textContent = l.classList.contains('lang-zh') ? '已複製' : 'Copied';
-            });
-            setTimeout(() => labels.forEach((l) => { l.textContent = l.dataset.orig || ''; }), 1500);
+            labels.forEach((l) => { l.textContent = l.classList.contains('lang-zh') ? '已複製' : 'Copied'; });
+            // idempotent restore — safe under rapid double-clicks (no per-element state)
+            setTimeout(() => labels.forEach((l) => { l.textContent = l.classList.contains('lang-zh') ? '複製' : 'Copy'; }), 1500);
           } catch {
             /* clipboard blocked (e.g. insecure context) — no-op */
           }
@@ -433,9 +434,9 @@ const teaserCases = useCases.slice(0, 3);
   <!-- Split hero: judge (left) / act (right). Stacks on mobile. -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
     <div class="glass-card rounded-xl p-5">
-      <h3 class="text-sm font-semibold text-foreground mb-3">
+      <p class="text-sm font-semibold text-foreground mb-3">
         <span class="lang-en">You can ask it</span><span class="lang-zh">你可以問它</span>
-      </h3>
+      </p>
       {teaserCases.length > 0 ? (
         <ul class="space-y-2">
           {teaserCases.map((uc) => (
@@ -996,7 +997,7 @@ test.describe('Pack detail — majordomo', () => {
     await page.goto(PACK);
     const order = await page.evaluate(() => {
       const uc = document.evaluate("//h2[contains(., 'What you can ask it') or contains(., '你可以請它做什麼')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-      const inside = document.evaluate("//*[contains(., \"What's inside\") or contains(., '內容物')][self::summary]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      const inside = document.evaluate("//summary[contains(., \"What's inside\") or contains(., '內容物')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       if (!uc || !inside) return 0;
       return uc.compareDocumentPosition(inside) & Node.DOCUMENT_POSITION_FOLLOWING ? 1 : -1;
     });
