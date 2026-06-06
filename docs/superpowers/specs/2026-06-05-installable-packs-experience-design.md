@@ -13,11 +13,11 @@ Two real, one-command-installable repos have appeared that don't fit the gallery
 | | `tw-ecommerce-majordomo` | `emba-famulus` |
 |---|---|---|
 | Contents | 29 skills + 12 MCP servers | 13 skills + 0 MCP |
-| Publisher | Core (`asgard-ai-platform`) | Community (`@shyuan`) |
+| Publisher | Core (`asgard-ai-platform`) | Core (`asgard-ai-platform`; authored by @shyuan / Chris Yuan) — see §10 |
 | Setup after install | Needs ECPay/NewebPay/etc. credentials (env vars), but sandbox/default modes work first | None — skills only, install and use |
 | Nature | **Installable package** (own repo, `.claude-plugin/plugin.json`, `marketplace.json`, multi-harness manifests, version, docs site) | Same |
 
-The gallery's existing 10 `PlugIn` entries are **curated collections** — editorial recipes ("for Taiwan e-commerce ops, use these MCPs + skills"). They have no repo of their own, are not one-command installable, and several map to a commercial Asgard product via `upgrade_to`. The site's README/home defines PlugIn as "MCP+SKILL combos mapping to Asgard commercial products" — so dropping an installable, community, 0-MCP pack in as a "PlugIn" makes that definition false.
+The gallery's existing 10 `PlugIn` entries are **curated collections** — editorial recipes ("for Taiwan e-commerce ops, use these MCPs + skills"). They have no repo of their own, are not one-command installable, and several map to a commercial Asgard product via `upgrade_to`. The site's README/home defines PlugIn as "MCP+SKILL combos mapping to Asgard commercial products" — so dropping an installable, 0-MCP pack in as a "PlugIn" makes that definition false.
 
 `tw-ecommerce-majordomo` is **already** in `data/plugins.yaml` masquerading as a collection (it has a `github` field) — a distinct entry from the existing `tw-ecommerce-ops` collection. `emba-famulus` is not yet added (its 13 skills are not in `data/skills.yaml` or the central `skills` repo).
 
@@ -80,7 +80,7 @@ Gallery responsibility ends when the user holds (a) the exact command and (b) a 
 ```
 ═ Installable Packs (2) ═══════════════      ═ Curated Collections (10) ═══════
 ┌ majordomo ───────────────┐ ┌ emba ───────────────┐    collection cards:
-│ [PACK] [🛡 Core]          │ │ [PACK] [👤 Community]│    - no Install button
+│ [PACK] [🛡 Core]          │ │ [PACK] [🛡 Core]     │    - no Install button
 │ Taiwan E-Commerce Majordomo│ │ EMBA Famulus        │    - CTA = Explore recipe
 │ 金流/物流/發票/通路 全鏈   │ │ 商管思維隨身助理      │    - counts may stay prominent
 │ ◐ Sandbox-ready  ← HERO   │ │ ✓ No setup  ← HERO   │
@@ -198,10 +198,10 @@ That is the **only** new YAML/schema field. Everything else (install/setup/use_c
 
 ## 10. Prerequisites & open items
 
-- **emba's 13 skills must exist in `data/skills.yaml`** before emba can be added (else `validate.mjs` cross-ref fails). This requires deciding the canonical source for those skills:
-  - **A.** Upstream them to the central `skills` repo, then existing `sync-gallery` tooling ingests them (consistent with current model; needs a PR there).
-  - **B.** Add them self-contained with `github` → emba-famulus's own `SKILL.md` (faster; creates skills the current sync tooling won't track).
-- A sync-time extractor for `pack-content.json` must be written (new script under `scripts/sync-gallery/`, run by the sync workflow and committed — not at deploy; see §6).
+- **emba's 13 skills must exist in `data/skills.yaml`** before emba can be added (else `validate.mjs` cross-ref fails). **Resolved (slice 4): route A — upstream the 13 `SKILL.md` to the central `skills` repo**, then existing `sync-gallery` tooling ingests them. Route A over B (self-contained `github` → emba's own `SKILL.md`) because `sync-skill-content.mjs` is hardcoded to fetch bodies from `asgard-ai-platform/skills` (its `ORG`/`REPO` constants); a `github` pointing elsewhere would leave the skill with no synced body unless the sync tool is extended. Central-repo upstreaming keeps the 13 consistent with the other 300+ skills and matches emba's own `plugin.json` framing ("補充 Asgard 上游 skills"). Gallery slugs follow the existing `skill-<dir>` convention (central `biz-corporate-governance/SKILL.md` → `skill-biz-corporate-governance`).
+- **emba's repo must be aligned to the slice-2 extractor contract** before its `pack-content.json` is usable. As published, emba's README install section is `## 快速開始` / `### 方式 A/B/C` (the extractor keys on `## 安裝` / `## Install` → `### <harness>`) and it has no `docs/USE-CASES.md` (it has `workflows/*.md`) — so the extractor yields empty install tabs and empty use-cases. Slice-4 prereq PR to emba: rename the install section to `## 安裝` with `### Claude Code` / `### Codex CLI / App` / manual-clone subsections, and add `docs/USE-CASES.md` derived from the 6 workflows in the `parseUseCases` format. **Manual clone is the primary install** — emba ships no `marketplace.json` (decided out of scope), so the marketplace `/plugin install` path stays pending; the gallery surfaces the clone command as the working path.
+- **Publisher tier:** emba's repo lives under `asgard-ai-platform`, so the owner-derived tier (§3.1) is **Core**, not Community. The §1 table's original `@shyuan`/Community framing was a pre-discovery guess; @shyuan (Chris Yuan) is the `plugin.json` author, but the org owns the repo. The Community publisher path stays unvalidated until a genuinely community-owned pack lands. The slice-3 e2e `fixme` asserting `data-publisher="community"` is updated to `core` in slice 4.
+- ~~A sync-time extractor for `pack-content.json` must be written~~ — **done in slice 2** (`scripts/sync-gallery/sync-pack-content.mjs`); it already iterates every `kind: pack` entry, so emba is picked up once added.
 - `content_maturity` honesty: majordomo shows 3 full / 26 skeleton today (gallery synced central-repo skeletons); surface this rather than implying all 29 are ready.
 
 ## 11. Suggested implementation slices
@@ -209,7 +209,7 @@ That is the **only** new YAML/schema field. Everything else (install/setup/use_c
 1. **Schema + types + list split + pack card (taxonomy-only)** — `kind` field, loader default coalescing (§3.1), `/plugins` two sections, pack vs collection card (taxonomy badges + counts only), `Skills only` rendering. No filtering: unlike `/mcp` and `/skills`, the `/plugins` page has no `FilterBar` and 12 entries in two labelled sections don't warrant one (revisit if the list grows). **This slice is groundwork and does not ship to production on its own** — it labels packs but cannot yet install them; it ships together with slices 2–3, which add the install/setup experience.
 2. **pack-content.json extractor** — build script over the two repos' manifests.
 3. **Pack detail split-hero** — install tabs, setup accordions, use-cases-before-contents, `hasDepEdges` graph gate, handoff/self-test.
-4. **emba onboarding** — resolve the 13-skill canonical source (§10), add emba entry. Good first end-to-end validation because it is the simplest (no setup, 0 MCP).
+4. **emba onboarding** — the simplest end-to-end validation (no setup, 0 MCP, skills-only). Three coordinated, prereq-first changes: **(PR-1)** upstream the 13 `SKILL.md` to the central `skills` repo (§10 route A); **(PR-2)** align the emba repo to the extractor contract (§10: `## 安裝` install section, `docs/USE-CASES.md`, manual-clone primary); **(gallery PR)** add 13 `skills.yaml` entries + the emba `plugins.yaml` `kind: pack` entry, re-run `sync-skill-content` + `sync-pack-content` to commit the sidecars, un-`fixme` the skills-only e2e and switch its publisher assertion to `core`, and apply the §1/§10 corrections above.
 
 ## 12. Phase 2 (deferred)
 

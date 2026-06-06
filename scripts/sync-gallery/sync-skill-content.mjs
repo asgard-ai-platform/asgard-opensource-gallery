@@ -63,26 +63,28 @@ function parseFrontmatter(content) {
 }
 
 function extractSections(body) {
-  const sections = new Map();
+  const sections = [];
   const lines = body.split('\n');
   let currentTitle = null;
   let currentLines = [];
 
+  const flush = () => {
+    if (currentTitle) {
+      sections.push({ title: currentTitle, body: currentLines.join('\n').trim() });
+    }
+  };
+
   for (const line of lines) {
     const h2Match = line.match(/^##\s+(.+)$/);
     if (h2Match) {
-      if (currentTitle) {
-        sections.set(currentTitle, currentLines.join('\n').trim());
-      }
+      flush();
       currentTitle = h2Match[1].trim();
       currentLines = [];
     } else if (currentTitle) {
       currentLines.push(line);
     }
   }
-  if (currentTitle) {
-    sections.set(currentTitle, currentLines.join('\n').trim());
-  }
+  flush();
   return sections;
 }
 
@@ -198,12 +200,18 @@ for (const dir of dirs) {
   const slug = `skill-${dir}`;
   const yamlEntry = yamlSkills.get(dir);
 
-  // Build structured content — store RAW MARKDOWN
-  const content = {};
-  for (const [title, md] of sections) {
-    const key = sectionKey(title);
-    content[key] = md;
-  }
+  // Build structured content — ordered sections, each with a slug key (for
+  // known-section styling), its original heading (for display, incl. non-ASCII
+  // headings that would otherwise slug to an empty/colliding key), and raw
+  // markdown. Order-preserving so packs whose canonical sections are not first
+  // (e.g. the EMBA packs lead with 定位/何時使用) render in document order.
+  const content = {
+    sections: sections.map((s) => ({
+      key: sectionKey(s.title),
+      title: s.title,
+      body: s.body,
+    })),
+  };
 
   // Queue description update if frontmatter has richer info
   if (yamlEntry && meta.description) {

@@ -19,21 +19,40 @@ export function getStaticPaths() {
 const { skill } = Astro.props as { skill: Skill };
 const allMcp = getMcpServers();
 const requiredMcp = allMcp.filter((m) => skill.requires_mcp?.includes(m.slug));
-const plugins = getPlugIns().filter((p) => skill.plugins?.includes(p.slug));
+// Membership is derived from the plugin's skills[] (the source of truth in
+// plugins.yaml); skill.plugins is honoured too for any entry that sets it.
+const plugins = getPlugIns().filter(
+  (p) => p.skills?.includes(skill.slug) || skill.plugins?.includes(p.slug),
+);
 const rawDetail = getSkillContentBySlug(skill.slug);
 
-// Render markdown sections to HTML at build time
-const detail = rawDetail ? {
-  overview: rawDetail.overview ? renderMarkdown(rawDetail.overview) : '',
-  when_to_use: rawDetail.when_to_use ? renderMarkdown(rawDetail.when_to_use) : '',
-  when_not_to_use: rawDetail.when_not_to_use ? renderMarkdown(rawDetail.when_not_to_use) : '',
-  assumptions: rawDetail.assumptions ? renderMarkdown(rawDetail.assumptions) : '',
-  framework: rawDetail.framework ? renderMarkdown(rawDetail.framework) : '',
-  output_format: rawDetail.output_format ? renderMarkdown(rawDetail.output_format) : '',
-  examples: rawDetail.examples ? renderMarkdown(rawDetail.examples) : '',
-  gotchas: rawDetail.gotchas ? renderMarkdown(rawDetail.gotchas) : '',
-  references: rawDetail.references ? renderMarkdown(rawDetail.references) : '',
-} : null;
+// Render each SKILL.md section to HTML at build time, in document order. Known
+// section keys get an iconed bilingual header; any other section (e.g. the EMBA
+// packs' Chinese-titled sections) renders under its original heading.
+const sections = (rawDetail?.sections ?? [])
+  .filter((s) => s.body)
+  .map((s) => ({ key: s.key, title: s.title, html: renderMarkdown(s.body) }));
+
+const frameworkLabel =
+  skill.skill_type === 'algorithm'
+    ? { en: 'Algorithm', zh: '演算法' }
+    : skill.skill_type === 'methodology'
+      ? { en: 'Methodology', zh: '方法論' }
+      : { en: 'Framework', zh: '框架' };
+
+// key → { bilingual label, heroicon path, warn? } for the standard sections.
+const SECTION_META: Record<string, { en: string; zh: string; icon: string; warn?: boolean }> = {
+  overview: { en: 'Overview', zh: '概述', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  when_to_use: { en: 'When to Use', zh: '使用時機', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+  when_not_to_use: { en: 'When NOT to Use', zh: '不適用時機', icon: 'M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636' },
+  assumptions: { en: 'Assumptions', zh: '前提假設', icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4' },
+  framework: { en: frameworkLabel.en, zh: frameworkLabel.zh, icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z' },
+  output_format: { en: 'Output Format', zh: '輸出格式', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+  examples: { en: 'Examples', zh: '範例', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
+  gotchas: { en: 'Gotchas', zh: '注意事項', warn: true, icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z' },
+  references: { en: 'References', zh: '參考資料', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' },
+};
+const DEFAULT_ICON = 'M4 6h16M4 12h16M4 18h7';
 
 const typeColors: Record<string, string> = {
   industry: 'text-primary',
@@ -107,108 +126,25 @@ const typeGradients: Record<string, string> = {
       </section>
     )}
 
-    {/* ── Rich Content Sections (from SKILL.md) ── */}
-    {detail && (
+    {/* ── Rich Content Sections (from SKILL.md, document order) ── */}
+    {sections.length > 0 && (
       <div class="space-y-8 mb-8">
-        {/* Overview */}
-        {detail.overview && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span class="lang-en">Overview</span><span class="lang-zh">概述</span>
-            </h2>
-            <div class="skill-content" set:html={detail.overview} />
-          </section>
-        )}
-
-        {/* When to Use */}
-        {detail.when_to_use && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span class="lang-en">When to Use</span><span class="lang-zh">使用時機</span>
-            </h2>
-            <div class="skill-content" set:html={detail.when_to_use} />
-          </section>
-        )}
-
-        {/* When NOT to Use */}
-        {detail.when_not_to_use && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
-              <span class="lang-en">When NOT to Use</span><span class="lang-zh">不適用時機</span>
-            </h2>
-            <div class="skill-content" set:html={detail.when_not_to_use} />
-          </section>
-        )}
-
-        {/* Assumptions */}
-        {detail.assumptions && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
-              <span class="lang-en">Assumptions</span><span class="lang-zh">前提假設</span>
-            </h2>
-            <div class="skill-content" set:html={detail.assumptions} />
-          </section>
-        )}
-
-        {/* Framework / Algorithm / Methodology */}
-        {detail.framework && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              <span class="lang-en">{skill.skill_type === 'algorithm' ? 'Algorithm' : skill.skill_type === 'methodology' ? 'Methodology' : 'Framework'}</span>
-              <span class="lang-zh">{skill.skill_type === 'algorithm' ? '演算法' : skill.skill_type === 'methodology' ? '方法論' : '框架'}</span>
-            </h2>
-            <div class="skill-content" set:html={detail.framework} />
-          </section>
-        )}
-
-        {/* Output Format */}
-        {detail.output_format && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-              <span class="lang-en">Output Format</span><span class="lang-zh">輸出格式</span>
-            </h2>
-            <div class="skill-content" set:html={detail.output_format} />
-          </section>
-        )}
-
-        {/* Examples */}
-        {detail.examples && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
-              <span class="lang-en">Examples</span><span class="lang-zh">範例</span>
-            </h2>
-            <div class="skill-content" set:html={detail.examples} />
-          </section>
-        )}
-
-        {/* Gotchas */}
-        {detail.gotchas && (
-          <section class="skill-section skill-section-warn">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
-              <span class="lang-en">Gotchas</span><span class="lang-zh">注意事項</span>
-            </h2>
-            <div class="skill-content" set:html={detail.gotchas} />
-          </section>
-        )}
-
-        {/* References */}
-        {detail.references && (
-          <section class="skill-section">
-            <h2 class="skill-section-title">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-              <span class="lang-en">References</span><span class="lang-zh">參考資料</span>
-            </h2>
-            <div class="skill-content" set:html={detail.references} />
-          </section>
-        )}
+        {sections.map((s) => {
+          const meta = SECTION_META[s.key];
+          return (
+            <section class={`skill-section${meta?.warn ? ' skill-section-warn' : ''}`}>
+              <h2 class="skill-section-title">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={meta?.icon ?? DEFAULT_ICON} /></svg>
+                {meta ? (
+                  <><span class="lang-en">{meta.en}</span><span class="lang-zh">{meta.zh}</span></>
+                ) : (
+                  <span>{s.title}</span>
+                )}
+              </h2>
+              <div class="skill-content" set:html={s.html} />
+            </section>
+          );
+        })}
       </div>
     )}
 

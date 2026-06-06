@@ -42,15 +42,14 @@ test.describe('PlugIns — packs vs collections', () => {
     await expect(page.locator('[data-section="collections"]').getByText('PACK', { exact: true })).toHaveCount(0);
   });
 
-  // Skills-only rendering has no live pack until emba-famulus lands in Slice 4.
-  // Assert the positive marker + absence of an MCP count badge (not "no '0'",
-  // which would false-match any count containing 0).
-  test.fixme('skills-only pack shows "Skills only" and no MCP count', async ({ page }) => {
+  // emba-famulus is the live skills-only pack (slice 4). It is org-owned, so its
+  // publisher tier is core; the community path stays unvalidated until a
+  // genuinely community-owned pack lands.
+  test('skills-only pack shows "Skills only" and no MCP count', async ({ page }) => {
     await page.goto(`${BASE}/plugins/`);
     const emba = page.locator('a[href="/plugins/emba-famulus/"]');
     await expect(emba.getByText('Skills only')).toBeVisible();
     await expect(emba.getByText('MCP')).toHaveCount(0);
-    // also assert the community publisher path here (codex finding 4):
-    await expect(emba.locator('[data-publisher="community"]')).toBeVisible();
+    await expect(emba.locator('[data-publisher="core"]')).toBeVisible();
   });
 });

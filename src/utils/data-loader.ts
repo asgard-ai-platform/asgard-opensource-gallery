@@ -67,15 +67,10 @@ export function getPublisherTier(github?: string): 'core' | 'community' | null {
 }
 
 export interface SkillContent {
-  overview?: string;
-  when_to_use?: string;
-  when_not_to_use?: string;
-  framework?: string;
-  output_format?: string;
-  gotchas?: string;
-  examples?: string;
-  references?: string;
-  assumptions?: string;
+  /** SKILL.md H2 sections in document order. `key` is a slug for known sections
+   *  (overview/framework/gotchas/…) used for iconed styling; `title` is the
+   *  original heading, shown verbatim for any non-standard section. */
+  sections?: { key: string; title: string; body: string }[];
 }
 
 let _skillContentCache: Record<string, SkillContent> | null = null;
