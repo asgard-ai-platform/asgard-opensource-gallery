@@ -303,17 +303,19 @@ export function parseUseCases(md) {
     if (!cur) continue;
 
     if (/^\s*```/.test(line)) {
-      if (!inFence && promptLines) {
-        inFence = true; // opening the prompt fence
-      } else if (inFence) {
+      if (!inFence) {
+        inFence = true;
+      } else {
         inFence = false;
-        cur.prompt = promptLines.join('\n').trim();
-        promptLines = null;
+        if (promptLines !== null) {
+          cur.prompt = promptLines.join('\n').trim();
+          promptLines = null;
+        }
       }
       continue;
     }
     if (inFence) {
-      promptLines.push(line);
+      if (promptLines !== null) promptLines.push(line);
       continue;
     }
 

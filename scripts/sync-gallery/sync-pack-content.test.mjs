@@ -276,6 +276,26 @@ test('parseUseCases: a stray later fence is not captured as the prompt; fields s
   assert.deepEqual(c.mcp_servers, ['m']);
   assert.equal(c.caveats, 'caveat text');
 });
+test('parseUseCases: multi-fence use case — prompt fence + code fence; fields survive both fences', () => {
+  const md = [
+    '### 1.1 Title',
+    '**情境：** scenario text',
+    '**Prompt 範例：**',
+    '```',
+    'the prompt',
+    '```',
+    '**會用到的 skills：** `a`、`b`',
+    '```',
+    'a code example',
+    '```',
+    '**注意：** caveat text',
+  ].join('\n');
+  const c = parseUseCases(md)[0];
+  assert.equal(c.prompt, 'the prompt');
+  assert.deepEqual(c.skills, ['a', 'b']);
+  assert.equal(c.caveats, 'caveat text');
+});
+
 test('parseUseCases: a real prompt fence still captures, and a trailing fence does not override it', () => {
   const md = [
     '### 2.1 Title',
