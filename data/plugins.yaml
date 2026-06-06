@@ -27,6 +27,21 @@ plugins:
     mcp_servers: [mcp-ecpay, mcp-ecpay-logistics, mcp-newebpay, mcp-kerry-tj, mcp-hct-logistics, mcp-sf-express, mcp-shopline, mcp-91app, mcp-cyberbiz, mcp-buy123-vendor, mcp-ezpay-einvoice, mcp-universalec-e-invoice]
     skills: [skill-tw-ecom-analytics-benchmarks, skill-tw-ecom-analytics-ga4, skill-tw-ecom-channel-strategy, skill-tw-ecom-compliance-consumer, skill-tw-ecom-compliance-cross-border, skill-tw-ecom-compliance-pdpa, skill-tw-ecom-compliance-product, skill-tw-ecom-dtc-91app, skill-tw-ecom-dtc-shopify-localization, skill-tw-ecom-dtc-shopline, skill-tw-ecom-invoice-carrier, skill-tw-ecom-invoice-ezpay, skill-tw-ecom-invoice-universalec, skill-tw-ecom-invoice-void, skill-tw-ecom-logistics-cold-chain, skill-tw-ecom-logistics-cross-border, skill-tw-ecom-logistics-cvs, skill-tw-ecom-logistics-home, skill-tw-ecom-marketplace-momo, skill-tw-ecom-marketplace-shopee, skill-tw-ecom-operations-customer-service, skill-tw-ecom-operations-line-oa, skill-tw-ecom-operations-pricing, skill-tw-ecom-operations-promotion, skill-tw-ecom-payment-dispute, skill-tw-ecom-payment-ecpay, skill-tw-ecom-payment-jkopay, skill-tw-ecom-payment-newebpay, skill-tw-ecom-payment-tappay]
 
+  - slug: emba-famulus
+    kind: pack
+    name:
+      en: "EMBA Famulus"
+      zh: "EMBA 學伴"
+    description:
+      en: "A skills-only coding-agent pack for Taiwan EMBA students: 13 EMBA-specific skills (management accounting, family business, habitual domain, M&A, ERM, net-zero transition, and more) plus 6 assignment-scenario workflows. Install and use — no setup required."
+      zh: "給台灣 EMBA 學員的純技能 coding agent 套件：13 個 EMBA 專屬 skill（管理會計、家族企業、習慣領域、M&A、ERM、淨零轉型等）加 6 個作業場景 workflow。安裝即用，免設定。"
+    scenario:
+      en: "For Taiwan EMBA students completing case analyses, term reports, and theses — install into Claude Code / Codex and ask it to apply business frameworks to your assignment, no credentials needed."
+      zh: "適合台灣 EMBA 學員完成個案分析、期末報告與論文——安裝進 Claude Code／Codex，直接請它用商管框架解你的作業，無需任何金鑰。"
+    github: https://github.com/asgard-ai-platform/emba-famulus
+    mcp_servers: []
+    skills: [skill-biz-corporate-governance, skill-biz-crm-strategy, skill-biz-erm, skill-biz-innovation-management, skill-biz-management-accounting, skill-biz-net-zero-transition, skill-biz-sme-management, skill-fin-m-and-a, skill-grad-habitual-domain, skill-ops-digital-transformation, skill-ops-leadership-styles, skill-ops-org-behavior, skill-ops-talent-strategy]
+
   - slug: brand-media-pr
     name:
       en: "Brand Media & PR"
