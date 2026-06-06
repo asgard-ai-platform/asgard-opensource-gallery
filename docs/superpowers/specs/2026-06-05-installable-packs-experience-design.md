@@ -80,7 +80,7 @@ Gallery responsibility ends when the user holds (a) the exact command and (b) a 
 ```
 ═ Installable Packs (2) ═══════════════      ═ Curated Collections (10) ═══════
 ┌ majordomo ───────────────┐ ┌ emba ───────────────┐    collection cards:
-│ [PACK] [🛡 Core]          │ │ [PACK] [👤 Community]│    - no Install button
+│ [PACK] [🛡 Core]          │ │ [PACK] [🛡 Core]     │    - no Install button
 │ Taiwan E-Commerce Majordomo│ │ EMBA Famulus        │    - CTA = Explore recipe
 │ 金流/物流/發票/通路 全鏈   │ │ 商管思維隨身助理      │    - counts may stay prominent
 │ ◐ Sandbox-ready  ← HERO   │ │ ✓ No setup  ← HERO   │
