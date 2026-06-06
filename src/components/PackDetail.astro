@@ -1,0 +1,241 @@
+---
+import type { McpServer, Skill, PlugIn } from '../types';
+import type { PackContent, PackView } from '../utils/data-loader';
+import SetupStateBadge from './SetupStateBadge.astro';
+import PackInstallPanel from './PackInstallPanel.astro';
+import PlugInGraph from './PlugInGraph.astro';
+
+interface Props {
+  plugin: PlugIn;
+  content: PackContent | undefined;
+  view: PackView;
+  mcps: McpServer[];
+  skills: Skill[];
+}
+
+const { plugin, content, view, mcps, skills } = Astro.props;
+
+const status = content?.setup.status ?? 'none';
+const install = content?.install ?? [];
+const useCases = content?.use_cases ?? [];
+const envGroups = content?.setup.env_groups ?? [];
+const source = content?.source;
+const publisher = view.publisher_tier;
+
+// ⑤ graph: only when there are real edges AND the bipartite SVG stays legible.
+const GRAPH_NODE_LIMIT = 12;
+const showGraph = view.hasDepEdges && view.mcp_count + view.skill_count <= GRAPH_NODE_LIMIT;
+
+// ③/left-hero teasers: first few use cases.
+const teaserCases = useCases.slice(0, 3);
+---
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <!-- Hero -->
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="rounded-full bg-primary/15 text-primary text-[10px] font-semibold px-2 py-0.5 border border-primary/30">PACK</span>
+    {publisher && (
+      <span
+        class={`rounded-full text-[10px] font-semibold px-2 py-0.5 border ${publisher === 'core' ? 'bg-primary/15 text-primary border-primary/30' : 'bg-accent text-muted-foreground border-border'}`}
+        data-publisher={publisher}
+      >
+        <span class="lang-en">{publisher === 'core' ? 'Core' : 'Community'}</span><span class="lang-zh">{publisher === 'core' ? '官方' : '社群'}</span>
+      </span>
+    )}
+    <SetupStateBadge status={status} />
+  </div>
+
+  <h1 class="text-3xl font-bold mb-2 text-gradient name-bilingual">
+    <span class="name-en">{plugin.name.en}</span>
+    <span class="name-zh">{plugin.name.zh}</span>
+  </h1>
+  <p class="text-muted-foreground mb-8 max-w-3xl lang-en">{plugin.scenario.en}</p>
+  <p class="text-muted-foreground mb-8 max-w-3xl lang-zh">{plugin.scenario.zh}</p>
+
+  <!-- Split hero: judge (left) / act (right). Stacks on mobile. -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+    <div class="glass-card rounded-xl p-5">
+      <h3 class="text-sm font-semibold text-foreground mb-3">
+        <span class="lang-en">You can ask it</span><span class="lang-zh">你可以問它</span>
+      </h3>
+      {teaserCases.length > 0 ? (
+        <ul class="space-y-2">
+          {teaserCases.map((uc) => (
+            <li class="text-sm text-muted-foreground flex gap-2">
+              <span class="text-primary" aria-hidden="true">·</span>
+              <span>{uc.title}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-sm text-muted-foreground">
+          <span class="lang-en">See the use cases below.</span><span class="lang-zh">請見下方使用情境。</span>
+        </p>
+      )}
+    </div>
+    <PackInstallPanel install={install} status={status} />
+  </div>
+
+  <!-- ② Setup -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-foreground mb-4">
+      <span class="lang-en">Setup</span><span class="lang-zh">設定</span>
+    </h2>
+    {status === 'none' ? (
+      <div class="glass-card rounded-xl p-5 border-green-500/20">
+        <p class="text-sm text-foreground font-medium">
+          <span class="lang-en">✓ No setup required — install and use.</span>
+          <span class="lang-zh">✓ 無需設定 — 安裝即用。</span>
+        </p>
+      </div>
+    ) : (
+      <div class="space-y-3">
+        {content?.setup.summary && (
+          <p class="text-sm text-muted-foreground">{content.setup.summary}</p>
+        )}
+        <p class="text-xs text-muted-foreground">
+          <span class="lang-en">Fill only the services you plan to use — a missing variable disables that one MCP, not the whole pack.</span>
+          <span class="lang-zh">只填你要用的服務 — 缺少變數只會停用該 MCP，不影響整個套件。</span>
+        </p>
+        {envGroups.map((g) => (
+          <details class="glass-card rounded-xl overflow-hidden">
+            <summary class="cursor-pointer select-none px-4 py-3 text-sm font-medium text-foreground flex items-center gap-2">
+              <span>{g.service}</span>
+              {g.default_mode && (
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-accent text-muted-foreground border border-border">{g.default_mode}</span>
+              )}
+              {g.private && (
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                  <span class="lang-en">private access</span><span class="lang-zh">需私有存取</span>
+                </span>
+              )}
+            </summary>
+            <div class="px-4 pb-4 space-y-1.5">
+              {g.vars.map((v) => (
+                <div class="text-xs flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <code class="text-foreground">{v.name}</code>
+                  {v.default ? (
+                    <span class="text-muted-foreground">= {v.default}</span>
+                  ) : v.required_when === 'conditional' ? (
+                    <span class="text-amber-400/80"><span class="lang-en">conditional</span><span class="lang-zh">視情況</span></span>
+                  ) : (
+                    <span class="text-red-400/80"><span class="lang-en">required</span><span class="lang-zh">必填</span></span>
+                  )}
+                  {v.description && <span class="text-muted-foreground/70">— {v.description}</span>}
+                </div>
+              ))}
+            </div>
+          </details>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <!-- ③ What you can ask it (use cases BEFORE inventory) -->
+  {useCases.length > 0 && (
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-foreground mb-4">
+        <span class="lang-en">What you can ask it</span><span class="lang-zh">你可以請它做什麼</span>
+        <span class="text-sm font-normal text-muted-foreground">({useCases.length})</span>
+      </h2>
+      <div class="space-y-2">
+        {useCases.map((uc) => (
+          <details class="glass-card rounded-xl overflow-hidden">
+            <summary class="cursor-pointer select-none px-4 py-3 text-sm font-medium text-foreground">{uc.title}</summary>
+            <div class="px-4 pb-4 space-y-3 text-sm">
+              {uc.scenario && <p class="text-muted-foreground">{uc.scenario}</p>}
+              {uc.prompt && (
+                <pre class="text-xs bg-background/60 border border-border rounded-lg p-3 overflow-x-auto whitespace-pre-wrap"><code>{uc.prompt}</code></pre>
+              )}
+              {(uc.skills.length > 0 || uc.mcp_servers.length > 0) && (
+                <div class="flex flex-wrap gap-1.5">
+                  {uc.skills.map((s) => <span class="text-[10px] px-1.5 py-0.5 rounded bg-accent text-muted-foreground border border-border">{s}</span>)}
+                  {uc.mcp_servers.map((m) => <span class="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary/80 border border-primary/20">{m}</span>)}
+                </div>
+              )}
+              {uc.caveats && (
+                <p class="text-xs text-amber-400/80">⚠ {uc.caveats}</p>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ④ What's inside (secondary, collapsed) -->
+  <section class="mb-12">
+    <details class="glass-card rounded-xl overflow-hidden">
+      <summary class="cursor-pointer select-none px-4 py-3 text-sm font-medium text-foreground">
+        <span class="lang-en">What's inside</span><span class="lang-zh">內容物</span>
+        <span class="text-muted-foreground">
+          — {view.skill_count} <span class="lang-en">skills</span><span class="lang-zh">技能</span>
+          {view.has_mcp ? (
+            <span>· {view.mcp_count} MCP</span>
+          ) : (
+            <span> · <span class="lang-en">Skills only</span><span class="lang-zh">純技能</span></span>
+          )}
+        </span>
+      </summary>
+      <div class="px-4 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-wide text-muted-foreground mb-2">SKILLs ({skills.length})</p>
+          <ul class="space-y-1">
+            {skills.map((s) => (
+              <li class="text-xs"><a href={`/skills/${s.slug}/`} class="text-muted-foreground hover:text-primary transition-colors">{s.name.en}</a></li>
+            ))}
+          </ul>
+        </div>
+        {view.has_mcp && (
+          <div>
+            <p class="text-xs uppercase tracking-wide text-muted-foreground mb-2">MCP ({mcps.length})</p>
+            <ul class="space-y-1">
+              {mcps.map((m) => (
+                <li class="text-xs"><a href={`/mcp/${m.slug}/`} class="text-muted-foreground hover:text-primary transition-colors">{m.name.en}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </details>
+  </section>
+
+  <!-- ⑤ Dependency graph (gated) -->
+  {showGraph && (
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">Dependency Graph</span><span class="lang-zh">依賴關係圖</span>
+      </h2>
+      <div class="glass-card rounded-xl p-6">
+        <PlugInGraph mcpServers={mcps} skills={skills} />
+      </div>
+    </section>
+  )}
+
+  <!-- ⑥ Source -->
+  {source && (
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-foreground">
+        <span class="lang-en">Source</span><span class="lang-zh">來源</span>
+      </h2>
+      <div class="glass-card rounded-xl p-5 text-sm space-y-2">
+        <div class="flex flex-wrap gap-x-6 gap-y-1 text-muted-foreground">
+          {source.version && <span><span class="lang-en">Version</span><span class="lang-zh">版本</span> {source.version}</span>}
+          {source.license && <span><span class="lang-en">License</span><span class="lang-zh">授權</span> {source.license}</span>}
+        </div>
+        <div class="flex flex-wrap gap-3 pt-1">
+          {plugin.github && <a href={plugin.github} target="_blank" rel="noopener" class="text-primary hover:underline">GitHub</a>}
+          {source.manifest_urls.map((u) => (
+            <a href={u} target="_blank" rel="noopener" class="text-muted-foreground hover:text-primary">{u.split('/').pop()}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Handoff footer -->
+  <p class="text-xs text-muted-foreground border-t border-border pt-4">
+    <span class="lang-en">Copy the command above and run it in your own agent — the gallery hands off here; it can't run the pack for you.</span>
+    <span class="lang-zh">複製上方指令並在你自己的 agent 執行 — 畫廊在此交棒，無法代為執行此套件。</span>
+  </p>
+</div>
