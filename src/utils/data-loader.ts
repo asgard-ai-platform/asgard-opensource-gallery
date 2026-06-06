@@ -171,7 +171,8 @@ export interface PackSource {
 }
 
 /** The sync-extracted, committed sidecar entry for one pack (`data/pack-content.json`),
- *  keyed by gallery plugin slug. content_maturity is populated in Slice 3 (see the slice-2 plan §Scope). */
+ *  keyed by gallery plugin slug. content_maturity is optional and not yet populated by the
+ *  extractor (deferred — needs a per-SKILL.md pass; see the slice plans). */
 export interface PackContent {
   install: PackInstall[];
   setup: PackSetup;
