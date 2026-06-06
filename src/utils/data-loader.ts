@@ -193,3 +193,34 @@ export function getPackContent(): Record<string, PackContent> {
 export function getPackContentBySlug(slug: string): PackContent | undefined {
   return getPackContent()[slug];
 }
+
+/** Derived, non-stored view-model for a pack (spec §7). Computed from the
+ *  plugin entry + the skills catalogue; never persisted in the sidecar. */
+export interface PackView {
+  skill_count: number;
+  mcp_count: number;
+  skills_only: boolean;
+  has_mcp: boolean;
+  /** True iff some pack skill's requires_mcp names an MCP that is also in the pack. */
+  hasDepEdges: boolean;
+  publisher_tier: 'core' | 'community' | null;
+}
+
+export function getPackView(plugin: PlugIn): PackView {
+  const mcpCount = plugin.mcp_servers.length;
+  const skillCount = plugin.skills.length;
+  const skillSet = new Set(plugin.skills);
+  const mcpSet = new Set(plugin.mcp_servers);
+  const allSkills = getSkills();
+  const hasDepEdges = allSkills.some(
+    (s) => skillSet.has(s.slug) && (s.requires_mcp ?? []).some((m) => mcpSet.has(m)),
+  );
+  return {
+    skill_count: skillCount,
+    mcp_count: mcpCount,
+    skills_only: mcpCount === 0,
+    has_mcp: mcpCount > 0,
+    hasDepEdges,
+    publisher_tier: getPublisherTier(plugin.github),
+  };
+}
