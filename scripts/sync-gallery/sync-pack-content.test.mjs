@@ -35,6 +35,12 @@ test('parseRepo: non-github → null', () => {
   assert.equal(parseRepo('https://example.com/x'), null);
   assert.equal(parseRepo(undefined), null);
 });
+test('parseRepo: look-alike host (notgithub.com) → null', () => {
+  assert.equal(parseRepo('https://notgithub.com/foo/bar'), null);
+});
+test('parseRepo: github.com subdomain still parses', () => {
+  assert.deepEqual(parseRepo('https://www.github.com/foo/bar'), { owner: 'foo', repo: 'bar' });
+});
 
 // ── parsePluginManifest ──
 test('parsePluginManifest: core fields', () => {
@@ -69,7 +75,12 @@ test('parseMarketplace: null in → null out', () => {
 // ── buildSourceBlock ──
 test('buildSourceBlock: provenance from manifest + marketplace', () => {
   const repo = { owner: 'asgard-ai-platform', repo: 'tw-ecommerce-majordomo' };
-  const block = buildSourceBlock(parsePluginManifest(pluginJson), parseMarketplace(marketplaceJson), repo);
+  const block = buildSourceBlock(
+    parsePluginManifest(pluginJson),
+    parseMarketplace(marketplaceJson),
+    repo,
+    '.claude-plugin/marketplace.json',
+  );
   assert.equal(block.version, '0.1.0');
   assert.equal(block.license, 'MIT');
   assert.equal(block.homepage, 'https://github.com/asgard-ai-platform/tw-ecommerce-majordomo');
@@ -77,8 +88,24 @@ test('buildSourceBlock: provenance from manifest + marketplace', () => {
     block.manifest_urls[0],
     'https://github.com/asgard-ai-platform/tw-ecommerce-majordomo/blob/HEAD/.claude-plugin/plugin.json',
   );
+  assert.equal(
+    block.manifest_urls[1],
+    'https://github.com/asgard-ai-platform/tw-ecommerce-majordomo/blob/HEAD/.claude-plugin/marketplace.json',
+  );
   assert.equal(block.marketplace.name, 'tw-ecommerce-majordomo');
   assert.equal(block.marketplace.source, './');
+});
+test('buildSourceBlock: root marketplace.json path is reflected in manifest_urls', () => {
+  const repo = { owner: 'o', repo: 'r' };
+  const block = buildSourceBlock(parsePluginManifest(pluginJson), parseMarketplace(marketplaceJson), repo, 'marketplace.json');
+  assert.equal(block.manifest_urls[1], 'https://github.com/o/r/blob/HEAD/marketplace.json');
+});
+test('buildSourceBlock: no marketplace path → only the plugin.json url', () => {
+  const repo = { owner: 'o', repo: 'r' };
+  const block = buildSourceBlock(parsePluginManifest(pluginJson), null, repo, null);
+  assert.equal(block.manifest_urls.length, 1);
+  assert.match(block.manifest_urls[0], /\/\.claude-plugin\/plugin\.json$/);
+  assert.equal('marketplace' in block, false);
 });
 
 const readmeMd = readFix('pack-majordomo-README.md');
@@ -229,6 +256,7 @@ test('assemblePackContent: full majordomo entry shape', () => {
     repo: { owner: 'asgard-ai-platform', repo: 'tw-ecommerce-majordomo' },
     pluginManifest: parsePluginManifest(pluginJson),
     marketplace: parseMarketplace(marketplaceJson),
+    marketplacePath: '.claude-plugin/marketplace.json',
     readme: readmeMd,
     envExample,
     useCases: useCasesMd,
@@ -244,6 +272,7 @@ test('assemblePackContent: full majordomo entry shape', () => {
   assert.equal(entry.use_cases.length, 2);
   // source
   assert.equal(entry.source.version, '0.1.0');
+  assert.equal(entry.source.manifest_urls.length, 2);
   assert.equal(entry.source.marketplace.name, 'tw-ecommerce-majordomo');
   // content_maturity deferred to Slice 3 — must be absent here
   assert.equal('content_maturity' in entry, false);

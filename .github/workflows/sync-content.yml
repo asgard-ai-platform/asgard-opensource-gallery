@@ -68,7 +68,7 @@ jobs:
             echo 'No content changes to commit.'
             exit 0
           fi
-          git commit -m 'chore: sync MCP & skill content'
+          git commit -m 'chore: sync MCP, skill & pack content'
           # Retry rebase+push in case another writer advances main between
           # our rebase and push (the concurrency group serialises this
           # workflow's own runs, but not other pushers).

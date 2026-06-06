@@ -24,9 +24,11 @@ const OUTPUT_JSON = join(DATA_DIR, 'pack-content.json');
 
 // ── Pure parsers ─────────────────────────────────────────────────
 
-/** Parse `{owner, repo}` from a github URL; null if it isn't one. */
+/** Parse `{owner, repo}` from a github URL; null if it isn't one.
+ *  The host is anchored to a boundary (`/`, `@`, `.`, or string start) so a
+ *  look-alike like `https://notgithub.com/foo/bar` does not parse as GitHub. */
 export function parseRepo(githubUrl) {
-  const m = (githubUrl || '').match(/github\.com\/([^/]+)\/([^/#?]+)/i);
+  const m = (githubUrl || '').match(/(?:^|[/@.])github\.com\/([^/]+)\/([^/#?]+)/i);
   if (!m) return null;
   return { owner: m[1], repo: m[2].replace(/\.git$/, '') };
 }
@@ -61,19 +63,22 @@ export function parseMarketplace(json) {
   return { name: json.name, source: (plugin && plugin.source) || './' };
 }
 
-/** Build the `source` provenance block from the plugin manifest + marketplace. */
-export function buildSourceBlock(plugin, marketplace, repo) {
+/** Build the `source` provenance block from the plugin manifest + marketplace.
+ *  `marketplacePath` is the repo-relative path the marketplace manifest was
+ *  actually fetched from (`.claude-plugin/marketplace.json` or root
+ *  `marketplace.json`), so the provenance URL matches reality; omit it when no
+ *  marketplace manifest was found. */
+export function buildSourceBlock(plugin, marketplace, repo, marketplacePath) {
   const base = `https://github.com/${repo.owner}/${repo.repo}/blob/HEAD`;
+  const manifest_urls = [`${base}/.claude-plugin/plugin.json`];
+  if (marketplacePath) manifest_urls.push(`${base}/${marketplacePath}`);
   const block = {
     version: plugin?.version,
     license: plugin?.license,
     repository: plugin?.repository || `https://github.com/${repo.owner}/${repo.repo}`,
     homepage: plugin?.homepage,
     keywords: plugin?.keywords || [],
-    manifest_urls: [
-      `${base}/.claude-plugin/plugin.json`,
-      `${base}/.claude-plugin/marketplace.json`,
-    ],
+    manifest_urls,
   };
   if (marketplace) block.marketplace = { name: marketplace.name, source: marketplace.source };
   return block;
@@ -331,6 +336,7 @@ export function parseUseCases(md) {
  * @param {{owner:string,repo:string}} s.repo
  * @param {object|null} s.pluginManifest  parsed plugin.json
  * @param {object|null} s.marketplace     parsed marketplace.json
+ * @param {string|null} s.marketplacePath repo-relative path the marketplace was fetched from
  * @param {string|null} s.readme          raw README.md text
  * @param {string|null} s.envExample      raw .env.example text
  * @param {string|null} s.useCases        raw docs/USE-CASES.md text
@@ -342,7 +348,7 @@ export function assemblePackContent(s) {
     install: parseInstallSection(s.readme),
     setup: buildSetup(envGroups, s.mcpCount),
     use_cases: parseUseCases(s.useCases),
-    source: buildSourceBlock(s.pluginManifest, s.marketplace, s.repo),
+    source: buildSourceBlock(s.pluginManifest, s.marketplace, s.repo, s.marketplacePath),
   };
 }
 
@@ -400,8 +406,13 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
       }
       continue;
     }
-    const marketplaceRaw =
-      ghJSONFile(repo, '.claude-plugin/marketplace.json') || ghJSONFile(repo, 'marketplace.json');
+    // Track which marketplace path actually resolved so the provenance URL is honest.
+    let marketplaceRaw = ghJSONFile(repo, '.claude-plugin/marketplace.json');
+    let marketplacePath = marketplaceRaw ? '.claude-plugin/marketplace.json' : null;
+    if (!marketplaceRaw) {
+      marketplaceRaw = ghJSONFile(repo, 'marketplace.json');
+      if (marketplaceRaw) marketplacePath = 'marketplace.json';
+    }
     const readme = normalizeText(ghFetchFile(repo.owner, repo.repo, 'README.md'));
     const envExample = normalizeText(ghFetchFile(repo.owner, repo.repo, '.env.example'));
     const useCases = normalizeText(ghFetchFile(repo.owner, repo.repo, 'docs/USE-CASES.md'));
@@ -410,6 +421,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
       repo,
       pluginManifest: parsePluginManifest(pluginRaw),
       marketplace: parseMarketplace(marketplaceRaw),
+      marketplacePath,
       readme,
       envExample,
       useCases,
