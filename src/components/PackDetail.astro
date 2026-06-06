@@ -42,7 +42,7 @@ const teaserCases = useCases.slice(0, 3);
         <span class="lang-en">{publisher === 'core' ? 'Core' : 'Community'}</span><span class="lang-zh">{publisher === 'core' ? '官方' : '社群'}</span>
       </span>
     )}
-    <SetupStateBadge status={status} />
+    {content && <SetupStateBadge status={content.setup.status} />}
   </div>
 
   <h1 class="text-3xl font-bold mb-2 text-gradient name-bilingual">
@@ -81,7 +81,14 @@ const teaserCases = useCases.slice(0, 3);
     <h2 class="text-xl font-bold text-foreground mb-4">
       <span class="lang-en">Setup</span><span class="lang-zh">設定</span>
     </h2>
-    {status === 'none' ? (
+    {!content ? (
+      <div class="glass-card rounded-xl p-5">
+        <p class="text-sm text-muted-foreground">
+          <span class="lang-en">Setup details aren't available yet — see the repository.</span>
+          <span class="lang-zh">設定資訊尚未提供 — 請見原始碼倉庫。</span>
+        </p>
+      </div>
+    ) : status === 'none' ? (
       <div class="glass-card rounded-xl p-5 border-green-500/20">
         <p class="text-sm text-foreground font-medium">
           <span class="lang-en">✓ No setup required — install and use.</span>
@@ -235,7 +242,16 @@ const teaserCases = useCases.slice(0, 3);
 
   <!-- Handoff footer -->
   <p class="text-xs text-muted-foreground border-t border-border pt-4">
-    <span class="lang-en">Copy the command above and run it in your own agent — the gallery hands off here; it can't run the pack for you.</span>
-    <span class="lang-zh">複製上方指令並在你自己的 agent 執行 — 畫廊在此交棒，無法代為執行此套件。</span>
+    {install.length > 0 ? (
+      <>
+        <span class="lang-en">Copy the command above and run it in your own agent — the gallery hands off here; it can't run the pack for you.</span>
+        <span class="lang-zh">複製上方指令並在你自己的 agent 執行 — 畫廊在此交棒，無法代為執行此套件。</span>
+      </>
+    ) : (
+      <>
+        <span class="lang-en">Install this pack from its repository in your own agent — the gallery hands off here; it can't run the pack for you.</span>
+        <span class="lang-zh">請從原始碼倉庫在你自己的 agent 安裝此套件 — 畫廊在此交棒，無法代為執行此套件。</span>
+      </>
+    )}
   </p>
 </div>

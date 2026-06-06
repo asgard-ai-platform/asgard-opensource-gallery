@@ -37,14 +37,17 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
     </p>
   ) : (
     <>
-      <div class="flex flex-wrap gap-1.5 mb-3" role="tablist">
+      <div class="flex flex-wrap gap-1.5 mb-3" role="tablist" aria-label="Install commands by harness">
         {install.map((tab, i) => (
           <button
             type="button"
+            id={`install-tab-${tab.harness}`}
             class={`install-tab text-xs px-2.5 py-1 rounded-md border transition-colors ${i === 0 ? 'active bg-primary/15 text-primary border-primary/30' : 'bg-accent text-muted-foreground border-border'}`}
             data-harness={tab.harness}
             role="tab"
             aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`install-panel-${tab.harness}`}
+            tabindex={i === 0 ? '0' : '-1'}
           >
             {tab.label}
           </button>
@@ -52,7 +55,14 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
       </div>
 
       {install.map((tab, i) => (
-        <div class={`install-panel ${i === 0 ? '' : 'hidden'}`} data-harness={tab.harness} role="tabpanel">
+        <div
+          id={`install-panel-${tab.harness}`}
+          class={`install-panel ${i === 0 ? '' : 'hidden'}`}
+          data-harness={tab.harness}
+          role="tabpanel"
+          aria-labelledby={`install-tab-${tab.harness}`}
+          tabindex="0"
+        >
           <div class="relative">
             <pre class="text-xs bg-background/60 border border-border rounded-lg p-3 pr-12 overflow-x-auto"><code>{tab.command}</code></pre>
             <button
@@ -103,23 +113,37 @@ const selfTestZh = '列出這個套件現在能幫我做的事，並給我一個
 <script>
   function initPackInstall() {
     document.querySelectorAll('.pack-install').forEach((root) => {
-      const tabs = root.querySelectorAll<HTMLButtonElement>('.install-tab');
-      const panels = root.querySelectorAll<HTMLElement>('.install-panel');
-      tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          const h = tab.dataset.harness;
-          tabs.forEach((t) => {
-            const on = t.dataset.harness === h;
-            t.classList.toggle('active', on);
-            t.classList.toggle('bg-primary/15', on);
-            t.classList.toggle('text-primary', on);
-            t.classList.toggle('border-primary/30', on);
-            t.classList.toggle('bg-accent', !on);
-            t.classList.toggle('text-muted-foreground', !on);
-            t.classList.toggle('border-border', !on);
-            t.setAttribute('aria-selected', on ? 'true' : 'false');
-          });
-          panels.forEach((p) => p.classList.toggle('hidden', p.dataset.harness !== h));
+      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('.install-tab'));
+      const panels = Array.from(root.querySelectorAll<HTMLElement>('.install-panel'));
+
+      const select = (harness: string | undefined, focus = false) => {
+        tabs.forEach((t) => {
+          const on = t.dataset.harness === harness;
+          t.classList.toggle('active', on);
+          t.classList.toggle('bg-primary/15', on);
+          t.classList.toggle('text-primary', on);
+          t.classList.toggle('border-primary/30', on);
+          t.classList.toggle('bg-accent', !on);
+          t.classList.toggle('text-muted-foreground', !on);
+          t.classList.toggle('border-border', !on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          if (on && focus) t.focus();
+        });
+        panels.forEach((p) => p.classList.toggle('hidden', p.dataset.harness !== harness));
+      };
+
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab.dataset.harness));
+        tab.addEventListener('keydown', (e) => {
+          let idx = -1;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') idx = (i + 1) % tabs.length;
+          else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') idx = (i - 1 + tabs.length) % tabs.length;
+          else if (e.key === 'Home') idx = 0;
+          else if (e.key === 'End') idx = tabs.length - 1;
+          else return;
+          e.preventDefault();
+          select(tabs[idx].dataset.harness, true);
         });
       });
 
