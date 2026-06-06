@@ -1,0 +1,39 @@
+---
+interface Props {
+  status: 'none' | 'sandbox-ready' | 'keys-required';
+}
+
+const { status } = Astro.props;
+
+const styles: Record<Props['status'], string> = {
+  none: 'bg-gradient-to-r from-green-500 to-emerald-500 text-black',
+  'sandbox-ready': 'bg-amber-500 text-black',
+  'keys-required': 'bg-gradient-to-r from-red-500 to-rose-500 text-white',
+};
+
+const mark: Record<Props['status'], string> = {
+  none: '✓',
+  'sandbox-ready': '◐',
+  'keys-required': '●',
+};
+
+const labelEn: Record<Props['status'], string> = {
+  none: 'No setup',
+  'sandbox-ready': 'Sandbox-ready',
+  'keys-required': 'Keys required',
+};
+
+const labelZh: Record<Props['status'], string> = {
+  none: '免設定',
+  'sandbox-ready': 'Sandbox 可試',
+  'keys-required': '需金鑰',
+};
+---
+
+<span
+  class={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold ${styles[status]}`}
+  data-setup={status}
+>
+  <span aria-hidden="true">{mark[status]}</span>
+  <span class="lang-en">{labelEn[status]}</span><span class="lang-zh">{labelZh[status]}</span>
+</span>
