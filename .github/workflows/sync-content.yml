@@ -52,6 +52,10 @@ jobs:
       # 2) Flip `coming-soon` → `released` for any MCP whose slug-named
       #    package is on PyPI (visibility-gated: private stays coming-soon).
       - run: node scripts/sync-gallery/promote-candidates.mjs
+      # 3) Refresh name/description for released entries still carrying
+      #    discovery-time boilerplate (template text / generic zh stub),
+      #    re-deriving them from the now-public READMEs.
+      - run: node scripts/sync-gallery/refresh-boilerplate-descriptions.mjs
       - run: node scripts/sync-gallery/sync-mcp-content.mjs
       - run: node scripts/sync-gallery/sync-skill-content.mjs
       - run: node scripts/sync-gallery/sync-pack-content.mjs

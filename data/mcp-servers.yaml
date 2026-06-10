@@ -1028,7 +1028,7 @@ servers:
       zh: "591 房地產資料"
     description:
       en: "An MCP server to fetch and query real estate listings from 591.com.tw for AI assistants."
-      zh: "591 房地產資料 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "開源 MCP（Model Context Protocol） server，將台灣最大房地產平台 591 售屋網 包裝成 4 個 AI 可呼叫的 tool，支援售屋與租屋搜尋。"
     status: released
     category: data
     region: taiwan
@@ -1042,7 +1042,7 @@ servers:
       zh: "中央氣象署"
     description:
       en: "MCP server for CWA (中央氣象署, Central Weather Administration) Open Data API. Provides 36 read-only tools across 7 weather data categories for AI agents such as Claude."
-      zh: "中央氣象署 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "中央氣象署（CWA）開放資料平臺 MCP Server。提供 36 個唯讀查詢工具，涵蓋 7 大氣象資料分類，供 Claude 等 AI Agent 使用。"
     status: released
     category: data
     region: taiwan
@@ -1057,7 +1057,7 @@ servers:
       zh: "MAYO Apollo 人力資源"
     description:
       en: "MCP Server for MAYO Apollo HRM — 33 AI-callable tools for people, attendance, and payroll via Model Context Protocol"
-      zh: "MAYO Apollo 人力資源 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "MAYO Apollo 的 MCP Server — 把 HRM 平台的人事 (Foundation)、差勤 (Attendance)、薪資勞健保 (Payroll) API 透過 Model Context Protocol 包成 AI 可呼叫的工具。"
     status: released
     category: ops
     region: taiwan
@@ -1072,7 +1072,7 @@ servers:
       zh: "台灣公司登記查詢"
     description:
       en: "Model Context Protocol (MCP) server for Taiwan Business Registry. Provides real-time access to company registration data from MOEA GCIS."
-      zh: "台灣公司登記查詢 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "一個針對台灣公司登記公開資料的 MCP 伺服器，透過 Model Context Protocol (MCP) 對 AI 客戶端提供可呼叫工具。資料來源為經濟部商業發展署 GCIS 開放資料端點。"
     status: released
     category: data
     region: taiwan
@@ -1087,7 +1087,7 @@ servers:
       zh: "台灣司法判決書"
     description:
       en: "MCP server for searching Taiwan judicial judgments (司法院裁判書系統) — 2 AI-callable tools over Model Context Protocol"
-      zh: "台灣司法判決書 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "台灣司法院裁判書全文查詢的 MCP 伺服器，透過 Model Context Protocol (MCP) 將查詢功能暴露為 AI 可呼叫的工具。"
     status: released
     category: gov
     region: taiwan
@@ -1104,7 +1104,7 @@ servers:
       zh: "buy123 供應商平台"
     description:
       en: "Model Context Protocol server for read-only buy123 vendor portal queries"
-      zh: "mcp-buy123-vendor MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "mcp-buy123-vendor 是針對 buy123 供應商後台的開源 Model Context Protocol (MCP) 伺服器。它讓 Claude Desktop、Claude Code 與其他相容 MCP 的 AI 客戶端，能以唯讀工具查詢供應商營運資料，包含訂單、退貨、出貨、商品、組合商品、通路、庫存、權限與供應商基本資料。"
     status: released
     category: data
     region: global
@@ -1359,7 +1359,7 @@ servers:
       zh: "MCP 中華職棒統計"
     description:
       en: "An MCP (Model Context Protocol) server that provides comprehensive statistics and data for the Chinese Professional Baseball League (CPBL)."
-      zh: "MCP 中華職棒統計 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "一個中華職棒（CPBL）統計資料的 MCP 伺服器，透過 Model Context Protocol (MCP) 將資料查詢功能以 AI 可呼叫工具的形式對外開放。"
     status: released
     category: data
     region: global
@@ -1370,11 +1370,11 @@ servers:
 
   - slug: mcp-heimdall
     name:
-      en: "MCP Server Template"
-      zh: "MCP Server 範本"
+      en: "Heimdall"
+      zh: "Heimdall"
     description:
-      en: "A reusable template for building [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers that expose AI-callable tools. Part of the [Asgard AI Platform](https://github.com/asgard-ai-platform) open-source ecosystem."
-      zh: "MCP Server 範本 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      en: "Heimdall — an MCP (Model Context Protocol) server that exposes read-only tools for Asgard's content management platform."
+      zh: "Heimdall — Asgard 內容管理平台的 MCP (Model Context Protocol) 伺服器，提供只讀工具。"
     status: released
     category: data
     region: global
@@ -1403,7 +1403,7 @@ servers:
       zh: "UOF X × AI Agent 整合示範"
     description:
       en: "UOF X 是一套企業 ERP，提供 99 個 API。這個專案展示：把這些 API 接上 AI Agent，員工能用自然語言完成哪些工作？"
-      zh: "UOF X × AI Agent 整合示範 MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+      zh: "UOF X Total Solution 的 Model Context Protocol 伺服器。它將精選 UOF X API 包裝成 AI 可呼叫的工具，涵蓋 BPM、組織查詢、代理人設定、打卡紀錄、DMS 搜尋、ISO 文件、通知與問卷。"
     status: released
     category: data
     region: global

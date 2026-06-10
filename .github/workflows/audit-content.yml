@@ -45,6 +45,11 @@ jobs:
       - run: DISCOVER_REPORT_ONLY=1 node scripts/sync-gallery/discover-new-mcps.mjs
       - run: node scripts/sync-gallery/audit-pypi.mjs
       - run: node scripts/sync-gallery/audit-readme-format.mjs
+      # refresh-boilerplate-descriptions in report-only mode: flags released
+      # entries whose gallery name/description are still discovery boilerplate
+      # and cannot be auto-refreshed (e.g. README.zh-TW.md missing) without
+      # touching data/mcp-servers.yaml (that's the sync workflow's job).
+      - run: REFRESH_REPORT_ONLY=1 node scripts/sync-gallery/refresh-boilerplate-descriptions.mjs
       - run: node scripts/sync-gallery/audit-orphans.mjs
       - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
       - uses: actions/upload-artifact@v7
