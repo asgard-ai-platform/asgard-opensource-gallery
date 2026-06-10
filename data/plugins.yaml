@@ -165,3 +165,18 @@ plugins:
       zh: "專為使用 iCHEF POS 搭配 EZTABLE 和 TableCheck 訂位系統的餐飲集團設計，實現統一餐飲營運管理。"
     mcp_servers: [mcp-ichef, mcp-eztable, mcp-tablecheck]
     skills: [skill-algo-forecast-arima, skill-ecom-inventory-health, skill-biz-cac-ltv]
+
+  - slug: heimdall-content-ops
+    name:
+      en: "Heimdall Content Operations"
+      zh: "Heimdall 內容營運"
+    description:
+      en: "Content operations bundle exposing Asgard's Heimdall content management platform through 26 read-only AI-callable tools — workspaces, articles, templates, avatars, accounts, missions, publications, and topics."
+      zh: "內容營運組合包，透過 26 個只讀 AI 可呼叫工具存取 Asgard Heimdall 內容管理平台——工作區、文章、模板、頭像、帳號、任務、發布與主題。"
+    scenario:
+      en: "For content teams on the Heimdall platform who want AI agents to browse workspaces, audit articles and templates, and review missions and publications without write access."
+      zh: "適合使用 Heimdall 平台的內容團隊，讓 AI 代理在無寫入權限下瀏覽工作區、盤點文章與模板、檢視任務與發布狀態。"
+    upgrade_to: Heimdall
+    github: https://github.com/asgard-ai-platform/mcp-heimdall
+    mcp_servers: [mcp-heimdall]
+    skills: []
