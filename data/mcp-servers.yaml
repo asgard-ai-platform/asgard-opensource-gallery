@@ -1379,7 +1379,9 @@ servers:
     category: data
     region: global
     github: https://github.com/asgard-ai-platform/mcp-heimdall
+    tools_count: 26
     tags: ["data", "global", "heimdall"]
+    plugins: [heimdall-content-ops]
     maintainer: asgard-ai-platform
 
   - slug: mcp-plurk
