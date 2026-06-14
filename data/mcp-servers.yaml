@@ -1412,3 +1412,20 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-uofx
     tags: ["data", "global", "uofx"]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Auto-added by discover-new-mcps.mjs on 2026-06-14 — REVIEW
+  # ============================================================
+  - slug: mcp-uof
+    name:
+      en: "Uof"
+      zh: "Uof"
+    description:
+      en: "**UOF (U-Office Force) 一代平台的 MCP Server 實作**"
+      zh: "Uof MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-uof
+    tags: ["data", "global", "uof"]
+    maintainer: asgard-ai-platform

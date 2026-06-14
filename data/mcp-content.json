@@ -476,7 +476,8 @@
   },
   "mcp-threads": {
     "intro": {
-      "en": "An open-source [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server that wraps the [Threads API](https://developers.facebook.com/docs/threads) into 6 AI-callable tools for social media content management.\n\nBuilt for [Claude Code](https://claude.ai/code), Claude Desktop, and any MCP-compatible AI client. Enables AI agents to read profiles, list posts/replies/mentions, check publishing limits, and publish text posts through natural language.\n\n> **Disclaimer**: This project requires a valid Threads account token. It is intended for personal use and internal tooling only."
+      "en": "An open-source [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server that wraps the [Threads API](https://developers.facebook.com/docs/threads) into 6 AI-callable tools for social media content management.\n\nBuilt for [Claude Code](https://claude.ai/code), Claude Desktop, and any MCP-compatible AI client. Enables AI agents to read profiles, list posts/replies/mentions, check publishing limits, and publish text posts through natural language.\n\n> **Disclaimer**: This project requires a valid Threads account token. It is intended for personal use and internal tooling only.",
+      "zh": "一個開源的 [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server，將 [Threads API](https://developers.facebook.com/docs/threads) 包裝成 6 個 AI 可呼叫的工具，用於社群媒體內容管理。\n\n支援 [Claude Code](https://claude.ai/code)、Claude Desktop 與任何相容 MCP 的 AI client。讓 AI agent 透過自然語言讀取個人檔案、列出貼文、回覆與提及、查詢發文額度，以及發佈文字貼文。\n\n> **聲明**：這個專案需要有效的 Threads account token。僅供個人使用與內部工具用途。"
     },
     "sections": {
       "en": {
@@ -485,7 +486,15 @@
         "available_tools": "| Tool | Description |\n|------|-------------|\n| `threads_profile_me` | Read the authenticated Threads user profile |\n| `threads_posts_list` | List posts created by the authenticated user |\n| `threads_publishing_limit` | Read publishing quota usage and config |\n| `threads_mentions_list` | List public Threads posts that mention the authenticated user |\n| `threads_replies_list` | List replies created by the authenticated user |\n| `threads_post_text` | Create and publish a text post or reply |",
         "license": "MIT"
       },
-      "zh": {}
+      "zh": {
+        "usage_examples": "> **User:** 幫我看一下最近被提及的 Threads 貼文\n\nClaude 會根據語意呼叫 `threads_mentions_list`，帶入推測出的參數：\n\n```json\n{\n  \"fields\": [\"id\", \"text\", \"timestamp\"],\n  \"limit\": 10\n}\n```\n\n> **Claude:** 最近有 10 則 mentions，我幫你整理成可讀摘要：...",
+        "需求": "- Python 3.14+\n- [uv](https://github.com/astral-sh/uv)\n- `THREADS_TOKEN`",
+        "install": "```bash\nuv sync\n```",
+        "如何取得_token": "這個專案不會在執行時替你登入或交換 token。你需要先透過外部流程取得 Threads 的 account token，然後把它設定到 `THREADS_TOKEN`。\n\n在本機開發時，你可以把 token 放進 shell 環境變數，或寫到 `.env` 後再透過 `uv` 執行指令。",
+        "usage": "### 作為 MCP Server（Claude Desktop / Claude Code）\n\n專案內附有 `.mcp.json`，可直接給本機的 MCP host 使用：\n\n```json\n{\n  \"mcpServers\": {\n    \"threads\": {\n      \"command\": \"uv\",\n      \"args\": [\"run\", \"mcp-threads\", \"serve\"],\n      \"cwd\": \"${PWD}\",\n      \"env\": {\n        \"THREADS_TOKEN\": \"XXXXX\"\n      }\n    }\n  }\n}\n```\n\n目前會暴露六個 tool：\n\n#### `threads_profile_me` — 讀取已驗證的 profile\n\n回傳目前登入的 Threads 使用者資料。\n\n#### `threads_posts_list` — 列出自己的貼文\n\n回傳已驗證使用者建立的 Threads 貼文。\n\n#### `threads_publishing_limit` — 讀取發文額度\n\n回傳已驗證使用者的 quota usage 與 config。\n\n#### `threads_mentions_list` — 列出提及你的貼文\n\n回傳提及已驗證使用者的公開 Threads 貼文。\n\n#### `threads_replies_list` — 列出自己的回覆\n\n回傳已驗證使用者建立的回覆。\n\n#### `threads_post_text` — 建立並發佈文字貼文\n\n建立文字貼文或回覆，並立即發佈。\n\n### 直接執行 CLI（除錯用）\n\n```bash\n# 顯示 CLI 說明\nuv run mcp-threads --help\n\n# 啟動 MCP stdio server\nuv run mcp-threads serve\n```",
+        "開發與測試": "```bash\n# 同步相依套件\nuv sync\n\n# 讀取自己的 profile\nuv run mcp-threads me\n\n# 列出自己的貼文\nuv run mcp-threads posts --limit 10\n\n# 讀取發文額度\nuv run mcp-threads publishing-limit\n\n# 讀取 mentions\nuv run mcp-threads mentions --limit 10\n\n# 讀取 replies\nuv run mcp-threads replies --limit 10\n\n# 發佈文字貼文\nuv run mcp-threads post-text \"Hello from Threads API\"\n```",
+        "備註": "- 這個專案只使用 `THREADS_TOKEN`，不需要其他 auth 環境變數。\n- 需要 user id 時，程式會透過 `/me` 自動取得 `THREADS_USER_ID`。\n- Threads 文字貼文上限是 500 字元。\n- 貼文發佈分成兩步：先建立 container，再 publish。\n- `serve` 會啟動 MCP stdio server；`mcp-threads-server` 保留作為相容別名。"
+      }
     }
   },
   "mcp-cpbl-statistics": {
