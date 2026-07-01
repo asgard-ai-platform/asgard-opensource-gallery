@@ -137,12 +137,16 @@ export function buildMcpStubs({ existingSlugs, repoSlugs, fetchRepoFn, fetchRead
     const intro = extractIntro(readme || '');
 
     const rawH1En = extractH1(readme || '');
-    const nameEn = isPlaceholderH1(rawH1En, slug) ? slugToTitle(slug) : rawH1En;
+    // README convention is `# MCP <ServiceName>`; the gallery name field holds
+    // just the service name, matching refresh-boilerplate's deriveName. Without
+    // this strip a discovered entry keeps the "MCP " prefix (e.g. "MCP CPBL
+    // Statistics") that no later step ever removes.
+    const nameEn = isPlaceholderH1(rawH1En, slug) ? slugToTitle(slug) : rawH1En.replace(/^MCP\s+/, '');
     const rawH1Zh = extractH1(readmeZh || '');
     // Asymmetric fallback: zh defaults to nameEn (not slugToTitle) so that a
     // valid English H1 surfaces in the zh slot rather than an ugly Title-Cased
     // slug. Preserves the prior "nameZh: nameEn" behavior when both H1s fail.
-    const nameZh = isPlaceholderH1(rawH1Zh, slug) ? nameEn : rawH1Zh;
+    const nameZh = isPlaceholderH1(rawH1Zh, slug) ? nameEn : rawH1Zh.replace(/^MCP\s+/, '');
     let descEn = repoInfo?.description || (intro ? intro.split('\n\n')[0].replace(/\n/g, ' ').trim() : '');
     if (!descEn) descEn = `MCP Server for ${nameEn}.`;
     if (descEn.length > 250) descEn = descEn.slice(0, 247) + '...';

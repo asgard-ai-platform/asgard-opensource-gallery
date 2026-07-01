@@ -100,6 +100,21 @@ test('buildMcpStubs: H1 that equals the slug is treated as placeholder', () => {
   assert.equal(entries[0].nameZh, 'Foo Bar');
 });
 
+test('buildMcpStubs: leading "MCP " prefix is stripped from H1-derived names', () => {
+  // README convention is `# MCP <ServiceName>`; the gallery name holds just the
+  // service name. Without the strip the prefix leaks (e.g. "MCP CPBL Statistics").
+  const { entries } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-cpbl-statistics'],
+    fetchRepoFn: () => ({ description: 'd' }),
+    fetchReadmeFn: () => '# MCP CPBL Statistics\n\nIntro.',
+    fetchReadmeZhFn: () => '# MCP 中華職棒統計\n\n中文簡介。',
+    isPrivateFn: () => false,
+  });
+  assert.equal(entries[0].nameEn, 'CPBL Statistics');
+  assert.equal(entries[0].nameZh, '中華職棒統計');
+});
+
 test('buildMcpStubs: Chinese H1 is read from README.zh-TW.md', () => {
   const { entries } = buildMcpStubs({
     existingSlugs: new Set(),
