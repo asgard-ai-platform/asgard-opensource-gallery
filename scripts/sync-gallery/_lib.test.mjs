@@ -3,10 +3,43 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos, ghIsRepoPrivate, ghRepoVisibility } from './_lib.mjs';
+import { ghFetchFile, ghJSON, decodeBase64Content, appendGroup, classifyGhError, isOurPackage, ghListOrgRepos, ghIsRepoPrivate, ghRepoVisibility, extractH1, isPlaceholderH1, extractIntro, slugToTitle, escapeStr, stripMarkdownInline } from './_lib.mjs';
 
 test('decodeBase64Content decodes base64 to utf-8', () => {
   assert.equal(decodeBase64Content('aGVsbG8='), 'hello');
+});
+
+// ── README / gallery-field text helpers ───────────────────────────
+
+test('extractH1 returns the first H1, trimmed; empty when none', () => {
+  assert.equal(extractH1('badges\n# MCP Foo\n\nintro'), 'MCP Foo');
+  assert.equal(extractH1('no heading here'), '');
+});
+
+test('isPlaceholderH1: an H1 equal to the slug (with/without mcp- prefix) is a placeholder', () => {
+  assert.equal(isPlaceholderH1('mcp-foo-bar', 'mcp-foo-bar'), true);
+  assert.equal(isPlaceholderH1('foo-bar', 'mcp-foo-bar'), true);
+  assert.equal(isPlaceholderH1('', 'mcp-foo-bar'), true);
+  assert.equal(isPlaceholderH1('MCP Foo Bar', 'mcp-foo-bar'), false);
+});
+
+test('extractIntro takes text between H1 and first H2, minus badges/lang/rules', () => {
+  const readme = '# MCP Foo\n\n[![badge](x)](y)\n[English](README.md)\n---\nReal intro line.\n\n## Usage\nnope';
+  assert.equal(extractIntro(readme), 'Real intro line.');
+});
+
+test('slugToTitle strips mcp- prefix and title-cases each word', () => {
+  assert.equal(slugToTitle('mcp-foo-bar'), 'Foo Bar');
+  assert.equal(slugToTitle('mcp-uof'), 'Uof'); // no acronym awareness
+});
+
+test('escapeStr escapes backslashes and double quotes for YAML scalars', () => {
+  assert.equal(escapeStr('a "b" \\ c'), 'a \\"b\\" \\\\ c');
+});
+
+test('stripMarkdownInline: links become their label, bold/italic/code markers removed', () => {
+  const md = 'An **MCP** server for [Asgard](https://example.com) with `read-only` tools.';
+  assert.equal(stripMarkdownInline(md), 'An MCP server for Asgard with read-only tools.');
 });
 
 test('decodeBase64Content tolerates whitespace in input', () => {

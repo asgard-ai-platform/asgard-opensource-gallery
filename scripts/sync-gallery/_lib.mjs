@@ -219,3 +219,65 @@ export function appendGroup(reportPath, groupName, lines) {
     appendFileSync(reportPath, block, 'utf-8');
   }
 }
+
+// ── README / gallery-field text helpers ───────────────────────────
+// Shared by discover-new-mcps.mjs and refresh-boilerplate-descriptions.mjs,
+// which derive gallery name/description from repo READMEs. Kept here (not
+// duplicated per script) so a change to the `# MCP <ServiceName>` convention
+// or the card-rendering rules is made in exactly one place.
+
+/** First `# H1` line of a markdown body, trimmed; '' if none. */
+export function extractH1(body) {
+  const m = (body || '').match(/^#\s+(.+)$/m);
+  return m ? m[1].trim() : '';
+}
+
+// Treat an H1 as a placeholder when it's literally the slug (with or without
+// the `mcp-` prefix). Repos sometimes ship `# mcp-foo-bar` as their H1, which
+// then surfaces as the gallery title — caller should fall back to slugToTitle.
+export function isPlaceholderH1(h1, slug) {
+  if (!h1) return true;
+  const norm = h1.toLowerCase().trim();
+  return norm === slug.toLowerCase() || norm === slug.replace(/^mcp-/, '').toLowerCase();
+}
+
+/** Intro paragraph(s) between the H1 and the first H2, minus badge/lang/rule lines. */
+export function extractIntro(readme) {
+  if (!readme) return '';
+  const lines = readme.split('\n');
+  const intro = [];
+  let pastH1 = false;
+  for (const line of lines) {
+    if (/^#\s+/.test(line)) { pastH1 = true; continue; }
+    if (/^##\s+/.test(line)) break;
+    if (pastH1) {
+      if (/^\[!\[/.test(line) || /^\[繁體中文\]/.test(line) || /^\[English\]/.test(line) || line.trim() === '---') continue;
+      intro.push(line);
+    }
+  }
+  return intro.join('\n').trim();
+}
+
+/** `mcp-foo-bar` → `Foo Bar`. Title-cases each word; no acronym awareness. */
+export function slugToTitle(slug) {
+  return slug.replace(/^mcp-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/** Escape a value for embedding in a YAML double-quoted scalar. */
+export function escapeStr(s) {
+  return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+/**
+ * Flatten inline markdown to plain text — gallery name/description fields are
+ * rendered verbatim on the cards (no markdown pass), so raw `[label](url)` /
+ * `**bold**` would show up literally (the original mcp-heimdall bug).
+ */
+export function stripMarkdownInline(text) {
+  return (text || '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')        // images dropped
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')     // links → label
+    .replace(/\*\*([^*]+)\*\*/g, '$1')           // bold
+    .replace(/\*([^*]+)\*/g, '$1')               // italic
+    .replace(/`([^`]+)`/g, '$1');                // inline code
+}
