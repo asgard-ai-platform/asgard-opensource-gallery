@@ -4,7 +4,6 @@ import {
   isBoilerplateName,
   isBoilerplateDescEn,
   isBoilerplateDescZh,
-  stripMarkdownInline,
   buildRefreshes,
   applyFieldUpdates,
 } from './refresh-boilerplate-descriptions.mjs';
@@ -42,13 +41,6 @@ test('isBoilerplateDescZh: discovery zh template is boilerplate', () => {
 
 test('isBoilerplateDescZh: curated zh description is not boilerplate', () => {
   assert.equal(isBoilerplateDescZh('藍新金流 NewebPay MCP Server，為 AI 代理提供金流整合與交易管理功能。'), false);
-});
-
-// ── Markdown stripping ────────────────────────────────────────────
-
-test('stripMarkdownInline: links become their label, bold/code markers removed', () => {
-  const md = 'An **MCP** server for [Asgard](https://example.com) with `read-only` tools.';
-  assert.equal(stripMarkdownInline(md), 'An MCP server for Asgard with read-only tools.');
 });
 
 // ── buildRefreshes ────────────────────────────────────────────────

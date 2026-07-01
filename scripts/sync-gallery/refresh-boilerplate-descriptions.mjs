@@ -23,7 +23,10 @@ import { readFileSync, writeFileSync, realpathSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { ghFetchFile, appendGroup } from './_lib.mjs';
+import {
+  ghFetchFile, appendGroup,
+  extractH1, isPlaceholderH1, extractIntro, slugToTitle, escapeStr, stripMarkdownInline,
+} from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -62,52 +65,7 @@ export function isBoilerplateDescZh(desc) {
   return (desc || '').includes(STUB_DESC_ZH);
 }
 
-// ── README derivation (mirrors discover-new-mcps heuristics) ──────
-
-function extractH1(body) {
-  const m = (body || '').match(/^#\s+(.+)$/m);
-  return m ? m[1].trim() : '';
-}
-
-function isPlaceholderH1(h1, slug) {
-  if (!h1) return true;
-  const norm = h1.toLowerCase().trim();
-  return norm === slug.toLowerCase() || norm === slug.replace(/^mcp-/, '').toLowerCase();
-}
-
-function extractIntro(readme) {
-  if (!readme) return '';
-  const lines = readme.split('\n');
-  const intro = [];
-  let pastH1 = false;
-  for (const line of lines) {
-    if (/^#\s+/.test(line)) { pastH1 = true; continue; }
-    if (/^##\s+/.test(line)) break;
-    if (pastH1) {
-      if (/^\[!\[/.test(line) || /^\[繁體中文\]/.test(line) || /^\[English\]/.test(line) || line.trim() === '---') continue;
-      intro.push(line);
-    }
-  }
-  return intro.join('\n').trim();
-}
-
-function slugToTitle(slug) {
-  return slug.replace(/^mcp-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-/**
- * Flatten inline markdown to plain text — description fields are rendered
- * verbatim on the cards, so raw `[label](url)` / `**bold**` would show up
- * literally (the original mcp-heimdall bug).
- */
-export function stripMarkdownInline(text) {
-  return (text || '')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')        // images dropped
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')     // links → label
-    .replace(/\*\*([^*]+)\*\*/g, '$1')           // bold
-    .replace(/\*([^*]+)\*/g, '$1')               // italic
-    .replace(/`([^`]+)`/g, '$1');                // inline code
-}
+// ── README derivation (shared helpers imported from _lib.mjs) ──────
 
 function deriveName(readme, slug) {
   const h1 = extractH1(readme);
@@ -206,10 +164,6 @@ export function buildRefreshes({ servers, fetchReadmeFn, fetchReadmeZhFn }) {
   }
 
   return { updates, findings };
-}
-
-function escapeStr(s) {
-  return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
 /**

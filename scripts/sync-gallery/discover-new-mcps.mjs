@@ -17,7 +17,10 @@ import { readFileSync, writeFileSync, realpathSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { ghFetchFile, ghJSON, ghListOrgRepos, appendGroup } from './_lib.mjs';
+import {
+  ghFetchFile, ghJSON, ghListOrgRepos, appendGroup,
+  extractH1, isPlaceholderH1, extractIntro, slugToTitle, escapeStr, stripMarkdownInline,
+} from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -44,36 +47,6 @@ function inferCategory(slug, repoInfo, readme) {
   return 'data';
 }
 
-function extractH1(body) {
-  const m = (body || '').match(/^#\s+(.+)$/m);
-  return m ? m[1].trim() : '';
-}
-
-// Treat an H1 as a placeholder when it's literally the slug (with or without
-// the `mcp-` prefix). Repos sometimes ship `# mcp-foo-bar` as their H1, which
-// then surfaces as the gallery title — caller should fall back to slugToTitle.
-function isPlaceholderH1(h1, slug) {
-  if (!h1) return true;
-  const norm = h1.toLowerCase().trim();
-  return norm === slug.toLowerCase() || norm === slug.replace(/^mcp-/, '').toLowerCase();
-}
-
-function extractIntro(readme) {
-  if (!readme) return '';
-  const lines = readme.split('\n');
-  const intro = [];
-  let pastH1 = false;
-  for (const line of lines) {
-    if (/^#\s+/.test(line)) { pastH1 = true; continue; }
-    if (/^##\s+/.test(line)) break;
-    if (pastH1) {
-      if (/^\[!\[/.test(line) || /^\[繁體中文\]/.test(line) || /^\[English\]/.test(line) || line.trim() === '---') continue;
-      intro.push(line);
-    }
-  }
-  return intro.join('\n').trim();
-}
-
 function extractToolsCount(readme) {
   if (!readme) return null;
   const patterns = [
@@ -86,14 +59,6 @@ function extractToolsCount(readme) {
     if (m) return parseInt(m[1]);
   }
   return null;
-}
-
-function slugToTitle(slug) {
-  return slug.replace(/^mcp-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function escapeStr(s) {
-  return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
 // ── Pure helpers (exported for tests) ────────────────────────────
@@ -137,17 +102,19 @@ export function buildMcpStubs({ existingSlugs, repoSlugs, fetchRepoFn, fetchRead
     const intro = extractIntro(readme || '');
 
     const rawH1En = extractH1(readme || '');
-    // README convention is `# MCP <ServiceName>`; the gallery name field holds
-    // just the service name, matching refresh-boilerplate's deriveName. Without
-    // this strip a discovered entry keeps the "MCP " prefix (e.g. "MCP CPBL
-    // Statistics") that no later step ever removes.
-    const nameEn = isPlaceholderH1(rawH1En, slug) ? slugToTitle(slug) : rawH1En.replace(/^MCP\s+/, '');
+    // Match refresh-boilerplate's deriveName: strip inline markdown, then drop
+    // the `# MCP <ServiceName>` convention prefix so the gallery name holds just
+    // the service name. Without this a discovered entry keeps a "MCP " prefix or
+    // raw `**bold**`/links that no later step ever removes.
+    const nameEn = isPlaceholderH1(rawH1En, slug) ? slugToTitle(slug) : stripMarkdownInline(rawH1En).replace(/^MCP\s+/, '');
     const rawH1Zh = extractH1(readmeZh || '');
     // Asymmetric fallback: zh defaults to nameEn (not slugToTitle) so that a
     // valid English H1 surfaces in the zh slot rather than an ugly Title-Cased
     // slug. Preserves the prior "nameZh: nameEn" behavior when both H1s fail.
-    const nameZh = isPlaceholderH1(rawH1Zh, slug) ? nameEn : rawH1Zh.replace(/^MCP\s+/, '');
-    let descEn = repoInfo?.description || (intro ? intro.split('\n\n')[0].replace(/\n/g, ' ').trim() : '');
+    const nameZh = isPlaceholderH1(rawH1Zh, slug) ? nameEn : stripMarkdownInline(rawH1Zh).replace(/^MCP\s+/, '');
+    // Intro paragraph is rendered verbatim on the card — strip inline markdown
+    // (matches deriveDesc) so `[label](url)` / `**bold**` don't show literally.
+    let descEn = repoInfo?.description || (intro ? stripMarkdownInline(intro.split('\n\n')[0].replace(/\n/g, ' ')).trim() : '');
     if (!descEn) descEn = `MCP Server for ${nameEn}.`;
     if (descEn.length > 250) descEn = descEn.slice(0, 247) + '...';
     const descZh = `${nameZh} MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。`;

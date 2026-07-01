@@ -1132,7 +1132,7 @@ servers:
       en: "HCT Logistics"
       zh: "HCT Logistics"
     description:
-      en: "An MCP server for **Hsinchu Logistics (HCT)**, exposing `QueryEDELNO_Json` SOAP lookups over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
+      en: "An MCP server for Hsinchu Logistics (HCT), exposing QueryEDELNO_Json SOAP lookups over Model Context Protocol (MCP)."
       zh: "MCP HCT Logistics MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1147,7 +1147,7 @@ servers:
       en: "Kerry TJ"
       zh: "Kerry TJ"
     description:
-      en: "An MCP server for **Kerry TJ** logistics, exposing BLN tracing and EDI shipment submission over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
+      en: "An MCP server for Kerry TJ logistics, exposing BLN tracing and EDI shipment submission over Model Context Protocol (MCP)."
       zh: "MCP Kerry TJ MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1176,7 +1176,7 @@ servers:
       en: "SF Express"
       zh: "SF Express"
     description:
-      en: "An MCP server for **SF Express Open Platform**, exposing OAuth2 token and `std/service` business gateway calls over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
+      en: "An MCP server for SF Express Open Platform, exposing OAuth2 token and std/service business gateway calls over Model Context Protocol (MCP)."
       zh: "MCP SF Express MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1191,7 +1191,7 @@ servers:
       en: "TDX Transport Data eXchange"
       zh: "TDX 運輸資料流通服務平臺"
     description:
-      en: "MCP Server for **TDX (Transport Data eXchange) — 運輸資料流通服務平臺**"
+      en: "MCP Server for TDX (Transport Data eXchange) — 運輸資料流通服務平臺"
       zh: "mcp-tdx MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1205,7 +1205,7 @@ servers:
       en: "TDX Air & Maritime Transport"
       zh: "TDX 航空與海運"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Air & Maritime Transport**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Air & Maritime Transport."
       zh: "mcp-tdx-airport MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1220,7 +1220,7 @@ servers:
       en: "TDX Bus & InterCity Coach"
       zh: "TDX 公車與客運"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Bus & InterCity Coach**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Bus & InterCity Coach."
       zh: "mcp-tdx-bus MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1235,7 +1235,7 @@ servers:
       en: "TDX Meta Services"
       zh: "TDX 共通服務"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Meta Services (GIS / MaaS / Geocoding / Common Data / Stats / Weather / Changelog)**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Meta Services (GIS / MaaS / Geocoding / Common Data / Stats / Weather / Changelog)."
       zh: "mcp-tdx-meta MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1250,7 +1250,7 @@ servers:
       en: "TDX Last-Mile Mobility"
       zh: "TDX 最後一哩交通"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Last-Mile Mobility (Parking / Shared Bike / EV Charging)**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Last-Mile Mobility (Parking / Shared Bike / EV Charging)."
       zh: "mcp-tdx-mobility MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1265,7 +1265,7 @@ servers:
       en: "TDX Rail Transit"
       zh: "TDX 軌道運輸"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Rail (TRA / THSR / Metro / Light Rail)**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Rail (TRA / THSR / Metro / Light Rail)."
       zh: "mcp-tdx-rail MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1280,7 +1280,7 @@ servers:
       en: "TDX Tourism"
       zh: "TDX 觀光旅遊"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Tourism (POI / Restaurants / Hotels / Events)**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Tourism (POI / Restaurants / Hotels / Events)."
       zh: "mcp-tdx-tourism MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1295,7 +1295,7 @@ servers:
       en: "TDX Traffic & Road Network"
       zh: "TDX 路況與路網"
     description:
-      en: "MCP Server for [TDX (Transport Data eXchange, 運輸資料流通服務平臺)](https://tdx.transportdata.tw/) — **Traffic & Road Network**."
+      en: "MCP Server for TDX (Transport Data eXchange, 運輸資料流通服務平臺) — Traffic & Road Network."
       zh: "mcp-tdx-traffic MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
     status: coming-soon
     category: data
@@ -1421,7 +1421,7 @@ servers:
       en: "UOF"
       zh: "UOF"
     description:
-      en: "UOF (U-Office Force) 一代平台的 MCP Server 實作"
+      en: "An MCP server for the UOF (U-Office Force) first-generation platform — WKF workflow tools (form queries, apply/sign/terminate tasks) over its SOAP/ASMX services and selected web flows."
       zh: "UOF (U-Office Force) 一代平台的 MCP Server 實作"
     status: released
     category: data

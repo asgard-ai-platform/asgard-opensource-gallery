@@ -115,6 +115,20 @@ test('buildMcpStubs: leading "MCP " prefix is stripped from H1-derived names', (
   assert.equal(entries[0].nameZh, '中華職棒統計');
 });
 
+test('buildMcpStubs: inline markdown is stripped from H1 name and intro description', () => {
+  // Card fields render verbatim, so raw **bold**/[link](url)/`code` must not leak.
+  const { entries } = buildMcpStubs({
+    existingSlugs: new Set(),
+    repoSlugs: ['mcp-tdx-bus'],
+    fetchRepoFn: () => ({ description: '' }), // force the intro path for descEn
+    fetchReadmeFn: () => '# MCP **TDX Bus**\n\nAn MCP server for [TDX](https://tdx.example) — **Bus** routes with `stop` lookups.\n\n## Usage',
+    fetchReadmeZhFn: () => null,
+    isPrivateFn: () => false,
+  });
+  assert.equal(entries[0].nameEn, 'TDX Bus');
+  assert.equal(entries[0].descEn, 'An MCP server for TDX — Bus routes with stop lookups.');
+});
+
 test('buildMcpStubs: Chinese H1 is read from README.zh-TW.md', () => {
   const { entries } = buildMcpStubs({
     existingSlugs: new Set(),
