@@ -132,6 +132,49 @@ export function sectionKey(title) {
   return t.replace(/\s+/g, '_').replace(/^_|_$/g, '');
 }
 
+/**
+ * Build the mcp-content map from the released servers. Pure/testable — fetchers
+ * and the previous on-disk content are injected.
+ *
+ * A released repo whose README fetch returns null is treated as a TRANSIENT
+ * failure, not a deletion: its last-good content is carried over from
+ * `prevContent` instead of being dropped. Dropping it would let a single flaky
+ * gh-api call auto-commit the removal of that MCP's detail-page content
+ * (check-sync-thresholds only trips below 80% coverage). Non-released repos are
+ * still omitted — that is a deliberate YAML status change, not a fetch failure.
+ */
+export function buildMcpContent({ servers, fetchEnFn, fetchZhFn, prevContent = {} }) {
+  const content = {};
+  const stats = { processed: 0, carried: 0, skipped: 0, zhCount: 0 };
+
+  for (const server of servers) {
+    const repo = server.slug;
+    if (server.status !== 'released') { stats.skipped++; continue; }
+
+    const readmeEn = fetchEnFn(repo);
+    if (!readmeEn) {
+      if (prevContent[repo]) { content[repo] = prevContent[repo]; stats.carried++; }
+      else { stats.skipped++; }
+      continue;
+    }
+
+    const entry = { intro: { en: extractIntro(readmeEn) }, sections: { en: {}, zh: {} } };
+    for (const [title, md] of extractSections(readmeEn)) entry.sections.en[sectionKey(title)] = md;
+
+    const readmeZh = fetchZhFn(repo);
+    if (readmeZh) {
+      entry.intro.zh = extractIntro(readmeZh);
+      for (const [title, md] of extractSections(readmeZh)) entry.sections.zh[sectionKey(title)] = md;
+      stats.zhCount++;
+    }
+
+    content[repo] = entry;
+    stats.processed++;
+  }
+
+  return { content, stats };
+}
+
 // ── Main ─────────────────────────────────────────────────────────
 
 if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
@@ -141,70 +184,27 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
 
   // Load YAML
   console.log('[1/3] Loading mcp-servers.yaml ...');
-  const yamlData = yaml.load(readFileSync(MCP_YAML, 'utf-8'));
-  const servers = yamlData.servers;
+  const servers = yaml.load(readFileSync(MCP_YAML, 'utf-8')).servers;
+
+  // Last-good content, so a transient fetch failure carries over rather than
+  // deleting an entry (see buildMcpContent).
+  const prevContent = existsSync(OUTPUT_JSON)
+    ? JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'))
+    : {};
 
   // Fetch READMEs
-  console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...\n`);
-  const mcpContent = {};
-  let processed = 0;
-  let skipped = 0;
-  let zhCount = 0;
-
-  for (const server of servers) {
-    const repo = server.slug;
-    process.stdout.write(`  ${repo} ... `);
-
-    // Only fetch for released repos (they have public READMEs)
-    if (server.status !== 'released') {
-      console.log('⏭  (not released)');
-      skipped++;
-      continue;
-    }
-
-    const readmeEn = ghFetchFile(repo, 'README.md');
-    if (!readmeEn) {
-      console.log('⚠  no README');
-      skipped++;
-      continue;
-    }
-
-    const readmeZh = ghFetchFile(repo, 'README.zh-TW.md');
-
-    const content = {
-      intro: { en: extractIntro(readmeEn) },
-      sections: { en: {}, zh: {} },
-    };
-
-    // English sections
-    const enSections = extractSections(readmeEn);
-    for (const [title, md] of enSections) {
-      const key = sectionKey(title);
-      content.sections.en[key] = md;
-    }
-
-    // Chinese sections
-    if (readmeZh) {
-      content.intro.zh = extractIntro(readmeZh);
-      const zhSections = extractSections(readmeZh);
-      for (const [title, md] of zhSections) {
-        const key = sectionKey(title);
-        content.sections.zh[key] = md;
-      }
-      zhCount++;
-      console.log('✅ (en + zh)');
-    } else {
-      console.log('✅ (en only)');
-    }
-
-    mcpContent[server.slug] = content;
-    processed++;
-  }
+  console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...`);
+  const { content: mcpContent, stats } = buildMcpContent({
+    servers,
+    fetchEnFn: (repo) => ghFetchFile(repo, 'README.md'),
+    fetchZhFn: (repo) => ghFetchFile(repo, 'README.zh-TW.md'),
+    prevContent,
+  });
 
   // Write output
-  console.log(`\n[3/3] Writing mcp-content.json ...`);
+  console.log(`[3/3] Writing mcp-content.json ...`);
   writeFileSync(OUTPUT_JSON, JSON.stringify(mcpContent, null, 2), 'utf-8');
-  console.log(`  ✅ ${processed} MCPs processed (${zhCount} with zh), ${skipped} skipped`);
+  console.log(`  ✅ ${stats.processed} processed (${stats.zhCount} with zh), ${stats.carried} carried over, ${stats.skipped} skipped`);
 
   console.log('\n═══════════════════════════════════════════════════');
   console.log(' Done');

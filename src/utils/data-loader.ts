@@ -57,13 +57,25 @@ const CORE_PUBLISHER = 'asgard-ai-platform';
 /**
  * Derive publisher trust tier from the repo owner in a github URL.
  * Owner github.com/asgard-ai-platform → "core"; any other owner → "community".
- * Returns null when there is no github URL (e.g. collections).
+ * Returns null when there is no github URL (e.g. collections) or it is not a
+ * real github.com host. Validated via `new URL()` (not a substring match) so a
+ * path-segment look-alike like `https://evil.example/github.com/asgard-ai-platform`
+ * cannot spoof the "core" tier.
  */
 export function getPublisherTier(github?: string): 'core' | 'community' | null {
   if (!github) return null;
-  const m = github.match(/github\.com\/([^/]+)/i);
-  if (!m) return null;
-  return m[1].toLowerCase() === CORE_PUBLISHER ? 'core' : 'community';
+  let host: string;
+  let owner: string | undefined;
+  try {
+    const u = new URL(github);
+    host = u.hostname.toLowerCase();
+    owner = u.pathname.split('/').filter(Boolean)[0];
+  } catch {
+    return null;
+  }
+  if (host !== 'github.com' && !host.endsWith('.github.com')) return null;
+  if (!owner) return null;
+  return owner.toLowerCase() === CORE_PUBLISHER ? 'core' : 'community';
 }
 
 export interface SkillContent {

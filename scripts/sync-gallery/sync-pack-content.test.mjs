@@ -41,6 +41,12 @@ test('parseRepo: look-alike host (notgithub.com) → null', () => {
 test('parseRepo: github.com subdomain still parses', () => {
   assert.deepEqual(parseRepo('https://www.github.com/foo/bar'), { owner: 'foo', repo: 'bar' });
 });
+test('parseRepo: github.com as a path segment of another host → null', () => {
+  assert.equal(parseRepo('https://evil.example/github.com/asgard-ai-platform/foo'), null);
+});
+test('parseRepo: URL with fewer than two path segments → null', () => {
+  assert.equal(parseRepo('https://github.com/onlyowner'), null);
+});
 
 // ── parsePluginManifest ──
 test('parsePluginManifest: core fields', () => {

@@ -32,12 +32,12 @@
             "enum": ["ecommerce", "payment", "analytics", "communication", "data", "crm", "restaurant", "gov", "marketing", "finance", "manufacturing", "ops", "customer-service", "media", "methodology", "theory", "algorithm"]
           },
           "region": { "type": "string", "enum": ["global", "taiwan", "sea", "japan"] },
-          "github": { "type": "string", "format": "uri" },
+          "github": { "type": "string", "pattern": "^https://github\\.com/[^/]+/[^/]+" },
           "tools_count": { "type": "integer", "minimum": 0 },
           "tags": { "type": "array", "items": { "type": "string" } },
           "upgrade_to": { "type": "string" },
           "plugins": { "type": "array", "items": { "type": "string" } },
-          "api_docs": { "type": "string", "format": "uri" },
+          "api_docs": { "type": "string", "pattern": "^https://" },
           "icon": { "type": "string" },
           "maintainer": { "type": "string" }
         },
