@@ -42,6 +42,14 @@ export function isBoilerplateName(name) {
   return TEMPLATE_NAMES.has((name || '').trim());
 }
 
+// A gallery name equal to the title-cased slug (e.g. `mcp-uof` → "Uof") is
+// discover-new-mcps' fallback when the repo README had no usable H1 at
+// discovery time — it carries no curation intent. Flag it so a later sync can
+// re-derive proper casing from the now-published README H1 (e.g. "UOF").
+export function isSlugFallbackName(name, slug) {
+  return !!slug && (name || '').trim() === slugToTitle(slug);
+}
+
 export function isBoilerplateDescEn(desc, nameEn) {
   const d = (desc || '').trim();
   if (TEMPLATE_DESC_EN.test(d)) return true;
@@ -136,11 +144,17 @@ export function buildRefreshes({ servers, fetchReadmeFn, fetchReadmeZhFn }) {
   for (const server of servers) {
     if (server.status !== 'released') continue;
 
+    const current = {
+      nameEn: (server.name?.en || '').trim(),
+      nameZh: (server.name?.zh || '').trim(),
+      descEn: server.description?.en,
+      descZh: server.description?.zh,
+    };
     const boil = {
-      nameEn: isBoilerplateName(server.name?.en),
-      nameZh: isBoilerplateName(server.name?.zh),
-      descEn: isBoilerplateDescEn(server.description?.en, server.name?.en),
-      descZh: isBoilerplateDescZh(server.description?.zh),
+      nameEn: isBoilerplateName(current.nameEn) || isSlugFallbackName(current.nameEn, server.slug),
+      nameZh: isBoilerplateName(current.nameZh) || isSlugFallbackName(current.nameZh, server.slug),
+      descEn: isBoilerplateDescEn(current.descEn, current.nameEn),
+      descZh: isBoilerplateDescZh(current.descZh),
     };
     if (!Object.values(boil).some(Boolean)) continue;
 
@@ -170,9 +184,18 @@ export function buildRefreshes({ servers, fetchReadmeFn, fetchReadmeZhFn }) {
     for (const field of ['nameEn', 'nameZh', 'descEn', 'descZh']) {
       if (!boil[field]) continue;
       const candidate = candidates[field];
-      if (candidate && !stillBoilerplate(field, candidate)) {
+      const isName = field === 'nameEn' || field === 'nameZh';
+      // A slug-fallback name (current value equals the title-cased slug) is
+      // only refreshed into a case-variant of itself — Uof→UOF, the acronym
+      // the README H1 spells out. Never swap the word, which would clobber a
+      // curated single-word name that happens to match the slug (Shopline).
+      const caseOnly = isName && !isBoilerplateName(current[field]);
+      const accepted = candidate && !stillBoilerplate(field, candidate)
+        && candidate !== current[field]
+        && (!caseOnly || candidate.toLowerCase() === current[field].toLowerCase());
+      if (accepted) {
         fields[field] = candidate;
-      } else {
+      } else if (!candidate || stillBoilerplate(field, candidate)) {
         const source = field.endsWith('Zh') ? 'README.zh-TW.md' : 'README.md';
         const yamlField = field.startsWith('name') ? 'name' : 'description';
         const lang = field.endsWith('Zh') ? 'zh' : 'en';
