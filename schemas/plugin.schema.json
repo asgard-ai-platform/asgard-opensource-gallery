@@ -45,7 +45,7 @@
           "mcp_servers": { "type": "array", "items": { "type": "string" } },
           "skills": { "type": "array", "items": { "type": "string" } },
           "kind": { "enum": ["collection", "pack"] },
-          "github": { "type": "string", "format": "uri" },
+          "github": { "type": "string", "pattern": "^https://github\\.com/[^/]+/[^/]+" },
           "icon": { "type": "string" }
         },
         "additionalProperties": false

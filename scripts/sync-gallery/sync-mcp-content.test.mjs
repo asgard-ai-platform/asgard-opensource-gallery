@@ -1,6 +1,58 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sectionKey } from './sync-mcp-content.mjs';
+import { sectionKey, buildMcpContent } from './sync-mcp-content.mjs';
+
+// ── buildMcpContent: last-good carry-over on fetch failure ──
+
+const RELEASED = (slug) => ({ slug, status: 'released' });
+
+test('buildMcpContent: released repo with README is processed', () => {
+  const { content, stats } = buildMcpContent({
+    servers: [RELEASED('mcp-foo')],
+    fetchEnFn: () => '# MCP Foo\n\nintro\n\n## Tools\n\nt',
+    fetchZhFn: () => null,
+  });
+  assert.ok(content['mcp-foo']);
+  assert.equal(stats.processed, 1);
+  assert.equal(stats.carried, 0);
+});
+
+test('buildMcpContent: released repo whose README fetch fails carries over last-good content', () => {
+  const prev = { 'mcp-foo': { intro: { en: 'old' }, sections: { en: { available_tools: 'x' }, zh: {} } } };
+  const { content, stats } = buildMcpContent({
+    servers: [RELEASED('mcp-foo')],
+    fetchEnFn: () => null, // transient failure
+    fetchZhFn: () => null,
+    prevContent: prev,
+  });
+  assert.deepEqual(content['mcp-foo'], prev['mcp-foo']); // not deleted
+  assert.equal(stats.carried, 1);
+  assert.equal(stats.processed, 0);
+});
+
+test('buildMcpContent: fetch failure with no prior content is skipped, not invented', () => {
+  const { content, stats } = buildMcpContent({
+    servers: [RELEASED('mcp-foo')],
+    fetchEnFn: () => null,
+    fetchZhFn: () => null,
+    prevContent: {},
+  });
+  assert.equal('mcp-foo' in content, false);
+  assert.equal(stats.skipped, 1);
+});
+
+test('buildMcpContent: a non-released repo is dropped even if it had prior content', () => {
+  // A deliberate released→coming-soon status change SHOULD remove the content.
+  const prev = { 'mcp-foo': { intro: { en: 'old' }, sections: { en: {}, zh: {} } } };
+  const { content, stats } = buildMcpContent({
+    servers: [{ slug: 'mcp-foo', status: 'coming-soon' }],
+    fetchEnFn: () => { throw new Error('should not fetch non-released'); },
+    fetchZhFn: () => null,
+    prevContent: prev,
+  });
+  assert.equal('mcp-foo' in content, false);
+  assert.equal(stats.skipped, 1);
+});
 
 // ── Tools (N) regex (en) ──
 test('sectionKey: "Tools" → available_tools', () => {

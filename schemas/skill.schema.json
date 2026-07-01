@@ -33,7 +33,7 @@
           },
           "skill_type": { "type": "string", "enum": ["industry", "methodology", "theory", "algorithm"] },
           "region": { "type": "string", "enum": ["global", "taiwan", "sea", "japan"] },
-          "github": { "type": "string" },
+          "github": { "type": "string", "pattern": "^https://github\\.com/[^/]+/[^/]+" },
           "requires_mcp": { "type": "array", "items": { "type": "string" } },
           "has_script": { "type": "boolean" },
           "tags": { "type": "array", "items": { "type": "string" } },

@@ -25,12 +25,17 @@ const OUTPUT_JSON = join(DATA_DIR, 'pack-content.json');
 // ── Pure parsers ─────────────────────────────────────────────────
 
 /** Parse `{owner, repo}` from a github URL; null if it isn't one.
- *  The host is anchored to a boundary (`/`, `@`, `.`, or string start) so a
- *  look-alike like `https://notgithub.com/foo/bar` does not parse as GitHub. */
+ *  Validates the real hostname via `new URL()` (github.com or a *.github.com
+ *  subdomain) so a path-segment look-alike like
+ *  `https://evil.example/github.com/o/r` does NOT parse as GitHub. */
 export function parseRepo(githubUrl) {
-  const m = (githubUrl || '').match(/(?:^|[/@.])github\.com\/([^/]+)\/([^/#?]+)/i);
-  if (!m) return null;
-  return { owner: m[1], repo: m[2].replace(/\.git$/, '') };
+  let u;
+  try { u = new URL(githubUrl); } catch { return null; }
+  const host = u.hostname.toLowerCase();
+  if (host !== 'github.com' && !host.endsWith('.github.com')) return null;
+  const [owner, repo] = u.pathname.split('/').filter(Boolean);
+  if (!owner || !repo) return null;
+  return { owner, repo: repo.replace(/\.git$/, '') };
 }
 
 /** Extract the fields we keep from `.claude-plugin/plugin.json`. */

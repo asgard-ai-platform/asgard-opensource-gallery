@@ -10,8 +10,9 @@
  * Usage: node scripts/sync-gallery/sync-skill-content.mjs
  */
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
 
 const ORG = 'asgard-ai-platform';
@@ -156,87 +157,94 @@ function updateYamlDescriptions(yamlText, updates) {
   return result.join('\n');
 }
 
+/**
+ * Build the skill-content map + queued description updates. Pure/testable — the
+ * directory list, fetcher and previous on-disk content are injected.
+ *
+ * A skill dir whose SKILL.md fetch returns null carries over its last-good
+ * content from `prevContent` rather than being dropped, so a transient gh-api
+ * failure cannot auto-commit the deletion of a skill's detail-page content.
+ * Order-preserving so packs whose canonical sections are not first (e.g. the
+ * EMBA packs lead with 定位/何時使用) render in document order.
+ */
+export function buildSkillContent({ dirs, fetchFn, yamlSkills = new Map(), prevContent = {} }) {
+  const content = {};
+  const descriptionUpdates = new Map();
+  const stats = { processed: 0, carried: 0, skipped: 0 };
+
+  for (const dir of dirs) {
+    const slug = `skill-${dir}`;
+    const raw = fetchFn(dir);
+    if (!raw) {
+      if (prevContent[slug]) { content[slug] = prevContent[slug]; stats.carried++; }
+      else { stats.skipped++; }
+      continue;
+    }
+
+    const { meta, body } = parseFrontmatter(raw);
+    const sections = extractSections(body);
+    content[slug] = {
+      sections: sections.map((s) => ({ key: sectionKey(s.title), title: s.title, body: s.body })),
+    };
+
+    const yamlEntry = yamlSkills.get(dir);
+    if (yamlEntry && meta.description) {
+      const currentDesc = yamlEntry.description?.en || '';
+      if (meta.description.length > currentDesc.length + 20) {
+        descriptionUpdates.set(slug, { newDescEn: meta.description });
+      }
+    }
+
+    stats.processed++;
+  }
+
+  return { content, descriptionUpdates, stats };
+}
+
 // ── Main ─────────────────────────────────────────────────────────
 
-console.log('═══════════════════════════════════════════════════');
-console.log(' Sync Skill Content → data/skill-content.json');
-console.log('═══════════════════════════════════════════════════\n');
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
+  console.log('═══════════════════════════════════════════════════');
+  console.log(' Sync Skill Content → data/skill-content.json');
+  console.log('═══════════════════════════════════════════════════\n');
 
-// Step 1: List skill directories from GitHub API
-console.log('[1/3] Listing skill directories from GitHub API ...');
-const dirs = ghListDirs();
-console.log(`  Found ${dirs.length} skill directories\n`);
+  console.log('[1/3] Listing skill directories from GitHub API ...');
+  const dirs = ghListDirs();
+  console.log(`  Found ${dirs.length} skill directories\n`);
 
-// Step 2: Load current YAML
-console.log('[2/3] Loading skills.yaml ...');
-const yamlText = readFileSync(SKILLS_YAML, 'utf-8');
-const yamlData = yaml.load(yamlText);
-const yamlSkills = new Map();
-for (const s of yamlData.skills) {
-  const dirName = s.slug.replace(/^skill-/, '');
-  yamlSkills.set(dirName, s);
-}
-
-// Step 3: Fetch and process each SKILL.md via GitHub API
-console.log(`[3/3] Fetching SKILL.md files ...\n`);
-const skillContent = {};
-const descriptionUpdates = new Map();
-let processed = 0;
-let skipped = 0;
-
-for (const dir of dirs) {
-  process.stdout.write(`  ${dir} ... `);
-
-  const raw = ghFetchFile(`${dir}/SKILL.md`);
-  if (!raw) {
-    console.log('⚠  no SKILL.md');
-    skipped++;
-    continue;
+  console.log('[2/3] Loading skills.yaml ...');
+  const yamlText = readFileSync(SKILLS_YAML, 'utf-8');
+  const yamlData = yaml.load(yamlText);
+  const yamlSkills = new Map();
+  for (const s of yamlData.skills) {
+    yamlSkills.set(s.slug.replace(/^skill-/, ''), s);
   }
 
-  const { meta, body } = parseFrontmatter(raw);
-  const sections = extractSections(body);
+  // Last-good content so a transient fetch failure carries over rather than
+  // deleting an entry (see buildSkillContent).
+  const prevContent = existsSync(OUTPUT_JSON)
+    ? JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'))
+    : {};
 
-  const slug = `skill-${dir}`;
-  const yamlEntry = yamlSkills.get(dir);
+  console.log('[3/3] Fetching SKILL.md files ...');
+  const { content: skillContent, descriptionUpdates, stats } = buildSkillContent({
+    dirs,
+    fetchFn: (dir) => ghFetchFile(`${dir}/SKILL.md`),
+    yamlSkills,
+    prevContent,
+  });
 
-  // Build structured content — ordered sections, each with a slug key (for
-  // known-section styling), its original heading (for display, incl. non-ASCII
-  // headings that would otherwise slug to an empty/colliding key), and raw
-  // markdown. Order-preserving so packs whose canonical sections are not first
-  // (e.g. the EMBA packs lead with 定位/何時使用) render in document order.
-  const content = {
-    sections: sections.map((s) => ({
-      key: sectionKey(s.title),
-      title: s.title,
-      body: s.body,
-    })),
-  };
+  console.log(`\nWriting outputs ...`);
+  writeFileSync(OUTPUT_JSON, JSON.stringify(skillContent, null, 2), 'utf-8');
+  console.log(`  ✅ skill-content.json — ${stats.processed} processed, ${stats.carried} carried over, ${stats.skipped} skipped`);
 
-  // Queue description update if frontmatter has richer info
-  if (yamlEntry && meta.description) {
-    const currentDesc = yamlEntry.description?.en || '';
-    if (meta.description.length > currentDesc.length + 20) {
-      descriptionUpdates.set(slug, { newDescEn: meta.description });
-    }
+  if (descriptionUpdates.size > 0) {
+    const updatedYaml = updateYamlDescriptions(yamlText, descriptionUpdates);
+    writeFileSync(SKILLS_YAML, updatedYaml, 'utf-8');
+    console.log(`  ✅ skills.yaml — descriptions enriched (format preserved)`);
   }
 
-  skillContent[slug] = content;
-  processed++;
-  console.log('✅');
+  console.log('\n═══════════════════════════════════════════════════');
+  console.log(' Done');
+  console.log('═══════════════════════════════════════════════════');
 }
-
-// Write outputs
-console.log(`\nWriting outputs ...`);
-writeFileSync(OUTPUT_JSON, JSON.stringify(skillContent, null, 2), 'utf-8');
-console.log(`  ✅ skill-content.json — ${processed} skills, ${skipped} skipped`);
-
-if (descriptionUpdates.size > 0) {
-  const updatedYaml = updateYamlDescriptions(yamlText, descriptionUpdates);
-  writeFileSync(SKILLS_YAML, updatedYaml, 'utf-8');
-  console.log(`  ✅ skills.yaml — descriptions enriched (format preserved)`);
-}
-
-console.log('\n═══════════════════════════════════════════════════');
-console.log(' Done');
-console.log('═══════════════════════════════════════════════════');
