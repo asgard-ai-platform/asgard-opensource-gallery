@@ -6,6 +6,7 @@ import McpCard from '../../components/McpCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
 import { getSkills, getMcpServers, getPlugIns, getSkillContentBySlug } from '../../utils/data-loader';
 import { renderMarkdown } from '../../utils/markdown';
+import { jsonLdScript } from '../../utils/jsonld';
 import type { Skill } from '../../types';
 
 export function getStaticPaths() {
@@ -70,7 +71,7 @@ const typeGradients: Record<string, string> = {
 
 <BaseLayout title={skill.name.en} description={skill.description.en}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonLdScript({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": skill.slug,

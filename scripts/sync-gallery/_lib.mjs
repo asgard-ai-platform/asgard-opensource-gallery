@@ -170,7 +170,6 @@ export function ghIsRepoPrivate(org, slug, { fetchFn } = {}) {
  */
 export function isOurPackage(info, slug) {
   if (!info || !slug) return false;
-  const expected = `github.com/asgard-ai-platform/${slug}`.toLowerCase();
   const urls = [];
   if (typeof info.home_page === 'string') urls.push(info.home_page);
   if (info.project_urls && typeof info.project_urls === 'object') {
@@ -178,7 +177,19 @@ export function isOurPackage(info, slug) {
       if (typeof v === 'string') urls.push(v);
     }
   }
-  return urls.some(u => u.toLowerCase().includes(expected));
+  const wantRepo = slug.toLowerCase();
+  // Validate the real hostname + owner/repo path segments (not a substring
+  // match) so a squatter's `https://evil.example/github.com/asgard-ai-platform/<slug>`
+  // cannot masquerade as ours. Mirrors parseRepo / getPublisherTier.
+  return urls.some(u => {
+    let parsed;
+    try { parsed = new URL(u); } catch { return false; }
+    const host = parsed.hostname.toLowerCase();
+    if (host !== 'github.com' && !host.endsWith('.github.com')) return false;
+    const [owner, repo] = parsed.pathname.split('/').filter(Boolean);
+    return owner?.toLowerCase() === 'asgard-ai-platform'
+      && repo?.toLowerCase().replace(/\.git$/, '') === wantRepo;
+  });
 }
 
 /**

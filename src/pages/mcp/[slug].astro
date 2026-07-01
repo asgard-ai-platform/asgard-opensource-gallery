@@ -6,6 +6,7 @@ import McpCard from '../../components/McpCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
 import { getMcpServers, getPlugIns, getMcpContentBySlug } from '../../utils/data-loader';
 import { renderMarkdown } from '../../utils/markdown';
+import { jsonLdScript } from '../../utils/jsonld';
 import type { McpServer } from '../../types';
 
 export function getStaticPaths() {
@@ -84,7 +85,7 @@ const renderKeys = [...canonical, ...longTail];
   description={server.description.en}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonLdScript({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": server.slug,
