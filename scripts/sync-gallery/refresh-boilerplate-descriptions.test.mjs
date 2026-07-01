@@ -141,7 +141,7 @@ test('buildRefreshes: entries with no boilerplate fields are skipped without fet
   const { updates } = buildRefreshes({
     servers: [{
       slug: 'mcp-shopline',
-      name: { en: 'Shopline', zh: 'Shopline 電商平台' },
+      name: { en: 'Shopline Commerce', zh: 'Shopline 電商平台' },
       description: { en: 'MCP Server for Shopline e-commerce platform — 143 tools.', zh: 'Shopline 電商平台 MCP Server — 143 個工具。' },
       status: 'released',
     }],
@@ -150,6 +150,54 @@ test('buildRefreshes: entries with no boilerplate fields are skipped without fet
   });
   assert.equal(updates.length, 0);
   assert.equal(fetched, 0);
+});
+
+test('buildRefreshes: a name equal to the title-cased slug is re-checked but left as-is when the README agrees', () => {
+  let fetched = 0;
+  const { updates, findings } = buildRefreshes({
+    servers: [{
+      slug: 'mcp-shopline',
+      name: { en: 'Shopline', zh: 'Shopline 電商平台' },
+      description: { en: 'MCP Server for Shopline e-commerce platform — 143 tools.', zh: 'Shopline 電商平台 MCP Server — 143 個工具。' },
+      status: 'released',
+    }],
+    fetchReadmeFn: () => { fetched++; return '# MCP Shopline\n\nA Shopline MCP server.\n'; },
+    fetchReadmeZhFn: () => { fetched++; return null; },
+  });
+  assert.equal(updates.length, 0);
+  assert.equal(findings.length, 0);
+  assert.equal(fetched, 1); // en README re-derived; zh not needed
+});
+
+test('buildRefreshes: a title-cased-slug acronym name is recased from the README H1 (Uof → UOF)', () => {
+  const { updates, findings } = buildRefreshes({
+    servers: [{
+      slug: 'mcp-uof',
+      name: { en: 'Uof', zh: 'Uof' },
+      description: { en: 'UOF platform MCP server.', zh: 'UOF 平台 MCP Server。' },
+      status: 'released',
+    }],
+    fetchReadmeFn: () => '# MCP UOF\n\nUOF platform MCP server.\n',
+    fetchReadmeZhFn: () => '# MCP UOF\n\nUOF 平台 MCP Server。\n',
+  });
+  assert.equal(findings.length, 0);
+  assert.equal(updates.length, 1);
+  assert.deepEqual(updates[0].fields, { nameEn: 'UOF', nameZh: 'UOF' });
+});
+
+test('buildRefreshes: a title-cased-slug name is never clobbered into a different word', () => {
+  const { updates, findings } = buildRefreshes({
+    servers: [{
+      slug: 'mcp-threads',
+      name: { en: 'Threads', zh: 'Threads' },
+      description: { en: 'Threads MCP server.', zh: 'Threads MCP Server。' },
+      status: 'released',
+    }],
+    fetchReadmeFn: () => '# MCP Meta Threads\n\nThreads MCP server.\n',
+    fetchReadmeZhFn: () => '# MCP Meta Threads\n\nThreads MCP Server。\n',
+  });
+  assert.equal(updates.length, 0);
+  assert.equal(findings.length, 0);
 });
 
 test('buildRefreshes: missing zh README leaves zh fields boilerplate and emits findings', () => {

@@ -1418,10 +1418,10 @@ servers:
   # ============================================================
   - slug: mcp-uof
     name:
-      en: "Uof"
-      zh: "Uof"
+      en: "UOF"
+      zh: "UOF"
     description:
-      en: "**UOF (U-Office Force) 一代平台的 MCP Server 實作**"
+      en: "UOF (U-Office Force) 一代平台的 MCP Server 實作"
       zh: "UOF (U-Office Force) 一代平台的 MCP Server 實作"
     status: released
     category: data
