@@ -1115,8 +1115,8 @@ servers:
 
   - slug: mcp-google-trends-tw
     name:
-      en: "MCP Google Trends Taiwan"
-      zh: "MCP Google Trends Taiwan"
+      en: "Google Trends Taiwan"
+      zh: "Google Trends Taiwan"
     description:
       en: "MCP server exposing Taiwan-oriented Google Trends tools via pytrends"
       zh: "MCP Google Trends Taiwan MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1129,8 +1129,8 @@ servers:
 
   - slug: mcp-hct-logistics
     name:
-      en: "MCP HCT Logistics"
-      zh: "MCP HCT Logistics"
+      en: "HCT Logistics"
+      zh: "HCT Logistics"
     description:
       en: "An MCP server for **Hsinchu Logistics (HCT)**, exposing `QueryEDELNO_Json` SOAP lookups over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
       zh: "MCP HCT Logistics MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1144,8 +1144,8 @@ servers:
 
   - slug: mcp-kerry-tj
     name:
-      en: "MCP Kerry TJ"
-      zh: "MCP Kerry TJ"
+      en: "Kerry TJ"
+      zh: "Kerry TJ"
     description:
       en: "An MCP server for **Kerry TJ** logistics, exposing BLN tracing and EDI shipment submission over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
       zh: "MCP Kerry TJ MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1173,8 +1173,8 @@ servers:
 
   - slug: mcp-sf-express
     name:
-      en: "MCP SF Express"
-      zh: "MCP SF Express"
+      en: "SF Express"
+      zh: "SF Express"
     description:
       en: "An MCP server for **SF Express Open Platform**, exposing OAuth2 token and `std/service` business gateway calls over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)."
       zh: "MCP SF Express MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1307,8 +1307,8 @@ servers:
 
   - slug: mcp-tw-nhi-ihqe
     name:
-      en: "MCP Taiwan NHI IHQE"
-      zh: "MCP Taiwan NHI IHQE"
+      en: "Taiwan NHI IHQE"
+      zh: "Taiwan NHI IHQE"
     description:
       en: "MCP server for Taiwan NHI IHQE healthcare quality indicators"
       zh: "MCP Taiwan NHI IHQE MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
@@ -1355,8 +1355,8 @@ servers:
   # ============================================================
   - slug: mcp-cpbl-statistics
     name:
-      en: "MCP CPBL Statistics"
-      zh: "MCP 中華職棒統計"
+      en: "CPBL Statistics"
+      zh: "中華職棒統計"
     description:
       en: "An MCP (Model Context Protocol) server that provides comprehensive statistics and data for the Chinese Professional Baseball League (CPBL)."
       zh: "一個中華職棒（CPBL）統計資料的 MCP 伺服器，透過 Model Context Protocol (MCP) 將資料查詢功能以 AI 可呼叫工具的形式對外開放。"
@@ -1401,8 +1401,8 @@ servers:
 
   - slug: mcp-uofx
     name:
-      en: "UOF X × AI Agent 整合示範"
-      zh: "UOF X × AI Agent 整合示範"
+      en: "UOF X"
+      zh: "UOF X"
     description:
       en: "UOF X 是一套企業 ERP，提供 99 個 API。這個專案展示：把這些 API 接上 AI Agent，員工能用自然語言完成哪些工作？"
       zh: "UOF X Total Solution 的 Model Context Protocol 伺服器。它將精選 UOF X API 包裝成 AI 可呼叫的工具，涵蓋 BPM、組織查詢、代理人設定、打卡紀錄、DMS 搜尋、ISO 文件、通知與問卷。"
