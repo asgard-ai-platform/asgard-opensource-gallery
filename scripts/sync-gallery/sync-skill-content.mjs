@@ -221,10 +221,16 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   }
 
   // Last-good content so a transient fetch failure carries over rather than
-  // deleting an entry (see buildSkillContent).
-  const prevContent = existsSync(OUTPUT_JSON)
-    ? JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'))
-    : {};
+  // deleting an entry (see buildSkillContent). A corrupt file must not crash
+  // the sync — fall back to empty.
+  let prevContent = {};
+  if (existsSync(OUTPUT_JSON)) {
+    try {
+      prevContent = JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'));
+    } catch {
+      console.warn(`  ⚠ existing ${OUTPUT_JSON} is unparseable; starting from empty`);
+    }
+  }
 
   console.log('[3/3] Fetching SKILL.md files ...');
   const { content: skillContent, descriptionUpdates, stats } = buildSkillContent({

@@ -123,6 +123,12 @@ test('isOurPackage: URL points to a DIFFERENT slug under our org -> false', () =
   assert.equal(isOurPackage(info, 'mcp-foo'), false);
 });
 
+test('isOurPackage: github.com as a path segment of another host -> false', () => {
+  // Squatter puts our path on a look-alike host; substring match would be fooled.
+  const info = { home_page: 'https://evil.example/github.com/asgard-ai-platform/mcp-shopline' };
+  assert.equal(isOurPackage(info, 'mcp-shopline'), false);
+});
+
 function withTmp(fn) {
   const dir = mkdtempSync(join(tmpdir(), 'yggdrasil-test-'));
   try {

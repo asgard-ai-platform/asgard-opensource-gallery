@@ -187,10 +187,17 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   const servers = yaml.load(readFileSync(MCP_YAML, 'utf-8')).servers;
 
   // Last-good content, so a transient fetch failure carries over rather than
-  // deleting an entry (see buildMcpContent).
-  const prevContent = existsSync(OUTPUT_JSON)
-    ? JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'))
-    : {};
+  // deleting an entry (see buildMcpContent). A corrupt file must not crash the
+  // sync — fall back to empty (this run then behaves like the pre-carry-over
+  // build for entries without a successful fetch).
+  let prevContent = {};
+  if (existsSync(OUTPUT_JSON)) {
+    try {
+      prevContent = JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'));
+    } catch {
+      console.warn(`  ⚠ existing ${OUTPUT_JSON} is unparseable; starting from empty`);
+    }
+  }
 
   // Fetch READMEs
   console.log(`[2/3] Fetching READMEs from ${servers.length} MCP repos ...`);
