@@ -1429,3 +1429,20 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-uof
     tags: ["data", "global", "uof"]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Auto-added by discover-new-mcps.mjs on 2026-08-02 — REVIEW
+  # ============================================================
+  - slug: mcp-wms
+    name:
+      en: "Wms"
+      zh: "Wms"
+    description:
+      en: "MCP (Model Context Protocol) server that exposes AI-callable tools for a WMS (Warehouse Management System) deployment. The concrete host and all tenant-specific defaults come from environment variables (WMS_BASE_URL, WMS_DEFAULT_DC_ID, WMS_DEFAULT..."
+      zh: "Wms MCP Server，提供 AI 代理透過自然語言存取相關資料與功能。"
+    status: coming-soon
+    category: data
+    region: global
+    github: https://github.com/asgard-ai-platform/mcp-wms
+    tags: ["data", "global", "wms"]
+    maintainer: asgard-ai-platform
