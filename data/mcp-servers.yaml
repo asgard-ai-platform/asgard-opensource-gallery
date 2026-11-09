@@ -1446,3 +1446,22 @@ servers:
     github: https://github.com/asgard-ai-platform/mcp-wms
     tags: ["data", "global", "wms"]
     maintainer: asgard-ai-platform
+
+  # ============================================================
+  # Community: Nexscope ecommerce MCP (2026-11-09)
+  # ============================================================
+  - slug: mcp-nexscope
+    name:
+      en: "Nexscope"
+      zh: "Nexscope 電商數據"
+    description:
+      en: "Remote MCP server with 228 ecommerce data tools for Amazon, TikTok Shop, Walmart, Shopee, Temu, Ozon, 1688, Etsy, eBay and more. Streamable HTTP at https://api.nexscope.ai/mcp with Bearer API key or OAuth."
+      zh: "遠端 MCP Server，提供 228 個電商數據工具，涵蓋 Amazon、TikTok Shop、Walmart、Shopee、Temu、Ozon、1688、Etsy、eBay 等。透過 Streamable HTTP（https://api.nexscope.ai/mcp）以 API Key 或 OAuth 連線。"
+    status: released
+    category: ecommerce
+    region: global
+    github: https://github.com/nexscope-ai/nexscope-ecommerce-api
+    tools_count: 228
+    tags: [ecommerce, amazon, tiktok-shop, walmart, mcp, global]
+    api_docs: https://www.nexscope.ai/mcp-map?co-from=yggdrasil
+    maintainer: nexscope-ai
