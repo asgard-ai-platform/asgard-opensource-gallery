@@ -4998,3 +4998,19 @@ skills:
     github: https://github.com/asgard-ai-platform/skills/blob/main/ops-talent-strategy/SKILL.md
     tags: [talent, succession, 9-box, competency, hr-strategy, emba]
     maintainer: asgard-ai-platform
+
+  - slug: skill-kling-global-media-generation
+    name:
+      en: "Kling AI Media Generation (Global)"
+      zh: "Kling AI 圖像與影片生成（國際服）"
+    description:
+      en: "Claude Code skill for planning and approved image/video generation, Elements, uploads, credits and existing-task tracking through https://kling.ai/mcp/plugin. Install the full plugin and use native OAuth with a matching Global account; generation consumes account credits. China service accounts, credits and task IDs are separate. The MIT license covers plugin source, not the hosted service or generated content."
+      zh: "Claude Code 技能，透過 https://kling.ai/mcp/plugin 規劃與執行已授權的圖像／影片生成，管理 Elements、上傳、積分及既有任務。須安裝完整插件，以國際服帳號完成原生 OAuth；生成消耗帳號積分。中國服帳號、積分與任務 ID 不互通。MIT 授權僅涵蓋插件源碼，不涵蓋託管服務或生成內容。"
+    status: released
+    category: media
+    skill_type: industry
+    region: global
+    github: https://github.com/klingai-tech/claude-plugin/blob/main/skills/kling-ai/SKILL.md
+    has_script: false
+    tags: [kling-ai, claude-code, image-generation, video-generation, oauth, remote-mcp]
+    maintainer: klingai-tech
