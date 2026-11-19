@@ -106,7 +106,7 @@ function sectionKey(title) {
 /**
  * Surgically update description.en values in YAML text.
  */
-function updateYamlDescriptions(yamlText, updates) {
+export function updateYamlDescriptions(yamlText, updates) {
   const lines = yamlText.split('\n');
   const result = [];
   let i = 0;
@@ -134,8 +134,9 @@ function updateYamlDescriptions(yamlText, updates) {
               const enMatch = lines[i].match(/^(\s+)en:\s*/);
               if (enMatch) {
                 const indent = enMatch[1];
-                const escaped = update.newDescEn.replace(/"/g, '\\"');
-                result.push(`${indent}en: "${escaped}"`);
+                // JSON string literals are valid YAML double-quoted scalars, so this
+                // escapes backslashes, newlines and control chars, not just quotes.
+                result.push(`${indent}en: ${JSON.stringify(update.newDescEn)}`);
                 i++;
                 updated++;
                 continue;
@@ -188,7 +189,8 @@ export function buildSkillContent({ dirs, fetchFn, yamlSkills = new Map(), prevC
     };
 
     const yamlEntry = yamlSkills.get(dir);
-    if (yamlEntry && meta.description) {
+    // A non-string (e.g. YAML list) description would write a schema-invalid value.
+    if (yamlEntry && typeof meta.description === 'string' && meta.description) {
       const currentDesc = yamlEntry.description?.en || '';
       if (meta.description.length > currentDesc.length + 20) {
         descriptionUpdates.set(slug, { newDescEn: meta.description });
