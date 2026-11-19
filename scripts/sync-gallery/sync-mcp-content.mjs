@@ -11,6 +11,7 @@ import { execFileSync } from 'node:child_process';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
+import { FETCH_FAILED, ghFetchFileChecked } from './_lib.mjs';
 
 const ORG = 'asgard-ai-platform';
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
@@ -142,10 +143,13 @@ export function sectionKey(title) {
  * gh-api call auto-commit the removal of that MCP's detail-page content
  * (check-sync-thresholds only trips below 80% coverage). Non-released repos are
  * still omitted — that is a deliberate YAML status change, not a fetch failure.
+ *
+ * `fetchZhFn` returns null when README.zh-TW.md does not exist (404) and
+ * FETCH_FAILED on a transient error; only the latter keeps the last-good zh.
  */
 export function buildMcpContent({ servers, fetchEnFn, fetchZhFn, prevContent = {} }) {
   const content = {};
-  const stats = { processed: 0, carried: 0, skipped: 0, zhCount: 0 };
+  const stats = { processed: 0, carried: 0, skipped: 0, zhCount: 0, zhCarried: 0 };
 
   for (const server of servers) {
     const repo = server.slug;
@@ -162,7 +166,16 @@ export function buildMcpContent({ servers, fetchEnFn, fetchZhFn, prevContent = {
     for (const [title, md] of extractSections(readmeEn)) entry.sections.en[sectionKey(title)] = md;
 
     const readmeZh = fetchZhFn(repo);
-    if (readmeZh) {
+    if (readmeZh === FETCH_FAILED) {
+      // Transient zh failure: keep last-good zh rather than silently dropping it.
+      const prevZh = prevContent[repo];
+      if (prevZh?.intro?.zh !== undefined) {
+        entry.intro.zh = prevZh.intro.zh;
+        entry.sections.zh = prevZh.sections?.zh || {};
+        stats.zhCount++;
+        stats.zhCarried++;
+      }
+    } else if (readmeZh) {
       entry.intro.zh = extractIntro(readmeZh);
       for (const [title, md] of extractSections(readmeZh)) entry.sections.zh[sectionKey(title)] = md;
       stats.zhCount++;
@@ -204,14 +217,14 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
   const { content: mcpContent, stats } = buildMcpContent({
     servers,
     fetchEnFn: (repo) => ghFetchFile(repo, 'README.md'),
-    fetchZhFn: (repo) => ghFetchFile(repo, 'README.zh-TW.md'),
+    fetchZhFn: (repo) => ghFetchFileChecked(ORG, repo, 'README.zh-TW.md'),
     prevContent,
   });
 
   // Write output
   console.log(`[3/3] Writing mcp-content.json ...`);
   writeFileSync(OUTPUT_JSON, JSON.stringify(mcpContent, null, 2), 'utf-8');
-  console.log(`  ✅ ${stats.processed} processed (${stats.zhCount} with zh), ${stats.carried} carried over, ${stats.skipped} skipped`);
+  console.log(`  ✅ ${stats.processed} processed (${stats.zhCount} with zh, ${stats.zhCarried} zh carried over), ${stats.carried} carried over, ${stats.skipped} skipped`);
 
   console.log('\n═══════════════════════════════════════════════════');
   console.log(' Done');
