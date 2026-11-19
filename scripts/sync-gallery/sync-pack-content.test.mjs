@@ -14,7 +14,10 @@ import {
   buildSetup,
   parseUseCases,
   assemblePackContent,
+  keepLastGoodFields,
+  buildPackEntry,
 } from './sync-pack-content.mjs';
+import { FETCH_FAILED } from './_lib.mjs';
 
 const FIX = new URL('./_fixtures/', import.meta.url).pathname;
 const readFix = (name) => readFileSync(join(FIX, name), 'utf-8');
@@ -371,3 +374,127 @@ test('assemblePackContent: degrades when optional sources are missing', () => {
   // marketplace arg was null → buildSourceBlock omits the marketplace key
   assert.equal('marketplace' in entry.source, false);
 });
+
+// ── keepLastGoodFields: per-field carry-over on transient fetch failure ──
+
+const FRESH = {
+  install: [],
+  setup: { status: 'none', summary: 'No credentials required — install and use.', env_groups: [] },
+  use_cases: [],
+  source: { plugin: 'new' },
+};
+const PRIOR = {
+  install: [{ harness: 'claude-code' }],
+  setup: { status: 'keys-required', summary: 'old', env_groups: [{ vars: [{ name: 'API_KEY' }] }] },
+  use_cases: [{ title: 'old case' }],
+  source: { plugin: 'old' },
+};
+const NONE_FAILED = { readme: false, envExample: false, useCases: false, marketplace: false };
+
+test('keepLastGoodFields: nothing failed → fresh entry unchanged', () => {
+  assert.deepEqual(keepLastGoodFields(FRESH, PRIOR, NONE_FAILED), FRESH);
+});
+
+test('keepLastGoodFields: failed .env.example keeps prior setup instead of a false "No credentials required"', () => {
+  const out = keepLastGoodFields(FRESH, PRIOR, { ...NONE_FAILED, envExample: true });
+  assert.deepEqual(out.setup, PRIOR.setup);
+  assert.deepEqual(out.install, FRESH.install);
+  assert.deepEqual(out.use_cases, FRESH.use_cases);
+  assert.deepEqual(out.source, FRESH.source);
+});
+
+test('keepLastGoodFields: each source maps to its own field', () => {
+  const out = keepLastGoodFields(FRESH, PRIOR, { readme: true, envExample: false, useCases: true, marketplace: true });
+  assert.deepEqual(out.install, PRIOR.install);
+  assert.deepEqual(out.use_cases, PRIOR.use_cases);
+  assert.deepEqual(out.source, PRIOR.source);
+  assert.deepEqual(out.setup, FRESH.setup);
+});
+
+test('keepLastGoodFields: failure with no prior entry → null (skip, do not publish)', () => {
+  assert.equal(keepLastGoodFields(FRESH, undefined, { ...NONE_FAILED, useCases: true }), null);
+});
+
+test('keepLastGoodFields: nothing failed and no prior → fresh entry', () => {
+  assert.deepEqual(keepLastGoodFields(FRESH, undefined, NONE_FAILED), FRESH);
+});
+
+// ── buildPackEntry: 404 vs transient failure through the real fetch→assemble path ──
+
+const REPO = { owner: 'asgard-ai-platform', repo: 'tw-ecommerce-majordomo' };
+const TEXT_FILES = {
+  'README.md': readFix('pack-majordomo-README.md'),
+  '.env.example': readFix('pack-majordomo.env.example'),
+  'docs/USE-CASES.md': readFix('pack-majordomo-USE-CASES.md'),
+};
+const JSON_FILES = { '.claude-plugin/marketplace.json': JSON.parse(readFix('pack-majordomo-marketplace.json')) };
+const PLUGIN_RAW = JSON.parse(readFix('pack-majordomo-plugin.json'));
+const fetchers = (override = {}) => ({
+  fetchText: (path) => (path in override ? override[path] : TEXT_FILES[path] ?? null),
+  fetchJSON: (path) => (path in override ? override[path] : JSON_FILES[path] ?? null),
+});
+const build = (override, prior) =>
+  buildPackEntry({ repo: REPO, pluginRaw: PLUGIN_RAW, mcpCount: 5, prior, ...fetchers(override) });
+
+test('buildPackEntry: all sources fetched → keys-required/sandbox setup parsed, nothing failed', () => {
+  const { entry, failedSources } = build();
+  assert.deepEqual(failedSources, []);
+  assert.notEqual(entry.setup.status, 'none');
+  assert.ok(entry.use_cases.length > 0);
+});
+
+// A prior entry whose every field differs from a fresh build, so a test can
+// tell a retained field from a refreshed one.
+const STALE_PRIOR = {
+  install: [{ harness: 'stale' }],
+  setup: { status: 'keys-required', summary: 'stale', env_groups: [] },
+  use_cases: [{ title: 'stale' }],
+  source: { stale: true },
+};
+
+test('buildPackEntry: transient .env.example failure keeps prior setup only; other fields refresh', () => {
+  const fresh = build().entry;
+  const { entry, failedSources } = build({ '.env.example': FETCH_FAILED }, STALE_PRIOR);
+  assert.deepEqual(failedSources, ['envExample']);
+  assert.deepEqual(entry.setup, STALE_PRIOR.setup);
+  assert.deepEqual(entry.install, fresh.install);
+  assert.deepEqual(entry.use_cases, fresh.use_cases);
+  assert.deepEqual(entry.source, fresh.source);
+});
+
+test('buildPackEntry: .env.example 404 means no credentials, even with a prior entry', () => {
+  const prior = build().entry;
+  const { entry, failedSources } = build({ '.env.example': null }, prior);
+  assert.deepEqual(failedSources, []);
+  assert.equal(entry.setup.status, 'none');
+});
+
+test('buildPackEntry: transient failure with no prior entry → entry null (pack skipped)', () => {
+  const { entry, failedSources } = build({ 'docs/USE-CASES.md': FETCH_FAILED }, undefined);
+  assert.equal(entry, null);
+  assert.deepEqual(failedSources, ['useCases']);
+});
+
+test('buildPackEntry: transient failure on nested marketplace.json does not fall back to the root one', () => {
+  const seen = [];
+  const { fetchText } = fetchers();
+  const { entry, failedSources } = buildPackEntry({
+    repo: REPO, pluginRaw: PLUGIN_RAW, mcpCount: 5, prior: STALE_PRIOR, fetchText,
+    fetchJSON: (path) => { seen.push(path); return path === '.claude-plugin/marketplace.json' ? FETCH_FAILED : { name: 'root' }; },
+  });
+  assert.deepEqual(seen, ['.claude-plugin/marketplace.json']);
+  assert.deepEqual(failedSources, ['marketplace']);
+  assert.deepEqual(entry.source, STALE_PRIOR.source);
+  assert.deepEqual(entry.install, build().entry.install);
+});
+
+test('buildPackEntry: unparseable/falsy nested marketplace.json still falls back to the root one', () => {
+  const seen = [];
+  const { fetchText } = fetchers();
+  buildPackEntry({
+    repo: REPO, pluginRaw: PLUGIN_RAW, mcpCount: 5, prior: undefined, fetchText,
+    fetchJSON: (path) => { seen.push(path); return path === '.claude-plugin/marketplace.json' ? false : JSON_FILES['.claude-plugin/marketplace.json']; },
+  });
+  assert.deepEqual(seen, ['.claude-plugin/marketplace.json', 'marketplace.json']);
+});
+

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sectionKey, buildMcpContent } from './sync-mcp-content.mjs';
+import { FETCH_FAILED } from './_lib.mjs';
 
 // ── buildMcpContent: last-good carry-over on fetch failure ──
 
@@ -263,3 +264,48 @@ test('sectionKey: "✨ Features" → features (emoji + en alias)', () => {
 test('sectionKey: "📚 API Reference" → api_reference', () => {
   assert.equal(sectionKey('📚 API Reference'), 'api_reference');
 });
+
+// ── buildMcpContent: zh README transient failure vs 404 ──
+
+const EN_README = '# MCP Foo\n\nnew intro\n\n## Tools\n\nnew tools';
+
+test('buildMcpContent: transient zh failure keeps last-good zh while refreshing en', () => {
+  const prev = { 'mcp-foo': { intro: { en: 'old', zh: '舊介紹' }, sections: { en: {}, zh: { tools: '舊工具' } } } };
+  const { content, stats } = buildMcpContent({
+    servers: [RELEASED('mcp-foo')],
+    fetchEnFn: () => EN_README,
+    fetchZhFn: () => FETCH_FAILED,
+    prevContent: prev,
+  });
+  assert.equal(content['mcp-foo'].intro.en, 'new intro');
+  assert.equal(content['mcp-foo'].intro.zh, '舊介紹');
+  assert.deepEqual(content['mcp-foo'].sections.zh, { tools: '舊工具' });
+  assert.equal(stats.zhCarried, 1);
+  assert.equal(stats.zhCount, 1);
+});
+
+test('buildMcpContent: transient zh failure with no prior zh publishes en only', () => {
+  const { content, stats } = buildMcpContent({
+    servers: [RELEASED('mcp-foo')],
+    fetchEnFn: () => EN_README,
+    fetchZhFn: () => FETCH_FAILED,
+    prevContent: {},
+  });
+  assert.equal('zh' in content['mcp-foo'].intro, false);
+  assert.deepEqual(content['mcp-foo'].sections.zh, {});
+  assert.equal(stats.zhCarried, 0);
+});
+
+test('buildMcpContent: zh README 404 (null) drops zh even when prior had it', () => {
+  const prev = { 'mcp-foo': { intro: { en: 'old', zh: '舊介紹' }, sections: { en: {}, zh: { tools: '舊工具' } } } };
+  const { content, stats } = buildMcpContent({
+    servers: [RELEASED('mcp-foo')],
+    fetchEnFn: () => EN_README,
+    fetchZhFn: () => null,
+    prevContent: prev,
+  });
+  assert.equal('zh' in content['mcp-foo'].intro, false);
+  assert.deepEqual(content['mcp-foo'].sections.zh, {});
+  assert.equal(stats.zhCarried, 0);
+});
+
