@@ -35,6 +35,29 @@ export function ghFetchFile(org, repo, path) {
   }
 }
 
+/** Returned by ghFetchFileChecked for any failure other than a definitive 404. */
+export const FETCH_FAILED = Symbol('FETCH_FAILED');
+
+/**
+ * Like ghFetchFile, but tells a definitive 404 apart from a transient failure
+ * so callers can keep last-good content instead of publishing an empty field.
+ * @returns {string|null|typeof FETCH_FAILED} File body; null on HTTP 404;
+ *   FETCH_FAILED on any other error (5xx, rate limit, auth, network, timeout).
+ */
+export function ghFetchFileChecked(org, repo, path) {
+  try {
+    const b64 = execFileSync(
+      'gh',
+      ['api', `repos/${org}/${repo}/contents/${path}`, '--jq', '.content'],
+      { encoding: 'utf-8', timeout: 15000, stdio: ['pipe', 'pipe', 'pipe'] },
+    ).trim();
+    return decodeBase64Content(b64);
+  } catch (err) {
+    const stderr = err && err.stderr ? err.stderr.toString() : '';
+    return classifyGhError(stderr || (err && err.message) || '').status === 'missing' ? null : FETCH_FAILED;
+  }
+}
+
 /**
  * Call `gh api <apiPath>` and JSON-parse the result.
  * @param {string|null} jq Optional `--jq` filter; omit / null for raw JSON.

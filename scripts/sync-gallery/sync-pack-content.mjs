@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import yaml from 'js-yaml';
-import { ghFetchFile } from './_lib.mjs';
+import { FETCH_FAILED, ghFetchFileChecked } from './_lib.mjs';
 
 const ROOT = resolve(new URL('.', import.meta.url).pathname, '../..');
 const DATA_DIR = join(ROOT, 'data');
@@ -370,14 +370,77 @@ export function assemblePackContent(s) {
   };
 }
 
+/** Which fetched source file each assembled field is derived from. */
+const FIELD_SOURCES = { install: 'readme', setup: 'envExample', use_cases: 'useCases', source: 'marketplace' };
+
+/**
+ * Replace each field whose source file failed transiently (`failed[src]`) with
+ * the prior entry's value, so a flaky fetch cannot publish empty install tabs,
+ * no use cases, or a false "No credentials required". Returns null when a
+ * source failed and there is no prior entry to fall back on.
+ */
+export function keepLastGoodFields(fresh, prior, failed) {
+  const out = { ...fresh };
+  for (const [field, src] of Object.entries(FIELD_SOURCES)) {
+    if (!failed[src]) continue;
+    if (!prior) return null;
+    out[field] = prior[field];
+  }
+  return out;
+}
+
 // ── I/O shell ────────────────────────────────────────────────────
 
 /** Normalize CRLF → LF so the line-based parsers work on Windows-committed files. */
 const normalizeText = (s) => (s == null ? s : s.replace(/\r\n?/g, '\n'));
 
-/** Fetch + JSON-parse a file from a repo; null on any fetch/parse failure. */
+/**
+ * Fetch a pack's remaining source files (after plugin.json succeeded), assemble
+ * its entry, and keep last-good fields for any source that failed transiently.
+ * Fetchers return text/JSON, null on 404, or FETCH_FAILED on a transient error.
+ * @returns {{ entry: object|null, failedSources: string[] }} entry is null when
+ *   a source failed and there is no prior entry (caller skips the pack).
+ */
+export function buildPackEntry({ repo, pluginRaw, mcpCount, prior, fetchText, fetchJSON }) {
+  // Fall back to the root marketplace.json on a miss (404 / unparseable), not on
+  // a transient failure of the first path (FETCH_FAILED is a truthy Symbol).
+  let marketplaceRaw = fetchJSON('.claude-plugin/marketplace.json');
+  let marketplacePath = marketplaceRaw && marketplaceRaw !== FETCH_FAILED ? '.claude-plugin/marketplace.json' : null;
+  if (!marketplaceRaw) {
+    marketplaceRaw = fetchJSON('marketplace.json');
+    if (marketplaceRaw && marketplaceRaw !== FETCH_FAILED) marketplacePath = 'marketplace.json';
+  }
+  const readmeRaw = fetchText('README.md');
+  const envExampleRaw = fetchText('.env.example');
+  const useCasesRaw = fetchText('docs/USE-CASES.md');
+  const failed = {
+    readme: readmeRaw === FETCH_FAILED,
+    envExample: envExampleRaw === FETCH_FAILED,
+    useCases: useCasesRaw === FETCH_FAILED,
+    marketplace: marketplaceRaw === FETCH_FAILED,
+  };
+  const ok = (raw) => (raw === FETCH_FAILED ? null : raw);
+
+  const fresh = assemblePackContent({
+    repo,
+    pluginManifest: parsePluginManifest(pluginRaw),
+    marketplace: parseMarketplace(ok(marketplaceRaw)),
+    marketplacePath,
+    readme: normalizeText(ok(readmeRaw)),
+    envExample: normalizeText(ok(envExampleRaw)),
+    useCases: normalizeText(ok(useCasesRaw)),
+    mcpCount,
+  });
+  return {
+    entry: keepLastGoodFields(fresh, prior, failed),
+    failedSources: Object.keys(failed).filter((k) => failed[k]),
+  };
+}
+
+/** Fetch + JSON-parse a file from a repo; null on 404 or parse failure, FETCH_FAILED on a transient fetch error. */
 function ghJSONFile(repo, filePath) {
-  const raw = ghFetchFile(repo.owner, repo.repo, filePath);
+  const raw = ghFetchFileChecked(repo.owner, repo.repo, filePath);
+  if (raw === FETCH_FAILED) return FETCH_FAILED;
   if (!raw) return null;
   try {
     return JSON.parse(raw);
@@ -413,7 +476,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
       continue;
     }
     const pluginRaw = ghJSONFile(repo, '.claude-plugin/plugin.json');
-    if (!pluginRaw) {
+    if (!pluginRaw || pluginRaw === FETCH_FAILED) {
       if (prior[pack.slug]) {
         out[pack.slug] = prior[pack.slug];
         console.log('⚠  plugin.json unreachable — keeping last-good entry');
@@ -425,26 +488,21 @@ if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.ar
       continue;
     }
     // Track which marketplace path actually resolved so the provenance URL is honest.
-    let marketplaceRaw = ghJSONFile(repo, '.claude-plugin/marketplace.json');
-    let marketplacePath = marketplaceRaw ? '.claude-plugin/marketplace.json' : null;
-    if (!marketplaceRaw) {
-      marketplaceRaw = ghJSONFile(repo, 'marketplace.json');
-      if (marketplaceRaw) marketplacePath = 'marketplace.json';
-    }
-    const readme = normalizeText(ghFetchFile(repo.owner, repo.repo, 'README.md'));
-    const envExample = normalizeText(ghFetchFile(repo.owner, repo.repo, '.env.example'));
-    const useCases = normalizeText(ghFetchFile(repo.owner, repo.repo, 'docs/USE-CASES.md'));
-
-    out[pack.slug] = assemblePackContent({
+    const { entry: merged, failedSources } = buildPackEntry({
       repo,
-      pluginManifest: parsePluginManifest(pluginRaw),
-      marketplace: parseMarketplace(marketplaceRaw),
-      marketplacePath,
-      readme,
-      envExample,
-      useCases,
+      pluginRaw,
       mcpCount: Array.isArray(pack.mcp_servers) ? pack.mcp_servers.length : 0,
+      prior: prior[pack.slug],
+      fetchText: (path) => ghFetchFileChecked(repo.owner, repo.repo, path),
+      fetchJSON: (path) => ghJSONFile(repo, path),
     });
+    if (!merged) {
+      console.log(`⚠  ${failedSources.join(', ')} unreachable — skipped (no prior entry)`);
+      skipped++;
+      continue;
+    }
+    out[pack.slug] = merged;
+    if (failedSources.length) console.log(`⚠  ${failedSources.join(', ')} unreachable — kept last-good field(s)`);
     const c = out[pack.slug];
     console.log(
       `✅ ${c.install.length} install tab(s), setup=${c.setup.status}, ${c.use_cases.length} use case(s)`,
