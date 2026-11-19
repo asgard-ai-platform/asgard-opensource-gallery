@@ -1,8 +1,8 @@
 name: Audit gallery content
 on:
   schedule:
-    - cron: '0 19 * * 1-6'  # Mon-Sat 19:00 UTC = 03:00 TW next day
-    - cron: '0 19 * * 0'    # Sun 19:00 UTC = Mon 03:00 TW; also posts the Slack digest
+    - cron: '0 19 * * *'    # Daily 19:00 UTC = 03:00 TW
+    - cron: '0 13 * * 1'    # Mon 13:00 UTC = Mon 21:00 TW; extra run that posts the Slack digest
   workflow_dispatch:
     inputs:
       slack_digest:
@@ -58,12 +58,12 @@ jobs:
       - run: REFRESH_REPORT_ONLY=1 node scripts/sync-gallery/refresh-boilerplate-descriptions.mjs
       - run: node scripts/sync-gallery/audit-orphans.mjs
       - run: node scripts/sync-gallery/post-audit-issues.mjs scripts/sync-gallery/_generated/repo-audit-report.md
-      # Weekly Slack digest: only the Sunday cron (keyed on the schedule string,
+      # Weekly Slack digest: only the Monday 13:00 UTC cron (keyed on the schedule string,
       # not the runner clock, since scheduled runs can start hours late) or a
       # manual run with slack_digest=true. always() so a failed audit still
       # reports (the digest then carries a warning). Skips if the secret is unset.
       - name: Post weekly Slack digest
-        if: always() && (github.event.schedule == '0 19 * * 0' || inputs.slack_digest)
+        if: always() && (github.event.schedule == '0 13 * * 1' || inputs.slack_digest)
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
