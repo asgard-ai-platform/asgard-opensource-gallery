@@ -1,0 +1,27 @@
+name: Validate
+on:
+  # No paths filter: it can miss build-affecting files and skips PRs whose
+  # first 300 changed files contain none of the listed paths.
+  pull_request:
+
+# One run per PR; a new push supersedes the in-flight run.
+concurrency:
+  group: validate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    # Runs fork PRs too: read-only token, no secrets needed.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - run: npm run test:scripts
+      - run: npm run build

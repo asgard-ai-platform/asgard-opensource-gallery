@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildSkillContent } from './sync-skill-content.mjs';
+import yaml from 'js-yaml';
+import { buildSkillContent, updateYamlDescriptions } from './sync-skill-content.mjs';
 
 const SKILL_MD = `---
 name: foo
@@ -59,4 +60,40 @@ test('buildSkillContent: queues a description update when frontmatter is meaning
   });
   assert.equal(descriptionUpdates.has('skill-foo'), true);
   assert.match(descriptionUpdates.get('skill-foo').newDescEn, /richer SKILL\.md description/);
+});
+
+test('buildSkillContent: ignores a non-string frontmatter description', () => {
+  // 30 items so .length beats the "+20 chars richer" threshold and only the type guard stops it.
+  const items = Array.from({ length: 30 }, (_, i) => `  - item${i}`).join('\n');
+  const listDesc = SKILL_MD.replace(/^description: .*$/m, `description:\n${items}`);
+  const yamlSkills = new Map([['foo', { description: { en: 'short' } }]]);
+  const { descriptionUpdates } = buildSkillContent({
+    dirs: ['foo'],
+    fetchFn: () => listDesc,
+    yamlSkills,
+  });
+  assert.equal(descriptionUpdates.has('skill-foo'), false);
+});
+
+test('updateYamlDescriptions: escapes backslashes, quotes and newlines and leaves the rest untouched', () => {
+  const before = [
+    'skills:',
+    '  # section comment',
+    '  - slug: skill-foo',
+    '    description:',
+    '      en: "old"',
+    '      zh: "舊"',
+    '  - slug: skill-bar',
+    '    description:',
+    '      en: "keep"',
+    '',
+  ];
+  const tricky = 'Match \\d+ and "quoted" C:\\path — 中文\nsecond line\ttab';
+  const out = updateYamlDescriptions(before.join('\n'), new Map([['skill-foo', { newDescEn: tricky }]]));
+  const expected = [...before];
+  expected[4] = `      en: ${JSON.stringify(tricky)}`;
+  assert.equal(out, expected.join('\n'));
+  const parsed = yaml.load(out);
+  assert.equal(parsed.skills[0].description.en, tricky);
+  assert.equal(parsed.skills[1].description.en, 'keep');
 });
