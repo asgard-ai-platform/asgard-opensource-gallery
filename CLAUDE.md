@@ -41,6 +41,7 @@ schemas/                    # JSON Schema for YAML validation
 scripts/
   validate.mjs              # CI validation script (Ajv)
   deploy.sh                 # Manual Cloudflare Pages deploy script
+  sync-gallery/             # Sync + audit scripts used by the workflows (runbook: SKILL.md)
 src/
   types.ts                  # Shared TypeScript interfaces + constants
   utils/data-loader.ts      # YAML parsing, sorting, lookup functions
@@ -75,9 +76,13 @@ public/
   screenshots/              # Product screenshots (Mimir, Sindri, Odin)
 e2e/                        # Playwright e2e tests (45 tests)
 .github/workflows/
-  validate.yml              # PR validation on data/** changes
-  deploy.yml                # Auto-deploy on push to main
+  validate.yml              # Every PR: validate + script tests + build
+  deploy.yml                # Auto-deploy on push to main/develop touching data/src/public/build config
+  sync-content.yml          # Weekly: discover/promote MCPs, sync content, push to main if data/ changed
+  audit-content.yml         # Daily audit → tracking issues; Mon 05:17 UTC run also posts Slack digest
 ```
+
+Sync/audit automation, schedules, secrets and troubleshooting: see the runbook at `scripts/sync-gallery/SKILL.md`.
 
 ## i18n System
 
