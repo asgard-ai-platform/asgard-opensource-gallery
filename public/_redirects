@@ -1,2 +1,31 @@
-/bundles/* /plugins/:splat 301
-/bundles /plugins 301
+# vault.asgard-ai.com is retired: every page now lives on the official site.
+# vault URLs end in "/", the official site does not (trailingSlash: false),
+# so each path is listed with and without the slash to land in one hop.
+# Static rules first, then placeholders (Cloudflare matches top to bottom).
+
+/ https://www.asgard-ai.com/ecosystem 301
+
+# /ecosystem here was the commercial product story, not the catalog index.
+/ecosystem https://www.asgard-ai.com/products/enterprise 301
+/ecosystem/ https://www.asgard-ai.com/products/enterprise 301
+
+/contribute https://www.asgard-ai.com/ecosystem/contribute 301
+/contribute/ https://www.asgard-ai.com/ecosystem/contribute 301
+
+/mcp https://www.asgard-ai.com/ecosystem/mcp 301
+/mcp/ https://www.asgard-ai.com/ecosystem/mcp 301
+/skills https://www.asgard-ai.com/ecosystem/skills 301
+/skills/ https://www.asgard-ai.com/ecosystem/skills 301
+/plugins https://www.asgard-ai.com/ecosystem/plugins 301
+/plugins/ https://www.asgard-ai.com/ecosystem/plugins 301
+/bundles https://www.asgard-ai.com/ecosystem/plugins 301
+/bundles/ https://www.asgard-ai.com/ecosystem/plugins 301
+
+/mcp/:slug https://www.asgard-ai.com/ecosystem/mcp/:slug 301
+/mcp/:slug/ https://www.asgard-ai.com/ecosystem/mcp/:slug 301
+/skills/:slug https://www.asgard-ai.com/ecosystem/skills/:slug 301
+/skills/:slug/ https://www.asgard-ai.com/ecosystem/skills/:slug 301
+/plugins/:slug https://www.asgard-ai.com/ecosystem/plugins/:slug 301
+/plugins/:slug/ https://www.asgard-ai.com/ecosystem/plugins/:slug 301
+/bundles/:slug https://www.asgard-ai.com/ecosystem/plugins/:slug 301
+/bundles/:slug/ https://www.asgard-ai.com/ecosystem/plugins/:slug 301
