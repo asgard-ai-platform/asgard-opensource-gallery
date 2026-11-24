@@ -12,7 +12,6 @@
     "test:scripts": "node --test scripts/sync-gallery/*.test.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.2",
     "@astrojs/tailwind": "^6.0.2",
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
